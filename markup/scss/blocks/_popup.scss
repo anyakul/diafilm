@@ -1,0 +1,101 @@
+@charset "UTF-8";
+/* --------------------
+   Попап
+   -------------------- */
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: $MIN-WIDTH;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  outline: none;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  z-index: 30;
+
+  @include transition() {
+    transition-property: opacity, visibility, background-color;
+  }
+
+  &_menu {
+    max-height: 100%;
+    background-color: $black;
+
+    @include media(tablet) {
+      height: auto;
+    }
+  }
+
+  .has-no-js &:target,
+  &.is-visible {
+    pointer-events: all;
+    visibility: inherit;
+    opacity: 1;
+  }
+
+  &__container {
+    @extend %container;
+
+    .popup_menu & {
+      height: 100%;
+
+      @include media(tablet) {
+        height: auto;
+      }
+    }
+  }
+
+  &__row {
+    @extend %row;
+
+    .popup_menu & {
+      height: 100%;
+
+      @include media(tablet) {
+        height: auto;
+      }
+    }
+  }
+
+  &__body {
+    @extend %column;
+    position: relative;
+
+    .popup_menu & {
+      height: 100%;
+
+      @include media(tablet) {
+        height: auto;
+      }
+    }
+
+    @include media(before, tablet) {
+      padding-top: var(--safe-area-inset-top);
+    }
+  }
+
+  &__close {
+    position: absolute;
+    z-index: 20;
+
+    .popup_menu & {
+      position: fixed;
+      top: 54px;
+      right: 0;
+      margin-top: -28px;
+      margin-right: 16px;
+
+      @include media(tablet) {
+        top: 43px;
+      }
+    }
+  }
+}

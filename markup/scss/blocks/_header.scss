@@ -1,0 +1,88 @@
+@charset "UTF-8";
+/* --------------------
+    Шапка
+   -------------------- */
+
+.header {
+  position: relative;
+  background-color: $black;
+
+  &__skip {
+    position: absolute;
+    bottom: 100%;
+    right: 100%;
+    display: block;
+    white-space: nowrap;
+    text-decoration: none;
+    color: $white;
+    background-color: $black;
+
+    &:focus {
+      top: 0;
+      left: 20px;
+    }
+  }
+
+  &__container {
+    @extend %container;
+
+    @include media(before, tablet) {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+  }
+
+  &__row {
+    @extend %row;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    @include media(tablet) {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
+
+  &__logo {
+    @include highlight();
+    @extend %column;
+    @include column(6, 8);
+    padding-left: 8px;
+    padding-right: 8px;
+
+    @include media(tablet) {
+      @include column(5, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+
+  &__intro {
+    @include highlight();
+    @extend %column;
+    display: none;
+
+    @include media(tablet) {
+      display: block;
+      @include column(6, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+
+  &__buttons {
+    @include highlight();
+    @extend %column;
+    @include column(2, 8);
+    padding-left: 8px;
+    padding-right: 8px;
+    text-align: right;
+
+    @include media(tablet) {
+      @include column(1, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+}

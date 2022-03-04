@@ -1,0 +1,13 @@
+{% if self|hasMenu %}
+    <nav class="{% if self.className %}{{ self.className }} {% endif %}{{ 'menu'|mod(self.mod) }}{{ self|jsClass }}"
+         {% if not self.title %}aria-label="{{ self.label|default('Меню сайта') }}"{% endif %}>
+
+        {% if self.title %}
+            <p class="menu__title">{{ self.title|ft }}</p>
+        {% endif %}
+
+        {% include '@blocks/menu-list.twig' with {
+            self: self
+        } %}
+    </nav>
+{% endif %}

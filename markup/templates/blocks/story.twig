@@ -1,0 +1,22 @@
+<article class="{% if self.className %}{{ self.className }} {% endif %}{{ 'story'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    <header class="story__header">
+        <div class="story__label" role="heading" aria-level="2">{{ self.label|ft }}</div>
+        {% if self.link %}
+            <a class="story__link" href="{{ menu|url(self.link.url) }}">{{ self.link.label|ft }}</a>
+        {% endif %}
+    </header>
+    <div class="story__text is-editable">
+        {% filter ft %}
+            {% block story_text %}
+                <p>{{ self.text }}</p>
+            {% endblock story_text %}
+        {% endfilter %}
+    </div>
+    {% include '@blocks/figure.twig' with {
+        self: self.figure|extend({
+            mod: 'image',
+            type: 'image',
+            className: 'story__figure'
+        })
+    } %}
+</article>

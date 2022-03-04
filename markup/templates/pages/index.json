@@ -1,0 +1,357 @@
+{
+  "page": {
+    "id": "dd2021",
+    "layout": "main",
+    "lang": "ru",
+    "title": "",
+    "description": "",
+    "keywords": "",
+    "showIntro": true
+  },
+  "viewing": [
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-1.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-2.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-3.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-1.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-2.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-3.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-1.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-2.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-3.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    }
+  ],
+  "artists": [
+    {
+      "label": "Василий Игнатов",
+      "text": "На студии В.Г. Игнатов считался признанным мастером-сказочником",
+      "link": {
+        "url": "artist",
+        "label": ""
+      },
+      "picture": {
+        "url": "main/artists/picture-1.jpg",
+        "width": 222,
+        "height": 192,
+        "alt": ""
+      },
+      "photo": {
+        "url": "main/artists/photo-1.jpg",
+        "width": 120,
+        "height": 150,
+        "alt": ""
+      }
+    },
+    {
+      "label": "Вера Дранишникова",
+      "text": "Рисовала диафильмы по сказкам и стихотворениям для детей",
+      "link": {
+        "url": "artist",
+        "label": ""
+      },
+      "picture": {
+        "url": "main/artists/picture-2.jpg",
+        "width": 237,
+        "height": 226,
+        "alt": ""
+      },
+      "photo": {
+        "url": "main/artists/photo-2.jpg",
+        "width": 120,
+        "height": 150,
+        "alt": ""
+      }
+    },
+    {
+      "label": "Макс Жеребчевский",
+      "text": "Художник-постановщик на киностудии «Союзмультфильм»",
+      "link": {
+        "url": "artist",
+        "label": ""
+      },
+      "picture": {
+        "url": "main/artists/picture-3.jpg",
+        "width": 303,
+        "height": 208,
+        "alt": ""
+      },
+      "photo": {
+        "url": "main/artists/photo-3.jpg",
+        "width": 120,
+        "height": 150,
+        "alt": ""
+      }
+    },
+    {
+      "label": "Эрнё Зорад",
+      "text": "Венгерский художник, иллюстратор, графический дизайнер",
+      "link": {
+        "url": "artist",
+        "label": ""
+      },
+      "picture": {
+        "url": "main/artists/picture-4.jpg",
+        "width": 163,
+        "height": 196,
+        "alt": ""
+      },
+      "photo": {
+        "url": "main/artists/photo-4.jpg",
+        "width": 120,
+        "height": 150,
+        "alt": ""
+      }
+    }
+  ],
+  "archive": [
+    {
+      "image": {
+        "mod": "double",
+        "url": [
+          "main/archive/card-1-1.jpg",
+          "main/archive/card-1-2.jpg"
+        ],
+        "width": 157,
+        "height": 120
+      },
+      "label": "Рождение и история студии Диафильм",
+      "text": "Позитивная фотоплёнка, кадры которой тематически связаны друг с другом и представляют собой последовательную иллюстрацию",
+      "link": {
+        "url": "technology"
+      }
+    },
+    {
+      "image": {
+        "mod": "small",
+        "url": "main/archive/card-2.jpg",
+        "width": 177,
+        "height": 120
+      },
+      "label": "История проекционных устройств",
+      "text": "Позитивная фотоплёнка, кадры которой тематически связаны друг с другом и представляют собой последовательную иллюстрацию",
+      "link": {
+        "url": "technology"
+      }
+    },
+    {
+      "image": {
+        "mod": "",
+        "url": "main/archive/card-3.jpg",
+        "width": 280,
+        "height": 190
+      },
+      "label": "Анатомия волшебного фонаря",
+      "text": "Позитивная фотоплёнка, кадры которой тематически связаны друг с другом и представляют собой последовательную иллюстрацию",
+      "link": {
+        "url": "technology"
+      }
+    }
+  ],
+  "cafeteria": [
+    {
+      "mod": "cafeteria",
+      "image": {
+        "url": "main/cafeteria/card-1.jpg",
+        "width": 176,
+        "height": 132,
+        "alt": ""
+      },
+      "label": "Иосиф Бакштейн",
+      "category": "искусствовед",
+      "text": "«Диафильм — это же транслятор социальной памяти!»."
+    },
+    {
+      "mod": "cafeteria",
+      "image": {
+        "url": "main/cafeteria/card-2.jpg",
+        "width": 176,
+        "height": 132,
+        "alt": ""
+      },
+      "label": "Людмила Улицкая",
+      "category": "писатель",
+      "text": "«Музей диафильма — это пространство воспоминаний, развития и укрепление семейных связей»."
+    },
+    {
+      "mod": "cafeteria",
+      "image": {
+        "url": "main/cafeteria/card-3.jpg",
+        "width": 176,
+        "height": 132,
+        "alt": ""
+      },
+      "label": "Мария Веденяпина",
+      "category": "Директор Российской Государственной детской библиотеки",
+      "text": "«Для взрослых — диафильм  это путешествие в детство и отрочество, для детей — приобщение к истории семьи через родительские рассказы»."
+    },
+    {
+      "mod": "cafeteria",
+      "image": {
+        "url": "main/cafeteria/card-1.jpg",
+        "width": 176,
+        "height": 132,
+        "alt": ""
+      },
+      "label": "Иосиф Бакштейн",
+      "category": "искусствовед",
+      "text": "«Диафильм — это же транслятор социальной памяти!»."
+    },
+    {
+      "mod": "cafeteria",
+      "image": {
+        "url": "main/cafeteria/card-2.jpg",
+        "width": 176,
+        "height": 132,
+        "alt": ""
+      },
+      "label": "Людмила Улицкая",
+      "category": "писатель",
+      "text": "«Музей диафильма — это пространство воспоминаний, развития и укрепление семейных связей»."
+    },
+    {
+      "mod": "cafeteria",
+      "image": {
+        "url": "main/cafeteria/card-3.jpg",
+        "width": 176,
+        "height": 132,
+        "alt": ""
+      },
+      "label": "Мария Веденяпина",
+      "category": "Директор Российской Государственной детской библиотеки",
+      "text": "«Для взрослых — диафильм  это путешествие в детство и отрочество, для детей — приобщение к истории семьи через родительские рассказы»."
+    },
+    {
+      "mod": "cafeteria",
+      "image": {
+        "url": "main/cafeteria/card-1.jpg",
+        "width": 176,
+        "height": 132,
+        "alt": ""
+      },
+      "label": "Иосиф Бакштейн",
+      "params": "искусствовед",
+      "text": "«Диафильм — это же транслятор социальной памяти!»."
+    },
+    {
+      "mod": "cafeteria",
+      "image": {
+        "url": "main/cafeteria/card-2.jpg",
+        "width": 176,
+        "height": 132,
+        "alt": ""
+      },
+      "label": "Людмила Улицкая",
+      "params": "писатель",
+      "text": "«Музей диафильма — это пространство воспоминаний, развития и укрепление семейных связей»."
+    },
+    {
+      "mod": "cafeteria",
+      "image": {
+        "url": "main/cafeteria/card-3.jpg",
+        "width": 176,
+        "height": 132,
+        "alt": ""
+      },
+      "label": "Мария Веденяпина",
+      "params": "Директор Российской Государственной детской библиотеки",
+      "text": "«Для взрослых — диафильм  это путешествие в детство и отрочество, для детей — приобщение к истории семьи через родительские рассказы»."
+    }
+  ]
+}

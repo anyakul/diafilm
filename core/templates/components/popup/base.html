@@ -1,0 +1,29 @@
+{% load static %}
+
+<div class="popup popup_menu js-popup-menu" id="menu" role="dialog" tabindex="-1" hidden>
+    <div class="popup__container">
+        <div class="popup__row">
+            <div class="popup__body js-popup-body">
+                <a class="popup__close js-popup-close button button_visual" href="#main" aria-label="Закрыть" title="Закрыть" role="button">
+                    <span class="button__icon button__icon_close-white"></span>
+                </a>
+                <div class="offcanvas">
+                    <div class="offcanvas__header">
+                        <div class="offcanvas__logo">
+                            <a class="logo logo_default" href="/"></a>
+                        </div>
+                    </div>
+                    <div class="offcanvas__menu">
+                        {% include "components/popup/menu.html" %}
+                    </div>
+                    <div class="offcanvas__hall">
+                        {% include "components/popup/diafilm.html" %}
+                    </div>
+                    <div class="offcanvas__form">
+                        {% include "components/popup/form.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

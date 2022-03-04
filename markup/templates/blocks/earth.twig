@@ -1,0 +1,32 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'earth'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    {% if self.wrap %}
+    <div class="earth__container">
+        <div class="earth__row">
+            {% endif %}
+
+            <div class="earth__header">
+                {% if self.label %}
+                    <div class="earth__label" role="heading" aria-level="3">{{ self.label|ft }}</div>
+                {% endif %}
+                {% if self.text %}
+                    <div class="earth__text is-editable">{{ self.text|ft }}</div>
+                {% endif %}
+
+                {% include '@blocks/carousel.twig' with {
+                    self: self.carousel|extend({
+                        wrap: false,
+                        className: 'earth__carousel'
+                    })
+                } %}
+            </div>
+
+            <div class="earth__viewport">
+                <div class="earth__player js-earth-player"></div>
+                <div class="earth__hint js-earth-hint"></div>
+            </div>
+
+            {% if self.wrap %}
+        </div>
+    </div>
+    {% endif %}
+</div>

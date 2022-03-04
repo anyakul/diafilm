@@ -1,0 +1,231 @@
+@charset "UTF-8";
+/* --------------------
+   Галерея
+   -------------------- */
+
+.gallery {
+  @extend %section;
+  position: relative;
+  outline: none;
+  overflow: hidden;
+
+  &_default {
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+
+    .gallery_default & {
+      position: relative;
+
+      @include media(before, tablet) {
+        padding-bottom: 50px;
+        position: relative;
+      }
+    }
+  }
+
+  &__viewport {
+    @include highlight();
+    @extend %column;
+
+    .gallery_default & {
+      position: relative;
+      @include columnWithPush(9, 1, 12);
+      overflow: hidden;
+
+      @include media(before, tablet) {
+        width: 100%;
+        padding: 0 20px;
+      }
+    }
+  }
+
+  &__list {
+    position: relative;
+    @include reset-list();
+    @include reset-font();
+    white-space: nowrap;
+    pointer-events: none;
+    touch-action: pan-y;
+    user-select: none;
+
+    &.is-transition {
+      @include transition($duration: .4s, $easing: ease) {
+        transition-property: transform;
+      }
+    }
+
+    &.is-slow-transition {
+      @include transition($duration: .75s, $easing: ease) {
+        transition-property: transform;
+      }
+    }
+  }
+
+  &__item {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    width: 100%;
+    white-space: initial;
+    pointer-events: all;
+    touch-action: pan-y;
+    user-select: none;
+    cursor: pointer;
+    opacity: .7;
+
+    .gallery_default & {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    @include transition() {
+      transition-property: opacity;
+    }
+
+    @include aria(current, true) {
+      cursor: default;
+      opacity: 1;
+    }
+  }
+
+  &__thumbs {
+    @extend %column;
+
+    .gallery_default & {
+      margin-top: 30px;
+      @include columnWithPush(7, 2, 12);
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  &__buttons {
+    @include highlight();
+    pointer-events: none;
+
+    .gallery_default & {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      @include columnWithPush(9, 1, 12);
+      height: 0;
+      padding-top: calc(540 / 958 * .75 * 100%);
+      z-index: 1;
+
+      @include media(before, tablet) {
+        bottom: 0;
+        top: auto;
+      }
+
+      @include highlight(black);
+    }
+  }
+
+  &__button {
+    position: absolute;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    pointer-events: all;
+
+    .gallery_default & {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      padding: 0;
+      margin-top: 71px;
+      border: none;
+      background-color: transparent;
+      z-index: 5;
+
+      @include media(before, tablet) {
+        top: auto;
+        bottom: 0;
+      }
+    }
+
+    &_backwards {
+      .gallery_default & {
+        left: calc(1 / 9 * 100%);
+        margin-left: -38px;
+
+        @include before() {
+          @include svgIcon(icon-arrow-round-black-22);
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    &_forwards {
+      .gallery_default & {
+        right: calc(1 / 9 * 100%);
+        margin-right: -38px;
+
+        @include before() {
+          @include svgIcon(icon-arrow-round-black-22);
+        }
+      }
+    }
+
+    @include disabled() {
+      opacity: .5;
+    }
+  }
+
+  /*
+    &__bullets {
+      @include highlight();
+      @extend %column;
+      @extend %row;
+    }
+
+    &__bullet {
+      padding: 0;
+      border: none;
+      cursor: pointer;
+      background-color: transparent;
+      @include aria(current, true) {
+        .gallery_hero & {
+          &::before {
+            background-color: $gray-788;
+          }
+        }
+        .gallery_tiny & {
+          &::before {
+            background-color: $gray-788;
+          }
+        }
+      }
+    }
+
+    &__counter {
+      display: block;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      pointer-events: all;
+
+      span {
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+   */
+}

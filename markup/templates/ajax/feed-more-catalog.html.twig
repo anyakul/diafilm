@@ -1,0 +1,99 @@
+{% set self = {
+    itemsTemplate: '@blocks/card.twig',
+    items: [
+        {
+            size: '',
+            mod: 'film',
+            label: 'Две сказки',
+            image: { url: 'viewing-hall/catalog/card-1.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'diafilm' }
+        },
+        {
+            size: '',
+            mod: 'film',
+            label: 'Чаша из красного лака',
+            image: { url: 'viewing-hall/catalog/card-2.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'diafilm' }
+        },
+        {
+            size: '',
+            mod: 'film',
+            label: 'Вредная девчонка',
+            image: { url: 'viewing-hall/catalog/card-3.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'diafilm' }
+        },
+        {
+            size: '',
+            mod: 'film',
+            label: 'Мамита',
+            image: { url: 'viewing-hall/catalog/card-4.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'diafilm' }
+        },
+        {
+            size: '',
+            mod: 'film',
+            label: 'Василиса Премудрая',
+            image: { url: 'viewing-hall/catalog/card-5.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'diafilm' }
+        },
+        {
+            size: '',
+            mod: 'film',
+            label: 'Сказка о попе и работнике его Балде',
+            image: { url: 'viewing-hall/catalog/card-6.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'diafilm' }
+        },
+        {
+            size: '',
+            mod: 'film',
+            label: 'Айболит',
+            image: { url: 'viewing-hall/catalog/card-7.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'diafilm' }
+        },
+        {
+            size: '',
+            mod: 'film',
+            label: 'Медвежкина мама',
+            image: { url: 'viewing-hall/catalog/card-8.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'diafilm' }
+        },
+        {
+            size: '',
+            mod: 'film',
+            label: 'Приключения Буратино',
+            image: { url: 'viewing-hall/catalog/card-9.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'diafilm' }
+        },
+        {
+            size: '',
+            mod: 'film',
+            label: 'Массаро правда',
+            image: { url: 'viewing-hall/catalog/card-10.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'diafilm' }
+        },
+        {
+            size: '',
+            mod: 'film',
+            label: 'Колобок',
+            image: { url: 'viewing-hall/catalog/card-11.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'diafilm' }
+        },
+        {
+            size: '',
+            mod: 'film',
+            label: 'Сказка о еловой шишке и серой мышке',
+            image: { url: 'viewing-hall/catalog/card-12.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'diafilm' }
+        }
+    ]
+} %}
+
+{% set itemsOnPage = 3 %}
+{% set page = request.query.page|default(2) - 2 %}
+{% for item in self.items|slice(page * itemsOnPage, itemsOnPage) %}
+    <div class="{{ 'feed__item'|mod(item.size) }}{{ self|jsClass('item') }}{% if (page + 1)  * itemsOnPage == self.items|length %} is-last{% endif %}"{% if item.extra %} {{ item.extra|extra }}{% endif %}>
+        {% include item.template|default(self.itemsTemplate|default('@blocks/card.twig')) with {
+            self: item
+        } %}
+    </div>
+{% endfor %}

@@ -1,0 +1,40 @@
+<footer class="{{ 'footer'|mod(self.mod) }}">
+    <div class="footer__container">
+        <div class="footer__row">
+            <div class="footer__copy">© Диафильм онлайн 2021</div>
+            <div class="footer__phone">{{ helpers.phoneLink('7 (495) 515 16 17') }}</div>
+            <div class="footer__form">
+                <form class="form form_footer js-form-footer" method="post" action="ajax/form-success.json">
+                    <div class="form__text">подпишитесь на новости</div>
+                    <div class="form__body">
+                        <div class="{{ 'form__field'|mod('full') }}">
+                            {% include '@blocks/field.twig' with {
+                                self: {
+                                    mod: '',
+                                    type: 'email',
+                                    prefix: 'footer',
+                                    placeholder: 'e-mail',
+                                    helpers: ['is-email'],
+                                    name: 'email'
+                                }
+                            } %}
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="footer__network">
+                {% include '@blocks/networks.twig' with {
+                    self: {
+                        mod: 'footer',
+                        label: 'давайте дружить',
+                        items: [
+                            { mod: 'square', icon: 'fb-white', url: '#', external: true, title: 'Facebook'},
+                            { mod: 'square', icon: 'ig-white', url: '#', external: true, title: 'Instagram'},
+                            { mod: 'square', icon: 'vk-white', url: '#', external: true, title: 'Vkontakte'}
+                        ]
+                    }
+                } %}
+            </div>
+        </div>
+    </div>
+</footer>

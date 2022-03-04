@@ -1,0 +1,277 @@
+{% extends '@layouts/default.twig' %}
+
+{% block vendor_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_styles %}
+{% endblock %}
+
+{% block vendor_scripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block layout_content %}
+    {% include '@blocks/title.twig' with {
+        self: {
+            mod: 'section',
+            levels: getMenu(menu, root.id),
+            label: pageTitle
+        }
+    } %}
+
+    {% embed '@blocks/tabs.twig' with {
+        self: {
+            mod: 'default',
+            jsClassName: 'js-tabs-default',
+            items: getMenu(menu, page.id)
+        }
+    } %}
+        {% block tabs_panel_1 %}
+
+            {% embed '@blocks/text.twig' with {
+                self: {
+                    mod: 'default',
+                    wrap: true
+                }
+            } %}
+                {% block text_body %}
+                    <h2>Основная экспозиция</h2>
+                {% endblock text_body %}
+            {% endembed %}
+
+            {% include '@blocks/preview.twig' with {
+                self: {
+                    mod: 'default, normal',
+                    wrap: true,
+                    picture: {
+                        mod: 'default',
+                        url: 'showroom/models/image-1.png',
+                        width: 405,
+                        height: 405
+                    },
+                    figure: {
+                        url: 'showroom/models/image-2.jpg',
+                        width: 280,
+                        height: 280
+                    },
+                    label: 'Волшебный фонарь',
+                    text: '<p>Является проекционным аппаратом и состоит из деревянного или металлического корпуса с отверстием для объектива, в корпусе размещён источник света.</p>',
+                    after: {
+                        url: 'model',
+                        label: 'Подробнее'
+                    }
+                }
+            } %}
+
+            {% include '@blocks/figure.twig' with {
+                self: {
+                    mod: 'default, image, external',
+                    jsClassName: 'js-figure',
+                    type: 'iframe',
+                    wrap: true,
+                    caption: 'Анатомия волшебного фонаря в 3D',
+                    media: {
+                        url: 'showroom/models/image-3.jpg',
+                        width: 1008,
+                        height: 510,
+                        extra: {
+                            'data-url': 'https://diafilms.designdepot.ru/media/models/magic_lantern'
+                        }
+                    }
+                }
+            } %}
+
+            {% include '@blocks/similar.twig' with {
+                self: {
+                    mod: 'default',
+                    label: 'Еще экспонаты музея',
+                    text: 'Рассмотрите подробнее необычные проекторы прошлого и узнай много нового для себя.',
+                    carousel: {
+                        mod: 'models',
+                        jsClassName: 'js-carousel-horizontal',
+                        itemsTemplate: '@blocks/card.twig',
+                        items: [
+                            {
+                                size: '',
+                                mod: 'model',
+                                label: 'Волшебный фонарь',
+                                image: { url: 'showroom/models/model/card-1.png', width: 288, height: 288 },
+                                link: { label: '', url: 'model' }
+                            },
+                            {
+                                size: '',
+                                mod: 'model',
+                                label: 'Алоскоп',
+                                image: { url: 'showroom/models/model/card-2.png', width: 288, height: 288 },
+                                link: { label: '', url: 'model' }
+                            },
+                            {
+                                size: '',
+                                mod: 'model',
+                                label: 'Зарница',
+                                image: { url: 'showroom/models/model/card-3.png', width: 288, height: 288 },
+                                link: { label: '', url: 'model' }
+                            },
+                            {
+                                size: '',
+                                mod: 'model',
+                                label: 'Пеленг 500АФ',
+                                image: { url: 'showroom/models/model/card-4.png', width: 288, height: 288 },
+                                link: { label: '', url: 'model' }
+                            }
+                        ]
+                    }
+                }
+            } %}
+
+            {% include '@blocks/preview.twig' with {
+                self: {
+                    mod: 'default, inverted',
+                    wrap: true,
+                    picture: {
+                        mod: 'large',
+                        url: 'showroom/models/image-4.png',
+                        width: 405,
+                        height: 405
+                    },
+                    label: 'Зарница',
+                    text: '<p>Аппарат производства Украинского Общества глухонемых с незатейливым названием Фильмоскоп — одна из модификаций классического фильмоскопа Ф-49, более известного в народе, как Танчик.</p><p>Это недорогой классический фильмоскоп в металлическом корпусе. Имеет простой однолинзовый объектив, но изображение при этом фокусируется достаточно хорошо по всей площади кадра. Рамка для диафильмов классическая с резиновыми колёсиками, но диафильм не протягивается под днищем через весь аппарат, а выходя из рамки, сразу скручивается в ролик и изнашивается меньше.</p>',
+                    after: {
+                        url: 'model',
+                        label: 'Подробнее'
+                    }
+                }
+            } %}
+
+        {% endblock tabs_panel_1 %}
+
+        {% block tabs_panel_2 %}
+            {% embed '@blocks/text.twig' with {
+                self: {
+                    mod: 'default',
+                    wrap: true
+                }
+            } %}
+                {% block text_body %}
+                    <h2>Основная экспозиция</h2>
+                {% endblock text_body %}
+            {% endembed %}
+
+            {% include '@blocks/preview.twig' with {
+                self: {
+                    mod: 'default, normal',
+                    wrap: true,
+                    picture: {
+                        mod: 'default',
+                        url: 'showroom/publications/image-1.png',
+                        width: 405,
+                        height: 405
+                    },
+                    figure: {
+                        url: 'showroom/publications/image-2.png',
+                        width: 280,
+                        height: 280
+                    },
+                    label: 'Советская культура №48',
+                    text: '<p>Является проекционным аппаратом и состоит из деревянного или металлического корпуса с отверстием для объектива, в корпусе размещён источник света.</p>',
+                    after: {
+                        url: 'publication-1',
+                        label: 'Подробнее'
+                    }
+                }
+            } %}
+
+            {% include '@blocks/preview.twig' with {
+                self: {
+                    mod: 'default, mixed',
+                    wrap: true,
+                    picture: {
+                        mod: 'beam',
+                        url: 'showroom/publications/image-4.png',
+                        width: 405,
+                        height: 405
+                    },
+                    figure: {
+                        url: 'showroom/publications/image-3.png',
+                        width: 280,
+                        height: 280
+                    },
+                    label: 'Огонек август 1956г.',
+                    text: '<p>Сконструированный тов. Любимовым совместно с тов. Андреевым проекционный аппарат «Алоскоп» к тому времени уже имел заграничных родственников. Предназначен для использования с неразрезанной пленкой.</p>',
+                    after: {
+                        url: 'publication-2',
+                        label: 'Подробнее'
+                    }
+                }
+            } %}
+
+            {% include '@blocks/similar.twig' with {
+                self: {
+                    mod: 'default',
+                    label: 'Еще исторические публикации',
+                    text: 'В этих статьях мы подобрали интересные факты о диафильмах для школьников. Материалы специально готовились с акцентом на людей жаждущих знаний, надеемся вам будет интересно.',
+                    carousel: {
+                        mod: 'publications',
+                        jsClassName: 'js-carousel-horizontal',
+                        itemsTemplate: '@blocks/card.twig',
+                        items: [
+                            {
+                                size: 'double',
+                                mod: 'publication',
+                                label: 'Советская культура',
+                                text: 'В 1948 поступил в Московское государственное академическое художественное училище памяти 1905 года, которое тогда находилось на улице Сретенка.',
+                                image: { url: 'showroom/publications/publication-1/card-1.jpg', width: 610, height: 400 },
+                                link: { label: '', url: '#' }
+                            },
+                            {
+                                size: '',
+                                mod: 'publication',
+                                label: 'Диафильмы 1964',
+                                text: 'Начал участвовать в выставках.В 1959 году по заказу издательства.',
+                                image: { url: 'showroom/publications/publication-1/card-2.jpg', width: 290, height: 400 },
+                                link: { label: '', url: '#' }
+                            },
+                            {
+                                size: '',
+                                mod: 'publication',
+                                label: 'Годовщина',
+                                text: 'Петр Багин много путешествовал по Русскому Северу, Алтаю и Уралу, был на',
+                                image: { url: 'showroom/publications/publication-1/card-3.jpg', width: 290, height: 400 },
+                                link: { label: '', url: '#' }
+                            }
+                        ]
+                    }
+                }
+            } %}
+
+            {% include '@blocks/preview.twig' with {
+                self: {
+                    mod: 'default, inverted',
+                    wrap: true,
+                    picture: {
+                        mod: 'large',
+                        url: 'showroom/publications/image-5.png',
+                        width: 405,
+                        height: 405
+                    },
+                    label: 'Диафильмы и диапозитивы для детей',
+                    text: '<p>Аппарат производства Украинского Общества глухонемых с незатейливым названием Фильмоскоп — одна из модификаций классического фильмоскопа Ф-49, более известного в народе, как Танчик.</p><p>Это недорогой классический фильмоскоп в металлическом корпусе. Имеет простой однолинзовый объектив, но изображение при этом фокусируется достаточно хорошо по всей площади кадра. Рамка для диафильмов классическая с резиновыми колёсиками, но диафильм не протягивается под днищем через весь аппарат, а выходя из рамки, сразу скручивается в ролик и изнашивается меньше.</p>',
+                    after: {
+                        url: 'publication-2',
+                        label: 'Подробнее'
+                    }
+                }
+            } %}
+
+        {% endblock tabs_panel_2 %}
+    {% endembed %}{# tabs #}
+
+{% endblock layout_content %}
+
+{% block popups %}
+    {{ parent() }}
+{% endblock popups %}

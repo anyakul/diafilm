@@ -1,0 +1,49 @@
+{% extends "pages/detail.html" %}
+{% load wagtailcore_tags %}
+{% load common_tags %}
+
+
+{% block main_content %}
+{{ block.super }}
+
+<section class="feed feed_collection js-feed-lazy">
+    <div class="feed__container">
+        <div class="feed__row">
+            <div class="feed__list js-feed-list">
+                {% for item in page.diafilms.all %}
+
+                <div class="feed__item feed__item_full js-feed-item">
+                    <article class="story story_default">
+                        <header class="story__header">
+                            <div class="story__label" role="heading" aria-level="2">{{ item.diafilm.title|format_title }}</div>
+                            <a class="story__link" href="{{ item.diafilm.url }}">Смотреть диафильм</a>
+                        </header>
+
+                        {% with source="story" %}
+                        {% for block in item.content %}
+                        {% include_block block %}
+                        {% endfor %}
+                        {% endwith %}
+
+                        <figure class="story__figure figure figure_image figure_captioned" itemprop="image"
+                                itemscope itemtype="http://schema.org/ImageObject"
+                                data-id="{{ item.pk }}" data-type="image">
+                            <div class="figure__media">
+                                {% with class="figure__source js-figure-source" %}
+                                {% include "common/img.html" with img=item.diafilm.annotation_image size="fill-717x500" %}
+                                {% endwith %}
+                            </div>
+                            <figcaption class="figure__caption js-figure-caption">
+                                {{ item.diafilm.diafilm.short_description|format_title }}
+                            </figcaption>
+                        </figure>
+
+                    </article>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock main_content %}

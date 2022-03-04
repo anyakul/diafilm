@@ -1,0 +1,9 @@
+{% if self.is_published %}
+{% with title=self.title text=self.text roles=self.roles count=self.count %}
+{% if self.style == "short" %}
+{% include "components/artists/base.html" with count=4 ordering="?" show_link=1 class="gallery" %}
+{% elif self.style == "full" or not self.style %}
+{% include "components/artists/base.html" with show_search=1 show_filter=1 show_paging=1 %}
+{% endif %}
+{% endwith %}
+{% endif %}

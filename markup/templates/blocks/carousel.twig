@@ -1,0 +1,61 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'carousel'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    {% if self.wrap %}
+    <div class="carousel__container">
+        <div class="carousel__row">
+            {% endif %}
+
+            {% if self.label or self.text %}
+                <div class="carousel__header">
+                    {% if self.label %}
+                        <div class="carousel__label" role="heading" aria-level="3">{{ self.label|ft }}</div>
+                    {% endif %}
+                    {% if self.text %}
+                        <div class="carousel__text is-editable">{{ self.text|ft }}</div>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% if self.filter %}
+                {% include '@blocks/form.twig' with {
+                    self: {
+                        mod: 'filter',
+                        wrap: false,
+                        className: 'carousel__filter',
+                        jsClassName: 'js-carousel-filter',
+                        fields: self.filter
+                    }
+                } %}
+            {% endif %}
+
+            {% if self.tags %}
+                <div class="carousel__tags">
+                    {% for item in self.tags %}
+                        {% include '@blocks/button.twig' with {
+                            self: item|extend({
+                                className: 'carousel__button_tag',
+                                isActive: loop.index == 1
+                            })
+                        } %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="carousel__viewport{{ self|jsClass('viewport') }}">
+                <ul class="carousel__list{{ self|jsClass('overflow') }}">
+                    {% for item in self.items %}
+                        <li class="{{ 'carousel__item'|mod(item.size) }}{{ self|jsClass('item') }}"
+                            {% if item.filter %}{% for param,value in item.filter %}
+                            data-{{ param }}="{{ value }}"
+                        {% endfor %}{% endif %}>
+                            {% include item.template|default(self.itemsTemplate) with {
+                                self: item
+                            } %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% if self.wrap %}
+        </div>
+    </div>
+    {% endif %}
+</div>

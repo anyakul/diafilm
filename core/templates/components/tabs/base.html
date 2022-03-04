@@ -1,0 +1,32 @@
+{% load wagtailcore_tags %}
+{% load core_tags %}
+{% load content_tags %}
+
+{% get_child_pages page as object_list %}
+
+<div class="tabs tabs_default js-tabs-default">
+    <div class="tabs__container">
+        <div class="tabs__row">
+            <div class="tabs__list js-tabs-list" role="tablist">
+                <div class="tabs__overflow">
+                    {% for tab in object_list %}
+                    <button class="tabs__tab js-tabs-tab" type="button" id="tab-{{ forloop.counter0 }}"
+                         aria-controls="{{ tab.slug }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                         role="tab" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}">
+                        {{ tab.title|format_title }}
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% for tab in object_list %}
+    <div class="tabs__panel js-tabs-panel" id="{{ tab.slug }}"
+         aria-labelledby="tab-{{ forloop.counter0 }}" aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
+         role="tabpanel" tabindex="{% if forloop.first %}0{% else %}-1{% endif %}">
+        {% for block in tab.content %}
+        {% include_block block %}
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>

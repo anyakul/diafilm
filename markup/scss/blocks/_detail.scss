@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/* --------------------
+    Деталь
+   -------------------- */
+
+.detail {
+
+  &_default {
+    @include highlight();
+    @extend %row;
+    flex-direction: row;
+    align-items: flex-end;
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  &__params {
+    @include highlight();
+    @extend %column;
+
+    .detail_default & {
+      @include column(2.5, 5);
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+
+  &__picture {
+    @include highlight();
+    @extend %column;
+
+    .detail_default & {
+      @include column(2.5, 5);
+      padding-left: 46px;
+      padding-right: 46px;
+    }
+  }
+
+  &__image {
+    display: inline-block;
+    vertical-align: top;
+
+    .detail_default & {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}

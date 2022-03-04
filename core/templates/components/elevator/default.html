@@ -1,0 +1,41 @@
+{% load common_tags %}
+
+<div class="elevator__floor js-elevator-floor" data-id="{{ item.slug }}">
+    <div class="section section_showroom">
+        <div class="section__container">
+            <div class="section__row">
+                <div class="section__label" role="heading" aria-level="2">{{ item.title|format_title }}</div>
+                <div class="section__body">
+                    <div class="showroom showroom_main">
+                        <div class="showroom__header">
+                            <div class="showroom__label" role="heading" aria-level="3">
+                                {{ item.annotation|format_title }}
+                            </div>
+                        </div>
+
+                        {% with subitem=item.menu_children.1 %}
+                        <div class="showroom__publications">
+                            <a class="showroom__link" href="{{ subitem.get_menu_url }}">
+                                {{ subitem.annotation }}
+                            </a>
+                        </div>
+                        {% endwith %}
+
+                        {% with subitem=item.menu_children.0 %}
+                        <div class="showroom__models">
+                            <a class="showroom__link" href="{{ subitem.get_menu_url }}">
+                                {{ subitem.annotation }}
+                            </a>
+                        </div>
+                        {% endwith %}
+
+                        <div class="showroom__extra"></div>
+                        <div class="showroom__after">
+                            <a class="showroom__more" href="{{ item.get_menu_url }}">Прогуляться по&nbsp;залу</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

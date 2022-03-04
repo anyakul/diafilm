@@ -1,0 +1,268 @@
+{
+  "page": {
+    "id": "540f28",
+    "layout": "",
+    "lang": "ru",
+    "title": "",
+    "description": "",
+    "keywords": "",
+    "showIntro": true
+  },
+  "items": [
+    {
+      "mod": "default",
+      "items": [
+        {
+          "label": "Василий Игнатов",
+          "text": "На студии В.Г. Игнатов считался признанным мастером-сказочником",
+          "link": {
+            "url": "artist",
+            "label": ""
+          },
+          "picture": {
+            "url": "gallery/artists/artist-1/picture-1.jpg",
+            "width": 222,
+            "height": 192,
+            "alt": ""
+          },
+          "photo": {
+            "url": "gallery/artists/artist-1/photo-1.jpg",
+            "width": 120,
+            "height": 150,
+            "alt": ""
+          }
+        },
+        {
+          "label": "Вера Дранишникова",
+          "text": "Рисовала диафильмы по сказкам и стихотворениям для детей",
+          "link": {
+            "url": "artist",
+            "label": ""
+          },
+          "picture": {
+            "url": "gallery/artists/artist-1/picture-2.jpg",
+            "width": 237,
+            "height": 226,
+            "alt": ""
+          },
+          "photo": {
+            "url": "gallery/artists/artist-1/photo-2.jpg",
+            "width": 120,
+            "height": 150,
+            "alt": ""
+          }
+        },
+        {
+          "label": "Макс Жеребчевский",
+          "text": "Художник-постановщик на киностудии «Союзмультфильм»",
+          "link": {
+            "url": "artist",
+            "label": ""
+          },
+          "picture": {
+            "url": "gallery/artists/artist-1/picture-3.jpg",
+            "width": 303,
+            "height": 208,
+            "alt": ""
+          },
+          "photo": {
+            "url": "gallery/artists/artist-1/photo-3.jpg",
+            "width": 120,
+            "height": 150,
+            "alt": ""
+          }
+        },
+        {
+          "label": "Эрнё Зорад",
+          "text": "Венгерский художник, иллюстратор, графический дизайнер",
+          "link": {
+            "url": "artist",
+            "label": ""
+          },
+          "picture": {
+            "url": "gallery/artists/artist-1/picture-4.jpg",
+            "width": 163,
+            "height": 196,
+            "alt": ""
+          },
+          "photo": {
+            "url": "gallery/artists/artist-1/photo-4.jpg",
+            "width": 120,
+            "height": 150,
+            "alt": ""
+          }
+        }
+      ]
+    },
+    {
+      "mod": "default",
+      "items": [
+        {
+          "label": "Винокуров Александр",
+          "text": "Советский художник-постановщик фильмов",
+          "link": {
+            "url": "artist",
+            "label": ""
+          },
+          "picture": {
+            "url": "gallery/artists/artist-2/picture-1.jpg",
+            "width": 222,
+            "height": 192,
+            "alt": ""
+          },
+          "photo": {
+            "url": "gallery/artists/artist-2/photo-1.jpg",
+            "width": 120,
+            "height": 150,
+            "alt": ""
+          }
+        },
+        {
+          "label": "Волков Стален",
+          "text": "Рисовала диафильмы по сказкам и стихотворениям для детей",
+          "link": {
+            "url": "artist",
+            "label": ""
+          },
+          "picture": {
+            "url": "gallery/artists/artist-2/picture-2.jpg",
+            "width": 237,
+            "height": 226,
+            "alt": ""
+          },
+          "photo": {
+            "url": "gallery/artists/artist-2/photo-2.jpg",
+            "width": 120,
+            "height": 150,
+            "alt": ""
+          }
+        },
+        {
+          "label": "Владимирский Леонид",
+          "text": "Художник-постановщик на киностудии «Союзмультфильм»",
+          "link": {
+            "url": "artist",
+            "label": ""
+          },
+          "picture": {
+            "url": "gallery/artists/artist-2/picture-3.jpg",
+            "width": 303,
+            "height": 208,
+            "alt": ""
+          },
+          "photo": {
+            "url": "gallery/artists/artist-2/photo-3.jpg",
+            "width": 120,
+            "height": 150,
+            "alt": ""
+          }
+        },
+        {
+          "label": "Тамара Зеброва",
+          "text": "График. Художник кино и живописец. Художник диафильмов.",
+          "link": {
+            "url": "artist",
+            "label": ""
+          },
+          "picture": {
+            "url": "gallery/artists/artist-2/picture-4.jpg",
+            "width": 163,
+            "height": 196,
+            "alt": ""
+          },
+          "photo": {
+            "url": "gallery/artists/artist-2/photo-4.jpg",
+            "width": 120,
+            "height": 150,
+            "alt": ""
+          }
+        }
+      ]
+    },
+    {
+      "mod": "default",
+      "items": [
+        {
+          "label": "Петр Брагин",
+          "text": "Рисовала диафильмы по сказкам и стихотворениям для детей",
+          "link": {
+            "url": "artist",
+            "label": ""
+          },
+          "picture": {
+            "url": "gallery/artists/artist-3/picture-1.jpg",
+            "width": 222,
+            "height": 192,
+            "alt": ""
+          },
+          "photo": {
+            "url": "gallery/artists/artist-3/photo-1.jpg",
+            "width": 120,
+            "height": 150,
+            "alt": ""
+          }
+        },
+        {
+          "label": "Беньяминсон Эрик",
+          "text": "Художник-постановщик на киностудии «Союзмультфильм»",
+          "link": {
+            "url": "artist",
+            "label": ""
+          },
+          "picture": {
+            "url": "gallery/artists/artist-3/picture-2.jpg",
+            "width": 237,
+            "height": 226,
+            "alt": ""
+          },
+          "photo": {
+            "url": "gallery/artists/artist-3/photo-2.jpg",
+            "width": 120,
+            "height": 150,
+            "alt": ""
+          }
+        },
+        {
+          "label": "Брей Андрей",
+          "text": "Венгерский художник, иллюстратор, графический дизайнер",
+          "link": {
+            "url": "artist",
+            "label": ""
+          },
+          "picture": {
+            "url": "gallery/artists/artist-3/picture-3.jpg",
+            "width": 303,
+            "height": 208,
+            "alt": ""
+          },
+          "photo": {
+            "url": "gallery/artists/artist-3/photo-3.jpg",
+            "width": 120,
+            "height": 150,
+            "alt": ""
+          }
+        },
+        {
+          "label": "Бордзиловский Витольд",
+          "text": "Советский режиссёр-мультипликатор и художник-постановщик",
+          "link": {
+            "url": "artist",
+            "label": ""
+          },
+          "picture": {
+            "url": "gallery/artists/artist-3/picture-4.jpg",
+            "width": 163,
+            "height": 196,
+            "alt": ""
+          },
+          "photo": {
+            "url": "gallery/artists/artist-3/photo-4.jpg",
+            "width": 120,
+            "height": 150,
+            "alt": ""
+          }
+        }
+      ]
+    }
+  ]
+}

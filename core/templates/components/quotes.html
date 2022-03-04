@@ -1,0 +1,38 @@
+{% load core_tags %}
+
+
+<div class="cafeteria__carousel">
+    <div class="carousel carousel_cafeteria js-carousel-horizontal">
+        <div class="carousel__viewport js-carousel-viewport">
+            <ul class="carousel__list js-carousel-overflow">
+                {% for item in object_list %}
+                <li class="carousel__item carousel__item_default js-carousel-item">
+                    <article class="card card_cafeteria">
+                        <div class="card__picture">
+                            {% with small="fill-45x34" normal="fill-176x132" large="fill-352x264" %}
+                            {% include "common/img.html" with img=item.image class="card__image" %}
+                            {% endwith %}
+                        </div>
+                        <div class="card__body">
+                            <div class="card__label" role="heading" aria-level="4">
+                                {{ item.author|format_title }}
+                            </div>
+                            <div class="card__category">{{ item.caption|format_title }}</div>
+                            <div class="card__text">«{{ item.text }}»</div>
+                        </div>
+                    </article>
+                </li>
+                {% empty %}
+                <li class="carousel__item carousel__item_default js-carousel-item">
+                    <article class="card card_cafeteria">
+                        <div class="card__body">
+                            <div class="card__text">Пока не добавили ни одной цитаты :(</div>
+                        </div>
+                    </article>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+

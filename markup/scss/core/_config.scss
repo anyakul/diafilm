@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+@import "functions";
+
+// Сетка
+$GRID: (
+  smart:      (breakpoint: 320px,  container: 480px, padding: false,  columns: 8, gap: 8px),
+  smart-x:    (breakpoint: 460px,  container: 768px, padding: false,  columns: 8, gap: 8px),
+  tablet:     (breakpoint: 740px,  container: 1024px, padding: false, columns: 12, gap: 32px),
+  laptop:     (breakpoint: 1000px, container: 1280px, padding: false, columns: 12, gap: 32px),
+  desktop:    (breakpoint: 1260px, container: 1440px, padding: false, columns: 12, gap: 32px),
+  wide:       (breakpoint: 1420px, container: 1440px, padding: false, columns: 12, gap: 32px),
+  wide-x:     (breakpoint: 1660px, container: 1440px, padding: false, columns: 12, gap: 32px)
+);
+
+$DEBUG: false;
+$MIN-WIDTH: grid-get(smart, breakpoint);
+$HIGHLIGHT: 0;
+
+// Шрифты
+$default-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$proximaNova: "Proxima Nova", sans-serif;
+$IBMPlexMono: "IBM Plex Mono", monospace;
+$CSTMXprmntl02: "CSTM Xprmntl 02", sans-serif;
+
+$base-font: $proximaNova;
+$title-font: $IBMPlexMono;
+$label-font: $CSTMXprmntl02;
+
+//путь к папке изображений
+$i: "../img";
+
+// Цвета
+// используем английские названия цвета (red, green, blue, yellow и т.д.)
+// если оттенков цвета небольшое количество, стоит использовать модификаторы: dark, middle, light и т.п.;
+// Иначе добавлять 3х символьный модификатор оттенка:
+// модификатор оттенка складывается из первых символов группы
+// Пример #XxYyZz -> color-XYZ; #a9cfdd -> $color-acd;
+// если Xx = Yy = Zz, модификатор сокращается до двух символов. (Пример #cbcbcb -> $gray-cb;)
+// если X = x = Y = y = Z = z -> модификатор сокращается до одного символа (Пример #666 - $gray-6;)
+// В случае совпадении модификаторов оттенка одного цвета нужно оставить только один.
+
+$black:        #000000;
+
+$green:        #39b54a;
+$yellow:       #fdb913;
+$orange:       #ff8214;
+$pink:         #ef5ca1;
+$blue:         #3a85ff;
+$magenta:      #834cbb;
+$gray-80:      #808080;
+$gray-59:      #595959;
+$gray-455:     #485057;
+$gray-344:     #3f474f;
+$gray-1b:      #1b1b1b;
+$gray-fff:     #f2f4f6;
+
+$white:        #ffffff;
+
+$LEVELS: (
+  1: (color: $green, color-name: "green", background: $green, slug: "foyer"),
+  2: (color: $yellow, color-name: "yellow", background: $yellow, slug: "showroom"),
+  3: (color: $orange, color-name: "orange", background: $gray-59, slug: "viewing-hall"),
+  4: (color: $pink, color-name: "pink", background: $pink, slug: "gallery"),
+  5: (color: $blue, color-name: "blue", background: $blue, slug: "archive"),
+  6: (color: $magenta, color-name: "magenta", background: $magenta, slug: "cafeteria")
+);
+
+// Настройки примесей
+$LOADER: (color: #073, width: 28px, border: 4px, top: 50%, left: 50%);
+$ERROR: (color: #b27, width: 28px, border: 4px, top: 50%, left: 50%);

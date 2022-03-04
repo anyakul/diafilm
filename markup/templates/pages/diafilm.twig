@@ -1,0 +1,154 @@
+{% extends '@layouts/default.twig' %}
+
+{% block vendor_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_styles %}
+{% endblock %}
+
+{% block vendor_scripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block layout_content %}
+    {% include '@blocks/diafilm.twig' with {
+        self: {
+            mod: 'inner',
+            jsClassName: 'js-diafilm',
+            url: 'https://arch.rgdb.ru/xmlui/handle/123456789/47958#page/0/mode/1up',
+            back: { url: parent.id, label: 'В каталог диафильмов' },
+        }
+    } %}
+
+    {% include '@blocks/title.twig' with {
+        self: {
+            mod: 'text',
+            label: pageTitle
+        }
+    } %}
+
+    {% include '@blocks/params.twig' with {
+        self: {
+            mod: 'columns',
+            wrap: true,
+            items: [
+                { label: 'Авторы', value: 'Н. Тимофеева и Г. Юркина' },
+                { label: 'Издатель', value: 'Москва Диафильм' },
+                { label: 'Год создания', value: '1962' },
+                { label: 'Редакторы и др.', value: 'Ю. Н. Зеленков' },
+                { label: 'Оформитель книги', value: 'Г.Я. Калашникова' },
+                { label: 'Описание', value: 'Оригинал хранится в частной коллекции' }
+            ]
+        }
+    } %}
+
+    {% embed '@blocks/columns.twig' with {
+        self: {
+            mod: 'diafilm',
+        }
+    } %}
+        {% block column_1 %}
+            {% embed '@blocks/text.twig' with {
+                self: {
+                    mod: 'small'
+                }
+            } %}
+                {% block text_body %}
+                    <h3>Содержание</h3>
+                    <p>«Артек» расположен в Крыму, в одном из красивейших мест планеты – на побережье Черного моря, в 12
+                        км от знаменитого южнобережного курорта – города Ялты, в поселке городского типа Гурзуф.</p>
+                    <p>«Артек» создан в 1925 году как небольшой летний палаточный лагерь. В первый год здесь отдохнуло
+                        всего 320 детей, а в 2016 году «Артек» принял полуторамиллионного артековца.</p>
+                    <p>За девять десятилетий «Артек» превратился в комплекс из девяти детских лагерей с развитой
+                        инфраструктурой, собственными образовательными технологиями и культурными традициями.</p>
+                {% endblock text_body %}
+            {% endembed %}{# text #}
+        {% endblock column_1 %}
+
+        {% block column_2 %}
+            {% embed '@blocks/text.twig' with {
+                self: {
+                    mod: 'small'
+                }
+            } %}
+                {% block text_body %}
+                    <h3>Интересные факты</h3>
+                {% endblock text_body %}
+            {% endembed %}{# text #}
+
+            {% include '@blocks/carousel.twig' with {
+                self: {
+                    mod: 'facts',
+                    jsClassName: 'js-carousel-horizontal',
+                    itemsTemplate: '@blocks/card.twig',
+                    items: [
+                        {
+                            size: '',
+                            mod: 'fact',
+                            image: { url: 'viewing-hall/catalog/diafilm/card-1.jpg', width: 272, height: 200 },
+                            text: '«Артек» расположен в Крыму, в одном из красивейших мест планеты – на побережье Черного моря, в 12 км от знаменитого южнобережного курорта – города Ялты, в поселке городского типа Гурзуф.'
+                        },
+                        {
+                            size: '',
+                            mod: 'fact',
+                            image: { url: 'viewing-hall/catalog/diafilm/card-1.jpg', width: 272, height: 200 },
+                            text: '«Артек» расположен в Крыму, в одном из красивейших мест планеты – на побережье Черного моря, в 12 км от знаменитого южнобережного курорта – города Ялты, в поселке городского типа Гурзуф.'
+                        },
+                        {
+                            size: '',
+                            mod: 'fact',
+                            image: { url: 'viewing-hall/catalog/diafilm/card-1.jpg', width: 272, height: 200 },
+                            text: '«Артек» расположен в Крыму, в одном из красивейших мест планеты – на побережье Черного моря, в 12 км от знаменитого южнобережного курорта – города Ялты, в поселке городского типа Гурзуф.'
+                        }
+                    ]
+                }
+            } %}
+
+        {% endblock column_2 %}
+    {% endembed %}{# columns #}
+
+    {% include '@blocks/similar.twig' with {
+        self: {
+            mod: 'publications',
+            label: 'Еще диафильмы автора',
+            text: 'В этих статьях мы подобрали интересные факты о диафильмах для школьников. Материалы специально готовились с акцентом на людей жаждущих знаний, надеемся вам будет интересно.',
+            carousel: {
+                mod: 'films',
+                jsClassName: 'js-carousel-horizontal',
+                itemsTemplate: '@blocks/card.twig',
+                items: [
+                    {
+                        size: '',
+                        mod: 'film',
+                        label: 'В путь по реке времени',
+                        image: { url: 'gallery/artist/card-1.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'diafilm' }
+                    },
+                    {
+                        size: '',
+                        mod: 'film',
+                        label: 'Встреча с вреднюгами',
+                        image: { url: 'gallery/artist/card-2.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'diafilm' }
+                    },
+                    {
+                        size: '',
+                        mod: 'film',
+                        label: 'Карлик Нос',
+                        image: { url: 'gallery/artist/card-3.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'diafilm' }
+                    }
+                ]
+            }
+        }
+    } %}
+
+{% endblock layout_content %}
+
+{% block popups %}
+    {{ parent() }}
+{% endblock popups %}

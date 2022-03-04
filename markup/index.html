@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="ru" class="has-no-js" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    <title>Диафильм онлайн</title>
+    <meta name="application-name" content="Диафильм онлайн">
+    <meta name="description" content="Настоящая библиотека позитивов">
+    <meta name="keywords" content="">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="yandex-tableau-widget" content="logo=/static/core/icons/apple-touch-icon-120x120.png, color=#000000">
+    <meta name="msapplication-config" content="/static/core/browserconfig.xml">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/static/core/icons/mstile-144x144.png">
+    <meta name="msapplication-square70x70logo" content="/static/core/icons/mstile-70x70.png">
+    <meta name="msapplication-square150x150logo" content="/static/core/icons/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/static/core/icons/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/static/core/icons/mstile-310x310.png">
+    <link rel="manifest" href="/static/core/manifest.webmanifest">
+    <link rel="shortcut icon" href="/static/core/icons/favicon.ico?dev=1" sizes="16x16 32x32">
+    <link rel="mask-icon" href="/static/core/icons/mask-icon.svg" color="#000000">
+    <link rel="apple-touch-icon" sizes="80x80" href="/static/core/icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/core/icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/core/icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/static/core/icons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/core/icons/apple-touch-icon-180x180.png">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@700&display=swap">
+    <link rel="preload" as="image" href="/static/core/img/sprite.svg">
+    <!-- Этот скрипт нужен только в верстке -->
+    <script src="//localhost:1210/livereload.js" async></script>
+    <link rel="stylesheet" href="/static/core/css/global.css">
+    <!-- Этот стиль нужен только в верстке -->
+    <link rel="stylesheet" href="/static/core/css/develop.css">
+    <script src="/static/vendor/jquery.min.js" defer></script>
+    <script src="/static/vendor/modernizr.min.js" defer></script>
+    <script src="/static/core/js/global.js" defer></script>
+    <!-- Этот скрипт нужен только в верстке -->
+    <script src="/static/core/js/develop.js" defer></script>
+    <!-- Разработано в DesignDepot | https://designdepot.ru/ -->
+</head>
+<!-- класс `root_%section%` зависит от раздела -->
+<body class="root root_main" id="top" itemscope itemtype="http://schema.org/WebPage">
+    <header class="header header_main js-header">
+        <a class="header__skip" href="#main">К содержимому</a>
+        <div class="header__container">
+            <div class="header__row">
+                <div class="header__logo">
+                    <a class="logo logo_default" href="index.html">
+                    </a>
+                </div>
+                <div class="header__intro">
+                    <div class="intro intro_default">
+                        <span class="intro__text">Добро пожаловать в&nbsp;музей</span>
+                    </div>
+                </div>
+                <div class="header__buttons">
+                    <a class="header__toggle button button_visual" href="#menu" aria-label="Показать меню" title="Показать меню">
+                        <span class="button__icon button__icon_menu-white"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="layout layout_main js-layout" id="main">
+        <div class="elevator elevator_default js-elevator">
+            <div class="elevator__container">
+                <div class="elevator__row">
+                    <button class="elevator__toggle js-elevator-toggle" type="button">
+                        <span class="elevator__number elevator__number_small js-elevator-number"></span>
+                        <span class="elevator__name js-elevator-name"></span>
+                    </button>
+                    <div class="elevator__navigation js-elevator-navigation">
+                        <div class="elevator__panel">
+                            <div class="elevator__label" role="heading" aria-level="2">Выберите этаж</div>
+                            <div class="elevator__number elevator__number_default js-elevator-number"></div>
+                            <div class="elevator__toolbar">
+                                <a class="elevator__button js-elevator-level is-active" href="#foyer">
+                                    <span>Фойе</span>
+                                </a>
+                                <a class="elevator__button js-elevator-level" href="#showroom">
+                                    <span>Выставочный зал</span>
+                                </a>
+                                <a class="elevator__button js-elevator-level" href="#viewing-hall">
+                                    <span>Просмотровый зал</span>
+                                </a>
+                                <a class="elevator__button js-elevator-level" href="#gallery">
+                                    <span>Галерея</span>
+                                </a>
+                                <a class="elevator__button js-elevator-level" href="#archive">
+                                    <span>Архив</span>
+                                </a>
+                                <a class="elevator__button js-elevator-level" href="#cafeteria">
+                                    <span>Кафетерий</span>
+                                </a>
+                            </div>
+                            <div class="elevator__hint">
+                                Поднимайтесь
+                                <br> в Музей, у нас
+                                <br> много интересного
+                            </div>
+                            <button class="elevator__close button button_square js-elevator-close" type="button" aria-label="Закрыть" title="Закрыть">
+                                <span class="button__icon button__icon_close-32-black"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="elevator__viewport js-elevator-viewport is-visible">
+                        <div class="elevator__caret js-elevator-caret">
+                            <div class="elevator__floor js-elevator-floor" data-id="foyer">
+                                <div class="section section_foyer">
+                                    <div class="section__container">
+                                        <div class="section__row">
+                                            <div class="section__label" role="heading" aria-level="2">Фойе</div>
+                                            <div class="section__body">
+                                                <div class="foyer foyer_main">
+                                                    <div class="foyer__header">
+                                                        <div class="foyer__label" role="heading" aria-level="3">Экскурсии</div>
+                                                        <div class="foyer__lead">
+                                                            Представляем экскурсии по&nbsp;музею: выберите подходящий вам&nbsp;раздел и&nbsp;&mdash;&thinsp;вперед в&nbsp;волшебный мир&nbsp;диафильма! </div>
+                                                    </div>
+                                                    <div class="foyer__menu">
+                                                        <div class="foyer__item">
+                                                            <a class="foyer__link" href="for-children.html">
+                                                                <span>Детям</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="foyer__item">
+                                                            <a class="foyer__link" href="for-school.html">
+                                                                <span>Школьникам</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="foyer__item">
+                                                            <a class="foyer__link" href="for-family.html">
+                                                                <span>Для&nbsp;всей семьи</span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="foyer__item">
+                                                            <a class="foyer__link" href="for-pros.html">
+                                                                <span>Для&nbsp;профи</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elevator__floor js-elevator-floor" data-id="showroom">
+                                <div class="section section_showroom">
+                                    <div class="section__container">
+                                        <div class="section__row">
+                                            <div class="section__label" role="heading" aria-level="2">Выставочный зал</div>
+                                            <div class="section__body">
+                                                <div class="showroom showroom_main">
+                                                    <div class="showroom__header">
+                                                        <div class="showroom__label" role="heading" aria-level="3">
+                                                            Экспонаты и&nbsp;пресса
+                                                        </div>
+                                                    </div>
+                                                    <div class="showroom__publications">
+                                                        <a class="showroom__link" href="showroom.html#!tab=publications">
+                                                            Исторические публикации о&nbsp;диафильмах
+                                                        </a>
+                                                    </div>
+                                                    <div class="showroom__models">
+                                                        <a class="showroom__link" href="showroom.html#!tab=models">
+                                                            Модели проекторов
+                                                        </a>
+                                                    </div>
+                                                    <div class="showroom__extra"></div>
+                                                    <div class="showroom__after">
+                                                        <a class="showroom__more" href="showroom.html">Прогуляться по&nbsp;залу</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elevator__floor js-elevator-floor" data-id="viewing-hall">
+                                <div class="section section_viewing-hall">
+                                    <div class="section__container">
+                                        <div class="section__row">
+                                            <div class="section__label" role="heading" aria-level="2">Просмотровый зал</div>
+                                            <div class="section__body">
+                                                <div class="viewing viewing_main">
+                                                    <div class="viewing__header">
+                                                        <div class="viewing__label" role="heading" aria-level="3">10&nbsp;марта</div>
+                                                        <div class="viewing__intro">190&nbsp;лет&nbsp;со&nbsp;дня&nbsp;рождения Льва Николаевича Толстого</div>
+                                                        <div class="viewing__params params params_viewing">
+                                                            <time class="params__year" datetime="1954">1954&nbsp;г.</time>
+                                                            <div class="params__age">4+</div>
+                                                            <div class="params__item">Русская народная сказка в&nbsp;обработке
+                                                                <strong>М. Булотова</strong>
+                                                            </div>
+                                                            <div class="params__item">Иллюстратор
+                                                                <strong>Т. Маврина</strong>
+                                                            </div>
+                                                            <div class="params__item">Худ. редактор
+                                                                <strong>А. Морозов</strong>
+                                                            </div>
+                                                            <div class="params__item">Редактор
+                                                                <strong>Е. Кавтиашвили</strong>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="viewing__figure">
+                                                        <div class="viewing__picture">
+                                                            <img class="viewing__image" loading="lazy" src="/static/core/markup-media/main/viewing-hall/image-1-thumb.jpg" data-src="/static/core/markup-media/main/viewing-hall/image-1.jpg" data-srcset="/static/core/markup-media/main/viewing-hall/image-1@2x.jpg 2x" width="384" height="253" intrinsicsize="384x253" alt="Морозко">
+                                                            <a class="viewing__button button button_visual button_abs" href="#!view=45563&mode=1up">
+                                                                <span class="button__icon button__icon_view"></span>
+                                                            </a>
+                                                        </div>
+                                                        <div class="viewing__title viewing__title_image">
+                                                            <img src="/static/core/markup-media/main/viewing-hall/title-1.svg" width="680" height="216" intrinsicsize="680x216" alt="Морозко">
+                                                        </div>
+                                                        <!-- возможен вариант вместо картинки название набрано текстом
+                        <div class="viewing__title viewing__title_text">
+                            Сказка о еловой шишке и серой мышке
+                        </div>-->
+                                                    </div>
+                                                    <div class="viewing__carousel">
+                                                        <div class="carousel carousel_viewing js-carousel-viewing" data-log="15">
+                                                            <div class="carousel__viewport js-carousel-viewport">
+                                                                <ul class="carousel__list js-carousel-overflow">
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_thumb" data-clickable>
+                                                                            <a class="card__picture" href="diafilm.html">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/viewing-hall/thumb-1-thumb.jpg" data-src="/static/core/markup-media/main/viewing-hall/thumb-1.jpg" data-srcset="/static/core/markup-media/main/viewing-hall/thumb-1@2x.jpg 2x" width="183" height="144" intrinsicsize="183x144" alt="">
+                                                                            </a>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_thumb" data-clickable>
+                                                                            <a class="card__picture" href="diafilm.html">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/viewing-hall/thumb-2-thumb.jpg" data-src="/static/core/markup-media/main/viewing-hall/thumb-2.jpg" data-srcset="/static/core/markup-media/main/viewing-hall/thumb-2@2x.jpg 2x" width="183" height="144" intrinsicsize="183x144" alt="">
+                                                                            </a>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_thumb" data-clickable>
+                                                                            <a class="card__picture" href="diafilm.html">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/viewing-hall/thumb-3-thumb.jpg" data-src="/static/core/markup-media/main/viewing-hall/thumb-3.jpg" data-srcset="/static/core/markup-media/main/viewing-hall/thumb-3@2x.jpg 2x" width="183" height="144" intrinsicsize="183x144" alt="">
+                                                                            </a>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_thumb" data-clickable>
+                                                                            <a class="card__picture" href="diafilm.html">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/viewing-hall/thumb-1-thumb.jpg" data-src="/static/core/markup-media/main/viewing-hall/thumb-1.jpg" data-srcset="/static/core/markup-media/main/viewing-hall/thumb-1@2x.jpg 2x" width="183" height="144" intrinsicsize="183x144" alt="">
+                                                                            </a>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_thumb" data-clickable>
+                                                                            <a class="card__picture" href="diafilm.html">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/viewing-hall/thumb-2-thumb.jpg" data-src="/static/core/markup-media/main/viewing-hall/thumb-2.jpg" data-srcset="/static/core/markup-media/main/viewing-hall/thumb-2@2x.jpg 2x" width="183" height="144" intrinsicsize="183x144" alt="">
+                                                                            </a>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_thumb" data-clickable>
+                                                                            <a class="card__picture" href="diafilm.html">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/viewing-hall/thumb-3-thumb.jpg" data-src="/static/core/markup-media/main/viewing-hall/thumb-3.jpg" data-srcset="/static/core/markup-media/main/viewing-hall/thumb-3@2x.jpg 2x" width="183" height="144" intrinsicsize="183x144" alt="">
+                                                                            </a>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_thumb" data-clickable>
+                                                                            <a class="card__picture" href="diafilm.html">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/viewing-hall/thumb-1-thumb.jpg" data-src="/static/core/markup-media/main/viewing-hall/thumb-1.jpg" data-srcset="/static/core/markup-media/main/viewing-hall/thumb-1@2x.jpg 2x" width="183" height="144" intrinsicsize="183x144" alt="">
+                                                                            </a>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_thumb" data-clickable>
+                                                                            <a class="card__picture" href="diafilm.html">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/viewing-hall/thumb-2-thumb.jpg" data-src="/static/core/markup-media/main/viewing-hall/thumb-2.jpg" data-srcset="/static/core/markup-media/main/viewing-hall/thumb-2@2x.jpg 2x" width="183" height="144" intrinsicsize="183x144" alt="">
+                                                                            </a>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_thumb" data-clickable>
+                                                                            <a class="card__picture" href="diafilm.html">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/viewing-hall/thumb-3-thumb.jpg" data-src="/static/core/markup-media/main/viewing-hall/thumb-3.jpg" data-srcset="/static/core/markup-media/main/viewing-hall/thumb-3@2x.jpg 2x" width="183" height="144" intrinsicsize="183x144" alt="">
+                                                                            </a>
+                                                                        </article>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="viewing__after">
+                                                        <a class="viewing__more" href="viewing-hall.html">Смотреть диафильмы</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elevator__floor js-elevator-floor" data-id="gallery">
+                                <div class="section section_gallery">
+                                    <div class="section__container">
+                                        <div class="section__row">
+                                            <div class="section__label" role="heading" aria-level="2">Галерея</div>
+                                            <div class="section__body">
+                                                <div class="artists artists_main">
+                                                    <div class="artists__header">
+                                                        <div class="artists__label" role="heading" aria-level="3">Выдающиеся художники</div>
+                                                    </div>
+                                                    <div class="artists__list">
+                                                        <div class="artists__item">
+                                                            <article class="artist artist_default" data-clickable>
+                                                                <div class="artist__picture">
+                                                                    <img class="artist__img" loading="lazy" src="/static/core/markup-media/main/artists/picture-1-thumb.jpg" data-src="/static/core/markup-media/main/artists/picture-1.jpg" data-srcset="/static/core/markup-media/main/artists/picture-1@2x.jpg 2x" width="222" height="192" intrinsicsize="222x192" alt="">
+                                                                </div>
+                                                                <div class="artist__photo">
+                                                                    <img class="artist__img" loading="lazy" src="/static/core/markup-media/main/artists/photo-1-thumb.jpg" data-src="/static/core/markup-media/main/artists/photo-1.jpg" data-srcset="/static/core/markup-media/main/artists/photo-1@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                                                </div>
+                                                                <div class="artist__label" role="heading" aria-level="4">
+                                                                    Василий Игнатов
+                                                                </div>
+                                                                <div class="artist__text">
+                                                                    На&nbsp;студии В.Г. Игнатов считался признанным мастером-сказочником
+                                                                </div>
+                                                                <a class="artist__link" href="artist.html">
+                                                                    Подробнее
+                                                                </a>
+                                                            </article>
+                                                        </div>
+                                                        <div class="artists__item">
+                                                            <article class="artist artist_default" data-clickable>
+                                                                <div class="artist__picture">
+                                                                    <img class="artist__img" loading="lazy" src="/static/core/markup-media/main/artists/picture-2-thumb.jpg" data-src="/static/core/markup-media/main/artists/picture-2.jpg" data-srcset="/static/core/markup-media/main/artists/picture-2@2x.jpg 2x" width="237" height="226" intrinsicsize="237x226" alt="">
+                                                                </div>
+                                                                <div class="artist__photo">
+                                                                    <img class="artist__img" loading="lazy" src="/static/core/markup-media/main/artists/photo-2-thumb.jpg" data-src="/static/core/markup-media/main/artists/photo-2.jpg" data-srcset="/static/core/markup-media/main/artists/photo-2@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                                                </div>
+                                                                <div class="artist__label" role="heading" aria-level="4">
+                                                                    Вера Дранишникова
+                                                                </div>
+                                                                <div class="artist__text">
+                                                                    Рисовала диафильмы по&nbsp;сказкам и&nbsp;стихотворениям для&nbsp;детей
+                                                                </div>
+                                                                <a class="artist__link" href="artist.html">
+                                                                    Подробнее
+                                                                </a>
+                                                            </article>
+                                                        </div>
+                                                        <div class="artists__item">
+                                                            <article class="artist artist_default" data-clickable>
+                                                                <div class="artist__picture">
+                                                                    <img class="artist__img" loading="lazy" src="/static/core/markup-media/main/artists/picture-3-thumb.jpg" data-src="/static/core/markup-media/main/artists/picture-3.jpg" data-srcset="/static/core/markup-media/main/artists/picture-3@2x.jpg 2x" width="303" height="208" intrinsicsize="303x208" alt="">
+                                                                </div>
+                                                                <div class="artist__photo">
+                                                                    <img class="artist__img" loading="lazy" src="/static/core/markup-media/main/artists/photo-3-thumb.jpg" data-src="/static/core/markup-media/main/artists/photo-3.jpg" data-srcset="/static/core/markup-media/main/artists/photo-3@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                                                </div>
+                                                                <div class="artist__label" role="heading" aria-level="4">
+                                                                    Макс Жеребчевский
+                                                                </div>
+                                                                <div class="artist__text">
+                                                                    Художник-постановщик на&nbsp;киностудии «Союзмультфильм»
+                                                                </div>
+                                                                <a class="artist__link" href="artist.html">
+                                                                    Подробнее
+                                                                </a>
+                                                            </article>
+                                                        </div>
+                                                        <div class="artists__item">
+                                                            <article class="artist artist_default" data-clickable>
+                                                                <div class="artist__picture">
+                                                                    <img class="artist__img" loading="lazy" src="/static/core/markup-media/main/artists/picture-4-thumb.jpg" data-src="/static/core/markup-media/main/artists/picture-4.jpg" data-srcset="/static/core/markup-media/main/artists/picture-4@2x.jpg 2x" width="163" height="196" intrinsicsize="163x196" alt="">
+                                                                </div>
+                                                                <div class="artist__photo">
+                                                                    <img class="artist__img" loading="lazy" src="/static/core/markup-media/main/artists/photo-4-thumb.jpg" data-src="/static/core/markup-media/main/artists/photo-4.jpg" data-srcset="/static/core/markup-media/main/artists/photo-4@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                                                </div>
+                                                                <div class="artist__label" role="heading" aria-level="4">
+                                                                    Эрнё Зорад
+                                                                </div>
+                                                                <div class="artist__text">
+                                                                    Венгерский художник, иллюстратор, графический дизайнер
+                                                                </div>
+                                                                <a class="artist__link" href="artist.html">
+                                                                    Подробнее
+                                                                </a>
+                                                            </article>
+                                                        </div>
+                                                    </div>
+                                                    <div class="artists__after">
+                                                        <a class="artists__more" href="gallery.html">Пройти в&nbsp;галерею</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elevator__floor js-elevator-floor" data-id="archive">
+                                <div class="section section_archive">
+                                    <div class="section__container">
+                                        <div class="section__row">
+                                            <div class="section__label" role="heading" aria-level="2">Архив</div>
+                                            <div class="section__body">
+                                                <div class="archive archive_main">
+                                                    <div class="archive__header">
+                                                        <div class="archive__label" role="heading" aria-level="3">история и&nbsp;технологии</div>
+                                                    </div>
+                                                    <div class="archive__list">
+                                                        <div class="archive__item">
+                                                            <article class="card card_archive" data-clickable>
+                                                                <div class="card__picture card__picture_double">
+                                                                    <img class="card__image" loading="lazy" src="/static/core/markup-media/main/archive/card-1-1-thumb.jpg" data-src="/static/core/markup-media/main/archive/card-1-1.jpg" data-srcset="/static/core/markup-media/main/archive/card-1-1@2x.jpg 2x" width="157" height="120" intrinsicsize="157x120" alt="">
+                                                                    <img class="card__image" loading="lazy" src="/static/core/markup-media/main/archive/card-1-2-thumb.jpg" data-src="/static/core/markup-media/main/archive/card-1-2.jpg" data-srcset="/static/core/markup-media/main/archive/card-1-2@2x.jpg 2x" width="157" height="120" intrinsicsize="157x120" alt="">
+                                                                </div>
+                                                                <div class="card__body">
+                                                                    <div class="card__label" role="heading" aria-level="4">
+                                                                        <a class="card__link" href="technology.html">
+                                                                            Рождение и&nbsp;история студии Диафильм
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="card__text">Позитивная фотоплёнка, кадры которой тематически связаны друг с&nbsp;другом и&nbsp;представляют собой последовательную иллюстрацию</div>
+                                                                </div>
+                                                            </article>
+                                                        </div>
+                                                        <div class="archive__item">
+                                                            <article class="card card_archive" data-clickable>
+                                                                <div class="card__picture card__picture_small">
+                                                                    <img class="card__image" loading="lazy" src="/static/core/markup-media/main/archive/card-2-thumb.jpg" data-src="/static/core/markup-media/main/archive/card-2.jpg" data-srcset="/static/core/markup-media/main/archive/card-2@2x.jpg 2x" width="177" height="120" intrinsicsize="177x120" alt="">
+                                                                </div>
+                                                                <div class="card__body">
+                                                                    <div class="card__label" role="heading" aria-level="4">
+                                                                        <a class="card__link" href="technology.html">
+                                                                            История проекционных устройств
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="card__text">Позитивная фотоплёнка, кадры которой тематически связаны друг с&nbsp;другом и&nbsp;представляют собой последовательную иллюстрацию</div>
+                                                                </div>
+                                                            </article>
+                                                        </div>
+                                                        <div class="archive__item">
+                                                            <article class="card card_archive" data-clickable>
+                                                                <div class="card__picture">
+                                                                    <img class="card__image" loading="lazy" src="/static/core/markup-media/main/archive/card-3-thumb.jpg" data-src="/static/core/markup-media/main/archive/card-3.jpg" data-srcset="/static/core/markup-media/main/archive/card-3@2x.jpg 2x" width="280" height="190" intrinsicsize="280x190" alt="">
+                                                                </div>
+                                                                <div class="card__body">
+                                                                    <div class="card__label" role="heading" aria-level="4">
+                                                                        <a class="card__link" href="technology.html">
+                                                                            Анатомия волшебного фонаря
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="card__text">Позитивная фотоплёнка, кадры которой тематически связаны друг с&nbsp;другом и&nbsp;представляют собой последовательную иллюстрацию</div>
+                                                                </div>
+                                                            </article>
+                                                        </div>
+                                                    </div>
+                                                    <div class="archive__after">
+                                                        <a class="archive__more" href="archive.html">Поработать с архивом</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elevator__floor js-elevator-floor" data-id="cafeteria">
+                                <div class="section section_cafeteria">
+                                    <div class="section__container">
+                                        <div class="section__row">
+                                            <div class="section__label" role="heading" aria-level="2">Кафетерий</div>
+                                            <div class="section__body">
+                                                <div class="cafeteria cafeteria_main">
+                                                    <div class="cafeteria__header">
+                                                        <div class="cafeteria__label" role="heading" aria-level="3">О&nbsp;музее</div>
+                                                    </div>
+                                                    <div class="cafeteria__video">
+                                                        <a class="button button_video" href="#">
+                                                            <span class="button__label">Демо видео по&nbsp;сайту</span>
+                                                            <span class="button__icon button__icon_after button__icon_play"></span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="cafeteria__carousel">
+                                                        <div class="carousel carousel_cafeteria js-carousel-horizontal">
+                                                            <div class="carousel__viewport js-carousel-viewport">
+                                                                <ul class="carousel__list js-carousel-overflow">
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_cafeteria">
+                                                                            <div class="card__picture">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/cafeteria/card-1-thumb.jpg" data-src="/static/core/markup-media/main/cafeteria/card-1.jpg" data-srcset="/static/core/markup-media/main/cafeteria/card-1@2x.jpg 2x" width="176" height="132" intrinsicsize="176x132" alt="">
+                                                                            </div>
+                                                                            <div class="card__body">
+                                                                                <div class="card__label" role="heading" aria-level="4">
+                                                                                    Иосиф Бакштейн
+                                                                                </div>
+                                                                                <div class="card__category">искусствовед</div>
+                                                                                <div class="card__text">«Диафильм&nbsp;&mdash;&thinsp;это&nbsp;же&nbsp;транслятор социальной памяти!».</div>
+                                                                            </div>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_cafeteria">
+                                                                            <div class="card__picture">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/cafeteria/card-2-thumb.jpg" data-src="/static/core/markup-media/main/cafeteria/card-2.jpg" data-srcset="/static/core/markup-media/main/cafeteria/card-2@2x.jpg 2x" width="176" height="132" intrinsicsize="176x132" alt="">
+                                                                            </div>
+                                                                            <div class="card__body">
+                                                                                <div class="card__label" role="heading" aria-level="4">
+                                                                                    Людмила Улицкая
+                                                                                </div>
+                                                                                <div class="card__category">писатель</div>
+                                                                                <div class="card__text">«Музей диафильма&nbsp;&mdash;&thinsp;это&nbsp;пространство воспоминаний, развития и&nbsp;укрепление семейных связей».</div>
+                                                                            </div>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_cafeteria">
+                                                                            <div class="card__picture">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/cafeteria/card-3-thumb.jpg" data-src="/static/core/markup-media/main/cafeteria/card-3.jpg" data-srcset="/static/core/markup-media/main/cafeteria/card-3@2x.jpg 2x" width="176" height="132" intrinsicsize="176x132" alt="">
+                                                                            </div>
+                                                                            <div class="card__body">
+                                                                                <div class="card__label" role="heading" aria-level="4">
+                                                                                    Мария Веденяпина
+                                                                                </div>
+                                                                                <div class="card__category">Директор Российской Государственной детской библиотеки</div>
+                                                                                <div class="card__text">«Для&nbsp;взрослых&nbsp;&mdash;&thinsp;диафильм это&nbsp;путешествие в&nbsp;детство и&nbsp;отрочество, для&nbsp;детей&nbsp;&mdash;&thinsp;приобщение к&nbsp;истории семьи через родительские рассказы».</div>
+                                                                            </div>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_cafeteria">
+                                                                            <div class="card__picture">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/cafeteria/card-1-thumb.jpg" data-src="/static/core/markup-media/main/cafeteria/card-1.jpg" data-srcset="/static/core/markup-media/main/cafeteria/card-1@2x.jpg 2x" width="176" height="132" intrinsicsize="176x132" alt="">
+                                                                            </div>
+                                                                            <div class="card__body">
+                                                                                <div class="card__label" role="heading" aria-level="4">
+                                                                                    Иосиф Бакштейн
+                                                                                </div>
+                                                                                <div class="card__category">искусствовед</div>
+                                                                                <div class="card__text">«Диафильм&nbsp;&mdash;&thinsp;это&nbsp;же&nbsp;транслятор социальной памяти!».</div>
+                                                                            </div>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_cafeteria">
+                                                                            <div class="card__picture">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/cafeteria/card-2-thumb.jpg" data-src="/static/core/markup-media/main/cafeteria/card-2.jpg" data-srcset="/static/core/markup-media/main/cafeteria/card-2@2x.jpg 2x" width="176" height="132" intrinsicsize="176x132" alt="">
+                                                                            </div>
+                                                                            <div class="card__body">
+                                                                                <div class="card__label" role="heading" aria-level="4">
+                                                                                    Людмила Улицкая
+                                                                                </div>
+                                                                                <div class="card__category">писатель</div>
+                                                                                <div class="card__text">«Музей диафильма&nbsp;&mdash;&thinsp;это&nbsp;пространство воспоминаний, развития и&nbsp;укрепление семейных связей».</div>
+                                                                            </div>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_cafeteria">
+                                                                            <div class="card__picture">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/cafeteria/card-3-thumb.jpg" data-src="/static/core/markup-media/main/cafeteria/card-3.jpg" data-srcset="/static/core/markup-media/main/cafeteria/card-3@2x.jpg 2x" width="176" height="132" intrinsicsize="176x132" alt="">
+                                                                            </div>
+                                                                            <div class="card__body">
+                                                                                <div class="card__label" role="heading" aria-level="4">
+                                                                                    Мария Веденяпина
+                                                                                </div>
+                                                                                <div class="card__category">Директор Российской Государственной детской библиотеки</div>
+                                                                                <div class="card__text">«Для&nbsp;взрослых&nbsp;&mdash;&thinsp;диафильм это&nbsp;путешествие в&nbsp;детство и&nbsp;отрочество, для&nbsp;детей&nbsp;&mdash;&thinsp;приобщение к&nbsp;истории семьи через родительские рассказы».</div>
+                                                                            </div>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_cafeteria">
+                                                                            <div class="card__picture">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/cafeteria/card-1-thumb.jpg" data-src="/static/core/markup-media/main/cafeteria/card-1.jpg" data-srcset="/static/core/markup-media/main/cafeteria/card-1@2x.jpg 2x" width="176" height="132" intrinsicsize="176x132" alt="">
+                                                                            </div>
+                                                                            <div class="card__body">
+                                                                                <div class="card__label" role="heading" aria-level="4">
+                                                                                    Иосиф Бакштейн
+                                                                                </div>
+                                                                                <div class="card__text">«Диафильм&nbsp;&mdash;&thinsp;это&nbsp;же&nbsp;транслятор социальной памяти!».</div>
+                                                                            </div>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_cafeteria">
+                                                                            <div class="card__picture">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/cafeteria/card-2-thumb.jpg" data-src="/static/core/markup-media/main/cafeteria/card-2.jpg" data-srcset="/static/core/markup-media/main/cafeteria/card-2@2x.jpg 2x" width="176" height="132" intrinsicsize="176x132" alt="">
+                                                                            </div>
+                                                                            <div class="card__body">
+                                                                                <div class="card__label" role="heading" aria-level="4">
+                                                                                    Людмила Улицкая
+                                                                                </div>
+                                                                                <div class="card__text">«Музей диафильма&nbsp;&mdash;&thinsp;это&nbsp;пространство воспоминаний, развития и&nbsp;укрепление семейных связей».</div>
+                                                                            </div>
+                                                                        </article>
+                                                                    </li>
+                                                                    <li class="carousel__item carousel__item_default js-carousel-item">
+                                                                        <article class="card card_cafeteria">
+                                                                            <div class="card__picture">
+                                                                                <img class="card__image" loading="lazy" src="/static/core/markup-media/main/cafeteria/card-3-thumb.jpg" data-src="/static/core/markup-media/main/cafeteria/card-3.jpg" data-srcset="/static/core/markup-media/main/cafeteria/card-3@2x.jpg 2x" width="176" height="132" intrinsicsize="176x132" alt="">
+                                                                            </div>
+                                                                            <div class="card__body">
+                                                                                <div class="card__label" role="heading" aria-level="4">
+                                                                                    Мария Веденяпина
+                                                                                </div>
+                                                                                <div class="card__text">«Для&nbsp;взрослых&nbsp;&mdash;&thinsp;диафильм это&nbsp;путешествие в&nbsp;детство и&nbsp;отрочество, для&nbsp;детей&nbsp;&mdash;&thinsp;приобщение к&nbsp;истории семьи через родительские рассказы».</div>
+                                                                            </div>
+                                                                        </article>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cafeteria__after">
+                                                        <a class="cafeteria__more" href="cafeteria.html">Узнать больше о музее</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer footer_main">
+        <div class="footer__container">
+            <div class="footer__row">
+                <div class="footer__copy">© Диафильм онлайн 2021</div>
+                <div class="footer__phone">
+                    <a href="tel:+74955151617">7 (495) 515 16 17</a>
+                </div>
+                <div class="footer__form">
+                    <form class="form form_footer js-form-footer" method="post" action="ajax/form-success.json">
+                        <div class="form__text">подпишитесь на новости</div>
+                        <div class="form__body">
+                            <div class="form__field form__field_full">
+                                <div class="field field_default js-form-field">
+                                    <input class="field__element field__element_email is-email is-external-email js-form-field-element" type="email" name="email" id="id_footer_email">
+                                    <label class="field__placeholder js-form-field-placeholder" for="id_footer_email">e-mail</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="footer__network">
+                    <div class="networks networks_footer">
+                        <div class="networks__label" role="heading" aria-level="4">давайте дружить</div>
+                        <ul class="networks__list">
+                            <li class="networks__item">
+                                <a class="networks__button button button_square" href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+                                    <span class="button__icon button__icon_fb-white"></span>
+                                </a>
+                            </li>
+                            <li class="networks__item">
+                                <a class="networks__button button button_square" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                                    <span class="button__icon button__icon_ig-white"></span>
+                                </a>
+                            </li>
+                            <li class="networks__item">
+                                <a class="networks__button button button_square" href="#" target="_blank" rel="noopener noreferrer" aria-label="Vkontakte" title="Vkontakte">
+                                    <span class="button__icon button__icon_vk-white"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="popup popup_menu js-popup-menu" id="menu" role="dialog" tabindex="-1" hidden>
+        <div class="popup__container">
+            <div class="popup__row">
+                <div class="popup__body js-popup-body">
+                    <a class="popup__close js-popup-close button button_visual" href="#main" aria-label="Закрыть" title="Закрыть" role="button">
+                        <span class="button__icon button__icon_close-white"></span>
+                    </a>
+                    <div class="offcanvas">
+                        <div class="offcanvas__header">
+                            <div class="offcanvas__logo">
+                                <a class="logo logo_default" href="index.html">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="offcanvas__menu">
+                            <nav class="menu menu_main" aria-label="Меню сайта">
+                                <ul class="menu__level menu__level_1">
+                                    <li class="menu__item">
+                                        <a class="menu__link menu__link_children" href="#foyer">Фойе</a>
+                                        <div class="menu__text">экскурсии</div>
+                                        <ul class="menu__level menu__level_2">
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="for-children.html">Детям</a>
+                                            </li>
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="for-school.html">Школьникам</a>
+                                            </li>
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="for-family.html">Для&nbsp;всей семьи</a>
+                                            </li>
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="for-pros.html">Для&nbsp;профи</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu__item">
+                                        <a class="menu__link menu__link_children" href="showroom.html">Выставочный зал</a>
+                                        <div class="menu__text">экспонаты и пресса</div>
+                                        <ul class="menu__level menu__level_2">
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="showroom.html#!tab=models">Экспонаты</a>
+                                            </li>
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="showroom.html#!tab=publications">Пресса</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu__item">
+                                        <a class="menu__link" href="viewing-hall.html">Просмотровый зал</a>
+                                        <div class="menu__text">каталог диафильмов</div>
+                                    </li>
+                                    <li class="menu__item">
+                                        <a class="menu__link" href="gallery.html">Галерея</a>
+                                        <div class="menu__text">выдающиеся художники</div>
+                                    </li>
+                                    <li class="menu__item">
+                                        <a class="menu__link menu__link_children" href="archive.html">Архив</a>
+                                        <div class="menu__text">история и технологии</div>
+                                        <ul class="menu__level menu__level_2">
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="archive.html#!tab=history">История</a>
+                                            </li>
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="archive.html#!tab=technologies">Технологии</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu__item">
+                                        <a class="menu__link" href="cafeteria.html">Кафетерий</a>
+                                        <div class="menu__text">о музее новости и статьи</div>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="offcanvas__hall">
+                            <article class="hall hall_default" data-clickable>
+                                <div class="hall__label" role="heading" aria-level="3">
+                                    Сегодня в зале
+                                </div>
+                                <div class="hall__picture">
+                                    <img class="hall__image" loading="lazy" src="/static/core/markup-media/main/preview-1-thumb.jpg" data-src="/static/core/markup-media/main/preview-1.jpg" data-srcset="/static/core/markup-media/main/preview-1@2x.jpg 2x" width="280" height="184" intrinsicsize="280x184" alt="Название диафильма">
+                                </div>
+                                <div class="hall__more">
+                                    <a class="hall__link" href="#">Смотреть</a>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="offcanvas__form">
+                            <form class="form form_search form_menu js-form-search" action="#" method="get">
+                                <div class="form__body">
+                                    <div class="form__field form__field_full">
+                                        <div class="field field_default js-form-field has-button">
+                                            <input class="field__element field__element_search is-string is-external-q js-form-field-element" type="search" name="q" id="id_menu_q">
+                                            <button class="field__button button button_field" type="submit" aria-label="Поиск" title="Поиск">
+                                                <span class="button__icon button__icon_search-white"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="notifications js-notifications">
+        <!--googleoff: all-->
+        <!--noindex-->
+        <!--[if lte IE 9]>
+    <div class="notification notification_default notification_warning robots-nocontent" role="alert" aria-hidden="false">
+        <div class="notification__container">
+            <div class="notification__row">
+                <div class="notification__text">
+                    <p>Вы используете <strong>устаревший</strong> браузер. Пожалуйста
+                        <a href="https://browsehappy.com/" target="_blank" rel="nofollow noopener noreferrer">обновите
+                            его</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <![endif]-->
+        <noscript>
+            <div class="notification notification_default notification_warning robots-nocontent" role="alert" aria-hidden="false">
+                <div class="notification__container">
+                    <div class="notification__row">
+                        <div class="notification__text">
+                            <p>Для полной функциональности этого сайта необходимо включить
+                                <strong>JavaScript</strong>. Вот
+                                <a href="https://www.enable-javascript.com/ru/" target="_blank" rel="nofollow noopener noreferrer">
+                                    инструкции, как включить JavaScript в вашем браузере</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </noscript>
+        <!--/noindex-->
+        <!--googleon: all-->
+    </div>
+</body>
+</html>

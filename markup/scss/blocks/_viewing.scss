@@ -1,0 +1,378 @@
+@charset "UTF-8";
+/* --------------------
+   Просмотровый зал
+   -------------------- */
+
+.viewing {
+
+  &_main {
+    @extend %row;
+    width: 100%;
+
+    @include media(tablet){
+      height: 100%;
+      align-items: stretch;
+    }
+  }
+
+  &_inner {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: $gray-455;
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+  }
+
+  &__header {
+    @include highlight();
+    @extend %column;
+
+    .viewing_main & {
+      position: relative;
+      @include column(7, 8);
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-bottom: 30px;
+
+      @include media(tablet){
+        @include column(3, 10);
+        padding-top: 170px;
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-bottom: 0;
+      }
+    }
+
+    .viewing_inner & {
+      @extend %row;
+      @include columnWithPush(6, 2, 12);
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  &__label {
+    @include font(24px, 20px, $base-font, 700);
+    color: $orange;
+
+    @include media(tablet){
+      @include font(36px, 40px);
+    }
+
+    .viewing_main & {
+      margin-bottom: 10px;
+    }
+
+    .viewing_inner & {
+      @extend %column;
+      @include column(6, 6);
+      padding-left: 16px;
+      padding-right: 16px;
+      text-transform: lowercase;
+    }
+  }
+
+  &__intro {
+    @include highlight();
+
+    .viewing_main & {
+      margin-top: 10px;
+      @include font(18px, 22px, $base-font, 600);
+      color: $white;
+
+      @include media(tablet){
+        @include font(24px, 28px);
+      }
+    }
+  }
+
+  &__text {
+    @include highlight();
+
+    .viewing_inner & {
+      @extend %column;
+      @include column(4, 6);
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 10px;
+      @include font(14px, 18px, $base-font, 400);
+      color: $white;
+
+      @include media(before, tablet) {
+        width: 100%;
+      }
+    }
+  }
+
+  &__params {
+    @include highlight();
+    position: relative;
+    padding: 20px 0;
+    margin-top: 15px;
+
+    @include before() {
+      position: absolute;
+      top: 0;
+      display: block;
+      border-top: 2px solid $white;
+    }
+
+    @include after() {
+      position: absolute;
+      bottom: 0;
+      display: block;
+      border-bottom: 2px solid $white;
+    }
+
+    .viewing_main & {
+      &::before,
+      &::after {
+        left: 0;
+        right: 0;
+      }
+    }
+
+    .viewing_inner & {
+      @extend %column;
+      @include columnWithPush(2.5, 2, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+
+      &::before,
+      &::after {
+        left: 16px;
+        right: 16px;
+      }
+
+      @include media(before, tablet){
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  &__figure {
+    @include highlight();
+    @extend %column;
+
+    .viewing_main & {
+      position: relative;
+      @include column(7, 8);
+
+      @include media(tablet) {
+        @include column(4, 10);
+        padding-top: 250px;
+      }
+    }
+
+    .viewing_inner & {
+      position: relative;
+      margin-top: 15px;
+      @include column(4.5, 12);
+
+      @include media(before, tablet){
+        @include column(7, 8);
+      }
+    }
+  }
+
+  &__picture {
+    position: relative;
+    display: block;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 4px;
+
+    @include media(tablet){
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    @include before() {
+      @include overlay(transparentize($black, .5), $left: 8px, $right: 8px);
+      z-index: 0;
+
+      @include media(tablet){
+        left: 16px;
+        right: 16px;
+      }
+    }
+
+    .viewing_main & {
+      margin-bottom: -20px;
+    }
+  }
+
+  &__image {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: inherit;
+  }
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  &__title {
+    @include highlight();
+    @extend %column;
+    position: relative;
+    padding-left: 8px;
+    padding-right: 8px;
+
+    @include media(tablet){
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    &_image {
+      margin-top: -40px;
+
+      .viewing_main & {
+        @include column(7, 7);
+
+        @include media(tablet) {
+          @include columnWithPush(7, -3, 4);
+        }
+      }
+
+      .viewing_inner & {
+        @include columnWithPush(7, -2.5, 4.5);
+
+        @include media(before, tablet){
+          @include column(7, 7);
+          margin-left: 0;
+        }
+      }
+
+      img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
+    }
+
+    &_text {
+      @include font(64px, 70px, $title-font, 600);
+      color: $white;
+
+      .viewing_main & {
+        @include columnWithPush(6, -3, 4);
+      }
+    }
+  }
+
+  &__carousel {
+    @include highlight();
+    @extend %column;
+
+    .viewing_main & {
+      @include media(before, tablet){
+        margin-top: 15px;
+      }
+
+      @include media(tablet) {
+        @include column(2, 10);
+        padding: 170px 16px 20px;
+        max-height: 100%;
+      }
+    }
+
+    .viewing_inner & {
+      @include column(2, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 15px;
+      height: 465px;
+
+      @include media(before, tablet) {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  &__after {
+    @include highlight();
+    @extend %column;
+
+    .viewing_main & {
+      @include media(before, tablet) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        @include column(1, 8);
+        height: 50%;
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      @include media(tablet){
+        position: relative;
+        align-self: flex-end;
+        justify-self: flex-end;
+        @include column(1, 10);
+        padding-left: 16px;
+        padding-right: 16px;
+        height: calc(100% - 170px);
+      }
+    }
+
+    .viewing_inner & {
+      @include column(1, 12);
+    }
+  }
+
+  &__more {
+    position: absolute;
+    left: 100%;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: -8px;
+    @include font(24px, 28px, $title-font, 700);
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    color: $white;
+    transform: rotate(-90deg);
+    transform-origin: 0 100%;
+
+    @include media(tablet){
+      margin-left: -16px;
+    }
+
+    @include before() {
+      display: inline-block;
+      vertical-align: bottom;
+      @include svgSprite(icon-arrow-16-white);
+      margin-right: 4px;
+      transform: rotate(90deg);
+    }
+
+    .viewing_main & {
+      top: 300px;
+
+      @include media(tablet) {
+        top: 80%;
+      }
+    }
+
+    .viewing_inner & {
+      bottom: 0;
+    }
+  }
+}

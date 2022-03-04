@@ -1,0 +1,147 @@
+@charset "UTF-8";
+@use "sass:map";
+
+/* --------------------
+   Вкладки
+   -------------------- */
+
+.tabs {
+  @extend %section;
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+  }
+
+  &__label {
+    @extend %column;
+  }
+
+  &__list {
+    @include highlight();
+    @extend %column;
+
+    .tabs_default & {
+      position: relative;
+      @include columnWithPush(6, 2, 12);
+
+      @include after() {
+        position: absolute;
+        left: 16px;
+        bottom: 0;
+        width: 100%;
+        border-bottom: 2px solid $black;
+
+        .layout_gray & {
+          border-bottom-color: $white;
+        }
+      }
+
+      @include media(before, tablet) {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  }
+
+  &__overflow {
+    @extend %row;
+  }
+
+  &__tab {
+    @include highlight();
+    @extend %column;
+    position: relative;
+    display: block;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    white-space: nowrap;
+    @include no-tap-highlight();
+    cursor: pointer;
+
+    .tabs_default & {
+      position: relative;
+      @include column(3, 6);
+      padding: 20px 16px 14px;
+      @include font(36px, 40px, $base-font, 700);
+      color: $black;
+
+      @include media(before, tablet) {
+        @include font(16px, 20px, $base-font, 700);
+        padding: 20px 0 10px;
+      }
+
+      .layout_gray & {
+        color: $white;
+      }
+
+      @include after() {
+        position: absolute;
+        left: 16px;
+        bottom: -7px;
+        width: 100%;
+        height: 16px;
+        transform: scaleY(0);
+        transform-origin: 50% 50%;
+        z-index: 1;
+
+        @include transition() {
+          transition-property: transform;
+        }
+
+        @each $key, $level in $LEVELS {
+          .root_#{map.get($level, slug)} & {
+            background-color: map.get($level, color);
+          }
+        }
+      }
+    }
+
+    @include transition() {
+      transition-property: font-weight, color, background-color;
+    }
+
+    @include hoverWithin() {
+      &::after {
+        transform: scaleY(1);
+      }
+    }
+
+    @include aria(selected) {
+      &::after {
+        transform: scaleY(1);
+      }
+      @each $key, $level in $LEVELS {
+        .root_#{map.get($level, slug)} & {
+          color: map.get($level, color);
+        }
+      }
+    }
+  }
+
+  &__panel {
+    display: none;
+
+    .tabs_default & {
+      padding-top: 50px;
+
+      @include media(before, tablet) {
+        padding-top: 20px;
+      }
+    }
+
+    @include aria(hidden, false) {
+      display: block;
+    }
+
+    &:target {
+      @include has(no-js) {
+        display: block;
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{% extends "wagtailadmin/base.html" %}
+{% load static %}
+
+{% block branding_logo %}
+    <div class="wagtail-logo-container__mobile u-hidden@sm">
+        <img class="wagtail-logo wagtail-logo__full" src="{% static "core/icons/icon-192x192.png" %}" alt="Диафильмы Онлайн" style="width:40px;" />
+    </div>
+
+    <div class="wagtail-logo-container__desktop u-hidden@xs">
+        <img src="{% static "core/icons/icon-192x192.png" %}" alt="Diafilms.Online"/>
+    </div>
+{% endblock %}
+
+{% block branding_favicon %}
+    <link rel="shortcut icon" sizes="16x16 24x24" href="{% static 'core/icons/favicon.ico' %}?v=1">
+{% endblock %}

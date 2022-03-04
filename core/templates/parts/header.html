@@ -1,0 +1,23 @@
+<a class="header__skip" href="#body">К содержимому</a>
+<div class="header__container">
+    <div class="header__row">
+        <div class="header__logo">
+            <a class="logo logo_default" href="/">
+            </a>
+        </div>
+
+        {% block header_intro %}
+        <div class="header__intro">
+            <div class="intro intro_default">
+                <span class="intro__text">Добро пожаловать в&nbsp;музей</span>
+            </div>
+        </div>
+        {% endblock header_intro %}
+
+        <div class="header__buttons">
+            <a class="header__toggle button button_visual" href="#menu" aria-label="Показать меню" title="Показать меню">
+                <span class="button__icon button__icon_menu-white"></span>
+            </a>
+        </div>
+    </div>
+</div>

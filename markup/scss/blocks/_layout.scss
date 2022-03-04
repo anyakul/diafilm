@@ -1,0 +1,25 @@
+@charset "UTF-8";
+/* --------------------
+   Разбивка страницы
+   -------------------- */
+
+.layout {
+  counter-reset: story;
+  overflow: hidden;
+
+  &_main {
+    @extend %row;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: stretch;
+    height: 100%;
+  }
+
+  &_gray {
+    background-color: $gray-455;
+  }
+
+  &_light-gray {
+    background-color: $gray-fff;
+  }
+}

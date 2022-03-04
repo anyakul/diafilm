@@ -1,0 +1,19 @@
+{% load navigation_tags %}
+
+<nav class="menu menu_main" aria-label="Меню сайта">
+    <ul class="menu__level menu__level_1">
+        {% for item in menu_root.menu_children %}
+        <li class="menu__item">
+            <a class="menu__link menu__link_children" href="{{ item.get_menu_url }}">{{ item.get_menu_title }}</a>
+            <div class="menu__text">{{ item.annotation }}</div>
+            <ul class="menu__level menu__level_2">
+                {% for item in item.menu_children %}
+                <li class="menu__item">
+                    <a class="menu__link" href="{{ item.get_menu_url }}">{{ item.get_menu_title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>

@@ -1,0 +1,148 @@
+{% extends "pages/detail.html" %}
+{% load navigation_tags %}
+{% load static wagtailcore_tags %}
+
+{% block header_class %}header_gray{% endblock header_class %}
+{% block main_class %}layout_gray{% endblock main_class %}
+{% block footer_class %}footer_gray{% endblock footer_class %}
+
+{% block main_header %}
+<div class="diafilm diafilm_inner js-diafilm">
+    <div class="diafilm__container">
+        <div class="diafilm__row">
+            <div class="diafilm__back">
+                <a class="diafilm__link" href="{% get_back_url %}">Назад</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="title title_text">
+    <div class="title__container">
+        <div class="title__row">
+            <h1 class="title__label">{{ page.title|format_title }}</h1>
+        </div>
+    </div>
+</div>
+{% endblock main_header %}
+
+{% block main_content %}
+<section class="feed feed_catalog js-feed-lazy">
+    <div class="feed__container">
+        <div class="feed__row">
+            {% include "components/diafilms/form.html" %}
+            <div class="feed__list js-feed-list">
+                {% include "components/diafilms/list.html" with object_list=search_results %}
+            </div>
+
+            {% if list_page.has_next %}
+            <div class="feed__pagination">
+                <a class="feed__button feed__button_more button button_inline js-feed-button"
+                   href="?page={{ list_page.next_page_number }}" data-base="{% url "api:diafilms" %}" rel="next">
+                    <span class="button__icon button__icon_before button__icon_arrow-down"></span>
+                    <span class="button__label">Загрузить ещё</span>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+
+{% if request.user.is_staff %}
+    <form action="{% url "search" %}" method="get">
+        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+        <input type="submit" value="Искать" class="button">
+    </form>
+
+    {% if search_results %}
+        <hr>
+
+        <p>
+            Найдено {{ search_results.paginator.count }},
+            страница {{ search_results.number }} / {{ search_results.paginator.num_pages }}
+        </p>
+
+        <ul>
+            {% for result in search_results %}
+                <li>
+                    {#<h4><a href="{% pageurl result %}">{{ result }}</a></h4>#}
+                    <h4>{{ result.title }}</h4>
+                    <small>
+                        ID: {{ result.id }} {{ result.handle.0 }}/{{ result.handle.1 }};
+                        Диафильмов: {{ result.pages|length }} ({{ result.pages|join:", " }} кадров),
+                        студия {{ result.publisher }},
+                        {{ result.issued_at|date:"Y" }} год
+                    </small>
+
+                    <div style="width: fit-content;">
+                        <div style="display: inline-block; border: 1px solid #EFEFEF; padding: 1px; width: 300px; min-height: 200px;">
+                        <img src="{{ result.cover }}" alt="{{ result.title }} cover" style="display: block; width: 100%">
+                        </div>
+                        <div style="text-align: right;">
+                            <a href="#" onclick="let el = this.parentElement.previousElementSibling.children[0]; let src = el.getAttribute('src'); let frame = src.match(/(\d+)\.jpg/)[1]; let n = parseInt(frame) - 1; nframe = String(n).padStart(frame.length, '0'); el.src = src.replace(frame, nframe); return false;">Назад</a>
+                            <a href="#" onclick="let el = this.parentElement.previousElementSibling.children[0]; let src = el.getAttribute('src'); let frame = src.match(/(\d+)\.jpg/)[1]; let n = parseInt(frame) + 1; nframe = String(n).padStart(frame.length, '0'); el.src = src.replace(frame, nframe); return false;">Дальше</a>
+                        </div>
+                    </div>
+
+                    {% for item in result.dlist %}
+                    <p>{{ item|linebreaksbr }}</p>
+                    {% endfor %}
+                    {% if result.diafilm_of_the_day %}
+                    <p>Будет диафильмом дня {{ result.diafilm_of_the_day|date:"j E Y" }} года</p>
+                    {% endif %}
+
+                    <h5>Категории</h5>
+                    <ul>
+                    {% for item in result.categories %}
+                    <li>{{ item }}</li>
+                    {% endfor %}
+                    </ul>
+
+                    <h5>Люди</h5>
+                    <ul>
+                    {% for item in result.persons %}
+                    <li>{{ item.name }}, {{ item.role }}</li>
+                    {% endfor %}
+                    </ul>
+
+                    <p>
+                        <a href="#"
+                           onclick="let target=this.parentElement.nextElementSibling; target.style.display=(target.style.display === 'none') ? 'block': 'none'; return false;">
+                            source
+                        </a>
+                    </p>
+                    <code style="display: none;"><pre>{{ result.as_json }}</pre></code>
+                    {% if result.search_description %}
+                        {{ result.search_description }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <ul style="padding: 1px; border: 1px solid #EFEFEF;">
+        {% if search_results.has_previous %}
+            <li style="display: inline-block; margin: 1em;">
+                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Предыдущая</a>
+            </li>
+        {% endif %}
+        {% for page in page_range %}
+            <li style="display: inline-block; margin: 1em;">
+                {% if page == search_results.number %}
+                    {{ page }}
+                {% else %}
+                    <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ page }}">{{ page }}</a>
+                {% endif %}
+            </li>
+
+        {% endfor %}
+        {% if search_results.has_next %}
+            <li style="display: inline-block; margin: 1em;">
+                <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Следующая</a>
+            </li>
+        {% endif %}
+        </ul>
+    {% elif search_query %}
+        Ничего не найдено
+    {% endif %}
+{% endif %}
+{% endblock main_content %}

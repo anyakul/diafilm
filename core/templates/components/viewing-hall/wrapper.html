@@ -1,0 +1,13 @@
+{% if page.depth == 2 %}
+<div class="viewing viewing_main">
+    {% include "components/viewing-hall/base.html" %}
+</div>
+{% else %}
+<div class="viewing viewing_inner">
+    <div class="viewing__container">
+        <div class="viewing__row">
+            {% include "components/viewing-hall/base.html" %}
+        </div>
+    </div>
+</div>
+{% endif %}

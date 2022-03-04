@@ -1,0 +1,145 @@
+@charset "UTF-8";
+/* --------------------
+   Превьюшки галлереи
+   -------------------- */
+
+.thumbs {
+  @extend %section;
+  @include highlight();
+  pointer-events: none;
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+  }
+
+  &__viewport {
+    width: 100%;
+    @include highlight();
+    overflow: hidden;
+  }
+
+  &__list {
+    position: relative;
+    @include reset-list();
+    @include reset-font();
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: none;
+    touch-action: pan-y;
+    user-select: none;
+
+    &.is-transition {
+      @include transition($duration: .4s, $easing: ease) {
+        transition-property: transform;
+      }
+    }
+
+    &.is-slow-transition {
+      @include transition($duration: .75s, $easing: ease) {
+        transition-property: transform;
+      }
+    }
+  }
+
+  &__item {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    @include highlight();
+    @include column(2, 7);
+    padding-right: 16px;
+    padding-left: 16px;
+    white-space: initial;
+    text-align: left;
+    pointer-events: all;
+    touch-action: pan-y;
+    user-select: none;
+    cursor: pointer;
+
+    @include media(before, tablet) {
+      @include column(6, 10);
+    }
+
+    @include hover() {
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    @include aria(current, true) {
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  &__caption {
+    margin-top: 8px;
+    @include font(12px, 17px, $base-font, 400);
+    color: $black;
+  }
+
+  &__button {
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 64px;
+    height: 64px;
+    padding: 0;
+    margin: -32px 0;
+    border: none;
+    @include no-tap-highlight();
+    cursor: pointer;
+
+    @include before() {
+      //@include svgIcon(icon-bracket-white);
+    }
+
+    @include transition() {
+      transition-property: background-color, opacity;
+    }
+
+    @include hover() {
+      //background-color: $green-073;
+    }
+
+    @include active() {
+      //background-color: $gray-788;
+    }
+
+    @include disabled() {
+      opacity: .8;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    &_backwards {
+      left: -74px;
+
+      &::before {
+        transform: rotate(180deg);
+      }
+    }
+
+    &_forwards {
+      right: -74px;
+    }
+  }
+
+  //&__bullets {}
+
+  //&__bullet {}
+}

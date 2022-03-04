@@ -1,0 +1,54 @@
+{% load wagtailcore_tags %}
+{% load common_tags %}
+{% load content_tags %}
+
+{% get_artist_pages count=count ordering=ordering as list_page %}
+
+<section class="feed feed_artists {% if show_paging %}js-feed-lazy{% endif %} {% if class %}feed_{{ class }}{% endif %}">
+    <div class="feed__container">
+        <div class="feed__row">
+            <div class="feed__header">
+                <div class="feed__label" role="heading" aria-level="2">
+                    {{ title|format_title }}
+                </div>
+                <div class="feed__text">{{ text }}</div>
+            </div>
+
+            {% if show_search %}
+            {% include "components/artists/form.html" %}
+            {% endif %}
+
+            {% if show_filter %}
+            {% include "components/artists/filter.html" %}
+            {% endif %}
+
+            <div class="feed__list {% if show_paging %}js-feed-list{% endif %}">
+                <div class="feed__item feed__item_default js-feed-item">
+                    <div class="artists artists_default">
+                        {% for part in list_page.object_list|chunks:"4" %}
+                        <div class="artists__list">
+                            {% include "components/artists/list.html" with object_list=part %}
+                        </div>
+                        {% endfor %}
+
+                        {% if show_link %}
+                        <div class="artists__after">
+                            <a class="artists__more" href="{% slugurl "gallery" %}">Пройти в&nbsp;галерею</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            {% if show_paging and list_page.has_next %}
+            <div class="feed__pagination">
+                <a class="feed__button feed__button_more button button_inline js-feed-button"
+                   href="?page={{ list_page.next_page_number }}" data-base="{% url "api:artists" %}" rel="next">
+                    <span class="button__icon button__icon_before button__icon_arrow-down"></span>
+                    <span class="button__label">Загрузить ещё</span>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

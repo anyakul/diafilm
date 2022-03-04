@@ -1,0 +1,127 @@
+{% extends '@layouts/default.twig' %}
+
+{% block vendor_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_styles %}
+{% endblock %}
+
+{% block vendor_scripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block layout_content %}
+    {% include '@blocks/title.twig' with {
+        self: {
+            mod: 'section',
+            levels: getMenu(menu, root.id),
+            label: pageTitle
+        }
+    } %}
+
+    {% include '@blocks/feed.twig' with {
+        self: {
+            mod: 'artists',
+            jsClassName: 'js-feed-lazy',
+            itemsTemplate: '@blocks/artists.twig',
+            label: 'Выдающиеся художники',
+            text: 'Здравствуйте дорогие наши  друзья, вы имеете уникальную возможность рассмотреть всех уважаемых художников нашей студии и их картины!',
+            form: {
+                mod: 'search, page',
+                jsClassName: 'js-form-search',
+                prefix: 'search',
+                extra: {
+                    'method': 'get',
+                    'action': '#'
+                },
+                fields: [
+                    {
+                        size: 'full',
+                        mod: '',
+                        type: 'search',
+                        helpers: ['is-string'],
+                        name: 'q',
+                        button: { mod: 'field', icon: 'search-black', title: 'Поиск', type: 'submit' }
+                    }
+                ]
+            },
+            tags: [
+                { mod: 'tag', url: '#', label: 'Все <span>1434</span>' },
+                { mod: 'tag', url: '#', label: 'Аврутис Хаим <span>33</span>' },
+                { mod: 'tag', url: '#', label: 'Багин Петр Иванович <span>11</span>' },
+                { mod: 'tag', url: '#', label: 'Безбородов Константин Васильевич <span>16</span>' },
+                { mod: 'tag', url: '#', label: 'Беньяминсон Эрик Евгеньевич <span>34</span>' },
+                { mod: 'tag', url: '#', label: 'Большакова Ирина Ивановна <span>27</span>' },
+                { mod: 'tag', url: '#', label: 'Бордзиловский Витольд Янович <span>25</span>' },
+                { mod: 'tag', url: '#', label: 'Брей Андрей Андреевич <span>28</span>' },
+                { mod: 'tag', url: '#', label: 'Былинская Римма Васильевна <span>20</span>' },
+                { mod: 'tag', url: '#', label: 'Винокуров Александр Васильевич <span>16</span>' },
+                { mod: 'tag', url: '#', label: 'Вишневецкая Жанна Изяславовна <span>81</span>' },
+                { mod: 'tag', url: '#', label: 'Владимирский Леонид Викторович <span>7</span>' },
+                { mod: 'tag', url: '#', label: 'Вовикова Алла Матусовна <span>21</span>' },
+                { mod: 'tag', url: '#', label: 'Волков Стален Никандрович <span>18</span>' },
+                { mod: 'tag', url: '#', label: 'Гвоздева Ольга Сергеевна <span>15</span>' },
+                { mod: 'tag', url: '#', label: 'Гершкович Юрий Соломонович <span>10</span>' },
+                { mod: 'tag', url: '#', label: 'Гнисюк Татьяна Алексеевна <span>15</span>' },
+                { mod: 'tag', url: '#', label: 'Гущин Борис Николаевич <span>29</span>' },
+                { mod: 'tag', url: '#', label: 'Диодоров Борис Аркадьевич <span>5</span>' },
+                { mod: 'tag', url: '#', label: 'Дранишникова Вера Борисовна <span>23</span>' },
+                { mod: 'tag', url: '#', label: 'Дугин Владимир Александрович <span>18</span>' },
+                { mod: 'tag', url: '#', label: 'Евган Евгений Николаевич <span>6</span>' },
+                { mod: 'tag', url: '#', label: 'Елисеев Анатолий Михайлович <span>6</span>' },
+                { mod: 'tag', url: '#', label: 'Зеброва Тамара Александровна <span>14</span>' },
+                { mod: 'tag', url: '#', label: 'Калаушин Борис Матвеевич <span>19</span>' },
+                { mod: 'tag', url: '#', label: 'Игнатов Василий Георгиевич <span>20</span>' },
+                { mod: 'tag', url: '#', label: 'Котеночкин Вячеслав Михайлович <span>8</span>' },
+                { mod: 'tag', url: '#', label: 'Лемкуль Федор Викторович <span>6</span>' },
+                { mod: 'tag', url: '#', label: 'Лернер Натан Озиасович <span>9</span>' },
+                { mod: 'tag', url: '#', label: 'Лосин Вениамин Николаевич <span>12</span>' },
+                { mod: 'tag', url: '#', label: 'Маврина Татьяна Алексеевна <span>7</span>' },
+                { mod: 'tag', url: '#', label: 'Мазурин Герман Алексеевич <span>16</span>' },
+                { mod: 'tag', url: '#', label: 'Маркин Вячеслав Павлович <span>28</span>' },
+                { mod: 'tag', url: '#', label: 'Мешков Евгений Алексеевич <span>21</span>' },
+                { mod: 'tag', url: '#', label: 'Мигунов Евгений Тихонович <span>16</span>' },
+                { mod: 'tag', url: '#', label: 'Митурич Май Петрович <span>3</span>' },
+                { mod: 'tag', url: '#', label: 'Монин Евгений Григорьевич <span>10</span>' },
+                { mod: 'tag', url: '#', label: 'Новозонов Олег Гаврилович <span>39</span>' },
+                { mod: 'tag', url: '#', label: 'Перцов Владимир Валерьевич <span>5</span>' },
+                { mod: 'tag', url: '#', label: 'Плевин Владимир Федорович <span>12</span>' },
+                { mod: 'tag', url: '#', label: 'Портнягина Герта Алексеевна <span>45</span>' },
+                { mod: 'tag', url: '#', label: 'Ракутин Юрий Михайлович <span>5</span>' },
+                { mod: 'tag', url: '#', label: 'Репкин Петр Петрович <span>47</span>' },
+                { mod: 'tag', url: '#', label: 'Савченко Анатолий Михайлович <span>19</span>' },
+                { mod: 'tag', url: '#', label: 'Сапегин Климент Михайлович <span>46</span>' },
+                { mod: 'tag', url: '#', label: 'Смехов Лев Моисеевич <span>8</span>' },
+                { mod: 'tag', url: '#', label: 'Смехов Зелий Львович <span>9</span>' },
+                { mod: 'tag', url: '#', label: 'Сояшников Григорий Андреевич <span>49</span>' },
+                { mod: 'tag', url: '#', label: 'Степанцев Борис Павлович <span>30</span>' },
+                { mod: 'tag', url: '#', label: 'Столяров Ремир Александрович <span>43</span>' },
+                { mod: 'tag', url: '#', label: 'Сутеев Владимир Григорьевич <span>4</span>' },
+                { mod: 'tag', url: '#', label: 'Усайтис Леонид Александрович  <span>9</span>' },
+                { mod: 'tag', url: '#', label: 'Чапля Владимир Тимофеевич <span>6</span>' },
+                { mod: 'tag', url: '#', label: 'Шевченко Владимир Гаврилович <span>24</span>' },
+                { mod: 'tag', url: '#', label: 'Эстис Николай Александрович <span>9</span>' }
+            ],
+            button: {
+                mod: 'inline',
+                iconBefore: 'arrow-down',
+                label: 'Загрузить ещё',
+                url: '?page=2',
+                extra: {
+                    'rel': 'next',
+                    'data-base': 'ajax/feed-more-artists.html'
+                }
+            },
+            items: items
+        }
+    } %}
+
+{% endblock layout_content %}
+
+{% block popups %}
+    {{ parent() }}
+{% endblock popups %}

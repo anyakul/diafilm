@@ -1,0 +1,20 @@
+<div class="diafilm__viewport">
+    <div class="diafilm__player js-diafilm-player">
+        {% if page.diafilm.handle_id %}
+        <iframe class="diafilm__iframe js-diafilm-iframe" allowfullscreen
+                src="{{ page.diafilm.url }}">
+        </iframe>
+            <button class="diafilm__button diafilm__button_exit js-diafilm-exit" type="button" aria-label="Назад" title="Назад"></button>
+        {% else %}
+        <p>Диафильм временно недоступен</p>
+        {% endif %}
+    </div>
+    <div class="diafilm__toolbar">
+        <button class="diafilm__button diafilm__button_full js-diafilm-full" type="button">На весь экран</button>
+        <div class="diafilm__nav">
+            <button class="diafilm__button diafilm__button_up js-diafilm-up" type="button" aria-label="Вверх" title="Вверх"></button>
+            <div class="diafilm__hint">Следующий кадр</div>
+            <button class="diafilm__button diafilm__button_down js-diafilm-down" type="button" aria-label="Вниз" title="Вниз"></button>
+        </div>
+    </div>
+</div>

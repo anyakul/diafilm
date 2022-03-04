@@ -1,0 +1,31 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'showroom'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    <div class="showroom__container">
+        <div class="showroom__row">
+            {% if self.label or self.text %}
+                <div class="showroom__header">
+                    {% if self.label %}
+                        <div class="showroom__label" role="heading" aria-level="2">{{ self.label|ft }}</div>
+                    {% endif %}
+                    {% if self.text %}
+                        <div class="showroom__text">{{ self.text|ft }}</div>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% include '@blocks/model.twig' with {
+                self: self.model|extend({
+                    mod: 'inner',
+                    wrap: false,
+                    className: 'showroom__model',
+                    jsClassName: 'js-model'
+                })
+            } %}
+
+            {% if self.more %}
+                <div class="showroom__after">
+                    <a class="showroom__more" href="{{ menu|url(self.more.url) }}">{{ self.more.label|ft }}</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+{% set self = {
+    itemsTemplate: '@blocks/card.twig',
+    items: [
+        {
+            size: 'large',
+            mod: 'news, marked',
+            label: 'Кейс Cinemood: вытащить из небытия советские диафильмы и подсадить на них американцев и россиян',
+            date: { label: '17 июня 2021 года.', datetime: '2021-06-17' },
+            text: '',
+            image: { url: 'cafeteria/about/news/card-1.jpg', width: 395, height: 390 },
+            link: { label: '', url: 'news-article' }
+        },
+        {
+            size: '',
+            mod: 'news',
+            label: 'Открывается новая выставка с 28 июля',
+            date: { label: '24 апреля 2021 года.', datetime: '2021-04-24' },
+            text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.',
+            image: { url: 'cafeteria/about/news/card-2.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'news-article' }
+        },
+        {
+            size: '',
+            mod: 'news',
+            label: 'Открывается новая выставка с 28 июля',
+            date: { label: '26 мая 2021 года.', datetime: '2021-05-26' },
+            text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.',
+            image: { url: 'cafeteria/about/news/card-3.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'news-article' }
+        },
+        {
+            size: '',
+            mod: 'news',
+            label: 'Библия Гутенберга',
+            date: { label: '24 апреля 2021 года.', datetime: '2021-04-24' },
+            text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко. Ни в 1959 году, когда Хрущев объявил о "полном',
+            image: { url: 'cafeteria/about/news/card-4.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'news-article' }
+        },
+        {
+            size: '',
+            mod: 'news',
+            label: '190 лет со дня рождения Л.Н. Толстого',
+            date: { label: '26 мая 2021 года.', datetime: '2021-05-26' },
+            text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.',
+            image: { url: 'cafeteria/about/news/card-5.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'news-article' }
+        },
+        {
+            size: 'large',
+            mod: 'news, marked',
+            label: 'Стихи о принятии мира',
+            date: { label: '17 июня 2021 года.', datetime: '2021-06-17' },
+            text: '',
+            image: { url: 'cafeteria/about/news/card-6.jpg', width: 395, height: 390 },
+            link: { label: '', url: 'news-article' }
+        },
+        {
+            size: '',
+            mod: 'news',
+            label: 'Мурзилка. 1947 год. Юбилеи Москвы, Пушкина и революции.',
+            date: { label: '24 апреля 2021 года.', datetime: '2021-04-24' },
+            text: 'Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.',
+            image: { url: 'cafeteria/about/news/card-7.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'news-article' }
+        },
+        {
+            size: 'large',
+            mod: 'news, marked',
+            label: 'Диафильмы Валерия Дмитрюка',
+            date: { label: '17 июня 2021 года.', datetime: '2021-06-17' },
+            text: '',
+            image: { url: 'cafeteria/about/news/card-8.jpg', width: 395, height: 390 },
+            link: { label: '', url: 'news-article' }
+        },
+        {
+            size: '',
+            mod: 'news',
+            label: 'Планеты гиганты',
+            date: { label: '24 апреля 2021 года.', datetime: '2021-04-24' },
+            text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.  Ни в 1959 году, когда Хрущев объявил о "полном',
+            image: { url: 'cafeteria/about/news/card-9.jpg', width: 384, height: 288 },
+            link: { label: '', url: 'news-article' }
+        }
+    ]
+} %}
+
+{% set itemsOnPage = 3 %}
+{% set page = request.query.page|default(2) - 2 %}
+{% for item in self.items|slice(page * itemsOnPage, itemsOnPage) %}
+    <div class="{{ 'feed__item'|mod(item.size) }}{{ self|jsClass('item') }}{% if (page + 1)  * itemsOnPage == self.items|length %} is-last{% endif %}"{% if item.extra %} {{ item.extra|extra }}{% endif %}>
+        {% include item.template|default(self.itemsTemplate|default('@blocks/card.twig')) with {
+            self: item
+        } %}
+    </div>
+{% endfor %}
+

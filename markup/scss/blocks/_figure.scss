@@ -1,0 +1,247 @@
+@charset "UTF-8";
+@use "sass:color";
+@use "sass:map";
+
+/* --------------------
+   Иллюстрация
+   -------------------- */
+
+.figure {
+  @extend %section;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+
+  &_default {
+    margin-top: 100px;
+    margin-bottom: 100px;
+
+    @include media(before, tablet) {
+      margin-top: 36px;
+      margin-bottom: 36px;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &_large {
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &_medium {
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    @include media(before, tablet) {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &_small {
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+  }
+
+  &__body {
+    @include highlight();
+    @extend %column;
+
+    .figure_default & {
+      position: relative;
+      @include columnWithPush(10, 2, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+      }
+    }
+
+    .figure_large & {
+      position: relative;
+      @include columnWithPush(9, 1, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+
+      @include media(before, tablet) {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+    .figure_medium & {
+      position: relative;
+      @include columnWithPush(7, 1, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+
+      @include media(before, tablet) {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+    .figure_small & {
+      position: relative;
+      @include columnWithPush(5, 1, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+
+      @include media(before, tablet) {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  }
+
+  &__media {
+    position: relative;
+
+    .figure_image & {
+      border-radius: 4px;
+      overflow: hidden;
+
+      @include media(before, tablet) {
+        width: 90%;
+      }
+    }
+
+    .figure_youtube & {
+      border-radius: 4px;
+      overflow: hidden;
+
+      @include before() {
+        @include overlay(transparentize($black, .5));
+      }
+    }
+
+    .figure_external & {
+      @include before() {
+        @include overlay(transparentize($black, .5));
+      }
+    }
+
+    .text_artist & {
+      border: 1px solid;
+      border-radius: 4px;
+
+      @each $key, $level in $LEVELS {
+        .root_#{map.get($level, slug)} & {
+          border-color: map.get($level, color);
+        }
+      }
+    }
+  }
+
+  &__source {
+    border-radius: inherit;
+
+    .figure_image & {
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .figure_youtube & {
+      width: 100%;
+      min-width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  &__iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: inherit;
+    z-index: 1;
+  }
+
+  &__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+
+    .figure_external & {
+      margin: -32px;
+    }
+
+    .figure_youtube & {
+      margin: -60px;
+    }
+  }
+
+  &__caption {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 2px 8px;
+    margin: 0;
+    border-radius: 4px;
+    @include font(12px, 16px, $base-font, 400);
+    color: $white;
+    background-color: color.adjust($gray-1b, $alpha: -.3);
+
+    .figure_default & {
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+
+    .figure_large & {
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+
+    .figure_medium & {
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+
+    .figure_small & {
+      margin-left: 16px;
+      margin-right: 16px;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}

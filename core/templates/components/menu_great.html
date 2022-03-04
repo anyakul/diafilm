@@ -1,0 +1,13 @@
+{% load wagtailcore_tags %}
+{% load common_tags %}
+{% load navigation_tags %}
+
+{% wagtail_site as site %}
+
+<nav class="title__nav">
+    {% for item in menu_root.menu_children %}
+    <a class="title__button {% if page.html_class == item.html_class %}is-active{% endif %}" href="{{ item.get_menu_url }}">
+        <span>{{ item.get_menu_title|format_title }}</span>
+    </a>
+    {% endfor %}
+</nav>

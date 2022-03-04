@@ -1,0 +1,117 @@
+{% if source == "block" %}
+<figure class="figure {% if type == "youtube" %}figure_youtube figure_large{% elif type == "pdf" %}figure_large figure_image figure_external{% elif type == "iframe" %}figure_image figure_external{% else %}figure_default{% endif %} {% if caption %}figure_captioned{% endif %} js-figure"
+        itemprop="image" itemscope itemtype="http://schema.org/ImageObject"
+        data-id="{{ id }}" data-type="{{ type }}">
+    {% include "components/viewer/detail.html" %}
+</figure>
+{% else %}
+<div class="figure {% if type == "youtube" %}figure_youtube figure_large{% elif type == "pdf" %}figure_large figure_image figure_external{% elif type == "iframe" %}figure_default figure_image figure_external{% endif %} {% if caption %}figure_captioned{% endif %} js-figure"
+     itemprop="image" itemscope itemtype="http://schema.org/ImageObject"
+     data-id="{{ id }}" data-type="{{ type }}">
+    <div class="figure__container">
+        <div class="figure__row">
+            <figure class="figure__body">
+            {% include "components/viewer/detail.html" %}
+            </figure>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if ggg == "youtube" %}
+<div class="figure figure_youtube figure_large figure_captioned js-figure"
+     itemprop="image" itemscope itemtype="http://schema.org/ImageObject"
+     data-id="{{ id }}" data-type="youtube">
+    <div class="figure__container">
+        <div class="figure__row">
+            <figure class="figure__body">
+                <div class="figure__media">
+                    <img class="figure__source js-figure-source"
+                         src="https://img.youtube.com/vi/o4nypy341ms/maxresdefault.jpg"
+                         width="929" height="542"
+                         intrinsicsize="929x542"
+                         alt="" data-url="o4nypy341ms" loading="lazy">
+
+                    <button class="figure__play button button_play js-figure-play"
+                            type="button" aria-label="Смотреть видео" title="Смотреть видео">
+                        <span class="button__icon button__icon_play-white"></span>
+                    </button>
+                </div>
+
+                <figcaption class="figure__caption js-figure-caption">
+                    {{ caption }}
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+</div>
+{% elif ggg == "publication-2" %}
+<div class="figure figure_image figure_large figure_external js-figure" itemprop="image" itemscope itemtype="http://schema.org/ImageObject" data-id="1236f2" data-type="pdf">
+    <div class="figure__container">
+        <div class="figure__row">
+            <figure class="figure__body">
+                <div class="figure__media">
+                    <img class="figure__source js-figure-source" loading="lazy" src="/static/core/markup-media/showroom/publications/publication-2/image-2-thumb.jpg" data-src="/static/core/markup-media/showroom/publications/publication-2/image-2.jpg" data-srcset="/static/core/markup-media/showroom/publications/publication-2/image-2@2x.jpg 2x" width="929" height="542" intrinsicsize="929x542" alt="" data-url="https://diafilms.designdepot.ru/media/documents/%D0%A1%D0%BE%D0%B2%D0%B5%D1%82%D1%81%D0%BA%D0%B0%D1%8F_%D0%BA%D1%83%D0%BB%D1%8C%D1%82%D1%83%D1%80%D0%B0__51_1983_%D0%9E_%D0%9F%D0%BE%D0%BB%D1%82%D0%B0%D0%B2%D0%B5%D1%86_%D0%9F%D0%BE%D0%BA%D0%B0%D0%B7%D1%8B%D0%B2%D0%B0%D0%B5%D1%82_%D0%94%D0%B8%D0%B0%D1%84%D0%B8%D0%BB%D1%8C%D0%BC.pdf">
+                    <button class="figure__play button button_view js-figure-play" type="button" aria-label="Смотреть" title="Смотреть">
+                        <span class="button__icon button__icon_view"></span>
+                    </button>
+                </div>
+            </figure>
+        </div>
+    </div>
+</div>
+{% elif ggg == "model" %}
+<figure class="figure figure_image figure_external js-figure"
+        itemprop="image" itemscope itemtype="http://schema.org/ImageObject"
+        data-id="be312c" data-type="iframe">
+    <div class="figure__media">
+        <img class="figure__source js-figure-source" loading="lazy" src="/static/core/markup-media/showroom/models/model/image-2-thumb.jpg" data-src="/static/core/markup-media/showroom/models/model/image-2.jpg" data-srcset="/static/core/markup-media/showroom/models/model/image-2@2x.jpg 2x" width="501" height="330" intrinsicsize="501x330" alt="" data-url="https://diafilms.designdepot.ru/media/models/magic_lantern">
+        <button class="figure__play button button_view js-figure-play" type="button" aria-label="Смотреть" title="Смотреть">
+            <span class="button__icon button__icon_view"></span>
+        </button>
+    </div>
+</figure>
+{% elif ggg == "d" %}
+<div class="figure figure_default figure_image figure_external figure_captioned js-figure"
+     itemprop="image" itemscope itemtype="http://schema.org/ImageObject"
+     data-id="{{ id }}" data-type="external">
+    <div class="figure__container">
+        <div class="figure__row">
+            <figure class="figure__body">
+                <div class="figure__media">
+                    <img class="figure__source js-figure-source" loading="lazy"
+                         src="/static/core/markup-media/showroom/models/image-3-thumb.jpg"
+                         data-src="/static/core/markup-media/showroom/models/image-3.jpg"
+                         data-srcset="/static/core/markup-media/showroom/models/image-3@2x.jpg 2x"
+                         width="1008" height="510" intrinsicsize="1008x510" alt=""
+                         data-url="https://diafilms.designdepot.ru/media/models/magic_lantern">
+                </div>
+
+                <figcaption class="figure__caption js-figure-caption">
+                    {{ caption }}
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+</div>
+{% elif ggg == "archive" %}
+<div class="figure figure_default figure_image figure_external figure_captioned js-figure"
+     itemprop="image" itemscope itemtype="http://schema.org/ImageObject"
+     data-id="669769" data-type="iframe">
+    <div class="figure__container">
+        <div class="figure__row">
+            <figure class="figure__body">
+                <div class="figure__media">
+                    <img class="figure__source js-figure-source" loading="lazy" src="/static/core/markup-media/showroom/models/image-3-thumb.jpg" data-src="/static/core/markup-media/showroom/models/image-3.jpg" data-srcset="/static/core/markup-media/showroom/models/image-3@2x.jpg 2x" width="1008" height="510" intrinsicsize="1008x510" alt="" data-url="https://diafilms.designdepot.ru/media/models/magic_lantern">
+                    <button class="figure__play button button_view js-figure-play" type="button" aria-label="Смотреть" title="Смотреть">
+                        <span class="button__icon button__icon_view"></span>
+                    </button>
+                </div>
+                <figcaption class="figure__caption js-figure-caption">
+                    Анатомия волшебного фонаря в&nbsp;3D
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+</div>
+{% endif %}

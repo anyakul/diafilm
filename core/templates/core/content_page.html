@@ -1,0 +1,17 @@
+{% extends "core/core_page.html" %}
+{% load wagtailimages_tags navigation_tags %}
+
+{% block content %}
+    {% block breadcrumbs %}
+        {# breadcrumbs is defined in base/templatetags/navigation_tags.py #}
+        {% breadcrumbs %}
+    {% endblock breadcrumbs %}
+
+    <figure>{% image page.image height-200 %}</figure>
+    <div class="promo-text">
+        <h3>{{ page.hero_text }}</h3>
+    </div>
+
+    <h1>{{ page.title }}</h1>
+    {{ page.body }}
+{% endblock content %}

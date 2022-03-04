@@ -1,0 +1,63 @@
+version: "3"
+
+volumes:
+    db:
+    cache:
+    search:
+    static:
+
+services:
+    frontend:
+        image: "nginx:stable-alpine"
+        restart: always
+        ports:
+            - "80:80"
+        environment:
+            SERVER_NAME: "diafilms.online"
+            API_HOST: "backend:8000"
+        volumes:
+            - ./deploy/nginx.conf:/etc/nginx/templates/default.conf.template
+            - ./deploy/static.conf:/etc/nginx/static.conf
+            - ./media:/app/media
+            - static:/app/static
+        depends_on:
+            - "backend"
+
+    cache:
+        image: "redis:alpine"
+        restart: always
+        command: "redis-server --save 60 1 --loglevel warning"
+        volumes:
+            - cache:/data
+
+    database:
+        image: "postgres:13-alpine"
+        restart: always
+        environment:
+            POSTGRES_USER: diafilms
+            POSTGRES_DB: diafilms
+            POSTGRES_PASSWORD: diafilms
+        volumes:
+            - db:/var/lib/postgresql/data
+
+    search:
+        image: "bitnami/elasticsearch:7"
+        restart: always
+        ports:
+            - "9200:9200"
+        volumes:
+            - ./deploy/elasticsearch.yml:/opt/bitnami/elasticsearch/config/elasticsearch.yml
+            - search:/bitnami/elasticsearch/data
+
+    backend:
+        image: "registry.gitlab.com/toptalo/diafilm/backend:latest"
+        restart: always
+        env_file:
+            - .env
+        volumes:
+            - ./media:/app/media
+            - static:/app/static
+        depends_on:
+            - "cache"
+            - "database"
+            - "search"

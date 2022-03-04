@@ -1,0 +1,55 @@
+{% set type = self.type|default('text') %}
+{% set normalizedName = self.name|default(type)|replace({'[':'-',']':''}) %}
+{% set id = self.id|default('id_' ~ self.prefix|default('form') ~ '_' ~ normalizedName) %}
+
+<{% if self.inline %}span{% else %}div{% endif %} class="{% if self.className %}{{ self.className }} {% endif %}{{ 'field'|mod(self.mod) }} {{ 'js-form-field'|mod(self.jsMod, false, true) }}{{ self|jsClass }}{% if self.button %} has-button{% endif %}">
+    {% if self.label %}
+        <label class="field__label js-form-field-label" for="{{ id }}">{{ self.label|ft }}</label>
+    {% endif %}
+
+    {% if type == 'textarea' %}
+        <textarea class="field__element field__element_multiline{% if self.helpers %} {{ self.helpers|join(' ') }}{% endif %} is-external-{{ normalizedName }} js-form-field-element"
+                  name="{{ self.name }}" id="{{ id }}"{% if self.extra %}{{ self.extra|extra }}{% endif %}>
+            {% if self.value %}{{ self.value }}{% endif %}
+        </textarea>
+    {% elseif type == 'select' %}
+        <select class="field__element field__element_select{% if self.helpers %} {{ self.helpers|join(' ') }}{% endif %} is-external-{{ normalizedName }} js-form-field-element"
+                name="{{ self.name }}" id="{{ id }}" tabindex="-1"{% if self.extra %}{{ self.extra|extra }}{% endif %}>
+            {% for option in self.options %}
+                <option value="{{ option.value|default(loop.first ? '' : option.label) }}"{% if option.value == self.value and self.value %} selected{% endif %}{% if option.extra %} {{ option.extra|extra }}{% endif %}>{{ option.label|ft }}</option>
+            {% endfor %}
+        </select>
+        <label class="field__value js-form-field-value" for="{{ id }}" tabindex="0">{{ (self.options|first).label|ft }}</label>
+    {% elseif type == 'file' %}
+        <input class="field__element field__element_file{% if self.helpers %} {{ self.helpers|join(' ') }}{% endif %} is-external-{{ normalizedName }} js-form-field-element"
+               type="{{ type }}" name="{{ self.name }}" id="{{ id }}" tabindex="-1"{% if self.extra %}{{ self.extra|extra }}{% endif %}>
+        <label class="field__value js-form-field-value" for="{{ id }}"></label>
+    {% elseif type == 'grecaptcha' %}
+        <div class="field__element field__element_grecaptcha" id="{{ id }}" data-key="{{ self.key }}"></div>
+    {% elseif type == 'range' %}
+        <input class="field__element field__element_range{% if self.helpers %} {{ self.helpers|join(' ') }}{% endif %} is-external-{{ normalizedName }} js-form-field-element"
+               type="text" name="{{ self.name }}" id="{{ id }}" tabindex="-1"{% if self.extra %}{{ self.extra|extra }}{% endif %}>
+        <label class="field__value js-form-field-value" for="{{ id }}"></label>
+    {% else %}
+        <input class="{{ 'field__element'|mod(type) }}{% if self.helpers %} {{ self.helpers|join(' ') }}{% endif %} is-external-{{ normalizedName }} js-form-field-element"
+               type="{{ type }}" name="{{ self.name }}" id="{{ id }}"
+               {% if self.value %}value="{{ self.value }}"{% endif %}
+            {% if self.extra %}{{ self.extra|extra }}{% endif %}>
+    {% endif %}
+
+    {% if self.placeholder %}
+        <label class="field__placeholder js-form-field-placeholder" for="{{ id }}">{{ self.placeholder|ft }}</label>
+    {% endif %}
+    {% if self.button %}
+        {% include '@blocks/button.twig' with {
+            self: self.button|extend({
+                className: 'field__button',
+                type: 'button'
+            })
+        } %}
+    {% endif %}
+    {% if self.validation %}
+        <label class="field__error js-form-field-error" for="{{ id }}" id="{{ id }}-error" aria-hidden="true"></label>
+    {% endif %}
+    {% block field_body %}{% endblock field_body %}
+</{% if self.inline %}span{% else %}div{% endif %}>

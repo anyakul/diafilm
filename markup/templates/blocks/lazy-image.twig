@@ -1,0 +1,14 @@
+<img
+    {% if self.className or self.jsClassName %}class="{{ self.className }}{{ self|jsClass }}"{% endif %}
+    loading="lazy"
+    src="{{ media(self.url|retina('-thumb')) }}"
+    data-src="{{ media(self.url) }}"
+    data-srcset="{{ media(self.url|retina) }} 2x"
+    {% if self.original %}
+        data-original="{{ media(self.url|retina('-original')) }}"
+    {% endif %}
+    {% if self.width %}width="{{ self.width }}"{% endif %}
+    {% if self.height %}height="{{ self.height }}"{% endif %}
+    {% if self.width and self.height %}intrinsicsize="{{ self.width }}x{{ self.height }}"{% endif %}
+    alt="{% if self.alt %}{{ self.alt|escape }}{% endif %}"
+    {% if self.extra %}{{ self.extra|extra }}{% endif %}>

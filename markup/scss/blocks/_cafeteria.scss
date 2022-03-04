@@ -1,0 +1,165 @@
+@charset "UTF-8";
+/* --------------------
+   Кафетерий
+   -------------------- */
+
+.cafeteria {
+  @extend %row;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  align-items: stretch;
+  @include highlight();
+
+  &_default {
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  //&_main {}
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+  }
+
+  &__header {
+    @include highlight();
+    @extend %column;
+
+    .cafeteria_main & {
+      position: relative;
+      @include column(4, 8);
+      padding-left: 8px;
+      padding-right: 8px;
+
+      @include media(tablet) {
+        @include column(10, 10);
+        padding-top: 170px;
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-bottom: 20px;
+        z-index: 1;
+        pointer-events: none;
+      }
+    }
+  }
+
+  &__label {
+    @include font(20px, 20px, $base-font, 700);
+    text-transform: lowercase;
+    color: $magenta;
+
+    @include media(before, tablet) {
+      margin-bottom: 10px;
+    }
+    @include media(tablet) {
+      @include font(36px, 40px);
+      pointer-events: all;
+    }
+  }
+
+  &__video {
+    @include highlight();
+    @extend %column;
+    position: absolute;
+    top: 66px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    @include columnWithPush(2, 6, 10);
+    height: 86px;
+    padding-left: 16px;
+    padding-right: 16px;
+
+    @include media(before, tablet){
+      display: none;
+    }
+  }
+
+  &__carousel {
+    @include highlight();
+    @extend %column;
+
+    .cafeteria_main & {
+      @include column(7, 8);
+
+      @include media(tablet) {
+        @include column(9, 10);
+      }
+    }
+
+    .cafeteria_default & {
+      @include columnWithPush(9, 2, 12);
+
+      @include media(before, tablet) {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+  }
+
+  &__after {
+    @include highlight();
+    @extend %column;
+
+    @include media(before, tablet) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      @include column(1, 8);
+      height: 50%;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    @include media(tablet) {
+      position: relative;
+      align-self: flex-end;
+      justify-self: flex-end;
+      @include column(1, 10);
+      height: calc(100% - 170px);
+      padding-top: 40px;
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: -60px;
+    }
+  }
+
+  &__more {
+    position: absolute;
+    top: 300px;
+    left: 100%;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: -8px;
+    @include font(24px, 28px, $title-font, 700);
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    color: $magenta;
+    transform: rotate(-90deg);
+    transform-origin: 0 100%;
+
+    @include media(tablet) {
+      top: 80%;
+      margin-left: -16px;
+    }
+
+    @include before() {
+      display: inline-block;
+      vertical-align: bottom;
+      @include svgSprite(icon-arrow-16-magenta);
+      margin-right: 4px;
+      transform: rotate(90deg);
+    }
+  }
+
+}

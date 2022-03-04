@@ -1,0 +1,293 @@
+{% extends '@layouts/default.twig' %}
+
+{% block vendor_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_styles %}
+{% endblock %}
+
+{% block vendor_scripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block layout_content %}
+    {% include '@blocks/title.twig' with {
+        self: {
+            mod: 'section',
+            levels: getMenu(menu, root.id),
+            label: pageTitle
+        }
+    } %}
+
+    {% include '@blocks/similar.twig' with {
+        self: {
+            mod: 'default, foyer',
+            label: 'Учебная программа',
+            text: '',
+            carousel: {
+                mod: 'films',
+                jsClassName: 'js-carousel-filtered',
+                itemsTemplate: '@blocks/card.twig',
+                filter: [
+                    {
+                        size: 'default',
+                        mod: 'select',
+                        jsClassName: 'js-form-field-select',
+                        type: 'select',
+                        label: 'Предмет',
+                        name: 'subject',
+                        options: [
+                            { label: 'Все предметы', value: '' },
+                            { label: 'Математика', value: 'mathematics' },
+                            { label: 'Литература', value: 'literature' },
+                            { label: 'Физика', value: 'physics' },
+                        ]
+                    }
+                ],
+                tags: [
+                    { mod: 'tag', jsClassName: 'js-carousel-tag', type: 'button', extra: { 'data-education': '' }, label: 'Все <span>60</span>' },
+                    { mod: 'tag', jsClassName: 'js-carousel-tag', type: 'button', extra: { 'data-education': 'junior' }, label: 'Младшая школа <span>33</span>' },
+                    { mod: 'tag', jsClassName: 'js-carousel-tag', type: 'button', extra: { 'data-education': 'secondary' }, label: 'Средняя школа <span>11</span>' },
+                    { mod: 'tag', jsClassName: 'js-carousel-tag', type: 'button', extra: { 'data-education': 'senior' }, label: 'Старшие классы <span>16</span>' },
+                ],
+                items: [
+                    {
+                        size: '',
+                        mod: 'film',
+                        label: 'Владимир Одоевский',
+                        text: '"Алый" прекрасно подходят для визуализации пограничника с собакой.',
+                        image: { url: 'foyer/for-school/films/card-1.jpg', width: 395, height: 296 },
+                        link: { label: '', url: 'collections' },
+                        filter: { subject: 'literature,mathematics', education: 'junior' }
+                    },
+                    {
+                        size: '',
+                        mod: 'film',
+                        label: 'Иван Алексеевич Бунин',
+                        text: 'Выдающийся пограничник-следопыт, Никита Федорович Карацупа (1909 - 1994)',
+                        image: { url: 'foyer/for-school/films/card-2.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'collections' },
+                        filter: { subject: 'literature', education: 'secondary,senior' }
+                    },
+                    {
+                        size: '',
+                        mod: 'film',
+                        label: 'Андрей Платонов',
+                        text: 'Выдающийся пограничник-следопыт, Никита Федорович Карацупа',
+                        image: { url: 'foyer/for-school/films/card-3.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'collections' },
+                        filter: { subject: 'physics', education: 'senior' }
+                    }
+                ]
+            }
+        }
+    } %}
+
+    {% include '@blocks/similar.twig' with {
+        self: {
+            mod: 'default, bg-gray, viewing-hall',
+            label: 'Тематические подборки',
+            more: {
+                url: 'collections',
+                label: 'Ещё подборки'
+            },
+            carousel: {
+                mod: 'collections',
+                jsClassName: 'js-carousel-horizontal',
+                itemsTemplate: '@blocks/card.twig',
+                items: [
+                    {
+                        mod: 'collection',
+                        label: 'Пограничник Карацупа и его пёс Ингус. Не выдуманные герои диафильмов. Герои страны!',
+                        text: 'Ежегодно, начиная с 1994 года, 28 мая страна отмечает День пограничника. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм. Жизнь действительно стала иной, но все перечисленное никуда не делось. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм.',
+                        image: { url: 'viewing-hall/collections/collection/card-1.jpg', width: 503, height: 362 },
+                        link: { label: 'Читать статью полностью', url: 'collection' }
+                    },
+                    {
+                        mod: 'collection',
+                        label: 'Диафильмы про Бабу-Ягу',
+                        text: 'Ежегодно, начиная с 1994 года, 28 мая страна отмечает День пограничника. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось.',
+                        image: { url: 'viewing-hall/collections/collection/card-2.jpg', width: 503, height: 362 },
+                        link: { label: 'Читать статью полностью', url: 'collection' }
+                    },
+                    {
+                        mod: 'collection',
+                        label: 'Диафильмы о Русских писателях 19 века.',
+                        text: 'Ежегодно, начиная с 1994 года, 28 мая страна отмечает День пограничника. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось.',
+                        image: { url: 'viewing-hall/collections/collection/card-3.jpg', width: 503, height: 362 },
+                        link: { label: 'Читать статью полностью', url: 'collection' }
+                    },
+                    {
+                        mod: 'collection',
+                        label: 'Диафильмы о СССР',
+                        text: 'Ежегодно, начиная с 1994 года, 28 мая страна отмечает День пограничника. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось.',
+                        image: { url: 'viewing-hall/collections/collection/card-4.jpg', width: 503, height: 362 },
+                        link: { label: 'Читать статью полностью', url: 'collection' }
+                    }
+                ]
+            }
+        }
+    } %}
+
+    {% include '@blocks/similar.twig' with {
+        self: {
+            mod: 'default, bg-white, cafeteria',
+            label: 'Яндекс.дзен',
+            text: 'В этих статьях мы подобрали интересные факты о диафильмах для школьников. Материалы специально готовились с акцентом на людей жаждущих знаний, надеемся вам будет интересно.',
+            carousel: {
+                mod: 'news',
+                jsClassName: 'js-carousel-horizontal',
+                itemsTemplate: '@blocks/card.twig',
+                items: [
+                    {
+                        size: '',
+                        mod: 'news',
+                        label: 'Мурзилка. 1947 год. Юбилеи Москвы, Пушкина и революции.',
+                        date: { label: '24 апреля 2021 года.', datetime: '2021-04-24' },
+                        text: 'Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.',
+                        image: { url: 'cafeteria/news/article/card-2.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'news-article' }
+                    },
+                    {
+                        size: 'large',
+                        mod: 'news, marked',
+                        label: 'Диафильмы Валерия Дмитрюка',
+                        date: { label: '17 июня 2021 года.', datetime: '2021-06-17' },
+                        text: '',
+                        image: { url: 'cafeteria/news/article/card-1.jpg', width: 395, height: 390 },
+                        link: { label: '', url: 'news-article' }
+                    },
+                    {
+                        size: '',
+                        mod: 'news',
+                        label: 'Планеты гиганты',
+                        date: { label: '26 мая 2021 года.', datetime: '2021-05-26' },
+                        text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.  Ни в 1959 году, когда Хрущев объявил о "полном',
+                        image: { url: 'cafeteria/news/article/card-3.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'news-article' }
+                    },
+                    {
+                        size: '',
+                        mod: 'news',
+                        label: 'Мурзилка. 1947 год. Юбилеи Москвы, Пушкина и революции.',
+                        date: { label: '24 апреля 2021 года.', datetime: '2021-04-24' },
+                        text: 'Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.',
+                        image: { url: 'cafeteria/news/article/card-2.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'news-article' }
+                    },
+                    {
+                        size: '',
+                        mod: 'news',
+                        label: 'Планеты гиганты',
+                        date: { label: '26 мая 2021 года.', datetime: '2021-05-26' },
+                        text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.  Ни в 1959 году, когда Хрущев объявил о "полном',
+                        image: { url: 'cafeteria/news/article/card-3.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'news-article' }
+                    }
+                ]
+            }
+        }
+    } %}
+
+    {% include '@blocks/similar.twig' with {
+        self: {
+            mod: 'default, archive',
+            label: 'Технологии производства',
+            text: 'Рассмотрите подробнее необычные проекторы прошлого и узнай много нового для себя.',
+            carousel: {
+                mod: 'films',
+                jsClassName: 'js-carousel-horizontal',
+                itemsTemplate: '@blocks/card.twig',
+                items: [
+                    {
+                        size: '',
+                        mod: 'film',
+                        text: 'Специалист цеха массовой печати студии "Диафильм" во время работы на копировальном аппарате.',
+                        image: { url: 'archive/technologies/card-1.jpg', width: 384, height: 288 }
+                    },
+                    {
+                        size: '',
+                        mod: 'film',
+                        text: 'Специалисты художественного цеха студии "Диафильм" во время работы.',
+                        image: { url: 'archive/technologies/card-2.jpg', width: 384, height: 288 }
+                    },
+                    {
+                        size: '',
+                        mod: 'film',
+                        text: 'Специалисты химической лаборатории Студии "Диафильм" за работой.',
+                        image: { url: 'archive/technologies/card-3.jpg', width: 384, height: 288 }
+                    }
+                ]
+            }
+        }
+    } %}
+
+    {% include '@blocks/similar.twig' with {
+        self: {
+            mod: 'default, bg-white, showroom',
+            label: 'Необычайные проекторы',
+            text: 'Рассмотрите подробнее необычные проекторы прошлого и узнайте много нового для себя.',
+            carousel: {
+                mod: 'models',
+                jsClassName: 'js-carousel-horizontal',
+                itemsTemplate: '@blocks/card.twig',
+                items: [
+                    {
+                        size: '',
+                        mod: 'model',
+                        label: 'Волшебный фонарь',
+                        image: { url: 'showroom/models/model/card-1.png', width: 288, height: 288 },
+                        link: { label: '', url: 'model' }
+                    },
+                    {
+                        size: '',
+                        mod: 'model',
+                        label: 'Алоскоп',
+                        image: { url: 'showroom/models/model/card-2.png', width: 288, height: 288 },
+                        link: { label: '', url: 'model' }
+                    },
+                    {
+                        size: '',
+                        mod: 'model',
+                        label: 'Зарница',
+                        image: { url: 'showroom/models/model/card-3.png', width: 288, height: 288 },
+                        link: { label: '', url: 'model' }
+                    },
+                    {
+                        size: '',
+                        mod: 'model',
+                        label: 'Пеленг 500АФ',
+                        image: { url: 'showroom/models/model/card-4.png', width: 288, height: 288 },
+                        link: { label: '', url: 'model' }
+                    }
+                ]
+            }
+        }
+    } %}
+
+    {% include '@blocks/videos.twig' with {
+        self: {
+            mod: 'default, bg-white',
+            label: 'демо видео',
+            text: 'Для удобства ознакомления с сайтом вы можете посмотреть видео, которое подскажет все непонятные вопросы.',
+            items: [
+                {
+                    mod: 'youtube',
+                    type: 'youtube',
+                    jsClassName: 'js-figure',
+                    caption: 'Фестиваль «Галафест» 2018г. ',
+                    media: { url: 'LQodDMYEHM8', width: 588, height: 330 }
+                }
+            ]
+        }
+    } %}
+
+{% endblock layout_content %}
+
+{% block popups %}
+    {{ parent() }}
+{% endblock popups %}

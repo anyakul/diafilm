@@ -1,0 +1,30 @@
+{% load common_tags %}
+
+{% if title %}
+<div class="text text_small">
+    <div class="text__body is-editable">
+        <h3>{{ title|format_title }}</h3>
+    </div>
+</div>
+{% endif %}
+
+<div class="carousel carousel_facts js-carousel-horizontal">
+    <div class="carousel__viewport js-carousel-viewport">
+        <ul class="carousel__list js-carousel-overflow">
+            {% for item in items %}
+            <li class="carousel__item carousel__item_default js-carousel-item">
+                <article class="card card_fact">
+                    <div class="card__picture">
+                        {% with size="fill-272x200" class="card__image" %}
+                        {% include "common/img.html" with img=item %}
+                        {% endwith %}
+                    </div>
+                    <div class="card__body">
+                        <div class="card__text">{{ item.title|format_title }}</div>
+                    </div>
+                </article>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

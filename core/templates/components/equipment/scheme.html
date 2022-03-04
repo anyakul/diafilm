@@ -1,0 +1,46 @@
+{% load common_tags %}
+
+<div class="model__viewport">
+    <div class="model__layer">
+        <img class="model__image "
+             src="{{ scheme.image.url }}"
+             width="768" height="620" intrinsicsize="768x620" alt="Схема">
+        <div class="model__points">
+            {% for item in scheme.points %}
+                {% split item.value.bound_blocks.coords.value as coords %}
+                <button class="model__point js-model-point" type="button" data-id="point_{{ item.id }}"
+                        style="left:{{ coords.0 }}%;top:{{ coords.1 }}%">
+                </button>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="model__bubbles">
+    {% for item in scheme.points %}
+    {% with img=item.value.bound_blocks.image.value %}
+    <div class="model__bubble js-model-bubble" data-id="point_{{ item.id }}" hidden>
+        <div class="bubble">
+            <div class="bubble__text">
+                {{ item.value.bound_blocks.text.value }}
+            </div>
+
+            {% with img=img class="bubble__image" %}
+            {% if not img %}
+            {# do nothing #}
+            {% elif img.is_landscape %}
+            <div class="bubble__picture bubble__picture_horizontal">
+                {% include "common/img.html" with size="fill-240x150" %}
+            </div>
+            {% else %}
+            <div class="bubble__picture bubble__picture_vertical">
+                {% include "common/img.html" with size="fill-150x240" %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+        </div>
+    </div>
+    {% endwith %}
+    {% endfor %}
+</div>

@@ -1,0 +1,197 @@
+@charset "UTF-8";
+/* --------------------
+   Блок текста
+   -------------------- */
+
+.text {
+  @extend %section;
+
+  &_default {
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    @include media(before, tablet) {
+      margin-bottom: 25px;
+      margin-top: 0;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &_small {
+    margin-top: 36px;
+    margin-bottom: 36px;
+    @include media(before, tablet) {
+      width: 100%;
+    }
+
+    &:first-child {
+      margin-top: 0;
+
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &_large {
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &_artist {
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    @include media(before, tablet) {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &_narrow {
+    .columns & {
+      margin-left: -16px;
+      margin-right: -16px;
+
+      @include media(before, tablet) {
+        margin-left: -20px;
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+
+    .text_artist & {
+      flex-direction: row-reverse;
+
+      @include media(before, tablet) {
+        flex-direction: column;
+      }
+    }
+  }
+
+  &__label {
+    @include highlight();
+    @extend %column;
+  }
+
+  &__body {
+    @include highlight();
+    @extend %column;
+
+    .text_default & {
+      @include font(18px, 28px, $base-font, 400);
+      color: $black;
+
+      @include media(before, tablet) {
+        @include font(14px, 18px, $base-font, 400);
+      }
+    }
+
+    .text_large & {
+      @include font(24px, 28px, $base-font, 400);
+      color: $black;
+    }
+
+    .text_small & {
+      @include font(14px, 20px, $base-font, 400);
+      color: $black;
+
+      .columns_diafilm & {
+        color: $white;
+      }
+    }
+
+    .text_artist & {
+      @include font(18px, 28px, $base-font, 400);
+      color: $black;
+    }
+
+    .text_narrow & {
+      .columns & {
+        @include column(3, 5);
+        padding-left: 16px;
+        padding-right: 16px;
+
+        @include media(before, tablet) {
+          width: 100%;
+          padding: 0 20px;
+          margin-right: 0;
+        }
+      }
+    }
+
+    .text__container & {
+      padding-left: 16px;
+      padding-right: 16px;
+
+      .text_default & {
+        @include columnWithPush(7, 1, 12);
+
+        .tabs_default & {
+          @include columnWithPush(10, 2, 12);
+
+          @include media(before, tablet) {
+            margin-left: 0;
+          }
+        }
+
+        @include media(before, tablet) {
+          padding: 20px;
+          margin-left: 0;
+          width: 100%;
+        }
+      }
+
+      .text_artist & {
+        @include column(6, 12);
+
+        @include media(before, tablet) {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &__aside {
+    @include highlight();
+    @extend %column;
+
+    .text_artist & {
+      @include columnWithPush(5, 1, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  }
+}

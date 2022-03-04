@@ -1,0 +1,85 @@
+{% embed '@blocks/popup.twig' with {
+    self: {
+        mod: 'menu',
+        id: 'menu',
+        button: {
+            mod: 'visual',
+            url: '#main',
+            icon: 'close-white',
+            title: 'Закрыть',
+            extra: {
+                'role': 'button'
+            }
+        }
+    }
+} %}
+    {% block popup_body %}
+        <div class="offcanvas">
+            <div class="offcanvas__header">
+                <div class="offcanvas__logo">
+                    {% include '@blocks/logo.twig' with {
+                        self: {
+                            mod: '',
+                            url: 'main'
+                        }
+                    } %}
+                </div>
+            </div>
+            <div class="offcanvas__menu">
+                {% include '@blocks/menu.twig' with {
+                    self: {
+                        mod: 'main',
+                        menu: getMenu(menu, root.id),
+                        highlight: 'a',
+                        maxDepth: 2
+                    }
+                } %}
+            </div>
+            <div class="offcanvas__hall">
+                <article class="hall hall_default" data-clickable>
+                    <div class="hall__label" role="heading" aria-level="3">
+                        Сегодня в зале
+                    </div>
+                    <div class="hall__picture">
+                        {% include '@blocks/lazy-image.twig' with {
+                            self: {
+                                className: 'hall__image',
+                                url: 'main/preview-1.jpg',
+                                width: 280,
+                                height: 184,
+                                alt: 'Название диафильма'
+                            }
+                        } %}
+                    </div>
+                    <div class="hall__more">
+                        <a class="hall__link" href="#">Смотреть</a>
+                    </div>
+                </article>
+            </div>
+            <div class="offcanvas__form">
+                {% include '@blocks/form.twig' with {
+                    self: {
+                        mod: 'search, menu',
+                        jsClassName: 'js-form-search',
+                        prefix: 'menu',
+                        extra: {
+                            'method': 'get',
+                            'action': '#'
+                        },
+                        fields: [
+                            {
+                                size: 'full',
+                                mod: '',
+                                type: 'search',
+                                helpers: ['is-string'],
+                                name: 'q',
+                                button: { mod: 'field', icon: 'search-white', title: 'Поиск', type: 'submit' }
+                            }
+                        ]
+                    }
+                } %}
+            </div>
+        </div>
+
+    {% endblock popup_body %}
+{% endembed %}

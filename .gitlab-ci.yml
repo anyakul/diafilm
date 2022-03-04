@@ -1,0 +1,181 @@
+image: node:12-alpine
+
+.markup:
+    only: &markup_only
+        changes:
+            - .gitlab-ci.yml
+            - markup/**/*
+            - core/static/core/**/*
+            - core/static/vendor/**/*
+    artifacts: &markup_artifacts
+        when: on_failure
+        expire_in: 2 hrs
+        paths:
+            - markup/tests/__image_snapshots__/__diff_output__/
+    cache: &markup_pull
+        policy: pull
+        untracked: true
+
+stages:
+    - prepare
+    - lint
+    - test
+    - deploy
+    - run
+    - release
+
+default:
+    before_script:
+        - node --version
+        - npm --version
+        - cd markup/
+
+prepare:
+    stage: prepare
+    script:
+        - npm i --only=prod --unsafe-perm=true --ignore-scripts
+        - node node_modules/puppeteer/install.js
+    only: *markup_only
+    cache:
+        untracked: true
+        policy: pull-push
+
+js:
+    stage: lint
+    script: npm run lint:js
+    only: *markup_only
+    cache: *markup_pull
+
+css:
+    stage: lint
+    script: npm run lint:css
+    only: *markup_only
+    cache: *markup_pull
+
+spelling:
+    stage: lint
+    allow_failure: true
+    script: npm run spellcheck
+    only: *markup_only
+    cache: *markup_pull
+
+.desktop:
+    stage: test
+    allow_failure: true
+    script: npm run test:desktop
+    only: *markup_only
+    cache: *markup_pull
+    artifacts: *markup_artifacts
+
+.tablet:
+    stage: test
+    allow_failure: true
+    script: npm run test:tablet
+    only: *markup_only
+    cache: *markup_pull
+    artifacts: *markup_artifacts
+
+.smart:
+    stage: test
+    allow_failure: true
+    script: npm run test:smart
+    only: *markup_only
+    cache: *markup_pull
+    artifacts: *markup_artifacts
+
+.update:all:
+    stage: test
+    when: manual
+    script: npm run update
+    cache: *markup_pull
+    artifacts:
+        when: on_success
+        expire_in: 2 hrs
+        paths:
+            - markup/tests/__image_snapshots__/
+
+.update:desktop:
+    stage: run
+    when: manual
+    script: npm run update:desktop
+    cache: *markup_pull
+    dependencies:
+        - prepare
+        - desktop
+    artifacts:
+        when: on_success
+        expire_in: 2 hrs
+        paths:
+            - markup/tests/__image_snapshots__/desktop*
+
+.update:tablet:
+    stage: run
+    when: manual
+    script: npm run update:tablet
+    cache: *markup_pull
+    dependencies:
+        - prepare
+        - tablet
+    artifacts:
+        when: on_success
+        expire_in: 2 hrs
+        paths:
+            - markup/tests/__image_snapshots__/tablet*
+
+.update:smart:
+    stage: run
+    when: manual
+    script: npm run update:smart
+    cache: *markup_pull
+    dependencies:
+        - prepare
+        - smart
+    artifacts:
+        when: on_success
+        expire_in: 2 hrs
+        paths:
+            - markup/tests/__image_snapshots__/smart*
+
+pages:
+    stage: deploy
+    script:
+        - cd ../
+        - rm -rf public
+        - mkdir public
+        - cp markup/*.html public
+        - cp -R markup/ajax public
+        - cp _conf/dev/robots.txt public
+        - cp core/static/core/js/service-worker.min.js public
+        - cp core/static/core/manifest.webmanifest public
+        - cp core/static/core/browserconfig.xml public
+        - mkdir public/static
+        - cp -R core/static/core public/static
+        - cp -R core/static/vendor public/static
+    artifacts:
+        expire_in: 2 hrs
+        paths:
+            - public
+    only:
+        changes:
+            - master
+            - .gitlab-ci.yml
+            - markup/**/*
+            - core/static/core/**/*
+            - core/static/vendor/**/*
+
+build:image:
+  image: docker:20-dind
+  stage: release
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  variables:
+    IMAGE_NAME: $CI_REGISTRY_IMAGE/backend
+  script:
+    - docker build --pull -t "$IMAGE_NAME:latest" -t "$IMAGE_NAME:$CI_COMMIT_TAG" --build-arg VERSION="$CI_COMMIT_TAG" .
+    - docker push -a $IMAGE_NAME
+  only:
+    - tags
+  except:
+    - branches

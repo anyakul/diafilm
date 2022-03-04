@@ -1,0 +1,105 @@
+{% import '@blocks/helpers.twig' as helpers %}
+
+{% set page = getPage(page, menu) %}
+{% set pageTitle = getPageTitle(page, menu) %}
+{% set root = getRoot(page, menu) %}
+{% set section = getRoot(page, menu, 2) %}
+{% set parent = getParentFor(menu, page.id) %}
+
+<!DOCTYPE html>
+<html lang="{{ page.lang|default('ru') }}" class="has-no-js" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+<head>
+    <meta charset="utf-8">
+    {% block viewport %}
+        {#<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, minimal-ui">#}
+    {% endblock %}
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+
+    <title>{% block title %}{% if pageTitle and pageTitle != root.title %}{{ pageTitle|striptags }} | {% endif %}{{ root.title|striptags }}{% endblock %}</title>
+
+    <meta name="application-name" content="{{ root.title|striptags }}">
+    <meta name="description" content="{{ page.description|default(root.description)|striptags }}">
+    <meta name="keywords" content="{{ page.keywords|default(root.keywords)|striptags }}">
+
+    <meta name="theme-color" content="{{ themeColor }}">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="format-detection" content="telephone=no">
+
+    <meta name="yandex-tableau-widget" content="logo={{ core('icons/apple-touch-icon-120x120.png') }}, color={{ themeColor }}">
+
+    <meta name="msapplication-config" content="{{ core('browserconfig.xml') }}">
+
+    <meta name="msapplication-TileColor" content="{{ themeColor }}">
+    <meta name="msapplication-TileImage" content="{{ core('icons/mstile-144x144.png') }}">
+    <meta name="msapplication-square70x70logo" content="{{ core('icons/mstile-70x70.png') }}">
+    <meta name="msapplication-square150x150logo" content="{{ core('icons/mstile-150x150.png') }}">
+    <meta name="msapplication-wide310x150logo" content="{{ core('icons/mstile-310x150.png') }}">
+    <meta name="msapplication-square310x310logo" content="{{ core('icons/mstile-310x310.png') }}">
+
+    <link rel="manifest" href="{{ core('manifest.webmanifest') }}">
+
+    <link rel="shortcut icon" href="{{ core('icons/favicon.ico') }}?dev=1" sizes="16x16 32x32">
+    {# <link rel="alternate icon" href="{{ core('icons/favicon.svg') }}" type="image/svg+xml"> #}
+    <link rel="mask-icon" href="{{ core('icons/mask-icon.svg') }}" color="{{ themeColor }}">
+
+    <link rel="apple-touch-icon" sizes="80x80" href="{{ core('icons/apple-touch-icon.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ core('icons/apple-touch-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ core('icons/apple-touch-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="167x167" href="{{ core('icons/apple-touch-icon-167x167.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ core('icons/apple-touch-icon-180x180.png') }}">
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@700&display=swap">
+
+    <link rel="preload" as="image" href="{{ core('img/sprite.svg') }}">
+    {# <link rel="preload" as="image" href="{{ core('img/sprite.png') }}" imagesrcset="{{ core('img/sprite.png') }} 1x, {{ core('img/sprite.png'|retina) }} 2x"> #}
+
+    <!-- Этот скрипт нужен только в верстке -->
+    <script src="//localhost:{{ liveReloadPort }}/livereload.js" async></script>
+
+    {% block vendor_styles %}{% endblock %}
+    <link rel="stylesheet" href="{{ core('css/global.css') }}">
+
+    <!-- Этот стиль нужен только в верстке -->
+    <link rel="stylesheet" href="{{ core('css/develop.css') }}">
+    {% block layout_styles %}{% endblock %}
+    {% block page_styles %}{% endblock %}
+
+    <script src="{{ vendor('jquery.min.js') }}" defer></script>
+    <script src="{{ vendor('modernizr.min.js') }}" defer></script>
+    {% block vendor_scripts %}{% endblock %}
+    <script src="{{ core('js/global.js') }}" defer></script>
+    {% block layout_scripts %}{% endblock %}
+    <!-- Этот скрипт нужен только в верстке -->
+    <script src="{{ core('js/develop.js') }}" defer></script>
+    {% block page_scripts %}{% endblock %}
+
+    <!-- Разработано в DesignDepot | https://designdepot.ru/ -->
+</head>
+<!-- класс `root_%section%` зависит от раздела -->
+<body class="{{ 'root'|mod(section.slug|default(root.slug)) }}" id="top" itemscope itemtype="http://schema.org/WebPage">
+
+{% block header %}{% endblock %}
+
+{% block layout %}{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block popups %}
+    {% include '@blocks/popup-menu.twig' %}
+{% endblock %}
+
+{% block notifications %}
+    {% include '@blocks/notifications.twig' %}
+{% endblock %}
+
+{% block inline_scripts %}{% endblock %}
+</body>
+</html>

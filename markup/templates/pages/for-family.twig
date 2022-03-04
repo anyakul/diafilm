@@ -1,0 +1,224 @@
+{% extends '@layouts/default.twig' %}
+
+{% block vendor_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_styles %}
+{% endblock %}
+
+{% block vendor_scripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block layout_content %}
+    {% include '@blocks/title.twig' with {
+        self: {
+            mod: 'section',
+            levels: getMenu(menu, root.id),
+            label: pageTitle
+        }
+    } %}
+
+    {% include '@blocks/similar.twig' with {
+        self: {
+            mod: 'default, foyer',
+            label: 'Будущие события',
+            text: 'Российская Государственная Детская Библиотека участвует в различных городских и Всероссийских мероприятиях.',
+            carousel: {
+                mod: 'news',
+                jsClassName: 'js-carousel-horizontal',
+                itemsTemplate: '@blocks/card.twig',
+                items: [
+                    {
+                        size: 'large',
+                        mod: 'news, marked',
+                        label: 'Диафильмы Валерия Дмитрюка',
+                        date: { label: '17 июня 2021 года.', datetime: '2021-06-17' },
+                        text: '',
+                        image: { url: 'cafeteria/news/article/card-1.jpg', width: 395, height: 390 },
+                        link: { label: '', url: 'news-article' }
+                    },
+                    {
+                        size: '',
+                        mod: 'news',
+                        label: 'Мурзилка. 1947 год. Юбилеи Москвы, Пушкина и революции.',
+                        date: { label: '24 апреля 2021 года.', datetime: '2021-04-24' },
+                        text: 'Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.',
+                        image: { url: 'cafeteria/news/article/card-2.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'news-article' }
+                    },
+                    {
+                        size: '',
+                        mod: 'news',
+                        label: 'Планеты гиганты',
+                        date: { label: '26 мая 2021 года.', datetime: '2021-05-26' },
+                        text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.  Ни в 1959 году, когда Хрущев объявил о "полном',
+                        image: { url: 'cafeteria/news/article/card-3.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'news-article' }
+                    },
+                    {
+                        size: '',
+                        mod: 'news',
+                        label: 'Мурзилка. 1947 год. Юбилеи Москвы, Пушкина и революции.',
+                        date: { label: '24 апреля 2021 года.', datetime: '2021-04-24' },
+                        text: 'Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.',
+                        image: { url: 'cafeteria/news/article/card-2.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'news-article' }
+                    },
+                    {
+                        size: '',
+                        mod: 'news',
+                        label: 'Планеты гиганты',
+                        date: { label: '26 мая 2021 года.', datetime: '2021-05-26' },
+                        text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.  Ни в 1959 году, когда Хрущев объявил о "полном',
+                        image: { url: 'cafeteria/news/article/card-3.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'news-article' }
+                    }
+                ]
+            }
+        }
+    } %}
+
+    {% include '@blocks/similar.twig' with {
+        self: {
+            mod: 'default, bg-gray, viewing-hall',
+            label: 'Тематические подборки',
+            more: {
+                url: 'collections',
+                label: 'Ещё подборки'
+            },
+            carousel: {
+                mod: 'collections',
+                jsClassName: 'js-carousel-horizontal',
+                itemsTemplate: '@blocks/card.twig',
+                items: [
+                    {
+                        mod: 'collection',
+                        label: 'Пограничник Карацупа и его пёс Ингус. Не выдуманные герои диафильмов. Герои страны!',
+                        text: 'Ежегодно, начиная с 1994 года, 28 мая страна отмечает День пограничника. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм. Жизнь действительно стала иной, но все перечисленное никуда не делось. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм.',
+                        image: { url: 'viewing-hall/collections/collection/card-1.jpg', width: 503, height: 362 },
+                        link: { label: 'Читать статью полностью', url: 'collection' }
+                    },
+                    {
+                        mod: 'collection',
+                        label: 'Диафильмы про Бабу-Ягу',
+                        text: 'Ежегодно, начиная с 1994 года, 28 мая страна отмечает День пограничника. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось.',
+                        image: { url: 'viewing-hall/collections/collection/card-2.jpg', width: 503, height: 362 },
+                        link: { label: 'Читать статью полностью', url: 'collection' }
+                    },
+                    {
+                        mod: 'collection',
+                        label: 'Диафильмы о Русских писателях 19 века.',
+                        text: 'Ежегодно, начиная с 1994 года, 28 мая страна отмечает День пограничника. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось.',
+                        image: { url: 'viewing-hall/collections/collection/card-3.jpg', width: 503, height: 362 },
+                        link: { label: 'Читать статью полностью', url: 'collection' }
+                    },
+                    {
+                        mod: 'collection',
+                        label: 'Диафильмы о СССР',
+                        text: 'Ежегодно, начиная с 1994 года, 28 мая страна отмечает День пограничника. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось.',
+                        image: { url: 'viewing-hall/collections/collection/card-4.jpg', width: 503, height: 362 },
+                        link: { label: 'Читать статью полностью', url: 'collection' }
+                    }
+                ]
+            }
+        }
+    } %}
+
+    {# TODO: earth #}
+
+    {% include '@blocks/videos.twig' with {
+        self: {
+            mod: 'default, bg-white',
+            label: 'Чтение диафильмов известными актерами',
+            text: 'Российская Государственная Детская Библиотека уже второй раз принимает участие в инклюзивном благотворительном семейном фестивале «Галафест».',
+            items: [
+                {
+                    mod: 'youtube',
+                    type: 'youtube',
+                    jsClassName: 'js-figure',
+                    caption: 'Фестиваль «Галафест» 2018г. ',
+                    media: { url: 'LQodDMYEHM8', width: 588, height: 330 }
+                },
+                {
+                    mod: 'youtube',
+                    type: 'youtube',
+                    jsClassName: 'js-figure',
+                    caption: 'Фестиваль «Галафест» 2018г. ',
+                    media: { url: 'dQw4w9WgXcQ', width: 588, height: 330 }
+                },
+            ]
+        }
+    } %}
+
+    {% include '@blocks/feed.twig' with {
+        self: {
+            mod: 'artists, gallery',
+            itemsTemplate: '@blocks/artists.twig',
+            label: 'Выдающиеся художники',
+            text: 'Здравствуйте дорогие наши друзья, вы имеете уникальную возможность рассмотреть всех уважаемых художников нашей студии и их картины!',
+            items: [
+                {
+                    mod: 'default',
+                    after: { label: 'Пройти в галерею', url: 'gallery' },
+                    items: [
+                    {
+                        label: 'Василий Игнатов',
+                        text: 'На студии В.Г. Игнатов считался признанным мастером-сказочником',
+                        link: { url: 'artist', label: '' },
+                        picture: { url: 'gallery/artists/artist-1/picture-1.jpg', width: 222, height: 192, alt: '' },
+                        photo: { url: 'gallery/artists/artist-1/photo-1.jpg', width: 120, height: 150, alt: '' }
+                    },
+                    {
+                        label: 'Вера Дранишникова',
+                        text: 'Рисовала диафильмы по сказкам и стихотворениям для детей',
+                        link: { url: 'artist', label: '' },
+                        picture: { url: 'gallery/artists/artist-1/picture-2.jpg', width: 237, height: 226, alt: '' },
+                        photo: { url: 'gallery/artists/artist-1/photo-2.jpg', width: 120, height: 150, alt: '' }
+                    },
+                    {
+                        label: 'Макс Жеребчевский',
+                        text: 'Художник-постановщик на киностудии «Союзмультфильм»',
+                        link: { url: 'artist', label: '' },
+                        picture: { url: 'gallery/artists/artist-1/picture-3.jpg', width: 303, height: 208, alt: '' },
+                        photo: { url: 'gallery/artists/artist-1/photo-3.jpg', width: 120, height: 150, alt: '' }
+                    },
+                    {
+                        label: 'Эрнё Зорад',
+                        text: 'Венгерский художник, иллюстратор, графический дизайнер',
+                        link: { url: 'artist', label: '' },
+                        picture: { url: 'gallery/artists/artist-1/picture-4.jpg', width: 163, height: 196, alt: '' },
+                        photo: { url: 'gallery/artists/artist-1/photo-4.jpg', width: 120, height: 150, alt: '' }
+                    }
+                ]
+                }
+            ]
+        }
+    } %}
+
+    {% include '@blocks/videos.twig' with {
+        self: {
+            mod: 'default, bg-white',
+            label: 'демо видео',
+            text: 'Для удобства ознакомления с сайтом вы можете посмотреть видео, которое подскажет все непонятные вопросы.',
+            items: [
+                {
+                    mod: 'youtube',
+                    type: 'youtube',
+                    jsClassName: 'js-figure',
+                    caption: 'Фестиваль «Галафест» 2018г. ',
+                    media: { url: 'LQodDMYEHM8', width: 588, height: 330 }
+                }
+            ]
+        }
+    } %}
+
+{% endblock layout_content %}
+
+{% block popups %}
+    {{ parent() }}
+{% endblock popups %}

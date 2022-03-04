@@ -1,0 +1,5 @@
+{% if self.is_published %}
+{% with title=self.title text=self.text style=self.style %}
+{% include "components/similar/wrapper.html" with similar=self.block.get_similar %}
+{% endwith %}
+{% endif %}

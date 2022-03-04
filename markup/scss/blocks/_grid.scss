@@ -1,0 +1,115 @@
+@charset "UTF-8";
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
+
+/* --------------------
+   Тест сетки
+   -------------------- */
+
+$GRID-COLOR: #ffffff;
+$GRID-COLUMN-COLOR: #931680;
+$GRID-GUTTER-COLOR: #e8406c;
+
+.grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  min-height: var(--full-height);
+  @include section();
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 9999;
+
+  &::after {
+    @for $i from 1 through list.length(map.keys($GRID)) {
+      $breakpoint: list.nth(map.keys($GRID), $i);
+      @if ($i == 1) {
+        content: "#{$MEDIA}";
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        padding: 2px 5px;
+        font-size: 14px;
+        color: $GRID-COLOR;
+        background-color: $GRID-COLUMN-COLOR;
+        pointer-events: none;
+        z-index: 1;
+      } @else {
+        @include media($breakpoint) {
+          content: "#{$MEDIA}";
+        }
+      }
+    }
+  }
+
+  &__container {
+    @include container();
+    height: 100%;
+
+    @include media(before, tablet) {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+  }
+
+  &__row {
+    @include row();
+    height: 100%;
+    background-image: linear-gradient(to bottom, color.adjust($GRID-GUTTER-COLOR, $alpha: -.95) 0, color.adjust($GRID-GUTTER-COLOR, $alpha: -.95) 10px, transparent 10px, transparent 20px);
+    background-size: 100% 20px;
+    background-repeat: repeat-y;
+  }
+
+  &__column {
+    position: relative;
+    box-sizing: border-box;
+    height: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+    background-clip: content-box;
+    overflow: hidden;
+    $last-columns: false;
+    @for $i from 1 through list.length(map.keys($GRID)) {
+      $key: list.nth(map.keys($GRID), $i);
+      $current-columns: grid-get($key, columns);
+
+      @if ($last-columns == false or $current-columns != $last-columns) {
+        @include media($key) {
+          @if ($key == tablet){
+            padding-left: 16px;
+            padding-right: 16px;
+          }
+          @include column(1, $current-columns);
+        }
+      }
+    }
+
+    @include before() {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: color.adjust($GRID-GUTTER-COLOR, $alpha: -.99);
+      outline: 1px solid color.adjust($GRID-GUTTER-COLOR, $alpha: -.98);
+      outline-offset: -1px;
+      z-index: 1;
+    }
+
+    @include after() {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: color.adjust($GRID-COLUMN-COLOR, $alpha: -.98);
+      outline: 1px solid color.adjust($GRID-COLUMN-COLOR, $alpha: -.95);
+      outline-offset: -1px;
+      z-index: 2;
+    }
+  }
+}

@@ -1,0 +1,553 @@
+@charset "UTF-8";
+@use "sass:color";
+@use "sass:map";
+
+/* --------------------
+   Поле
+   -------------------- */
+
+.field {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+
+  &_default {
+    @include hoverWithin() {
+      .field__element {
+        z-index: 1;
+      }
+      .field__placeholder {
+        opacity: 1;
+        visibility: inherit;
+      }
+    }
+
+    &.is-busy {
+      //.field__label {}
+
+      .field__element {
+        z-index: 1;
+      }
+
+      .field__placeholder {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    &.is-valid {
+      @include after() {
+        //@include svgIcon(icon-checkmark-green, $top: 25px, $right: 25px);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .field__placeholder {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    &.is-invalid {
+      .field__element {
+        z-index: 1;
+      }
+
+      .field__error {
+        opacity: 1;
+        visibility: inherit;
+      }
+    }
+
+    &.has-button {
+      &.is-valid {
+        &::after {
+          right: 55px;
+        }
+      }
+    }
+  }
+
+  &_select {
+    @include hoverWithin() {
+      .field__value {
+        z-index: 1;
+      }
+      .field__placeholder {
+        opacity: 1;
+        visibility: inherit;
+      }
+    }
+
+    //&.is-busy {}
+
+    &.is-valid {
+      @include after() {
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .field__placeholder {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    &.is-invalid {
+      .field__value {
+        z-index: 1;
+      }
+
+      .field__error {
+        opacity: 1;
+        visibility: inherit;
+      }
+    }
+  }
+
+  &_file {
+    cursor: pointer;
+
+    @include hoverWithin() {
+      .field__label {
+        span {
+          text-decoration: none;
+        }
+      }
+    }
+
+    &.is-valid {
+      .field__label {
+        @include after() {
+          pointer-events: none;
+          z-index: 1;
+        }
+      }
+    }
+
+    &.is-invalid {
+      .field__label {
+        z-index: 1;
+      }
+
+      .field__error {
+        opacity: 1;
+        visibility: inherit;
+      }
+    }
+  }
+
+  &_grecaptcha {
+    height: 72px;
+    border-radius: 2px;
+    background-color: #f9f9f9;
+    overflow: hidden;
+  }
+
+  &__element {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    outline: none;
+    outline-offset: 0;
+    z-index: 0;
+
+    &_multiline {
+      min-height: 90px;
+
+      @include media(wide) {
+        min-height: 140px;
+      }
+    }
+
+    .field_default & {
+      .form_feedback & {
+        padding: 8px 10px;
+        border: 2px solid;
+        border-radius: 4px;
+        @include font(14px, 20px, $base-font, 400);
+
+        @each $key, $level in $LEVELS {
+          .root_#{map.get($level, slug)} & {
+            border-color: map.get($level, color);
+          }
+        }
+      }
+
+      .form_footer & {
+        padding: 6px;
+        border: 2px solid $white;
+        @include font(10px, 16px, $base-font, 400);
+        color: $white;
+      }
+
+      .form_search & {
+        padding: 10px 40px 8px 6px;
+        border-bottom: 2px solid;
+        @include font(14px, 20px, $base-font, 400);
+      }
+
+      .form_search.form_menu & {
+        border-bottom-color: $white;
+        color: $white;
+      }
+
+      .form_search.form_page & {
+        border-bottom-color: $black;
+        color: $black;
+
+        .layout_gray & {
+          border-bottom-color: $white;
+          color: $white;
+        }
+
+        .feed_viewing-hall & {
+          border-bottom-color: $white;
+          color: $white;
+        }
+      }
+
+      @include transition() {
+        transition-property: color;
+      }
+    }
+
+    &_select {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      opacity: 0;
+      font-size: 16px;
+      appearance: none;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    &_file {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      appearance: none;
+      cursor: pointer;
+      opacity: 0;
+    }
+
+    &_search {
+      appearance: none;
+
+      &::-webkit-search-cancel-button {
+        display: none;
+      }
+    }
+
+    &_grecaptcha {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      display: block;
+      width: 304px;
+      height: 78px;
+      transform: translate3d(0, -50%, 0);
+      overflow: hidden;
+
+      @include before() {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        bottom: -10px;
+        left: -10px;
+        box-shadow: inset -2px -2px 0 14px #f9f9f9;
+        pointer-events: none;
+      }
+    }
+
+    @include transition(.15s) {
+      transition-property: color, background-color, border-color, opacity;
+    }
+  }
+
+  &__value {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    outline: none;
+    outline-offset: 0;
+    color: transparent;
+    @include no-tap-highlight;
+    z-index: 0;
+
+    @include transition(.15s) {
+      transition-property: color, background-color, border-color, opacity, visibility;
+    }
+  }
+
+  &__label {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+    @include no-tap-highlight;
+
+    .field_default & {
+      @include highlight();
+
+      .form_feedback & {
+        margin-bottom: 8px;
+        @include font(24px, 30px, $base-font, 600);
+        color: $black;
+      }
+    }
+
+    .field_select & {
+      .form_filter & {
+        position: relative;
+        padding-right: 30px;
+        @include font(24px, 30px, $title-font, 700);
+        text-transform: uppercase;
+        color: $black;
+        pointer-events: all;
+        z-index: 2;
+
+        @include after() {
+          @include svgIcon(icon-arrow-16-black, $right: 15px);
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    .field_select.is-active & {
+      .form_filter & {
+        &::after {
+          transform: rotate(-90deg);
+        }
+      }
+    }
+
+    .field_file & {
+      position: relative;
+      border-radius: 2px;
+      padding: 15px 50px 15px 25px;
+      @include font(14px, 20px, $title-font, 700);
+      text-transform: uppercase;
+      color: $black;
+
+      @include before() {
+        @include svgIcon(icon-plus-black, $left: 10px);
+      }
+
+      span {
+        color: $black;
+      }
+    }
+
+    @include transition(.15s) {
+      transition-property: font-size, line-height, transform;
+    }
+  }
+
+  &__placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: text;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 1;
+    visibility: inherit;
+    z-index: 1;
+
+    .field_multiline & {
+      .form_feedback & {
+        top: 38px;
+        padding: 10px 12px;
+        @include font(14px, 20px, $base-font, 400);
+        color: $black;
+        @include highlight();
+      }
+    }
+
+    .form_footer & {
+      padding: 8px;
+      @include font(10px, 16px, $base-font, 400);
+      color: $white;
+    }
+
+    @include transition(.15s) {
+      transition-property: opacity, visibility;
+    }
+  }
+
+  &__button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+  }
+
+  &__error {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: text;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+
+    @include transition(.15s) {
+      transition-property: opacity, visibility;
+    }
+
+    .field_select &,
+    .field_default & {
+      padding: 0 12px;
+      @include font(12px, 14px, $base-font, 400);
+      color: $pink;
+    }
+
+    .field_file & {
+      top: 36px;
+      padding: 0 25px;
+      @include font(12px, 14px, $base-font, 400);
+      color: $pink;
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: block;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    visibility: hidden;
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+    z-index: 10;
+    pointer-events: none;
+
+    .field_select & {
+      width: 320px;
+      border: 1px solid $gray-80;
+      border-radius: 2px;
+      margin-top: 2px -16px 0;
+      background-color: $white;
+      box-shadow: 0 2px 14px 0 color.adjust($black, $alpha: -.9);
+    }
+
+    @include aria(hidden, false) {
+      transform: translate3d(0, 0, 0);
+      visibility: visible;
+      opacity: 1;
+      pointer-events: all;
+
+      @include transition() {
+        transition-property: opacity, visibility, transform;
+      }
+    }
+  }
+
+  &__list {
+    display: block;
+    @include reset-list();
+
+    .field_select & {
+      max-height: 300px;
+      overflow: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  &__item {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    max-width: 100%;
+
+    .field_select & {
+      padding: 12px 16px;
+      @include font(24px, 30px, $base-font, 400);
+      color: $gray-59;
+      cursor: pointer;
+
+      @include transition() {
+        transition-property: color;
+      }
+
+      @include hover() {
+        color: $black;
+      }
+      @include aria(selected){
+        color: $black;
+      }
+    }
+
+    .field_file & {
+      position: relative;
+      padding: 15px 25px;
+      @include font(16px, 20px, $base-font, 400);
+
+      @each $key, $level in $LEVELS {
+        .root_#{map.get($level, slug)} & {
+          border-color: map.get($level, color);
+        }
+      }
+
+      @include before() {
+        @include svgIcon(icon-attachment-gray, $left: 10px);
+      }
+
+      span {
+        display: inline-block;
+        vertical-align: bottom;
+        max-width: 80%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: $black;
+        overflow: hidden;
+      }
+    }
+  }
+}

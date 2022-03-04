@@ -1,0 +1,26 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'concept'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    <div class="concept__container">
+        <div class="concept__row">
+            <div class="concept__pictures">
+                {% for image in self.pictures %}
+                    <div class="concept__picture">
+                        {% include '@blocks/lazy-image.twig' with {
+                            self: image|extend({
+                                className: 'concept__image'
+                            })
+                        } %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="concept__body">
+                <div class="concept__label" role="heading" aria-level="3">{{ self.label|ft }}</div>
+                <div class="concept__intro is-editable">
+                    {% block concept_intro %}{% endblock concept_intro %}
+                </div>
+                <div class="concept__text is-editable">
+                    {% block concept_text %}{% endblock concept_text %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

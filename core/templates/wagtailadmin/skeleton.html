@@ -1,0 +1,15 @@
+{% extends "wagtailadmin/skeleton.html" %}
+
+{% block branding_title %}Диафильмы Онлайн{% endblock %}
+
+{% block css %}
+{{ block.super }}
+<style>
+    .wagtail-logo-container__desktop {
+        width: 90px;
+    }
+    .wagtail-logo-container__mobile .wagtail-logo {
+        width: 60px;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "pages/detail.html" %}
+
+{% load wagtailcore_tags %}
+
+
+{% block main_content %}
+{% for block in page.content %}
+    {% if forloop.first %}
+        <div class="text text_artist">
+            <div class="text__container">
+                <div class="text__row">
+                    <div class="text__body is-editable">
+                        <h2>Биография художника</h2>
+                        {% include_block block %}
+                    </div>
+                    <div class="text__aside">
+                        {% if page.photo %}
+                        <figure class="figure figure_image figure_captioned"
+                                itemprop="image" itemscope itemtype="http://schema.org/ImageObject"
+                                data-id="{{ page.pk }}" data-type="image">
+                            <div class="figure__media">
+                                {% with class="figure__source js-figure-source" alt=page.title %}
+                                {% include "common/img.html" with img=page.photo size="fill-499x638" %}
+                                {% endwith %}
+                            </div>
+                            <figcaption class="figure__caption js-figure-caption">
+                                {{ page.annotation }}
+                            </figcaption>
+                        </figure>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% include_block block %}
+    {% endif %}
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,181 @@
+@charset "UTF-8";
+@use "sass:map";
+
+/* --------------------
+   Концепция
+   -------------------- */
+
+.concept {
+  @extend %section;
+
+  &_default {
+    margin-bottom: 426px;
+    background-color: $gray-fff;
+
+    @include media(before, tablet) {
+      margin-bottom: 400px;
+    }
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+
+    .concept_default & {
+      position: relative;
+      padding-top: 80px;
+      padding-bottom: 70px;
+
+      @include media(before, tablet) {
+        padding-top: 40px;
+      }
+
+      @include before() {
+        @include highlight();
+        position: absolute;
+        left: calc(2 / 12 * 100%);
+        bottom: 0;
+        width: 300px;
+        height: 382px;
+        @include background-image("cafeteria/about/concept/image-1", contain);
+
+        @include media(before, tablet) {
+          height: 400px;
+          background-repeat: no-repeat;
+          bottom: 0;
+          top: 100%;
+          left: calc(0 / 12 * 100%);
+        }
+      }
+
+      @include after() {
+        @include highlight();
+        position: absolute;
+        top: 100%;
+        left: calc(2.5 / 12 * 100%);
+        width: 536px;
+        height: 696px;
+        margin-top: -270px;
+        @include background-image("cafeteria/about/concept/image-2", contain);
+
+          @include media(before, tablet) {
+            margin-top: 0;
+            height: 400px;
+            background-repeat: no-repeat;
+        }
+      }
+
+      @include media(before, tablet) {
+        padding-bottom: 40px;
+      }
+    }
+  }
+
+  &__pictures {
+    @include highlight();
+    @extend %column;
+    @extend %row;
+    flex-wrap: nowrap;
+    @include column(6, 12);
+
+    @include media(tablet) {
+      flex-direction: row-reverse;
+    }
+
+    @include media(before, tablet) {
+      width: 100%;
+      margin-left: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  &__picture {
+    @include highlight();
+    @extend %column;
+    @include column(4, 6);
+    padding-left: 16px;
+    padding-right: 16px;
+
+    @include media(before, tablet) {
+      width: 100%;
+
+      &:last-child {
+        display: none;
+      }
+    }
+  }
+
+  &__image {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border: 2px solid $black;
+    border-radius: 4px;
+  }
+
+  &__body {
+    @include highlight();
+    @extend %column;
+    @extend %row;
+    @include column(5, 12);
+
+    @include media(before, tablet) {
+      width: 100%;
+    }
+  }
+
+  &__label {
+    @include highlight();
+    @extend %column;
+    @include column(5, 5);
+    padding-left: 16px;
+    padding-right: 16px;
+    @include font(36px, 40px, $base-font, 700);
+    text-transform: lowercase;
+
+    @each $key, $level in $LEVELS {
+      .root_#{map.get($level, slug)} & {
+        color: map.get($level, color);
+      }
+    }
+
+    @include media(before, tablet) {
+      @include font(24px, 28px, $base-font, 700);
+    }
+  }
+
+  &__intro {
+    @include highlight();
+    @extend %column;
+    @include column(5, 5);
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 14px;
+    @include font(24px, 28px, $base-font, 400);
+    color: $black;
+
+    @include media(before, tablet) {
+      @include font(14px, 20px, $base-font, 400);
+    }
+  }
+
+  &__text {
+    @include highlight();
+    @extend %column;
+    @include column(4, 5);
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 100px;
+    @include font(14px, 20px, $base-font, 400);
+    color: $black;
+
+    @include media(before, tablet) {
+      margin-top: 30px;
+      width: 100%;
+    }
+  }
+}

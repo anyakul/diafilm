@@ -1,0 +1,33 @@
+{% load common_tags %}
+
+<li class="carousel__item {% if item.is_highlighted %}carousel__item_large{% else %}carousel__item_default{% endif %} js-carousel-item">
+    <article class="card card_news {% if item.is_highlighted %}card_marked{% endif %}" data-clickable>
+        <div class="card__picture">
+            {% with img=item.annotation_image class="card__image" %}
+            {% if item.is_highlighted %}
+            {% include "common/img.html" with size="fill-395x390" %}
+            {% else %}
+            {% include "common/img.html" with size="fill-384x288" %}
+            {% endif %}
+            {% endwith %}
+        </div>
+
+        <div class="card__body">
+            <div class="card__label" role="heading" aria-level="4">
+                <a class="card__link" href="{{ item.url }}">
+                    {{ item.title|format_title }}
+                </a>
+            </div>
+
+            <time class="card__date" datetime="{{ item.published_at|date:"Y-m-d" }}">
+                {{ item.published_at|date:"j E Y" }}
+            </time>
+
+            {% if not item.is_highlighted %}
+            <div class="card__text">
+                {{ item.annotation }}
+            </div>
+            {% endif %}
+        </div>
+    </article>
+</li>

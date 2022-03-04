@@ -1,0 +1,3 @@
+{% with preview=self.preview size="fill-929x542" %}
+{% include "components/viewer/base.html" with id=self.block.id type="pdf" url=self.document.url %}
+{% endwith %}

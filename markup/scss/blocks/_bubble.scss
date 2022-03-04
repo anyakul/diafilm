@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/* --------------------
+   Бабл
+   -------------------- */
+
+.bubble {
+  @extend %row;
+  align-items: stretch;
+  min-height: 290px;
+  border: 2px solid $yellow;
+  border-radius: 4px;
+
+  &__text {
+    @include highlight();
+    @extend %column;
+    align-self: center;
+    @include column(2.5, 5);
+    padding-left: 16px;
+    padding-right: 16px;
+    @include font(14px, 20px, $base-font, 600);
+    color: $black;
+  }
+
+  &__picture {
+    @include highlight();
+    @extend %column;
+    display: flex;
+    flex-direction: row;
+    @include column(2.5, 5);
+    padding-left: 16px;
+    padding-right: 16px;
+
+    &_horizontal {
+      align-self: center;
+      justify-content: center;
+    }
+
+    &_vertical {
+      align-self: flex-end;
+      justify-content: center;
+    }
+  }
+
+  &__image {
+    max-width: 100%;
+    height: auto;
+  }
+}

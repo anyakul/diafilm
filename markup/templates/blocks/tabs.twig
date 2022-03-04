@@ -1,0 +1,27 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'tabs'|mod(self.mod) }}{% if self.jsClassName %} {{ self.jsClassName }}{% endif %}">
+    <div class="tabs__container">
+        <div class="tabs__row">
+            {% if self.label %}
+                <div class="tabs__label" role="heading" aria-level="2">{{ self.label|ft }}</div>
+            {% endif %}
+
+            <div class="tabs__list js-tabs-list" role="tablist">
+                <div class="tabs__overflow">
+                    {% for item in self.items %}
+                        <button class="tabs__tab js-tabs-tab" type="button" id="tab-{{ loop.index0 }}" aria-controls="{{ item.slug|default('panel-'~loop.index0) }}" aria-selected="{{ loop.first }}" role="tab" tabindex="{{ loop.first ? 0 : -1 }}">
+                            {{ item.label }}
+                        </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% for item in self.items %}
+        <div class="tabs__panel js-tabs-panel" id="{{ item.slug|default('panel-'~loop.index0) }}" aria-labelledby="tab-{{ loop.index0 }}" aria-hidden="true" role="tabpanel" tabindex="-1">
+            {% if block('tabs_panel_' ~ loop.index) is defined %}
+                {{ block('tabs_panel_' ~ loop.index) }}
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+

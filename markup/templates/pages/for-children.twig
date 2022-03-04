@@ -1,0 +1,201 @@
+{% extends '@layouts/default.twig' %}
+
+{% block vendor_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_styles %}
+{% endblock %}
+
+{% block vendor_scripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block layout_content %}
+    <!-- Именно на этой странице фон белый у блока -->
+    {% include '@blocks/title.twig' with {
+        self: {
+            mod: 'section, white',
+            levels: getMenu(menu, root.id),
+            label: pageTitle
+        }
+    } %}
+
+    {% include '@blocks/earth.twig' with {
+        self: {
+            mod: 'inner',
+            wrap: true,
+            jsClassName: 'js-earth',
+            label: 'Сказки стран мира',
+            text: '<p>Здравствуйте дорогие наши маленькие друзья, вы имеете уникальную возможность рассмотреть весь земной шар и выбрать любую сказку которую только пожелаете!</p>',
+            extra: { 'data-points': 'ajax/earth-points-success.json', 'data-cards': 'ajax/earth-cards-success.json' },
+            carousel: {
+                mod: 'earth',
+                jsClassName: 'js-carousel-earth',
+                itemsTemplate: '@blocks/card.twig',
+                filter: [
+                    {
+                        size: 'full',
+                        mod: 'select',
+                        jsClassName: 'js-form-field-select',
+                        type: 'select',
+                        label: 'Сказки континентов мира',
+                        name: 'country',
+                        options: [
+                            { label: 'Все', value: '' }
+                        ]
+                    },
+                    {
+                        size: 'full',
+                        mod: 'select',
+                        jsClassName: 'js-form-field-select',
+                        type: 'select',
+                        label: 'Сказки России',
+                        name: 'district',
+                        options: [
+                            { label: 'Все', value: '' }
+                        ],
+                        extra: { 'disabled': true }
+                    }
+                ],
+                items: []
+            }
+        }
+    } %}
+
+    {% include '@blocks/viewing.twig' with {
+        self: {
+            mod: 'inner',
+            wrap: true,
+            label: 'Подборка для самых маленьких',
+            text: '<p>Ознакомьтесь с коллекцией лучших диафильмов разных эпох и направлений. За время работы с диафильмами накопился значительный объем оригинальных  и оцифрованных более 5000 диафильмов разных жанров  в диапазоне от 1938 до 1993 годов выпуска.</p>',
+            paramsInHead: false,
+            params: {
+                year: 1982,
+                age: '4+',
+                items: [
+                    { label: 'Мультфильм по мотивам рассказа', value: 'Астрид Линдгрен' },
+                    { label: 'Иллюстратор', value: 'А.Савченко, Б.Степанцев' },
+                    { label: 'Худ. редактор', value: 'В.Дугин' },
+                    { label: 'Редактор', value: 'Т. Семибратова' },
+                ]
+            },
+            film: {
+                src: '#!view=45563&mode=1up',
+                image: {
+                    url: 'foyer/for-children/viewing-hall/image-1.jpg',
+                    width: 384,
+                    height: 253,
+                    alt: 'Карлсон вернулся'
+                }
+            },
+            title: {
+                mod: 'image',
+                image: {
+                    url: 'foyer/for-children/viewing-hall/title-1.svg',
+                    width: 680,
+                    height: 216,
+                    alt: 'Карлсон вернулся'
+                }
+            },
+            items: viewing,
+            more: {
+                url: 'viewing-hall',
+                label: 'Смотреть диафильмы'
+            }
+        }
+    } %}
+
+    {% include '@blocks/showroom.twig' with {
+        self: {
+            mod: 'inner, gray',
+            label: 'Экспонаты музея',
+            text: '<p>Ознакомьтесь с коллекцией лучших фильмоскопов, созданных с начала 20 века по наше время. Это интереснейшая коллекция аппаратов, которой нет аналогов во всем мире.</p>',
+            more: {
+                url: 'showroom',
+                label: 'Ещё экспонаты'
+            },
+            model: {
+                label: 'Фильмоскоп «Экран»',
+                image: { url: 'showroom/models/model/model.svg', width: 768, height: 620 },
+                more: {
+                    url: 'model',
+                    label: 'Смотреть подробнее'
+                },
+                points: [
+                    { top: 7.258064, left: 35.416666, image: { mod: 'vertical', url: 'showroom/models/model/point-1.jpg', width: 150, height: 240 }, text: 'Оптические элементы: конденсор (А-большая линза без рамки выпуклостью назад, Б-тепловой фильтр,<br> В-большая линза выпуклостью вперед,<br> Г-маленькая линза выпуклостью вперед),<br> Д-патрон проекционной лампы, Е- рефлектор. фото с обозначениями' },
+                    { top: 7.258064, left: 42.317708, image: { mod: 'vertical', url: 'showroom/models/model/point-2.jpg', width: 150, height: 240 }, text: 'Проекционная лампа К220-100' },
+                    { top: 32.258064, left: 53.906250, image: { mod: 'horizontal', url: 'showroom/models/model/point-3.jpg', width: 240, height: 150 }, text: 'Фильмовый канал с прижимной рамкой' }
+                ]
+            }
+        }
+    } %}
+
+    {% include '@blocks/similar.twig' with {
+        self: {
+            mod: 'default, bg-white, showroom',
+            label: '',
+            text: '',
+            carousel: {
+                mod: 'models',
+                jsClassName: 'js-carousel-horizontal',
+                itemsTemplate: '@blocks/card.twig',
+                items: [
+                    {
+                        size: '',
+                        mod: 'model',
+                        label: 'Волшебный фонарь',
+                        image: { url: 'showroom/models/model/card-1.png', width: 288, height: 288 },
+                        link: { label: '', url: 'model' }
+                    },
+                    {
+                        size: '',
+                        mod: 'model',
+                        label: 'Алоскоп',
+                        image: { url: 'showroom/models/model/card-2.png', width: 288, height: 288 },
+                        link: { label: '', url: 'model' }
+                    },
+                    {
+                        size: '',
+                        mod: 'model',
+                        label: 'Зарница',
+                        image: { url: 'showroom/models/model/card-3.png', width: 288, height: 288 },
+                        link: { label: '', url: 'model' }
+                    },
+                    {
+                        size: '',
+                        mod: 'model',
+                        label: 'Пеленг 500АФ',
+                        image: { url: 'showroom/models/model/card-4.png', width: 288, height: 288 },
+                        link: { label: '', url: 'model' }
+                    }
+                ]
+            }
+        }
+    } %}
+
+    {% include '@blocks/videos.twig' with {
+        self: {
+            mod: 'default, bg-white',
+            label: 'демо видео',
+            text: 'Для удобства ознакомления с сайтом вы можете посмотреть видео, которое подскажет все непонятные вопросы.',
+            items: [
+                {
+                    mod: 'youtube',
+                    type: 'youtube',
+                    jsClassName: 'js-figure',
+                    caption: 'Фестиваль «Галафест» 2018г. ',
+                    media: { url: 'LQodDMYEHM8', width: 588, height: 330 }
+                }
+            ]
+        }
+    } %}
+
+{% endblock layout_content %}
+
+{% block popups %}
+    {{ parent() }}
+{% endblock popups %}

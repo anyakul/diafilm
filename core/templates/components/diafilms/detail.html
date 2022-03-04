@@ -1,0 +1,18 @@
+{% load common_tags %}
+
+<div class="feed__item feed__item_default js-feed-item">
+    <article class="card card_film" data-clickable>
+        <div class="card__picture">
+            {% with class="card__image" alt=item.title %}
+            {% include "common/img.html" with img=item.annotation_image size="fill-384x288" %}
+            {% endwith %}
+        </div>
+        <div class="card__body">
+            <div class="card__label" role="heading" aria-level="4">
+                <a class="card__link" href="{{ item.url }}">
+                    {{ item.title|format_title }}
+                </a>
+            </div>
+        </div>
+    </article>
+</div>

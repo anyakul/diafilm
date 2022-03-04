@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+// Вес шрифта
+// thin, hairline              100
+// extra-light, ultra-light    200
+// light                       300
+// normal, regular             400
+// medium                      500
+// semi-bold, demi-bold        600
+// bold                        700
+// extra-bold, ultra-bold      800
+// black, heavy                900
+
+// Пример:
+//    @include font-face(
+//        "tahoma-web-regular", // Имя файла без расширения
+//        "Tahoma", // Имя шрифта
+//          ("Tahoma-Medium", "Tahoma Medium"), // Варианты имён лкальных шрифтов
+//      $weight: 500, // Вес шрифта
+//      $style: italic // Стиль шрифта
+//    );
+
+
+@include font-face(
+    "CSTMXprmntl02_Bold",
+    "CSTM Xprmntl 02",
+      ("CSTM Xprmntl 02"),
+  $weight: 700,
+  $style: normal
+);
+
+@include font-face(
+    "Proxima-Nova_Regular",
+    "Proxima Nova",
+      ("Proxima Nova", "Proxima-Nova"),
+  $weight: 400,
+  $style: normal
+);
+
+@include font-face(
+    "Proxima-Nova_Semibold",
+    "Proxima Nova",
+      ("Proxima Nova", "Proxima-Nova"),
+  $weight: 600,
+  $style: normal
+);
+
+@include font-face(
+    "Proxima-Nova_Bold",
+    "Proxima Nova",
+      ("Proxima Nova", "Proxima-Nova"),
+  $weight: 700,
+  $style: normal
+);

@@ -1,0 +1,121 @@
+{
+  "page": {
+    "id": "c79a78",
+    "layout": "",
+    "lang": "ru",
+    "title": "",
+    "description": "",
+    "keywords": "",
+    "showIntro": true
+  },
+  "viewing": [
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-1.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-2.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-3.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-1.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-2.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-3.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-1.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-2.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    },
+    {
+      "mod": "thumb",
+      "image": {
+        "url": "main/viewing-hall/thumb-3.jpg",
+        "width": 183,
+        "height": 144,
+        "alt": ""
+      },
+      "link": {
+        "url": "diafilm"
+      }
+    }
+  ]
+}

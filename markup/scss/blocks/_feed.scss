@@ -1,0 +1,429 @@
+@charset "UTF-8";
+@use "sass:map";
+
+/* --------------------
+   Лента
+   -------------------- */
+
+.feed {
+
+  &_collection {
+    margin-bottom: 50px;
+  }
+
+  &_artists {
+    margin-bottom: 50px;
+  }
+
+  &_gallery {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-bottom: 0;
+
+    @include media(before, tablet){
+      padding-top: 36px;
+    }
+  }
+
+  &_bg-white {
+    background-color: $white;
+  }
+
+  &_catalog {
+    &.feed_viewing-hall {
+      padding-top: 50px;
+      background-color: $gray-455;
+
+      @include media(before, tablet){
+        padding-top: 36px;
+      }
+    }
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+  }
+
+  &__header {
+    @include highlight();
+    @extend %column;
+    position: relative;
+    z-index: 1;
+
+    .feed_artists & {
+      @extend %row;
+      @include columnWithPush(10, 2, 12);
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    .feed_catalog & {
+      @extend %row;
+      @include columnWithPush(10, 2, 12);
+
+      @include media(before, tablet){
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    .feed_gallery & {
+      margin-bottom: -30px;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  &__label {
+    @include highlight();
+    @extend %column;
+
+    .feed_artists & {
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 12px;
+      margin-bottom: 10px;
+      @include font(36px, 40px, $base-font, 700);
+      text-transform: lowercase;
+      color: $pink;
+
+      @include media(before, tablet) {
+        @include font(24px, 28px, $base-font, 700);
+      }
+    }
+
+    .feed_catalog & {
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 12px;
+      margin-bottom: 10px;
+      @include font(36px, 40px, $base-font, 700);
+      text-transform: lowercase;
+
+
+
+      @include media(before, tablet) {
+        @include font(24px, 28px, $base-font, 700);
+      }
+    }
+
+    @each $key, $level in $LEVELS {
+      .feed_#{map.get($level, slug)} & {
+        color: map.get($level, color);
+      }
+    }
+  }
+
+  &__text {
+    @include highlight();
+    @extend %column;
+
+    .feed_artists & {
+      @include column(4, 10);
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-bottom: 14px;
+      @include font(14px, 18px, $base-font, 400);
+      color: $black;
+
+      @include media(before, tablet) {
+        width: 100%;
+      }
+    }
+
+    .feed_catalog & {
+      @include column(4, 10);
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-bottom: 14px;
+      @include font(14px, 18px, $base-font, 400);
+      color: $white;
+
+      @include media(before, tablet){
+        width: 100%;
+      }
+    }
+  }
+
+  &__form {
+    .feed_artists & {
+      @include highlight();
+      @extend %column;
+      @include columnWithPush(10, 2, 12);
+      margin-bottom: 25px;
+    }
+
+    .feed_catalog & {
+      @include highlight();
+      @extend %column;
+      @include columnWithPush(10, 2, 12);
+      margin-bottom: 25px;
+    }
+  }
+
+  &__tags {
+    .feed_news & {
+      @include highlight();
+      @extend %column;
+      @extend %row;
+      @include columnWithPush(10, 2, 12);
+      margin-bottom: 50px;
+    }
+
+    .feed_artists & {
+      @include highlight();
+      @extend %column;
+      @extend %row;
+      @include columnWithPush(10, 2, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-bottom: 50px;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__list {
+    @include highlight();
+    @extend %column;
+    @extend %row;
+
+    .feed_collection & {
+      @include columnWithPush(7, 1, 12);
+      margin-top: -25px;
+      margin-bottom: -25px;
+
+      @include media(before, tablet) {
+        padding: 0;
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    .feed_news & {
+      align-items: stretch;
+      @include columnWithPush(10, 2, 12);
+      margin-top: -25px;
+      margin-bottom: -25px;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+
+      }
+    }
+
+    .feed_artists & {
+      @include columnWithPush(10, 2, 12);
+      margin-top: -25px;
+      margin-bottom: -25px;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        margin-top: 36px;
+      }
+    }
+
+    .feed_catalog & {
+      align-items: stretch;
+      @include columnWithPush(10, 2, 12);
+      margin-top: -25px;
+      margin-bottom: -25px;
+
+      @include media(before, tablet){
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    .feed_collections & {
+      align-items: stretch;
+      @include columnWithPush(10, 2, 12);
+      margin-top: -25px;
+      margin-bottom: -25px;
+
+      @include media(before, tablet) {
+        margin: 0;
+      }
+    }
+  }
+
+  &__item {
+    @include highlight();
+    @extend %column;
+    padding-left: 16px;
+    padding-right: 16px;
+
+    @include media(before, tablet){
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+
+    &_default {
+      .feed_news & {
+        @include column(3, 10);
+      }
+
+      .feed_catalog & {
+        @include column(3.333333, 10);
+      }
+
+      .feed_collections & {
+        @include column(10, 10);
+
+        @include media(before, tablet) {
+          padding: 20px;
+        }
+      }
+    }
+
+    &_large {
+      .feed_news & {
+        @include column(4, 10);
+      }
+    }
+
+    &_full {
+      .feed_collection & {
+        @include column(7, 7);
+      }
+
+      .feed_artists & {
+        @include column(10, 10);
+      }
+    }
+
+    //&_half {}
+
+    //&_third {}
+
+    .feed_collection & {
+      margin-top: 25px;
+      margin-bottom: 25px;
+
+      @include media(before, tablet) {
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    .feed_artists & {
+      margin-top: 25px;
+      margin-bottom: 25px;
+
+      @include media(before, tablet) {
+        margin-bottom: 0;
+      }
+    }
+
+    .feed_news & {
+      margin-top: 25px;
+      margin-bottom: 25px;
+
+      @include media(before, tablet) {
+        width: 100%;
+        padding: 0 20px;
+      }
+    }
+
+    .feed_catalog & {
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
+
+    .feed_collections & {
+      margin-top: 25px;
+      margin-bottom: 25px;
+
+      @include media(before, tablet) {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__pagination {
+    @include highlight();
+    @extend %column;
+
+    .feed_collection & {
+      @include columnWithPush(7, 1, 12);
+      margin-top: 50px;
+      text-align: center;
+
+      @include media(before, tablet) {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+    .feed_collections & {
+      @include columnWithPush(10, 2, 12);
+      margin-top: 50px;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .feed_news & {
+      @include columnWithPush(10, 2, 12);
+      margin-top: 50px;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .feed_artists & {
+      @include columnWithPush(10, 2, 12);
+      margin-top: 50px;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+
+    .feed_catalog & {
+      @include columnWithPush(10, 2, 12);
+      margin-top: 50px;
+      margin-bottom: 50px;
+      text-align: center;
+    }
+  }
+
+  &__button {
+    &_tag {
+      .feed_news & {
+        margin-left: 16px;
+        margin-right: 16px;
+      }
+
+      .feed_artists & {
+        @include after("/") {
+          display: inline-block;
+          vertical-align: bottom;
+          margin-left: em(4, 14);
+          margin-right: em(4, 14);
+          @include font(14px, 18px, $base-font, 400);
+          color: $gray-59;
+        }
+
+        &:last-child {
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

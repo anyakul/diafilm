@@ -1,0 +1,268 @@
+@charset "UTF-8";
+/* --------------------
+   Модель
+   -------------------- */
+
+.model {
+
+  &_default {
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &_inner {
+    @extend %row;
+    position: relative;
+    flex-direction: row-reverse;
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+
+    .model_default & {
+      position: relative;
+      align-items: flex-end;
+    }
+  }
+
+  &__header {
+    @include highlight();
+    @extend %column;
+
+    .model_default & {
+      @include columnWithPush(2.5, 1, 12);
+
+      @include media(before, tablet) {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+    .model_inner & {
+      @include column(4.5, 9);
+      padding-left: 16px;
+      padding-right: 16px;
+
+      @include media(before, tablet) {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  &__years {
+    .model_default & {
+      box-sizing: border-box;
+      width: calc(2 / 2.5 * 100%);
+      padding-left: 16px;
+      padding-right: 16px;
+      @include font(36px, 45px, $base-font, 600);
+      color: $black;
+    }
+  }
+
+  &__label {
+    .model_default & {
+      position: relative;
+      box-sizing: border-box;
+      width: calc(2 / 2.5 * 100%);
+      padding: 22px 16px;
+      margin-top: 5px;
+      @include font(24px, 28px, $base-font, 400);
+      color: $black;
+
+      @include before() {
+        position: absolute;
+        top: 0;
+        left: 16px;
+        right: 16px;
+        border-top: 2px solid $black;
+      }
+
+      @include after() {
+        position: absolute;
+        bottom: 0;
+        left: 16px;
+        right: 16px;
+        border-bottom: 2px solid $black;
+      }
+    }
+
+    .model_inner & {
+      margin-top: -80px;
+      @include font(72px, 80px, $title-font, 700);
+      text-transform: uppercase;
+      color: $black;
+
+      @include media(before, tablet) {
+        @include font(20px, 26px, $title-font, 700);
+        margin-top: 0;
+      }
+    }
+  }
+
+  &__text {
+    .model_default & {
+      box-sizing: border-box;
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 30px;
+      @include font(14px, 20px, $base-font, 400);
+      color: $black;
+
+      @include media(before, tablet) {
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+  &__viewport {
+    @include highlight();
+    @extend %column;
+
+    .model_default & {
+      @include column(7.5, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .model_inner & {
+      @include column(4.5, 9);
+      padding-left: 16px;
+      padding-right: 16px;
+      padding-bottom: 40px;
+
+      @include media(before, tablet) {
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+  &__layer {
+    position: relative;
+  }
+
+  &__image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__points {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__point {
+    position: absolute;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: $yellow;
+
+    .model_default & {
+      width: 46px;
+      height: 46px;
+      margin: -23px;
+    }
+
+    .model_inner & {
+      width: 30px;
+      height: 30px;
+      margin: -15px;
+    }
+  }
+
+  &__bubbles {
+    @include highlight();
+    @extend %column;
+
+    .model_default & {
+      position: absolute;
+      @include columnWithPush(5, 1, 12);
+      align-self: flex-start;
+      padding-left: 16px;
+      padding-right: 16px;
+      pointer-events: none;
+    }
+
+    .model_inner & {
+      position: relative;
+      @include column(4.5, 9);
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+
+  &__bubble {
+    background-color: $white;
+    pointer-events: all;
+    z-index: 1;
+
+    .model_inner & {
+      position: absolute;
+      bottom: 0;
+    }
+
+    &[hidden] {
+      position: absolute;
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  &__after {
+    @include highlight();
+    @extend %column;
+
+    .model_inner & {
+      position: relative;
+      @include column(4.5, 9);
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 40px;
+
+      @include media(before, tablet) {
+        @include font(20px, 24px, $title-font, 700);
+        margin-top: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  &__more {
+    display: inline-block;
+    vertical-align: bottom;
+    @include font(24px, 28px, $title-font, 700);
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    color: $gray-455;
+
+    @include media(before, tablet) {
+      @include font(20px, 24px, $title-font, 700);
+      right: 0;
+    }
+
+    @include after() {
+      display: inline-block;
+      vertical-align: bottom;
+      margin-left: 4px;
+
+      .model_inner & {
+        @include svgSprite(icon-arrow-16-gray);
+      }
+    }
+  }
+}

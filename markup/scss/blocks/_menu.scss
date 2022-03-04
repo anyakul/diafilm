@@ -1,0 +1,129 @@
+@charset "UTF-8";
+@use "sass:map";
+
+/* --------------------
+    Меню
+   -------------------- */
+
+.menu {
+
+  &_main {
+    position: relative;
+
+    @include media(tablet) {
+      @include after() {
+        position: absolute;
+        top: 15px;
+        right: 16px;
+        bottom: 15px;
+        border-left: 1px solid $white;
+        border-right: 1px solid $white;
+        margin: 0 -1px;
+      }
+    }
+  }
+
+  &__level {
+    @include reset-list();
+    @include reset-font();
+
+    &_1 {
+      @extend %row;
+
+      .menu_main & {
+        counter-reset: menu-main;
+        flex-direction: column-reverse;
+        margin-top: -15px;
+        margin-bottom: -15px;
+
+        @include media(tablet) {
+          flex-direction: row;
+        }
+      }
+    }
+
+    &_2 {
+      margin-top: 4px;
+    }
+  }
+
+  &__item {
+    .menu__level_1 > & {
+      .menu_main & {
+        @include highlight();
+        @extend %column;
+        position: relative;
+        @include columnWithPush(4, 1, 6);
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        counter-increment: menu-main;
+
+        @include media(tablet){
+          @include column(2, 7);
+        }
+
+        @include before(counter(menu-main)) {
+          position: absolute;
+          right: 100%;
+          display: block;
+          margin-right: -6px;
+          @include font(42px, 28px, $label-font, 700);
+        }
+
+        @each $key, $level in $LEVELS {
+          &:nth-child(#{$key}) {
+            &::before {
+              color: map.get($level, color);
+            }
+
+            .menu__text {
+              color: map.get($level, color);
+            }
+          }
+        }
+      }
+    }
+
+    .menu__level_2 > & {
+      display: block;
+
+      & + .menu__item {
+        margin-top: 4px;
+      }
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+
+    .menu__level_1 & {
+      .menu_main & {
+        position: relative;
+        display: block;
+        @include font(24px, 28px, $title-font, 700);
+        text-transform: uppercase;
+        color: $white;
+      }
+    }
+
+    .menu__level_2 & {
+      .menu_main & {
+        @include font(14px, 20px, $base-font, 400);
+        text-transform: none;
+        color: $white;
+      }
+    }
+
+    //@include hover() {}
+
+    //@include active() {}
+  }
+
+  &__text {
+    display: block;
+    margin-top: 8px;
+    @include font(14px, 16px, $base-font, 700);
+  }
+}

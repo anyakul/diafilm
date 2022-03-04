@@ -1,0 +1,16 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'detail'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    {% include '@blocks/params.twig' with {
+        self: {
+            mod: 'detail',
+            className: 'detail__params',
+            items: self.params
+        }
+    } %}
+    <div class="detail__picture">
+        {% include '@blocks/lazy-image.twig' with {
+            self: self.image|extend({
+                className: 'detail__image'
+            })
+        } %}
+    </div>
+</div>

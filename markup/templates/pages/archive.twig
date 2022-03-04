@@ -1,0 +1,232 @@
+{% extends '@layouts/default.twig' %}
+
+{% block vendor_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_styles %}
+{% endblock %}
+
+{% block vendor_scripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block layout_content %}
+    {% include '@blocks/title.twig' with {
+        self: {
+            mod: 'section',
+            levels: getMenu(menu, root.id),
+            label: pageTitle
+        }
+    } %}
+
+    {% embed '@blocks/tabs.twig' with {
+        self: {
+            mod: 'default',
+            jsClassName: 'js-tabs-default',
+            items: getMenu(menu, page.id)
+        }
+    } %}
+        {% block tabs_panel_1 %}
+            {% include '@blocks/preview.twig' with {
+                self: {
+                    mod: 'default, normal',
+                    wrap: true,
+                    picture: {
+                        mod: 'default',
+                        url: 'archive/history/image-1.png',
+                        width: 405,
+                        height: 405
+                    },
+                    figure: {
+                        url: 'archive/history/image-2.png',
+                        width: 280,
+                        height: 280
+                    },
+                    label: 'Анатомия волшебного фонаря',
+                    text: '<p>История проекционной техники начинается в середине XVII века с изобретения устройства, названного «волшебным фонарем».</p>',
+                    after: {
+                        url: 'technology',
+                        label: 'Подробнее'
+                    }
+                }
+            } %}
+
+            {% include '@blocks/figure.twig' with {
+                self: {
+                    mod: 'default, image, external',
+                    jsClassName: 'js-figure',
+                    type: 'iframe',
+                    wrap: true,
+                    caption: 'Анатомия волшебного фонаря в 3D',
+                    media: {
+                        url: 'showroom/models/image-3.jpg',
+                        width: 1008,
+                        height: 510,
+                        extra: {
+                            'data-url': 'https://diafilms.designdepot.ru/media/models/magic_lantern'
+                        }
+                    }
+                }
+            } %}
+
+            {% include '@blocks/preview.twig' with {
+                self: {
+                    mod: 'default, inverted',
+                    wrap: true,
+                    picture: {
+                        mod: 'default, double',
+                        url: ['archive/history/image-3.png', 'archive/history/image-4.png'],
+                        width: 280,
+                        height: 200
+                    },
+                    label: 'Рождение и история студии Диафильм',
+                    text: '<p>Студия Диафильм Госкино СССР — была основана в Москве в 1930 году, предназначением этой студии являлась организация досуга советских граждан, привитие им  эстетического вкуса, любознательности, трудовых навыков, пропаганда определенных взглядов и ценностей. Диафильмы в Советском Союзе в своем большинстве представляли собой сказки и мультфильмы.</p><p>Особенностью советских диафильмов и фильмоскопов была их дешевизна и доступность. С 1941 и по 1944 год студия «Диафильм» как таковая не функционировала.</p><p>Все созданные к середине XX века проекционные устройства так или иначе работали с прозрачными и непрозрачными носителями видимого изображения.</p>',
+                    after: {
+                        url: 'technology',
+                        label: 'Подробнее'
+                    }
+                }
+            } %}
+
+            {% include '@blocks/similar.twig' with {
+                self: {
+                    mod: 'default',
+                    label: 'Как менялись логотипы студии по годам',
+                    text: '',
+                    carousel: {
+                        mod: 'films',
+                        jsClassName: 'js-carousel-horizontal',
+                        itemsTemplate: '@blocks/card.twig',
+                        items: [
+                            {
+                                size: '',
+                                mod: 'film',
+                                label: 'В путь по реке времени',
+                                image: { url: 'gallery/artist/card-1.jpg', width: 384, height: 288 },
+                                link: { label: '', url: '#' }
+                            },
+                            {
+                                size: '',
+                                mod: 'film',
+                                label: 'Встреча с вреднюгами',
+                                image: { url: 'gallery/artist/card-2.jpg', width: 384, height: 288 },
+                                link: { label: '', url: '#' }
+                            },
+                            {
+                                size: '',
+                                mod: 'film',
+                                label: 'Карлик Нос',
+                                image: { url: 'gallery/artist/card-3.jpg', width: 384, height: 288 },
+                                link: { label: '', url: '#' }
+                            }
+                        ]
+                    }
+                }
+            } %}
+        {% endblock tabs_panel_1 %}
+
+        {% block tabs_panel_2 %}
+            {% include '@blocks/preview.twig' with {
+                self: {
+                    mod: 'default, normal',
+                    wrap: true,
+                    picture: {
+                        mod: 'default',
+                        url: 'archive/technologies/image-1.jpg',
+                        width: 405,
+                        height: 405
+                    },
+                    figure: {
+                        url: 'archive/technologies/image-2.jpg',
+                        width: 280,
+                        height: 280
+                    },
+                    label: 'Подробнее о технологии производства.',
+                    text: '<p>История проекционной техники начинается в середине XVII века с изобретения устройства, названного «волшебным фонарем».</p>',
+                    after: {
+                        url: 'technology',
+                        label: 'Подробнее'
+                    }
+                }
+            } %}
+
+            {% include '@blocks/figure.twig' with {
+                self: {
+                    mod: 'default, image',
+                    type: 'image',
+                    wrap: true,
+                    caption: 'Специалисты оператор студии "Диафильм" во время работы.',
+                    media: {
+                        url: 'archive/technologies/image-3.jpg',
+                        width: 1008,
+                        height: 510
+                    }
+                }
+            } %}
+
+            {% include '@blocks/preview.twig' with {
+                self: {
+                    mod: 'default, inverted',
+                    wrap: true,
+                    picture: {
+                        mod: 'default',
+                        url: 'archive/technologies/image-4.jpg',
+                        width: 280,
+                        height: 200
+                    },
+                    label: 'Что происходило после утверждения эскизов и текстов.',
+                    text: '<p>Студия Диафильм Госкино СССР — была основана в Москве в 1930 году, предназначением этой студии являлась организация досуга советских граждан, привитие им  эстетического вкуса, любознательности, трудовых навыков, пропаганда определенных взглядов и ценностей. Диафильмы в Советском Союзе в своем большинстве представляли собой сказки и мультфильмы.</p> <p>Особенностью советских диафильмов и фильмоскопов была их дешевизна и доступность. С 1941 и по 1944 год студия «Диафильм» как таковая не функционировала.</p><p>Все созданные к середине XX века проекционные устройства так или иначе работали с прозрачными и непрозрачными носителями видимого изображения.</p>',
+                    after: {
+                        url: 'technology',
+                        label: 'Подробнее'
+                    }
+                }
+            } %}
+
+            {% include '@blocks/similar.twig' with {
+                self: {
+                    mod: 'default',
+                    label: 'Исторические кадры на производстве',
+                    text: '',
+                    carousel: {
+                        mod: 'films',
+                        jsClassName: 'js-carousel-horizontal',
+                        itemsTemplate: '@blocks/card.twig',
+                        items: [
+                            {
+                                size: '',
+                                mod: 'film',
+                                text: 'Специалист цеха массовой печати студии "Диафильм" во время работы на копировальном аппарате.',
+                                image: { url: 'archive/technologies/card-1.jpg', width: 384, height: 288 },
+                                link: { label: '', url: '#' }
+                            },
+                            {
+                                size: '',
+                                mod: 'film',
+                                text: 'Специалисты художественного цеха студии "Диафильм" во время работы.',
+                                image: { url: 'archive/technologies/card-2.jpg', width: 384, height: 288 },
+                                link: { label: '', url: '#' }
+                            },
+                            {
+                                size: '',
+                                mod: 'film',
+                                text: 'Специалисты химической лаборатории Студии "Диафильм" за работой.',
+                                image: { url: 'archive/technologies/card-3.jpg', width: 384, height: 288 },
+                                link: { label: '', url: '#' }
+                            }
+                        ]
+                    }
+                }
+            } %}
+        {% endblock tabs_panel_2 %}
+    {% endembed %}{# tabs #}
+
+{% endblock layout_content %}
+
+{% block popups %}
+    {{ parent() }}
+{% endblock popups %}

@@ -1,0 +1,112 @@
+@charset "UTF-8";
+@use "sass:map";
+
+/* --------------------
+   Блок врезки/цитаты
+   -------------------- */
+
+.blockquote {
+  @extend %section;
+
+  &_box {
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    @include media(before, tablet) {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &_quote {
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+  }
+
+  &__body {
+    @include highlight();
+    @extend %column;
+
+    .blockquote_box & {
+      position: relative;
+      @include columnWithPush(7, 1, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      @include font(24px, 30px, $base-font, 600);
+      color: $black;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+        @include font(18px, 22px, $base-font, 600);
+      }
+
+      @include before() {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: block;
+        height: 100%;
+        border-left: 4px solid;
+
+        @each $key, $level in $LEVELS {
+          .root_#{map.get($level, slug)} & {
+            border-color: map.get($level, color);
+          }
+        }
+      }
+    }
+
+    .blockquote_quote & {
+      position: relative;
+      @include columnWithPush(8.5, 1.5, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      @include font(24px, 30px, $base-font, 600);
+      color: $black;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+        @include font(18px, 22px, $base-font, 600);
+      }
+
+      @include before() {
+        position: absolute;
+        top: 0;
+        left: calc(-0.5 / 8.5 * 100%);
+        margin-left: 16px;
+
+        @include media(before, tablet) {
+          display: none;
+        }
+
+        @each $key, $level in $LEVELS {
+          .root_#{map.get($level, slug)} & {
+            @include svgSprite(icon-quote-47-#{map.get($level, color-name)});
+          }
+        }
+      }
+    }
+  }
+}

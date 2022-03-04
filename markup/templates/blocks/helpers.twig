@@ -1,0 +1,44 @@
+{% macro menuLink(self, page, highlight) %}
+    {% set isCurrent = page and highlight and isCurrent(self, page) %}
+    {% set isActive = page and highlight and isActive(self, page) %}
+
+    <a{% if self.className %} class="{{ self.className|mod(self.mod, false, true) }}{% if isActive %} is-active{% endif %}{{ self|jsClass }}"{% endif %}
+        {% if self.url %}href="{{ menu|url(self.url) }}"{% endif %}
+        {% if self.external %}target="_blank" rel="noopener noreferrer"{% endif %}
+        {% if isCurrent %}aria-current="page"{% endif %}
+        {% if self.title %}aria-label="{{ self.title }}" title="{{ self.title }}"{% endif %}
+        {% if self.extra %}{{ self.extra|extra }}{% endif %}>{% if self.label %}{{ self.label|ft }}{% endif %}</a>
+{% endmacro %}
+
+{% macro phoneLink(phone, className, extra) %}
+    {% set phoneParts = phone|split('доб') %}
+    {% set number = phoneParts[0] %}
+    {% set phoneNumber = number %}
+    {% set ext = phoneParts[1] %}
+
+    {% if phoneNumber|slice(0, 1) == '(' %}
+        {% set phoneNumber = '+7'~number %}
+    {% endif %}
+    {% if phoneNumber|slice(0, 1) == '8' or phoneNumber|slice(0, 1) == '7' %}
+        {% set phoneNumber = '+7'~number|slice(1, number|length) %}
+    {% endif %}
+
+    <a{% if className %} class="{{ className }}"{% endif %}
+        href="tel:{{ phoneNumber|phone2numeric }}{% if ext %};ext={{ ext|phone2numeric }}{% endif %}"
+        {% if extra %}{{ extra|extra }}{% endif %}>{{ phone }}</a>
+{% endmacro %}
+
+{% macro emailLink(address, className, extra) %}
+    <a{% if className %} class="{{ className }}"{% endif %}
+        href="mailto:{{ address }}"
+        target="_blank" rel="noopener noreferrer"
+        {% if extra %}{{ extra|extra }}{% endif %}>{{ address }}</a>
+{% endmacro %}
+
+{% macro link(self) %}
+    <a{% if self.className %} class="{{ self.className|mod(self.mod, false, true) }}{% if self.isActive %} is-active{% endif %}{{ self|jsClass }}"{% endif %}
+        {% if self.url %}href="{{ menu|url(self.url) }}"{% endif %}
+        {% if self.external %}target="_blank" rel="noopener noreferrer"{% endif %}
+        {% if self.title %}aria-label="{{ self.title }}" title="{{ self.title }}"{% endif %}
+        {% if self.extra %}{{ self.extra|extra }}{% endif %}>{% if self.label %}{{ self.label|ft }}{% endif %}</a>
+{% endmacro %}

@@ -1,0 +1,220 @@
+@charset "UTF-8";
+/* --------------------
+   Художники
+   -------------------- */
+
+.artists {
+  @include highlight();
+  @extend %row;
+
+  &_main {
+    @include media(tablet) {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &_default {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__header {
+    @include highlight();
+    @extend %column;
+    position: relative;
+
+    .artists_main & {
+      @include column(4, 8);
+      padding-left: 8px;
+      padding-right: 8px;
+
+      @include media(tablet) {
+        @include column(3, 10);
+        padding-top: 170px;
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-bottom: -80px;
+        z-index: 1;
+        pointer-events: none;
+      }
+    }
+
+    .artists_default & {
+      @include column(3, 10);
+      padding-top: 170px;
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-bottom: -80px;
+      z-index: 1;
+      pointer-events: none;
+    }
+  }
+
+  &__label {
+    @include font(20px, 20px, $base-font, 700);
+    text-transform: lowercase;
+    color: $pink;
+
+    .artists_main & {
+      @include media(before, tablet) {
+        margin-bottom: 10px;
+      }
+      @include media(tablet) {
+        @include font(36px, 40px);
+        pointer-events: all;
+      }
+    }
+
+    .artists_default & {
+      @include font(36px, 40px);
+      pointer-events: all;
+    }
+  }
+
+  &__list {
+    @include highlight();
+    @extend %column;
+    @extend %row;
+    position: relative;
+    z-index: 0;
+
+    .artists_main & {
+      @include media(tablet) {
+        @include column(10, 10);
+        align-self: flex-end;
+        margin-top: 300px;
+      }
+    }
+
+    .artists_default & {
+      @include column(10, 10);
+      align-self: flex-end;
+      margin-top: 300px;
+
+      @include media(before, tablet) {
+        margin-top: 0;
+      }
+    }
+  }
+
+  &__item {
+    @include highlight();
+    @extend %column;
+
+    .artists_main & {
+      @include media(before, tablet) {
+        @include column(7, 8);
+        margin-top: 20px;
+      }
+      @include media(tablet) {
+        @include column(2, 10);
+      }
+    }
+
+    .artists_default & {
+
+      @include media(tablet) {
+        @include column(2, 10);
+      }
+    }
+  }
+
+  &__after {
+    @include highlight();
+    @extend %column;
+
+    .artists_main & {
+      @include media(before, tablet) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        @include column(1, 8);
+        height: 50%;
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+
+      @include media(tablet) {
+        position: relative;
+        align-self: flex-end;
+        justify-self: flex-end;
+        @include columnWithPush(1, -1, 10);
+        height: calc(100% - 170px);
+        padding-top: 40px;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+
+    .artists_default & {
+      position: relative;
+      align-self: flex-end;
+      justify-self: flex-end;
+      height: calc(100% - 170px);
+      padding-top: 40px;
+      padding-left: 16px;
+      padding-right: 16px;
+
+      @include media(before, tablet) {
+        align-self: flex-start;
+        padding-top: 0;
+      }
+
+      @include media(tablet) {
+        @include columnWithPush(1, -1, 10);
+        align-self: flex-start;
+      }
+    }
+  }
+
+  &__more {
+    position: absolute;
+    left: 100%;
+    display: inline-block;
+    vertical-align: bottom;
+    @include font(24px, 28px, $title-font, 700);
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    transform: rotate(-90deg);
+    color: $pink;
+    transform-origin: 0 100%;
+
+    @include media(before, tablet){
+      top: 60px;
+    }
+
+    .artists_main & {
+      top: 300px;
+      margin-left: -8px;
+
+      @include media(tablet) {
+        top: 80%;
+        margin-left: -16px;
+
+        @include media(before, tablet){
+          margin-left: 0;
+        }
+      }
+    }
+
+    .artists_default & {
+      bottom: 0;
+      margin-left: -16px;
+
+      @include media(before, tablet){
+        margin-left: 0;
+        top: 0;
+      }
+    }
+
+    @include before() {
+      display: inline-block;
+      vertical-align: bottom;
+      @include svgSprite(icon-arrow-16-pink);
+      margin-right: 4px;
+      transform: rotate(90deg);
+    }
+  }
+}

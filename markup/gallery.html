@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="ru" class="has-no-js" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    <title>Галерея | Диафильм онлайн</title>
+    <meta name="application-name" content="Диафильм онлайн">
+    <meta name="description" content="Настоящая библиотека позитивов">
+    <meta name="keywords" content="">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="yandex-tableau-widget" content="logo=/static/core/icons/apple-touch-icon-120x120.png, color=#000000">
+    <meta name="msapplication-config" content="/static/core/browserconfig.xml">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta name="msapplication-TileImage" content="/static/core/icons/mstile-144x144.png">
+    <meta name="msapplication-square70x70logo" content="/static/core/icons/mstile-70x70.png">
+    <meta name="msapplication-square150x150logo" content="/static/core/icons/mstile-150x150.png">
+    <meta name="msapplication-wide310x150logo" content="/static/core/icons/mstile-310x150.png">
+    <meta name="msapplication-square310x310logo" content="/static/core/icons/mstile-310x310.png">
+    <link rel="manifest" href="/static/core/manifest.webmanifest">
+    <link rel="shortcut icon" href="/static/core/icons/favicon.ico?dev=1" sizes="16x16 32x32">
+    <link rel="mask-icon" href="/static/core/icons/mask-icon.svg" color="#000000">
+    <link rel="apple-touch-icon" sizes="80x80" href="/static/core/icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/core/icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/core/icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/static/core/icons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/core/icons/apple-touch-icon-180x180.png">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@700&display=swap">
+    <link rel="preload" as="image" href="/static/core/img/sprite.svg">
+    <!-- Этот скрипт нужен только в верстке -->
+    <script src="//localhost:1210/livereload.js" async></script>
+    <link rel="stylesheet" href="/static/core/css/global.css">
+    <!-- Этот стиль нужен только в верстке -->
+    <link rel="stylesheet" href="/static/core/css/develop.css">
+    <script src="/static/vendor/jquery.min.js" defer></script>
+    <script src="/static/vendor/modernizr.min.js" defer></script>
+    <script src="/static/core/js/global.js" defer></script>
+    <!-- Этот скрипт нужен только в верстке -->
+    <script src="/static/core/js/develop.js" defer></script>
+    <!-- Разработано в DesignDepot | https://designdepot.ru/ -->
+</head>
+<!-- класс `root_%section%` зависит от раздела -->
+<body class="root root_gallery" id="top" itemscope itemtype="http://schema.org/WebPage">
+    <header class="header header_default js-header">
+        <a class="header__skip" href="#main">К содержимому</a>
+        <div class="header__container">
+            <div class="header__row">
+                <div class="header__logo">
+                    <a class="logo logo_default" href="index.html">
+                    </a>
+                </div>
+                <div class="header__intro">
+                    <div class="intro intro_default">
+                        <span class="intro__number">4</span>
+                        <span class="intro__label" role="heading" aria-level="2">Галерея</span>
+                        <span class="intro__text">выдающиеся художники</span>
+                    </div>
+                </div>
+                <div class="header__buttons">
+                    <a class="header__toggle button button_visual" href="#menu" aria-label="Показать меню" title="Показать меню">
+                        <span class="button__icon button__icon_menu-white"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="layout layout_default js-layout" id="main">
+        <div class="title title_section">
+            <div class="title__container">
+                <div class="title__row">
+                    <div class="title__levels">
+                        <div class="title__number">4</div>
+                        <nav class="title__nav">
+                            <a class="title__button" href="#foyer">
+                                <span>Фойе</span>
+                            </a>
+                            <a class="title__button" href="showroom.html">
+                                <span>Выставочный зал</span>
+                            </a>
+                            <a class="title__button" href="viewing-hall.html">
+                                <span>Просмотровый зал</span>
+                            </a>
+                            <a class="title__button is-active" href="gallery.html">
+                                <span>Галерея</span>
+                            </a>
+                            <a class="title__button" href="archive.html">
+                                <span>Архив</span>
+                            </a>
+                            <a class="title__button" href="cafeteria.html">
+                                <span>Кафетерий</span>
+                            </a>
+                        </nav>
+                    </div>
+                    <h1 class="title__label">Галерея</h1>
+                </div>
+            </div>
+        </div>
+        <section class="feed feed_artists js-feed-lazy">
+            <div class="feed__container">
+                <div class="feed__row">
+                    <div class="feed__header">
+                        <div class="feed__label" role="heading" aria-level="2">
+                            Выдающиеся художники
+                        </div>
+                        <div class="feed__text">Здравствуйте дорогие наши друзья, вы&nbsp;имеете уникальную возможность рассмотреть всех уважаемых художников нашей студии и&nbsp;их&nbsp;картины!</div>
+                    </div>
+                    <form class="feed__form form form_search form_page js-form-search" action="#" method="get">
+                        <div class="form__body">
+                            <div class="form__field form__field_full">
+                                <div class="field field_default js-form-field has-button">
+                                    <input class="field__element field__element_search is-string is-external-q js-form-field-element" type="search" name="q" id="id_search_q">
+                                    <button class="field__button button button_field" type="submit" aria-label="Поиск" title="Поиск">
+                                        <span class="button__icon button__icon_search-black"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="feed__tags">
+                        <a class="feed__button_tag button button_tag is-active" href="#">
+                            <span class="button__label">Все&nbsp;
+                                <span>1434</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Аврутис Хаим
+                                <span>33</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Багин Петр Иванович
+                                <span>11</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Безбородов Константин Васильевич
+                                <span>16</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Беньяминсон Эрик Евгеньевич
+                                <span>34</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Большакова Ирина Ивановна
+                                <span>27</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Бордзиловский Витольд Янович
+                                <span>25</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Брей Андрей Андреевич
+                                <span>28</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Былинская Римма Васильевна
+                                <span>20</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Винокуров Александр Васильевич
+                                <span>16</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Вишневецкая Жанна Изяславовна
+                                <span>81</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Владимирский Леонид Викторович
+                                <span>7</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Вовикова Алла Матусовна
+                                <span>21</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Волков Стален Никандрович
+                                <span>18</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Гвоздева Ольга Сергеевна
+                                <span>15</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Гершкович Юрий Соломонович
+                                <span>10</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Гнисюк Татьяна Алексеевна
+                                <span>15</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Гущин Борис Николаевич
+                                <span>29</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Диодоров Борис Аркадьевич
+                                <span>5</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Дранишникова Вера Борисовна
+                                <span>23</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Дугин Владимир Александрович
+                                <span>18</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Евган Евгений Николаевич
+                                <span>6</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Елисеев Анатолий Михайлович
+                                <span>6</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Зеброва Тамара Александровна
+                                <span>14</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Калаушин Борис Матвеевич
+                                <span>19</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Игнатов Василий Георгиевич
+                                <span>20</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Котеночкин Вячеслав Михайлович
+                                <span>8</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Лемкуль Федор Викторович
+                                <span>6</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Лернер Натан Озиасович
+                                <span>9</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Лосин Вениамин Николаевич
+                                <span>12</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Маврина Татьяна Алексеевна
+                                <span>7</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Мазурин Герман Алексеевич
+                                <span>16</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Маркин Вячеслав Павлович
+                                <span>28</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Мешков Евгений Алексеевич
+                                <span>21</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Мигунов Евгений Тихонович
+                                <span>16</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Митурич Май&nbsp;Петрович
+                                <span>3</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Монин Евгений Григорьевич
+                                <span>10</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Новозонов Олег Гаврилович
+                                <span>39</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Перцов Владимир Валерьевич
+                                <span>5</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Плевин Владимир Федорович
+                                <span>12</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Портнягина Герта Алексеевна
+                                <span>45</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Ракутин Юрий Михайлович
+                                <span>5</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Репкин Петр Петрович
+                                <span>47</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Савченко Анатолий Михайлович
+                                <span>19</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Сапегин Климент Михайлович
+                                <span>46</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Смехов Лев&nbsp;Моисеевич
+                                <span>8</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Смехов Зелий Львович
+                                <span>9</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Сояшников Григорий Андреевич
+                                <span>49</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Степанцев Борис Павлович
+                                <span>30</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Столяров Ремир Александрович
+                                <span>43</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Сутеев Владимир Григорьевич
+                                <span>4</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Усайтис Леонид Александрович
+                                <span>9</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Чапля Владимир Тимофеевич
+                                <span>6</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Шевченко Владимир Гаврилович
+                                <span>24</span>
+                            </span>
+                        </a>
+                        <a class="feed__button_tag button button_tag" href="#">
+                            <span class="button__label">Эстис Николай Александрович
+                                <span>9</span>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="feed__list js-feed-list">
+                        <div class="feed__item feed__item_default js-feed-item">
+                            <div class="artists artists_default">
+                                <div class="artists__list">
+                                    <div class="artists__item">
+                                        <article class="artist artist_default" data-clickable>
+                                            <div class="artist__picture">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-1/picture-1-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-1/picture-1.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-1/picture-1@2x.jpg 2x" width="222" height="192" intrinsicsize="222x192" alt="">
+                                            </div>
+                                            <div class="artist__photo">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-1/photo-1-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-1/photo-1.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-1/photo-1@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                            </div>
+                                            <div class="artist__label" role="heading" aria-level="4">
+                                                Василий Игнатов
+                                            </div>
+                                            <div class="artist__text">
+                                                На&nbsp;студии В.Г. Игнатов считался признанным мастером-сказочником
+                                            </div>
+                                            <a class="artist__link" href="artist.html">
+                                                Подробнее
+                                            </a>
+                                        </article>
+                                    </div>
+                                    <div class="artists__item">
+                                        <article class="artist artist_default" data-clickable>
+                                            <div class="artist__picture">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-1/picture-2-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-1/picture-2.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-1/picture-2@2x.jpg 2x" width="237" height="226" intrinsicsize="237x226" alt="">
+                                            </div>
+                                            <div class="artist__photo">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-1/photo-2-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-1/photo-2.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-1/photo-2@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                            </div>
+                                            <div class="artist__label" role="heading" aria-level="4">
+                                                Вера Дранишникова
+                                            </div>
+                                            <div class="artist__text">
+                                                Рисовала диафильмы по&nbsp;сказкам и&nbsp;стихотворениям для&nbsp;детей
+                                            </div>
+                                            <a class="artist__link" href="artist.html">
+                                                Подробнее
+                                            </a>
+                                        </article>
+                                    </div>
+                                    <div class="artists__item">
+                                        <article class="artist artist_default" data-clickable>
+                                            <div class="artist__picture">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-1/picture-3-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-1/picture-3.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-1/picture-3@2x.jpg 2x" width="303" height="208" intrinsicsize="303x208" alt="">
+                                            </div>
+                                            <div class="artist__photo">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-1/photo-3-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-1/photo-3.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-1/photo-3@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                            </div>
+                                            <div class="artist__label" role="heading" aria-level="4">
+                                                Макс Жеребчевский
+                                            </div>
+                                            <div class="artist__text">
+                                                Художник-постановщик на&nbsp;киностудии «Союзмультфильм»
+                                            </div>
+                                            <a class="artist__link" href="artist.html">
+                                                Подробнее
+                                            </a>
+                                        </article>
+                                    </div>
+                                    <div class="artists__item">
+                                        <article class="artist artist_default" data-clickable>
+                                            <div class="artist__picture">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-1/picture-4-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-1/picture-4.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-1/picture-4@2x.jpg 2x" width="163" height="196" intrinsicsize="163x196" alt="">
+                                            </div>
+                                            <div class="artist__photo">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-1/photo-4-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-1/photo-4.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-1/photo-4@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                            </div>
+                                            <div class="artist__label" role="heading" aria-level="4">
+                                                Эрнё Зорад
+                                            </div>
+                                            <div class="artist__text">
+                                                Венгерский художник, иллюстратор, графический дизайнер
+                                            </div>
+                                            <a class="artist__link" href="artist.html">
+                                                Подробнее
+                                            </a>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feed__item feed__item_default js-feed-item">
+                            <div class="artists artists_default">
+                                <div class="artists__list">
+                                    <div class="artists__item">
+                                        <article class="artist artist_default" data-clickable>
+                                            <div class="artist__picture">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-2/picture-1-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-2/picture-1.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-2/picture-1@2x.jpg 2x" width="222" height="192" intrinsicsize="222x192" alt="">
+                                            </div>
+                                            <div class="artist__photo">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-2/photo-1-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-2/photo-1.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-2/photo-1@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                            </div>
+                                            <div class="artist__label" role="heading" aria-level="4">
+                                                Винокуров Александр
+                                            </div>
+                                            <div class="artist__text">
+                                                Советский художник-постановщик фильмов
+                                            </div>
+                                            <a class="artist__link" href="artist.html">
+                                                Подробнее
+                                            </a>
+                                        </article>
+                                    </div>
+                                    <div class="artists__item">
+                                        <article class="artist artist_default" data-clickable>
+                                            <div class="artist__picture">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-2/picture-2-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-2/picture-2.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-2/picture-2@2x.jpg 2x" width="237" height="226" intrinsicsize="237x226" alt="">
+                                            </div>
+                                            <div class="artist__photo">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-2/photo-2-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-2/photo-2.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-2/photo-2@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                            </div>
+                                            <div class="artist__label" role="heading" aria-level="4">
+                                                Волков Стален
+                                            </div>
+                                            <div class="artist__text">
+                                                Рисовала диафильмы по&nbsp;сказкам и&nbsp;стихотворениям для&nbsp;детей
+                                            </div>
+                                            <a class="artist__link" href="artist.html">
+                                                Подробнее
+                                            </a>
+                                        </article>
+                                    </div>
+                                    <div class="artists__item">
+                                        <article class="artist artist_default" data-clickable>
+                                            <div class="artist__picture">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-2/picture-3-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-2/picture-3.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-2/picture-3@2x.jpg 2x" width="303" height="208" intrinsicsize="303x208" alt="">
+                                            </div>
+                                            <div class="artist__photo">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-2/photo-3-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-2/photo-3.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-2/photo-3@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                            </div>
+                                            <div class="artist__label" role="heading" aria-level="4">
+                                                Владимирский Леонид
+                                            </div>
+                                            <div class="artist__text">
+                                                Художник-постановщик на&nbsp;киностудии «Союзмультфильм»
+                                            </div>
+                                            <a class="artist__link" href="artist.html">
+                                                Подробнее
+                                            </a>
+                                        </article>
+                                    </div>
+                                    <div class="artists__item">
+                                        <article class="artist artist_default" data-clickable>
+                                            <div class="artist__picture">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-2/picture-4-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-2/picture-4.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-2/picture-4@2x.jpg 2x" width="163" height="196" intrinsicsize="163x196" alt="">
+                                            </div>
+                                            <div class="artist__photo">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-2/photo-4-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-2/photo-4.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-2/photo-4@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                            </div>
+                                            <div class="artist__label" role="heading" aria-level="4">
+                                                Тамара Зеброва
+                                            </div>
+                                            <div class="artist__text">
+                                                График. Художник кино и&nbsp;живописец. Художник диафильмов.
+                                            </div>
+                                            <a class="artist__link" href="artist.html">
+                                                Подробнее
+                                            </a>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="feed__item feed__item_default js-feed-item">
+                            <div class="artists artists_default">
+                                <div class="artists__list">
+                                    <div class="artists__item">
+                                        <article class="artist artist_default" data-clickable>
+                                            <div class="artist__picture">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-3/picture-1-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-3/picture-1.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-3/picture-1@2x.jpg 2x" width="222" height="192" intrinsicsize="222x192" alt="">
+                                            </div>
+                                            <div class="artist__photo">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-3/photo-1-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-3/photo-1.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-3/photo-1@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                            </div>
+                                            <div class="artist__label" role="heading" aria-level="4">
+                                                Петр Брагин
+                                            </div>
+                                            <div class="artist__text">
+                                                Рисовала диафильмы по&nbsp;сказкам и&nbsp;стихотворениям для&nbsp;детей
+                                            </div>
+                                            <a class="artist__link" href="artist.html">
+                                                Подробнее
+                                            </a>
+                                        </article>
+                                    </div>
+                                    <div class="artists__item">
+                                        <article class="artist artist_default" data-clickable>
+                                            <div class="artist__picture">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-3/picture-2-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-3/picture-2.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-3/picture-2@2x.jpg 2x" width="237" height="226" intrinsicsize="237x226" alt="">
+                                            </div>
+                                            <div class="artist__photo">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-3/photo-2-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-3/photo-2.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-3/photo-2@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                            </div>
+                                            <div class="artist__label" role="heading" aria-level="4">
+                                                Беньяминсон Эрик
+                                            </div>
+                                            <div class="artist__text">
+                                                Художник-постановщик на&nbsp;киностудии «Союзмультфильм»
+                                            </div>
+                                            <a class="artist__link" href="artist.html">
+                                                Подробнее
+                                            </a>
+                                        </article>
+                                    </div>
+                                    <div class="artists__item">
+                                        <article class="artist artist_default" data-clickable>
+                                            <div class="artist__picture">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-3/picture-3-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-3/picture-3.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-3/picture-3@2x.jpg 2x" width="303" height="208" intrinsicsize="303x208" alt="">
+                                            </div>
+                                            <div class="artist__photo">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-3/photo-3-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-3/photo-3.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-3/photo-3@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                            </div>
+                                            <div class="artist__label" role="heading" aria-level="4">
+                                                Брей Андрей
+                                            </div>
+                                            <div class="artist__text">
+                                                Венгерский художник, иллюстратор, графический дизайнер
+                                            </div>
+                                            <a class="artist__link" href="artist.html">
+                                                Подробнее
+                                            </a>
+                                        </article>
+                                    </div>
+                                    <div class="artists__item">
+                                        <article class="artist artist_default" data-clickable>
+                                            <div class="artist__picture">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-3/picture-4-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-3/picture-4.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-3/picture-4@2x.jpg 2x" width="163" height="196" intrinsicsize="163x196" alt="">
+                                            </div>
+                                            <div class="artist__photo">
+                                                <img class="artist__img" loading="lazy" src="/static/core/markup-media/gallery/artists/artist-3/photo-4-thumb.jpg" data-src="/static/core/markup-media/gallery/artists/artist-3/photo-4.jpg" data-srcset="/static/core/markup-media/gallery/artists/artist-3/photo-4@2x.jpg 2x" width="120" height="150" intrinsicsize="120x150" alt="">
+                                            </div>
+                                            <div class="artist__label" role="heading" aria-level="4">
+                                                Бордзиловский Витольд
+                                            </div>
+                                            <div class="artist__text">
+                                                Советский режиссёр-мультипликатор и&nbsp;художник-постановщик
+                                            </div>
+                                            <a class="artist__link" href="artist.html">
+                                                Подробнее
+                                            </a>
+                                        </article>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="feed__pagination">
+                        <a class="feed__button feed__button_more button button_inline js-feed-button" href="?page=2" data-base="ajax/feed-more-artists.html" rel="next">
+                            <span class="button__icon button__icon_before button__icon_arrow-down"></span>
+                            <span class="button__label">Загрузить ещё</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer footer_default">
+        <div class="footer__container">
+            <div class="footer__row">
+                <div class="footer__copy">© Диафильм онлайн 2021</div>
+                <div class="footer__phone">
+                    <a href="tel:+74955151617">7 (495) 515 16 17</a>
+                </div>
+                <div class="footer__form">
+                    <form class="form form_footer js-form-footer" method="post" action="ajax/form-success.json">
+                        <div class="form__text">подпишитесь на новости</div>
+                        <div class="form__body">
+                            <div class="form__field form__field_full">
+                                <div class="field field_default js-form-field">
+                                    <input class="field__element field__element_email is-email is-external-email js-form-field-element" type="email" name="email" id="id_footer_email">
+                                    <label class="field__placeholder js-form-field-placeholder" for="id_footer_email">e-mail</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="footer__network">
+                    <div class="networks networks_footer">
+                        <div class="networks__label" role="heading" aria-level="4">давайте дружить</div>
+                        <ul class="networks__list">
+                            <li class="networks__item">
+                                <a class="networks__button button button_square" href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+                                    <span class="button__icon button__icon_fb-white"></span>
+                                </a>
+                            </li>
+                            <li class="networks__item">
+                                <a class="networks__button button button_square" href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                                    <span class="button__icon button__icon_ig-white"></span>
+                                </a>
+                            </li>
+                            <li class="networks__item">
+                                <a class="networks__button button button_square" href="#" target="_blank" rel="noopener noreferrer" aria-label="Vkontakte" title="Vkontakte">
+                                    <span class="button__icon button__icon_vk-white"></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="popup popup_menu js-popup-menu" id="menu" role="dialog" tabindex="-1" hidden>
+        <div class="popup__container">
+            <div class="popup__row">
+                <div class="popup__body js-popup-body">
+                    <a class="popup__close js-popup-close button button_visual" href="#main" aria-label="Закрыть" title="Закрыть" role="button">
+                        <span class="button__icon button__icon_close-white"></span>
+                    </a>
+                    <div class="offcanvas">
+                        <div class="offcanvas__header">
+                            <div class="offcanvas__logo">
+                                <a class="logo logo_default" href="index.html">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="offcanvas__menu">
+                            <nav class="menu menu_main" aria-label="Меню сайта">
+                                <ul class="menu__level menu__level_1">
+                                    <li class="menu__item">
+                                        <a class="menu__link menu__link_children" href="#foyer">Фойе</a>
+                                        <div class="menu__text">экскурсии</div>
+                                        <ul class="menu__level menu__level_2">
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="for-children.html">Детям</a>
+                                            </li>
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="for-school.html">Школьникам</a>
+                                            </li>
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="for-family.html">Для&nbsp;всей семьи</a>
+                                            </li>
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="for-pros.html">Для&nbsp;профи</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu__item">
+                                        <a class="menu__link menu__link_children" href="showroom.html">Выставочный зал</a>
+                                        <div class="menu__text">экспонаты и пресса</div>
+                                        <ul class="menu__level menu__level_2">
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="showroom.html#!tab=models">Экспонаты</a>
+                                            </li>
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="showroom.html#!tab=publications">Пресса</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu__item">
+                                        <a class="menu__link" href="viewing-hall.html">Просмотровый зал</a>
+                                        <div class="menu__text">каталог диафильмов</div>
+                                    </li>
+                                    <li class="menu__item">
+                                        <a class="menu__link is-active" href="gallery.html" aria-current="page">Галерея</a>
+                                        <div class="menu__text">выдающиеся художники</div>
+                                    </li>
+                                    <li class="menu__item">
+                                        <a class="menu__link menu__link_children" href="archive.html">Архив</a>
+                                        <div class="menu__text">история и технологии</div>
+                                        <ul class="menu__level menu__level_2">
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="archive.html#!tab=history">История</a>
+                                            </li>
+                                            <li class="menu__item">
+                                                <a class="menu__link" href="archive.html#!tab=technologies">Технологии</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="menu__item">
+                                        <a class="menu__link" href="cafeteria.html">Кафетерий</a>
+                                        <div class="menu__text">о музее новости и статьи</div>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="offcanvas__hall">
+                            <article class="hall hall_default" data-clickable>
+                                <div class="hall__label" role="heading" aria-level="3">
+                                    Сегодня в зале
+                                </div>
+                                <div class="hall__picture">
+                                    <img class="hall__image" loading="lazy" src="/static/core/markup-media/main/preview-1-thumb.jpg" data-src="/static/core/markup-media/main/preview-1.jpg" data-srcset="/static/core/markup-media/main/preview-1@2x.jpg 2x" width="280" height="184" intrinsicsize="280x184" alt="Название диафильма">
+                                </div>
+                                <div class="hall__more">
+                                    <a class="hall__link" href="#">Смотреть</a>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="offcanvas__form">
+                            <form class="form form_search form_menu js-form-search" action="#" method="get">
+                                <div class="form__body">
+                                    <div class="form__field form__field_full">
+                                        <div class="field field_default js-form-field has-button">
+                                            <input class="field__element field__element_search is-string is-external-q js-form-field-element" type="search" name="q" id="id_menu_q">
+                                            <button class="field__button button button_field" type="submit" aria-label="Поиск" title="Поиск">
+                                                <span class="button__icon button__icon_search-white"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="notifications js-notifications">
+        <!--googleoff: all-->
+        <!--noindex-->
+        <!--[if lte IE 9]>
+    <div class="notification notification_default notification_warning robots-nocontent" role="alert" aria-hidden="false">
+        <div class="notification__container">
+            <div class="notification__row">
+                <div class="notification__text">
+                    <p>Вы используете <strong>устаревший</strong> браузер. Пожалуйста
+                        <a href="https://browsehappy.com/" target="_blank" rel="nofollow noopener noreferrer">обновите
+                            его</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <![endif]-->
+        <noscript>
+            <div class="notification notification_default notification_warning robots-nocontent" role="alert" aria-hidden="false">
+                <div class="notification__container">
+                    <div class="notification__row">
+                        <div class="notification__text">
+                            <p>Для полной функциональности этого сайта необходимо включить
+                                <strong>JavaScript</strong>. Вот
+                                <a href="https://www.enable-javascript.com/ru/" target="_blank" rel="nofollow noopener noreferrer">
+                                    инструкции, как включить JavaScript в вашем браузере</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </noscript>
+        <!--/noindex-->
+        <!--googleon: all-->
+    </div>
+</body>
+</html>

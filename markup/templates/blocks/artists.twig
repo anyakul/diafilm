@@ -1,0 +1,29 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'artists'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    {% if self.wrap %}
+    <div class="artists__container">
+        <div class="artists__row">
+            {% endif %}
+            {% if self.label %}
+                <div class="artists__header">
+                    <div class="artists__label" role="heading" aria-level="3">{{ self.label|ft }}</div>
+                </div>
+            {% endif %}
+            <div class="artists__list">
+                {% for item in self.items %}
+                    <div class="artists__item">
+                        {% include '@blocks/artist.twig' with {
+                            self: item
+                        } %}
+                    </div>
+                {% endfor %}
+            </div>
+            {% if self.after %}
+                <div class="artists__after">
+                    <a class="artists__more" href="{{ menu|url(self.after.url) }}">{{ self.after.label|ft }}</a>
+                </div>
+            {% endif %}
+            {% if self.wrap %}
+        </div>
+    </div>
+    {% endif %}
+</div>

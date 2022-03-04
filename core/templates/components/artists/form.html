@@ -1,0 +1,14 @@
+<form class="feed__form form form_search js-form-search" action="" method="get">
+    <div class="form__body">
+        <div class="form__field form__field_full">
+            <div class="field field_default js-form-field has-button">
+                <input class="field__element field__element_search is-string is-external-q js-form-field-element"
+                       type="search" name="query" value="{{ request.GET.query }}" id="id_search_q">
+                <button class="field__button button button_field"
+                        type="submit" aria-label="Поиск" title="Поиск">
+                    <span class="button__icon button__icon_search-black"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

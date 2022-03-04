@@ -1,0 +1,149 @@
+@charset "UTF-8";
+/* --------------------
+   Колонки
+   -------------------- */
+
+.columns {
+  @extend %section;
+
+  &_default {
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &_diafilm {
+    position: relative;
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &_contacts {
+    position: relative;
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    @include media(before, tablet) {
+      margin-top: 0;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+
+    .columns_diafilm & {
+      position: relative;
+      align-items: stretch;
+      padding-top: 24px;
+      padding-bottom: 24px;
+
+      @include after() {
+        position: absolute;
+        left: calc(1 / 12 * 100%);
+        right: 0;
+        bottom: 0;
+        margin-left: 16px;
+        margin-right: 16px;
+        border-top: 2px solid $white;
+      }
+    }
+  }
+
+  &__column {
+    @include highlight();
+    @extend %column;
+
+    .columns_default & {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .columns_diafilm & {
+      padding: 24px 16px;
+    }
+
+    &_1 {
+      .columns_default & {
+        @include columnWithPush(5, 1, 12);
+
+        @include media(before, tablet) {
+          width: 100%;
+          margin-left: 0;
+          margin-bottom: 20px;
+        }
+      }
+
+      .columns_diafilm & {
+        position: relative;
+        @include columnWithPush(5, 1, 12);
+
+        @include media(before, tablet) {
+          width: 100%;
+          margin-left: 0;
+        }
+
+        @include before() {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: 2px;
+          margin: 0 -1px;
+          background-color: $white;
+        }
+      }
+
+      .columns_contacts & {
+        @include columnWithPush(5, 2, 12);
+
+        @include media(before, tablet) {
+          width: 0;
+          min-width: 0;
+        }
+      }
+    }
+
+    &_2 {
+      .columns_default & {
+        @include column(5, 12);
+
+        @include media(before, tablet) {
+          width: 100%;
+          padding: 0 20px;
+        }
+      }
+
+      .columns_diafilm & {
+        @include column(6, 12);
+
+        @include media(before, tablet) {
+          width: 100%;
+          margin-left: 0;
+        }
+      }
+
+      .columns_contacts & {
+        @include column(4, 12);
+
+        @include media(before, tablet) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

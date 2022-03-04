@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  frontend:
+    environment:
+      SERVER_NAME: "localhost"
+
+  backend:
+    build:
+        context: "."
+    environment:
+      DEBUG: 1
+      SENTRY_URL: ""
+
+      EMAIL_BACKEND: "smtp"
+      EMAIL_HOST: "mail"
+      EMAIL_PORT: 1025
+      EMAIL_USE_TLS: 0
+    volumes:
+      - ./application/:/app/application/
+      - ./core/:/app/core/
+
+  mail:
+    image: mailhog/mailhog
+    ports:
+      - "8025:8025"

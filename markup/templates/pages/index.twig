@@ -1,0 +1,224 @@
+{% extends '@layouts/default.twig' %}
+
+{% block vendor_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_styles %}
+{% endblock %}
+
+{% block vendor_scripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block viewport %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, minimal-ui">
+{% endblock %}
+
+{% block layout_content %}
+    {% embed '@blocks/elevator.twig' with {
+        self: {
+            mod: '',
+            jsClassName: 'js-elevator',
+            levels: getMenu(menu, root.id)
+        }
+    } %}
+        {% block elevator_floor_1 %}
+            {% embed '@blocks/section.twig' with {
+                self: {
+                    mod: 'foyer',
+                    label: 'Фойе'
+                }
+            } %}
+                {% block section_body %}
+                    <div class="foyer foyer_main">
+                        <div class="foyer__header">
+                            <div class="foyer__label" role="heading" aria-level="3">Экскурсии</div>
+                            <div class="foyer__lead">
+                                {% filter ft %}
+                                    Представляем экскурсии по музею: выберите подходящий вам раздел и — вперед в волшебный мир диафильма!
+                                {% endfilter %}
+                            </div>
+                        </div>
+                        <div class="foyer__menu">
+                            {% for item in getMenu(menu, 'foyer') %}
+                                <div class="foyer__item">
+                                    <a class="foyer__link" href="{{ menu|url(item.url) }}">
+                                        <span>{{ item.label|ft }}</span>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endblock section_body %}
+            {% endembed %}{# section #}
+        {% endblock elevator_floor_1 %}
+
+        {% block elevator_floor_2 %}
+            {% embed '@blocks/section.twig' with {
+                self: {
+                    mod: 'showroom',
+                    label: 'Выставочный зал'
+                }
+            } %}
+                {% block section_body %}
+                    <div class="showroom showroom_main">
+                        <div class="showroom__header">
+                            <div class="showroom__label" role="heading" aria-level="3">
+                                {{ 'Экспонаты и пресса'|ft }}
+                            </div>
+                        </div>
+                        <div class="showroom__publications">
+                            <a class="showroom__link" href="{{ menu|url('publications') }}">
+                                {{ 'Исторические публикации о диафильмах'|ft }}
+                            </a>
+                        </div>
+                        <div class="showroom__models">
+                            <a class="showroom__link" href="{{ menu|url('models') }}">
+                                {{ 'Модели проекторов'|ft }}
+                            </a>
+                        </div>
+                        <div class="showroom__extra"></div>
+                        <div class="showroom__after">
+                            <a class="showroom__more" href="{{ menu|url('showroom') }}">{{ 'Прогуляться по залу'|ft }}</a>
+                        </div>
+                    </div>
+                {% endblock section_body %}
+            {% endembed %}{# section #}
+        {% endblock elevator_floor_2 %}
+
+        {% block elevator_floor_3 %}
+            {% embed '@blocks/section.twig' with {
+                self: {
+                    mod: 'viewing-hall',
+                    label: 'Просмотровый зал'
+                }
+            } %}
+                {% block section_body %}
+                    {% include '@blocks/viewing.twig' with {
+                        self: {
+                            mod: 'main',
+                            label: '10 марта',
+                            intro: '190 лет со дня рождения Льва Николаевича Толстого',
+                            paramsInHead: true,
+                            params: {
+                                year: 1954,
+                                age: '4+',
+                                items: [
+                                    { label: 'Русская народная сказка в обработке', value: 'М. Булотова' },
+                                    { label: 'Иллюстратор', value: 'Т. Маврина' },
+                                    { label: 'Худ. редактор', value: 'А. Морозов' },
+                                    { label: 'Редактор', value: 'Е. Кавтиашвили' },
+                                ]
+                            },
+                            film: {
+                                src: '#!view=45563&mode=1up',
+                                image: {
+                                    url: 'main/viewing-hall/image-1.jpg',
+                                    width: 384,
+                                    height: 253,
+                                    alt: 'Морозко'
+                                }
+                            },
+                            title: {
+                                mod: 'image',
+                                image: {
+                                    url: 'main/viewing-hall/title-1.svg',
+                                    width: 680,
+                                    height: 216,
+                                    alt: 'Морозко'
+                                }
+                            },
+                            items: viewing,
+                            more: {
+                                url: 'viewing-hall',
+                                label: 'Смотреть диафильмы'
+                            }
+                        }
+                    } %}
+                {% endblock section_body %}
+            {% endembed %}{# section #}
+        {% endblock elevator_floor_3 %}
+
+        {% block elevator_floor_4 %}
+            {% embed '@blocks/section.twig' with {
+                self: {
+                    mod: 'gallery',
+                    label: 'Галерея'
+                }
+            } %}
+                {% block section_body %}
+                    {% include '@blocks/artists.twig' with {
+                        self: {
+                            mod: 'main',
+                            label: 'Выдающиеся художники',
+                            after: { label: 'Пройти в галерею', url: 'gallery' },
+                            items: artists
+                        }
+                    } %}
+                {% endblock section_body %}
+            {% endembed %}{# section #}
+        {% endblock elevator_floor_4 %}
+
+        {% block elevator_floor_5 %}
+            {% embed '@blocks/section.twig' with {
+                self: {
+                    mod: 'archive',
+                    label: 'Архив'
+                }
+            } %}
+                {% block section_body %}
+                    <div class="archive archive_main">
+                        <div class="archive__header">
+                            <div class="archive__label" role="heading" aria-level="3">история и&nbsp;технологии</div>
+                        </div>
+                        <div class="archive__list">
+                            {% for item in archive %}
+                                <div class="archive__item">
+                                    {% include '@blocks/card.twig' with {
+                                        self: item|extend({
+                                            mod: 'archive'
+                                        })
+                                    } %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="archive__after">
+                            <a class="archive__more" href="{{ menu|url('archive') }}">Поработать с архивом</a>
+                        </div>
+                    </div>
+                {% endblock section_body %}
+            {% endembed %}{# section #}
+        {% endblock elevator_floor_5 %}
+
+        {% block elevator_floor_6 %}
+            {% embed '@blocks/section.twig' with {
+                self: {
+                    mod: 'cafeteria',
+                    label: 'Кафетерий'
+                }
+            } %}
+                {% block section_body %}
+                    {% include '@blocks/cafeteria.twig' with {
+                        self: {
+                            mod: 'main',
+                            wrap: false,
+                            video: true,
+                            label: 'О музее',
+                            items: cafeteria,
+                            after: true
+                        }
+                    } %}
+                {% endblock section_body %}
+            {% endembed %}{# section #}
+        {% endblock elevator_floor_6 %}
+
+    {% endembed %}{# elevator #}
+{% endblock layout_content %}
+
+{% block popups %}
+    {{ parent() }}
+{% endblock popups %}

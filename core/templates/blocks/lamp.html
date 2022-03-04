@@ -1,0 +1,17 @@
+<div class="detail detail_default">
+    <dl class="detail__params params params_detail">
+        <div class="params__item">
+            <dt class="params__term">мощность лампы</dt>
+            <dd class="params__desc">{{ self.power }}</dd>
+        </div>
+        <div class="params__item">
+            <dt class="params__term">размер кадра</dt>
+            <dd class="params__desc">{{ self.frame }}</dd>
+        </div>
+    </dl>
+    <div class="detail__picture">
+        {% with size="max-235x410" format="png" %}
+        {% include "common/img.html" with img=self.image class="detail__image" %}
+        {% endwith %}
+    </div>
+</div>

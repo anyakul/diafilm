@@ -1,0 +1,62 @@
+@charset "UTF-8";
+@use "sass:map";
+@use "sass:math";
+
+$normalSprite: (sprite: (width: {{spritesheet.px.width}}, height: {{spritesheet.px.height}}, pngPath: "{{spritesheet.escaped_image}}"),{{#sprites}}{{name}}: (width: {{px.width}}, height: {{px.height}}, backgroundX: {{px.offset_x}}, backgroundY: {{px.offset_y}}),{{/sprites}});
+$retinaSprite: (sprite: (width: {{retina_spritesheet.px.width}}, height: {{retina_spritesheet.px.height}}, pngPath: "{{retina_spritesheet.escaped_image}}"),{{#retina_sprites}}"{{name}}": (width: {{px.width}}, height: {{px.height}}, backgroundX: {{px.offset_x}}, backgroundY: {{px.offset_y}}),{{/retina_sprites}});
+
+@mixin pngSprite($icon) {
+    $spriteNormalMap: map.get($normalSprite, sprite);
+    $spriteRetinaMap: map.get($retinaSprite, sprite);
+
+    $iconNormalMap: map.get($normalSprite, $icon);
+    $iconRetinaMap: map.get($retinaSprite, "#{$icon}@2x");
+
+    @if $iconNormalMap {
+        width: map.get($iconNormalMap, width);
+        height: map.get($iconNormalMap, height);
+        background-position: map.get($iconNormalMap, backgroundX) map.get($iconNormalMap, backgroundY);
+        background-size: map.get($spriteNormalMap, width) map.get($spriteNormalMap, height);
+        .has-webp & {
+            background-image: url("#{str-replace(map.get($spriteNormalMap, pngPath), ".png", ".webp")}");
+        }
+        .has-no-webp & {
+            background-image: url("#{map.get($spriteNormalMap, pngPath)}");
+        }
+    }
+
+    @if $iconRetinaMap {
+        .has-webp & {
+            background-image: url("#{str-replace(map.get($spriteRetinaMap, pngPath), ".png", ".webp")}");
+        }
+        .has-no-webp & {
+            background-image: url("#{map.get($spriteRetinaMap, pngPath)}");
+        }
+    }
+}
+
+@mixin pngIcon($icon, $top: 50%, $left: 50%, $position: absolute) {
+    $spriteNormalMap: map.get($normalSprite, sprite);
+    $spriteRetinaMap: map.get($retinaSprite, sprite);
+
+    $iconNormalMap: map.get($normalSprite, $icon);
+    $iconRetinaMap: map.get($retinaSprite, "#{$icon}@2x");
+
+    @if $iconNormalMap {
+        position: $position;
+        top: $top;
+        left: $left;
+        display: block;
+        width: map.get($iconNormalMap, width);
+        height: map.get($iconNormalMap, height);
+        margin: math.div(map.get($iconNormalMap, height), -2) math.div(map.get($iconNormalMap, width), -2);
+        background-image: url("#{map.get($spriteNormalMap, pngPath)}");
+        background-position: map.get($iconNormalMap, backgroundX) map.get($iconNormalMap, backgroundY);
+        background-size: map.get($spriteNormalMap, width) map.get($spriteNormalMap, height);
+    }
+    @if $iconRetinaMap {
+        @media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+            background-image: url("#{map.get($spriteRetinaMap, pngPath)}");
+        }
+    }
+}

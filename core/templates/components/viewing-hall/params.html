@@ -1,0 +1,16 @@
+<div class="viewing__params params params_viewing">
+    <time class="params__year" datetime="{{ main.diafilm.issued_at }}">
+        {{ main.diafilm.issued_at }}&nbsp;г.
+    </time>
+    <div class="params__age"></div>
+    {% for block in main.content %}
+        {% if block.block_type == "facts" %}
+            {% for fact in block.value.items %}
+                <div class="params__item">
+                    {{ fact.value.bound_blocks.name }}
+                    <strong>{{ fact.value.bound_blocks.value }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+</div>

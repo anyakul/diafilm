@@ -1,0 +1,23 @@
+{% load content_tags %}
+
+{% get_collection_pages as list_page %}
+
+<section class="feed feed_collections js-feed-lazy">
+    <div class="feed__container">
+        <div class="feed__row">
+            <div class="feed__list js-feed-list">
+                {% include "components/collections/list.html" with object_list=list_page.object_list %}
+            </div>
+
+            {% if list_page.has_next %}
+            <div class="feed__pagination">
+                <a class="feed__button feed__button_more button button_inline js-feed-button"
+                   href="?collection_page={{ list_page.next_page_number }}" data-base="{% url "api:collections" %}" rel="next">
+                    <span class="button__icon button__icon_before button__icon_arrow-down"></span>
+                    <span class="button__label">Загрузить ещё</span>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

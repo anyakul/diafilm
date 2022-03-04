@@ -1,0 +1,87 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'viewing'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    {% if self.wrap %}
+    <div class="viewing__container">
+        <div class="viewing__row">
+            {% endif %}
+            <div class="viewing__header">
+                {% if self.label %}
+                    <div class="viewing__label" role="heading" aria-level="3">{{ self.label|ft }}</div>
+                {% endif %}
+                {% if self.intro %}
+                    <div class="viewing__intro">{{ self.intro|ft }}</div>
+                {% endif %}
+                {% if self.text %}
+                    <div class="viewing__text is-editable">{{ self.text|ft }}</div>
+                {% endif %}
+
+                {% if self.params %}
+            {% if not self.paramsInHead %}</div>{% endif %}
+                <div class="viewing__params params params_viewing">
+                    <time class="params__year" datetime="{{ self.params.year }}">{{ self.params.year }}&nbsp;г.</time>
+                    <div class="params__age">{{ self.params.age }}</div>
+                    {% for item in self.params.items %}
+                        <div class="params__item">{{ item.label|ft }} <strong>{{ item.value|ft }}</strong></div>
+                    {% endfor %}
+                </div>
+            {% if self.paramsInHead %}</div>{% endif %}
+        {% endif %}
+
+            {% if self.film %}
+                <div class="viewing__figure">
+                    <div class="viewing__picture">
+                        {% include '@blocks/lazy-image.twig' with {
+                            self: self.film.image|extend({
+                                className: 'viewing__image'
+                            })
+                        } %}
+                        {% include '@blocks/button.twig' with {
+                            self: {
+                                mod: 'visual, abs',
+                                className: 'viewing__button',
+                                icon: 'view',
+                                url: self.film.src
+                            }
+                        } %}
+                    </div>
+                    {% if self.title %}
+                        <div class="{{ 'viewing__title'|mod(self.title.mod) }}">
+                            {% if self.title.image %}
+                                {% include '@blocks/image.twig' with {
+                                    self: self.title.image
+                                } %}
+                            {% else %}
+                                {{ self.title.text|ft }}
+                            {% endif %}
+                        </div>
+                        <!-- возможен вариант вместо картинки название набрано текстом
+                        <div class="viewing__title viewing__title_text">
+                            Сказка о еловой шишке и серой мышке
+                        </div>-->
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% if self.items %}
+                <div class="viewing__carousel">
+                    {% include '@blocks/carousel.twig' with {
+                        self: {
+                            mod: 'viewing',
+                            jsClassName: 'js-carousel-viewing',
+                            itemsTemplate: '@blocks/card.twig',
+                            items: self.items,
+                            extra: { 'data-log': '15' }
+                        }
+                    } %}
+                </div>
+            {% endif %}
+
+            {% if self.more %}
+                <div class="viewing__after">
+                    <a class="viewing__more" href="{{ menu|url(self.more.url) }}">{{ self.more.label|ft }}</a>
+                </div>
+            {% endif %}
+            {% if self.wrap %}
+        </div>
+    </div>
+    {% endif %}
+</div>

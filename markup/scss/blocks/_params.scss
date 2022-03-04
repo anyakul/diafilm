@@ -1,0 +1,310 @@
+@charset "UTF-8";
+/* --------------------
+   Параметры
+   -------------------- */
+
+.params {
+
+  &_default {
+    @extend %section;
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &_columns {
+    @extend %section;
+    margin-top: 36px;
+    margin-bottom: 36px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &_viewing {
+    @include font(14px, 16px, $base-font, 400);
+    color: $white;
+  }
+
+  &_card {
+    .card_earth & {
+      @include font(14px, 16px, $base-font, 400);
+      color: $black;
+    }
+  }
+
+  //&_inline {}
+  //&_detail {}
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+
+    .params_columns & {
+      position: relative;
+      padding-top: 24px;
+      padding-bottom: 24px;
+
+      @include before() {
+        position: absolute;
+        top: 0;
+        left: calc(1 / 12 * 100%);
+        right: 0;
+        margin-left: 16px;
+        margin-right: 16px;
+        border-top: 2px solid $white;
+      }
+      @include after() {
+        position: absolute;
+        left: calc(1 / 12 * 100%);
+        right: 0;
+        bottom: 0;
+        margin-left: 16px;
+        margin-right: 16px;
+        border-top: 2px solid $white;
+      }
+    }
+  }
+
+  &__list {
+    .params_default & {
+      @include highlight();
+      @extend %column;
+      @include columnWithPush(7, 1, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+
+      @include media(before, tablet) {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+    .params_columns & {
+      @include highlight();
+      position: relative;
+      @extend %column;
+      @extend %row;
+      @include columnWithPush(11, 1, 12);
+
+      @include after() {
+        position: absolute;
+        top: 0;
+        left: calc(5 / 11 * 100%);
+        width: 2px;
+        height: 100%;
+        margin: 0 -1px;
+        background-color: $white;
+      }
+
+      @include media(before, tablet){
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  &__item {
+
+    .params_default & {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .params_detail & {
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+    }
+
+    .params_inline & {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .params_columns & {
+      @include highlight();
+      @extend %column;
+      @extend %row;
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 19px;
+      margin-bottom: 19px;
+
+      @include media(before, tablet) {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+    }
+
+    .params_viewing & {
+      display: block;
+      margin-top: 8px;
+
+      strong {
+        font-weight: 700;
+        color: $orange;
+      }
+    }
+
+    .params_card & {
+      .card_earth & {
+        display: block;
+        margin-top: 8px;
+
+        strong {
+          font-weight: 700;
+          color: $green;
+        }
+      }
+    }
+
+    & + & {
+      .params_detail & {
+        border-top: 2px solid $black;
+        margin-top: 30px;
+      }
+
+      .params_inline & {
+        margin-top: 30px;
+
+        @include media(before, tablet) {
+          margin-top: 20px;
+        }
+      }
+    }
+
+    &:nth-child(odd) {
+      .params_columns & {
+        @include column(5, 11);
+      }
+    }
+
+    &:nth-child(even) {
+      .params_columns & {
+        @include column(6, 11);
+      }
+    }
+  }
+
+  &__year {
+    @include highlight();
+
+    .params_viewing & {
+      font-weight: 700;
+      color: $orange;
+    }
+
+    .params_card & {
+      .card_earth & {
+        font-weight: 700;
+        color: $green;
+      }
+    }
+  }
+
+  &__age {
+    @include highlight();
+
+    .params_viewing & {
+      position: absolute;
+      top: 20px;
+
+      .viewing_main & {
+        right: 0;
+      }
+
+      .viewing_inner & {
+        right: 16px;
+      }
+    }
+
+    .params_card & {
+      .card_earth & {
+        position: absolute;
+        top: 14px;
+        right: 0;
+      }
+    }
+  }
+
+  &__term {
+    padding: 0;
+    margin: 0;
+
+    .params_default & {
+      @include font(18px, 30px, $base-font, 600);
+      color: $gray-455;
+      @include after(":");
+    }
+
+    .params_detail & {
+      @include font(24px, 28px, $base-font, 400);
+      color: $black;
+    }
+
+    .params_inline & {
+      @include font(18px, 30px, $base-font, 600);
+      white-space: nowrap;
+      color: $gray-455;
+      @include after(":");
+    }
+
+    .params_columns & {
+      @include font(18px, 30px, $base-font, 600);
+      white-space: nowrap;
+      color: $white;
+      @include after(":");
+
+      @include media(before, tablet) {
+        white-space: normal;
+      }
+    }
+  }
+
+  &__desc {
+    padding: 0;
+    margin: 0;
+
+    .params_default & {
+      margin-left: 14px;
+      @include font(24px, 30px, $base-font, 600);
+      color: $black;
+    }
+
+    .params_detail & {
+      @include font(36px, 40px, $base-font, 600);
+      color: $black;
+    }
+
+    .params_inline & {
+      margin-left: 14px;
+      @include font(24px, 30px, $base-font, 600);
+      color: $black;
+
+      @include media(before, tablet) {
+        @include font(18px, 22px, $base-font, 600);
+        margin-left: auto;
+        text-align: right;
+      }
+    }
+
+    .params_columns & {
+      margin-left: 14px;
+      @include font(24px, 30px, $base-font, 600);
+      color: $white;
+
+      @include media(before, tablet){
+        @include font(18px, 22px, $base-font, 600);
+        margin-left: 0;
+      }
+    }
+  }
+}

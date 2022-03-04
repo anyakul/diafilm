@@ -1,0 +1,71 @@
+@charset "UTF-8";
+/* --------------------
+   Меню
+   -------------------- */
+
+.offcanvas {
+  @extend %row;
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  padding-top: 120px;
+  padding-bottom: 60px;
+
+  @include media(tablet) {
+    height: auto;
+  }
+
+  &__header {
+    @extend %row;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 16px;
+    background-color: $black;
+    z-index: 10;
+  }
+
+  &__logo {
+    @include highlight();
+    @extend %column;
+    @include column(4.5, 6);
+
+    @include media(tablet) {
+      @include column(5, 12);
+    }
+  }
+
+  &__menu {
+    @include highlight();
+    @extend %column;
+
+    @include media(tablet) {
+      @include columnWithPush(7, 1, 12);
+    }
+  }
+
+  &__hall {
+    @include highlight();
+    @extend %column;
+    display: none;
+
+    @include media(tablet) {
+      display: block;
+      @include column(4, 12);
+    }
+  }
+
+  &__form {
+    @include highlight();
+    @extend %column;
+    display: none;
+
+    @include media(tablet) {
+      display: block;
+      @include columnWithPush(10, 1, 12);
+      padding: 39px 0 38px;
+      margin-top: 30px;
+    }
+  }
+}

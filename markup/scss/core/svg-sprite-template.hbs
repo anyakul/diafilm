@@ -1,0 +1,50 @@
+@charset "UTF-8";
+@use "sass:map";
+@use "sass:math";
+
+$svgSprite: (sprite: (width: {{spriteWidth}}px, height: {{spriteHeight}}px, paddingTop: {{padding.top}}px, paddingLeft: {{padding.left}}px, svgPath: "../img/sprite.svg"),{{#shapes}}{{base}}: (width: {{width.inner}}px, height: {{height.inner}}px, backgroundX: {{position.absolute.x}}px, backgroundY: {{position.absolute.y}}px),{{/shapes}});
+
+@mixin svgSprite($icon) {
+    $spriteMap: map.get($svgSprite, sprite);
+    $iconMap: map.get($svgSprite, $icon);
+    $background-position-x: map.get($iconMap, backgroundX) - map.get($spriteMap, paddingLeft);
+    $background-position-y: map.get($iconMap, backgroundY) - map.get($spriteMap, paddingTop);
+
+    @if $iconMap {
+        width: map.get($iconMap, width);
+        height: map.get($iconMap, height);
+        background-image: url("#{map.get($spriteMap, svgPath)}");
+        background-position: $background-position-x $background-position-y;
+        background-size: map.get($spriteMap, width) map.get($spriteMap, height);
+    }
+}
+
+@mixin svgIcon($icon, $top: 50%, $left: 50%, $right: false, $bottom: false, $position: absolute) {
+    $spriteMap: map.get($svgSprite, sprite);
+    $iconMap: map.get($svgSprite, $icon);
+    $background-position-x: map.get($iconMap, backgroundX) - map.get($spriteMap, paddingLeft);
+    $background-position-y: map.get($iconMap, backgroundY) - map.get($spriteMap, paddingTop);
+    $margin-x: math.div(map.get($iconMap, width), -2);
+    $margin-y: math.div(map.get($iconMap, height), -2);
+
+    @if $iconMap {
+        position: $position;
+        @if $bottom {
+            bottom: $bottom;
+        } @else {
+            top: $top;
+        }
+        @if $right {
+            right: $right;
+        } @else {
+            left: $left;
+        }
+        display: block;
+        width: map.get($iconMap, width);
+        height: map.get($iconMap, height);
+        margin: $margin-y $margin-x;
+        background-image: url("#{map.get($spriteMap, svgPath)}");
+        background-position: $background-position-x $background-position-y;
+        background-size: map.get($spriteMap, width) map.get($spriteMap, height);
+    }
+}

@@ -1,0 +1,20 @@
+{% load core_tags %}
+
+{% if self.type == "large" or self.type == "small" %}
+<div class="text text_{{ self.type }}">
+    <div class="text__body is-editable">
+        {% if self.title %}<h3>{{ self.title|format_title }}</h3>{% endif %}
+        {{ self.text }}
+    </div>
+</div>
+{% elif self.type == "quote" or self.type == "box" %}
+<blockquote class="blockquote blockquote_{{ self.type }}">
+    <div class="blockquote__container">
+        <div class="blockquote__row">
+            <div class="blockquote__body is-editable">
+                {{ self.text }}
+            </div>
+        </div>
+    </div>
+</blockquote>
+{% endif %}

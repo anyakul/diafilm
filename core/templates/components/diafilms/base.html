@@ -1,0 +1,42 @@
+{% load wagtailcore_tags %}
+{% load common_tags %}
+{% load content_tags %}
+
+{% get_diafilm_pages count=count ordering=ordering as list_page %}
+
+<section class="feed feed_catalog {% if show_paging %}js-feed-lazy{% endif %} {% if class %}feed_{{ class }}{% endif %}">
+    <div class="feed__container">
+        {% if title or text %}
+        <div class="feed__header">
+            <div class="feed__label" role="heading" aria-level="2">{{ title|format_title }}</div>
+            <div class="feed__text">{{ text }}</div>
+        </div>
+        {% endif %}
+
+        <div class="feed__row">
+            {% include "components/diafilms/form.html" %}
+
+            <div class="feed__list {% if show_paging %}js-feed-list{% endif %}">
+                {% include "components/diafilms/list.html" with object_list=list_page.object_list %}
+            </div>
+
+            {% if ordering == "?" %}
+            <div class="feed__pagination">
+                <a class="feed__button feed__button_more button button_inline js-feed-button"
+                   href="{% slugurl "viewing-hall" %}?page={{ list_page.next_page_number }}" rel="next">
+                    <span class="button__icon button__icon_before button__icon_arrow-down"></span>
+                    <span class="button__label">Загрузить ещё</span>
+                </a>
+            </div>
+            {% elif show_paging and list_page.has_next %}
+            <div class="feed__pagination">
+                <a class="feed__button feed__button_more button button_inline js-feed-button"
+                   href="?page={{ list_page.next_page_number }}" data-base="{% url "api:diafilms" %}" rel="next">
+                    <span class="button__icon button__icon_before button__icon_arrow-down"></span>
+                    <span class="button__label">Загрузить ещё</span>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

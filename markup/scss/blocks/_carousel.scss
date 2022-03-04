@@ -1,0 +1,602 @@
+@charset "UTF-8";
+@use "sass:color";
+
+/* --------------------
+   Карусель
+   -------------------- */
+
+.carousel {
+  position: relative;
+  max-height: 100%;
+  z-index: 1;
+
+  &.is-vertical {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.is-horizontal {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 60px;
+
+    @include media(before, tablet) {
+      padding-bottom: 0;
+    }
+  }
+
+  &_facts {
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+
+  &_videos {
+    padding-bottom: 0;
+  }
+
+  &_collections {
+    padding-bottom: 0;
+  }
+
+  &_earth {
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-end;
+    padding-bottom: 40px;
+
+    @include media(tablet) {
+      padding-bottom: 20px;
+    }
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+  }
+
+  &__label {
+    @include highlight();
+    @extend %column;
+
+    .carousel_earth & {
+      padding-left: 16px;
+      padding-right: 16px;
+      @include font(36px, 40px, $base-font, 700);
+      text-transform: lowercase;
+      color: $green;
+    }
+  }
+
+  &__text {
+    @include highlight();
+    @extend %column;
+
+    .carousel_earth & {
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 10px;
+      @include font(14px, 18px, $base-font, 400);
+      color: $black;
+    }
+  }
+
+  &__filter {
+    @include highlight();
+    @extend %column;
+    margin-bottom: 30px;
+
+    .carousel_earth & {
+      position: relative;
+      padding-top: 24px;
+      padding-bottom: 24px;
+      margin-top: 30px;
+
+      @include before() {
+        position: absolute;
+        top: 0;
+        left: 16px;
+        right: 16px;
+        display: block;
+        border-top: 2px solid $black;
+      }
+      @include after() {
+        position: absolute;
+        bottom: 0;
+        left: 16px;
+        right: 16px;
+        display: block;
+        border-bottom: 2px solid $black;
+      }
+    }
+  }
+
+  &__tags {
+    @include highlight();
+    @extend %column;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: 30px;
+  }
+
+  &__viewport {
+    @include highlight();
+    @extend %column;
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+
+    .is-vertical & {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .is-horizontal & {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  &__list {
+    display: block;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    overflow: auto;
+    contain: content;
+    overscroll-behavior-x: auto;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+
+    .is-horizontal & {
+      width: 100%;
+      padding-bottom: 100px;
+      margin-bottom: -100px;
+      overscroll-behavior-y: auto;
+      overscroll-behavior-x: contain;
+      white-space: nowrap;
+
+      @include media(before, tablet) {
+        padding-bottom: 160px;
+      }
+    }
+
+    .is-vertical & {
+      height: 100%;
+      padding-right: 100px;
+      margin-right: -100px;
+      overscroll-behavior-x: auto;
+      overscroll-behavior-y: contain;
+    }
+
+    .is-horizontal.is-snap {
+      scroll-snap-type: x mandatory;
+    }
+
+    .is-vertical.is-snap {
+      scroll-snap-type: y mandatory;
+    }
+  }
+
+  &__item {
+    @include highlight();
+    display: inline-block;
+    vertical-align: top;
+    white-space: normal;
+
+    .carousel_publications & {
+      @extend %column;
+      position: relative;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .carousel_films & {
+      @extend %column;
+      position: relative;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .carousel_cafeteria & {
+      @extend %column;
+      position: relative;
+      height: 100%;
+    }
+
+    .carousel_news & {
+      @extend %column;
+      position: relative;
+      padding-left: 16px;
+      padding-right: 16px;
+      height: 100%;
+    }
+
+    .carousel_models & {
+      @extend %column;
+      position: relative;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .carousel_facts & {
+      @extend %column;
+      position: relative;
+    }
+
+    .carousel_videos & {
+      @extend %column;
+      position: relative;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .carousel_earth & {
+      @extend %column;
+      position: relative;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .carousel_viewing & {
+      @extend %column;
+      position: relative;
+
+      @include media(before, tablet) {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
+    }
+
+    &_default {
+      .is-vertical & {
+        margin-bottom: 15px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        @include media(before, tablet) {
+          width: 98%;
+        }
+      }
+
+      .carousel_cafeteria & {
+        @include column(7, 7);
+
+        @include media(tablet) {
+          @include column(3, 9);
+        }
+
+        @include before() {
+          position: absolute;
+          top: 75px;
+          left: 16px;
+          right: 16px;
+          height: 210px;
+          border-radius: 50% / 40px;
+          background-color: color.adjust($magenta, $alpha: -.7);
+          z-index: -1;
+
+          @supports (clip-path: ellipse(65% 50% at center)) {
+            border-radius: 0;
+            clip-path: ellipse(65% 50% at center);
+          }
+        }
+
+        @include after() {
+          position: absolute;
+          bottom: 0;
+          left: calc(1.5 / 3 * 100%);
+          right: 0;
+          height: 100px;
+          margin-left: 16px;
+          margin-right: 16px;
+          border-radius: 50% / 20px;
+          background-color: color.adjust($magenta, $alpha: -.7);
+          z-index: -1;
+
+          @supports (clip-path: ellipse(65% 50% at center)) {
+            border-radius: 0;
+            clip-path: ellipse(65% 50% at center);
+          }
+        }
+
+        &:nth-child(3n-1) {
+          @include media(tablet) {
+            padding-top: 50px;
+          }
+
+          &::before {
+            top: 120px;
+          }
+
+          &::after {
+            top: 80px;
+          }
+        }
+
+        &:nth-child(3n) {
+          @include media(tablet) {
+            padding-top: 20px;
+          }
+
+          &::before {
+            top: 60px;
+          }
+
+          &::after {
+            top: 0;
+          }
+        }
+      }
+
+      .carousel_publications & {
+        @include column(3, 11);
+
+        @include media(before, tablet) {
+          @include column(6, 10);
+        }
+
+        .similar_default & {
+          @include column(3, 10);
+
+          @include media(before, tablet) {
+            @include column(5, 10);
+          }
+        }
+      }
+
+      .carousel_collections & {
+        width: 100%;
+      }
+
+      .carousel_films & {
+        @include column(4, 11);
+
+        @include media(before, tablet) {
+          @include column(5, 11);
+        }
+
+        .similar_default & {
+          @include column(4, 10);
+
+          @include media(before, tablet) {
+            @include column(8, 10);
+          }
+        }
+      }
+
+      .carousel_news & {
+        @include column(3, 11);
+
+        @include media(before, tablet) {
+          @include column(6, 10);
+        }
+
+        .similar_default & {
+          @include column(3, 10);
+
+          @include media(before, tablet) {
+            @include column(8, 10);
+          }
+        }
+      }
+
+      .carousel_models & {
+        @include column(3, 11);
+
+        @include media(before, tablet) {
+          @include column(5, 10);
+        }
+
+        .similar_default & {
+          @include column(3, 10);
+
+          @include media(before, tablet) {
+            font-size: 18px;
+            @include column(5, 10);
+          }
+        }
+      }
+
+      .carousel_videos & {
+        @include column(6, 6);
+      }
+
+      .carousel_earth & {
+        @include column(4, 4);
+      }
+
+      .carousel_viewing & {
+        @include column(5, 8);
+
+        @include media(before, tablet) {
+          min-width: 40%;
+          width: 40%;
+        }
+      }
+    }
+
+    &_double {
+      .carousel_publications & {
+        @include column(6, 11);
+
+        @include media(before, tablet) {
+          @include column(8, 11);
+        }
+
+        .similar_default & {
+          @include column(6, 10);
+
+          @include media(before, tablet) {
+            @include column(8, 10);
+          }
+        }
+      }
+    }
+
+    &_large {
+      .carousel_news & {
+        @include column(4, 11);
+
+        @include media(before, tablet) {
+          @include column(8, 10);
+        }
+
+        .similar_default & {
+          @include column(4, 10);
+
+          @include media(before, tablet) {
+            @include column(8, 10);
+          }
+        }
+      }
+    }
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &__buttons {
+    @include transition() {
+      transition-property: visibility, opacity;
+    }
+
+    .is-vertical & {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      margin-left: 8px;
+
+      @include media(tablet) {
+        margin-left: 16px;
+      }
+    }
+
+    .is-horizontal & {
+      position: absolute;
+      bottom: 19px;
+      left: 0;
+      margin-left: 8px;
+
+      @include media(tablet) {
+        margin-left: 16px;
+      }
+    }
+
+    .carousel_collections & {
+      top: auto;
+      left: calc(5 / 9 * 100%);
+      bottom: 0;
+    }
+
+    .carousel_videos & {
+      top: 100%;
+      left: auto;
+      right: 16px;
+      margin-top: 14px;
+    }
+
+    &[hidden] {
+      display: block;
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+
+  &__button {
+    .is-vertical & {
+      position: relative;
+      width: 22px;
+      height: 22px;
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      z-index: 5;
+    }
+
+    .is-horizontal & {
+      position: relative;
+      width: 22px;
+      height: 22px;
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      z-index: 5;
+    }
+
+    &_backwards {
+      .is-vertical & {
+        @include before() {
+          @include svgIcon(icon-arrow-round-white-22);
+          transform: rotate(-90deg);
+        }
+      }
+
+      .is-horizontal & {
+        @include before() {
+          @include svgIcon(icon-arrow-round-black-22);
+          transform: rotate(180deg);
+
+          .similar_bg-gray &,
+          .layout_gray & {
+            @include svgIcon(icon-arrow-round-white-22);
+          }
+        }
+      }
+    }
+
+    &_forwards {
+      .is-vertical & {
+        margin-top: 15px;
+
+        @include before() {
+          @include svgIcon(icon-arrow-round-white-22);
+          transform: rotate(90deg);
+        }
+      }
+
+      .is-horizontal & {
+        margin-left: 16px;
+
+        @include before() {
+          @include svgIcon(icon-arrow-round-black-22);
+
+          .similar_bg-gray &,
+          .layout_gray & {
+            @include svgIcon(icon-arrow-round-white-22);
+          }
+        }
+      }
+    }
+
+    &_tag {
+      .carousel_films & {
+        @include after("/") {
+          display: inline-block;
+          vertical-align: bottom;
+          margin-left: em(4, 14);
+          margin-right: em(4, 14);
+          @include font(14px, 18px, $base-font, 400);
+          color: $gray-59;
+        }
+
+        &:last-child {
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+
+    @include disabled() {
+      opacity: .5;
+      cursor: default;
+    }
+  }
+}

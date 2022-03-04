@@ -1,0 +1,307 @@
+{% extends '@layouts/default.twig' %}
+
+{% block vendor_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_styles %}
+{% endblock %}
+
+{% block vendor_scripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block layout_content %}
+    {% include '@blocks/title.twig' with {
+        self: {
+            mod: 'section',
+            levels: getMenu(menu, root.id),
+            label: pageTitle
+        }
+    } %}
+
+    {% embed '@blocks/tabs.twig' with {
+        self: {
+            mod: 'default',
+            jsClassName: 'js-tabs-default',
+            items: getMenu(menu, page.id)
+        }
+    } %}
+        {% block tabs_panel_1 %}
+            {% include '@blocks/cafeteria.twig' with {
+                self: {
+                    mod: '',
+                    wrap: true,
+                    video: false,
+                    items: cafeteria,
+                    after: false
+                }
+            } %}
+
+            {% embed '@blocks/concept.twig' with {
+                self: {
+                    mod: '',
+                    label: 'Концепция и миссия',
+                    pictures: [
+                        { url: 'cafeteria/about/concept/image-1.jpg', width: 406, height: 416 },
+                        { url: 'cafeteria/about/concept/image-2.jpg', width: 406, height: 416 }
+                    ]
+                }
+            } %}
+                {% block concept_intro %}
+                    <p>Мы создаем условия для укрепления семейных ценностей и развития творческого потенциала детей и
+                        взрослых.</p>
+                    <p>Наша работа — сохранять и развивать музейную коллекцию с учетом художественных достижений прошлых
+                        лет и технических возможностей современности.</p>
+                {% endblock concept_intro %}
+                {% block concept_text %}
+                    <h3>Для кого был создан музей</h3>
+                    <p>Коллекция музея ориентирована на детей, подростков, семью и специалистов.</p>
+                    <p>Это взрослые люди 35-60 лет, семейные, работающие, придерживающиеся традиционных семейных
+                        ценностей, интересующиеся гармоничным развитием детей и детским образованием.</p>
+                {% endblock concept_text %}
+            {% endembed %}{# concept #}
+
+            {% include '@blocks/team.twig' with {
+                self: {
+                    mod: '',
+                    label: 'Команда',
+                    text: 'Люди, создающие музей диафильма',
+                    items: [
+                        {
+                            size: 'double',
+                            image: { mod: 'default', url: 'cafeteria/about/team/image-1.jpg', width: 176, height: 232 },
+                            label: 'Илья Гавришин',
+                            email: { url: 'Ilia@diafilm.online' },
+                            text: 'Вдохновитель создания музея'
+                        },
+                        {
+                            size: '',
+                            image: { mod: 'special', url: 'cafeteria/about/team/image-2.jpg', width: 176, height: 232 },
+                            label: 'Волков Стален',
+                            email: { url: 'Ilia@diafilm.online' },
+                            text: 'Рисовала диафильмы по сказкам и стихотворениям для детей'
+                        },
+                        {
+                            size: '',
+                            image: { mod: 'round', url: 'cafeteria/about/team/image-3.jpg', width: 176, height: 232 },
+                            label: 'Владимирский Леонид',
+                            email: { url: 'Ilia@diafilm.online' },
+                            text: 'Художник-постановщик на киностудии «Союзмультфильм»'
+                        },
+                        {
+                            size: 'double',
+                            image: { mod: 'default', url: 'cafeteria/about/team/image-4.jpg', width: 176, height: 232 },
+                            label: 'Эрнё Зорад',
+                            email: { url: 'Ilia@diafilm.online' },
+                            text: 'График. Художник кино и живописец. Художник диафильмов.'
+                        },
+                        {
+                            size: 'double',
+                            image: { mod: 'special', url: 'cafeteria/about/team/image-5.jpg', width: 176, height: 232 },
+                            label: 'Калаушин Борис',
+                            email: { url: 'Ilia@diafilm.online' },
+                            text: 'Советский и российский художник, график; иллюстратор детских книг'
+                        }
+                    ]
+                }
+            } %}
+
+            {% embed '@blocks/columns.twig' with {
+                self: {
+                    mod: 'contacts',
+                }
+            } %}
+                {% block column_1 %}
+                    {% include '@blocks/form.twig' with {
+                        self: {
+                            mod: 'default, feedback',
+                            jsClassName: 'js-form-feedback',
+                            prefix: 'feedback',
+                            validation: true,
+                            extra: {
+                                'action': 'ajax/form-success.json',
+                                'method': 'post',
+                                'enctype': 'multipart/form-data'
+                            },
+                            label: 'Обратная связь',
+                            fields: [
+                                {
+                                    mod: 'default',
+                                    type: 'email',
+                                    name: 'email',
+                                    label: 'Электронная почта*',
+                                    helpers: ['is-email', 'is-required'],
+                                    external: { 'required': true, 'autocomplete': 'email' }
+                                },
+                                {
+                                    mod: 'default',
+                                    type: 'text',
+                                    name: 'subject',
+                                    label: 'Тема',
+                                    helpers: ['is-string'],
+                                    external: { 'autocomplete': 'off' }
+                                },
+                                {
+                                    mod: 'default, multiline',
+                                    type: 'textarea',
+                                    name: 'message',
+                                    label: 'Ваше сообщение*',
+                                    placeholder: 'Ваше сообщение',
+                                    helpers: ['is-message', 'is-required'],
+                                    external: { 'required': true, 'autocomplete': 'off' }
+                                },
+                                {
+                                    mod: 'file',
+                                    jsMod: 'file',
+                                    type: 'file',
+                                    name: 'attachments',
+                                    label: '<span>Прикрепить файл</span>',
+                                    helpers: [ 'is-file-size:3072000', 'is-file-quantity:3' ],
+                                    extra: { 'multiple': true, 'accept':'image/png,image/jpeg,application/pdf,.doc,.docx'}
+                                },
+                                {
+                                    template: '@blocks/button.twig',
+                                    mod: 'outline',
+                                    label: 'Отправить письмо',
+                                    type: 'submit'
+                                }
+                            ]
+                        }
+                    } %}
+                {% endblock column_1 %}
+                {% block column_2 %}
+                    {% include '@blocks/contacts.twig' with {
+                        self: {
+                            mod: '',
+                            label: 'Контакты',
+                            text: '<p>Наши контакты звоните пишите мы с удовольствием ответим на все ваши вопросы!</p>',
+                            contacts: [
+                                { type: 'email', value: 'info@diafilm.online' },
+                                { type: 'phone', value: '+7 (495) 515 16 17' }
+                            ]
+                        }
+                    } %}
+                {% endblock column_2 %}
+            {% endembed %}
+
+        {% endblock tabs_panel_1 %}
+
+        {% block tabs_panel_2 %}
+            {% include '@blocks/feed.twig' with {
+                self: {
+                    mod: 'news',
+                    jsClassName: 'js-feed-lazy',
+                    itemsTemplate: '@blocks/card.twig',
+                    filter: [
+                        { mod: 'inline, hover', url: '?cat=all#!tab=articles', label: 'Все' },
+                        { mod: 'inline, hover', url: '?cat=yandex#!tab=articles', label: 'Яндекс.Дзен' },
+                        { mod: 'inline, hover', url: '?cat=events#!tab=articles', label: 'События' },
+                        { mod: 'inline, hover', url: '?cat=specialists#!tab=articles', label: 'Специалистам' }
+                    ],
+                    button: {
+                        mod: 'inline',
+                        iconBefore: 'arrow-down',
+                        label: 'Загрузить ещё',
+                        url: '?page=2',
+                        extra: {
+                            'rel': 'next',
+                            'data-base': 'ajax/feed-more-news.html'
+                        }
+                    },
+                    items: [
+                        {
+                            size: 'large',
+                            mod: 'news, marked',
+                            label: 'Кейс Cinemood: вытащить из небытия советские диафильмы и подсадить на них американцев и россиян',
+                            date: { label: '17 июня 2021 года.', datetime: '2021-06-17' },
+                            text: '',
+                            image: { url: 'cafeteria/about/news/card-1.jpg', width: 395, height: 390 },
+                            link: { label: '', url: 'news-article' }
+                        },
+                        {
+                            size: '',
+                            mod: 'news',
+                            label: 'Открывается новая выставка с 28 июля',
+                            date: { label: '24 апреля 2021 года.', datetime: '2021-04-24' },
+                            text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.',
+                            image: { url: 'cafeteria/about/news/card-2.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'news-article' }
+                        },
+                        {
+                            size: '',
+                            mod: 'news',
+                            label: 'Открывается новая выставка с 28 июля',
+                            date: { label: '26 мая 2021 года.', datetime: '2021-05-26' },
+                            text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.',
+                            image: { url: 'cafeteria/about/news/card-3.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'news-article' }
+                        },
+                        {
+                            size: '',
+                            mod: 'news',
+                            label: 'Библия Гутенберга',
+                            date: { label: '24 апреля 2021 года.', datetime: '2021-04-24' },
+                            text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко. Ни в 1959 году, когда Хрущев объявил о "полном',
+                            image: { url: 'cafeteria/about/news/card-4.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'news-article' }
+                        },
+                        {
+                            size: '',
+                            mod: 'news',
+                            label: '190 лет со дня рождения Л.Н. Толстого',
+                            date: { label: '26 мая 2021 года.', datetime: '2021-05-26' },
+                            text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.',
+                            image: { url: 'cafeteria/about/news/card-5.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'news-article' }
+                        },
+                        {
+                            size: 'large',
+                            mod: 'news, marked',
+                            label: 'Стихи о принятии мира',
+                            date: { label: '17 июня 2021 года.', datetime: '2021-06-17' },
+                            text: '',
+                            image: { url: 'cafeteria/about/news/card-6.jpg', width: 395, height: 390 },
+                            link: { label: '', url: 'news-article' }
+                        },
+                        {
+                            size: '',
+                            mod: 'news',
+                            label: 'Мурзилка. 1947 год. Юбилеи Москвы, Пушкина и революции.',
+                            date: { label: '24 апреля 2021 года.', datetime: '2021-04-24' },
+                            text: 'Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.',
+                            image: { url: 'cafeteria/about/news/card-7.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'news-article' }
+                        },
+                        {
+                            size: 'large',
+                            mod: 'news, marked',
+                            label: 'Диафильмы Валерия Дмитрюка',
+                            date: { label: '17 июня 2021 года.', datetime: '2021-06-17' },
+                            text: '',
+                            image: { url: 'cafeteria/about/news/card-8.jpg', width: 395, height: 390 },
+                            link: { label: '', url: 'news-article' }
+                        },
+                        {
+                            size: '',
+                            mod: 'news',
+                            label: 'Планеты гиганты',
+                            date: { label: '24 апреля 2021 года.', datetime: '2021-04-24' },
+                            text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.  Ни в 1959 году, когда Хрущев объявил о "полном',
+                            image: { url: 'cafeteria/about/news/card-9.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'news-article' }
+                        }
+                    ]
+                }
+            } %}
+        {% endblock tabs_panel_2 %}
+    {% endembed %}{# tabs #}
+
+{% endblock layout_content %}
+
+{% block popups %}
+    {{ parent() }}
+{% endblock popups %}

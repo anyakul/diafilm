@@ -1,0 +1,416 @@
+@charset "UTF-8";
+@use "sass:color";
+@use "sass:map";
+
+/* --------------------
+   Кнопка
+   -------------------- */
+
+.button {
+  box-sizing: border-box;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+  background-color: transparent;
+
+  &[type="button"],
+  &[role="button"] {
+    cursor: pointer;
+  }
+
+  @include disabled() {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .is-processing & {
+    pointer-events: none;
+  }
+
+  //&_general{}
+
+  &_visual {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 56px;
+    height: 56px;
+
+    &.button_abs {
+      margin: -28px;
+    }
+  }
+
+  &_square {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 32px;
+    height: 32px;
+  }
+
+  &_sharing {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: color.adjust($gray-80, $alpha: -.5);
+
+    @include transition() {
+      transition-property: background-color;
+    }
+
+    @include hover() {
+      background-color: $gray-80;
+    }
+  }
+
+  &_video {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+
+    @include hover() {
+      .button__label {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &_view {
+    position: relative;
+    display: block;
+    width: 64px;
+    height: 64px;
+
+    @include hover() {
+      .button__icon {
+        &::before {
+          opacity: 0;
+          visibility: hidden;
+        }
+
+        &::after {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+  &_play {
+    display: block;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid $white;
+  }
+
+  &_tag {
+    display: inline-block;
+    vertical-align: middle;
+
+    @include hover() {
+      .button__label {
+        color: $black;
+      }
+    }
+
+    &.is-active {
+      .button__label {
+        font-weight: 700;
+        color: $black;
+      }
+    }
+  }
+
+  &_inline {
+    display: inline-block;
+    vertical-align: middle;
+
+    &.button_hover {
+      @include fullHover() {
+        .button__label {
+          @each $key, $level in $LEVELS {
+            .root_#{map.get($level, slug)} & {
+              color: map.get($level, color);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &_outline {
+    position: relative;
+    padding: 18px 40px;
+    border: 2px solid;
+    border-radius: 4px;
+
+    @each $key, $level in $LEVELS {
+      .root_#{map.get($level, slug)} & {
+        border-color: map.get($level, color);
+      }
+    }
+
+    @include transition() {
+      transition-property: background-color;
+    }
+
+    @include hover() {
+      @each $key, $level in $LEVELS {
+        .root_#{map.get($level, slug)} & {
+          background-color: map.get($level, color);
+        }
+      }
+
+      .button__label {
+        color: $white !important;
+      }
+    }
+
+    @include disabled() {
+      opacity: .5;
+    }
+  }
+
+
+
+  &__label {
+    display: inline-block;
+    vertical-align: middle;
+
+    .button_video & {
+      @include font(24px, 32px, $title-font, 700);
+      text-decoration: underline;
+      text-transform: uppercase;
+      white-space: normal;
+      color: $black;
+    }
+
+    .button_inline & {
+      @include font(24px, 28px, $title-font, 700);
+      text-transform: uppercase;
+      text-decoration: none;
+      color: $black;
+
+      .layout_gray &,
+      .feed_viewing-hall & {
+        color: $white;
+      }
+
+      @include transition() {
+        transition-property: color;
+      }
+    }
+
+    .button_outline & {
+      @include font(24px, 28px, $title-font, 700);
+      text-transform: uppercase;
+
+      @each $key, $level in $LEVELS {
+        .root_#{map.get($level, slug)} & {
+          color: map.get($level, color);
+        }
+      }
+
+      @include transition() {
+        transition-property: color;
+      }
+    }
+
+    .button_tag & {
+      @include font(14px, 18px, $base-font, 400);
+      color: $gray-59;
+
+      @include transition() {
+        transition-property: color;
+      }
+
+      & > span {
+        display: inline-block;
+        vertical-align: super;
+        @include font(10px, 12px, $base-font, 700);
+
+        @each $key, $level in $LEVELS {
+          .root_#{map.get($level, slug)} & {
+            color: map.get($level, color);
+          }
+        }
+      }
+    }
+  }
+
+  &__icon {
+
+    &_before {
+      .button_inline & {
+        margin-right: 4px;
+      }
+    }
+
+    &_after {
+      .button_inline & {
+        margin-left: 4px;
+      }
+    }
+
+    .button_video & {
+      position: absolute;
+      left: 170px;
+      display: inline-block;
+      vertical-align: middle;
+      width: 64px;
+      height: 64px;
+      border: 2px solid $black;
+      border-radius: 50%;
+
+      @include before() {
+        @include svgIcon(icon-play-22-black);
+      }
+    }
+
+    .button_inline & {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .button_view & {
+      @include before() {
+        opacity: 1;
+        visibility: visible;
+
+        @include transition() {
+          transition-property: opacity, visibility;
+        }
+      }
+      @include after() {
+        opacity: 0;
+        visibility: hidden;
+
+        @include transition() {
+          transition-property: opacity, visibility;
+        }
+      }
+    }
+
+    &_play-white {
+      @include before() {
+        @include svgIcon(icon-play-40-white);
+      }
+    }
+
+    &_menu-white {
+      @include before() {
+        @include svgIcon(icon-menu-white);
+      }
+    }
+
+    &_close-white {
+      @include before() {
+        @include svgIcon(icon-close-white);
+      }
+    }
+
+    &_close-32-black {
+      @include before() {
+        @include svgIcon(icon-close-32-black);
+      }
+    }
+
+    &_search-white {
+      @include before() {
+        @include svgIcon(icon-search-white);
+      }
+    }
+
+    &_search-black {
+      @include before() {
+        @include svgIcon(icon-search-black);
+      }
+    }
+
+    &_arrow-down {
+      .button_inline & {
+        @include svgSprite(icon-arrow-16-black);
+        transform: rotate(90deg);
+
+        .layout_gray &,
+        .feed_viewing-hall & {
+          @include svgSprite(icon-arrow-16-white);
+        }
+      }
+    }
+
+    &_view {
+      &::before {
+        .button_inline & {
+          @include svgIcon(icon-view-25-white);
+        }
+
+        .button_view & {
+          @include svgIcon(icon-view-64-white);
+        }
+      }
+
+      &::after {
+        .button_view & {
+          @each $key, $level in $LEVELS {
+            .root_#{map.get($level, slug)} & {
+              @include svgIcon(icon-view-64-#{map.get($level, color-name)});
+            }
+          }
+        }
+      }
+    }
+
+    &_fb-white {
+      @include before() {
+        .button_square & {
+          @include svgIcon(network-fb-white);
+        }
+        .button_sharing & {
+          @include svgIcon(sharing-fb-white);
+        }
+      }
+    }
+
+    &_vk-white {
+      @include before() {
+        .button_square & {
+          @include svgIcon(network-vk-white);
+        }
+        .button_sharing & {
+          @include svgIcon(sharing-vk-white);
+        }
+      }
+    }
+
+    &_ok-white {
+      @include before() {
+        .button_sharing & {
+          @include svgIcon(sharing-ok-white);
+        }
+      }
+    }
+
+    &_cp-white {
+      @include before() {
+        .button_sharing & {
+          @include svgIcon(sharing-cp-white);
+        }
+      }
+    }
+
+    &_ig-white {
+      @include before() {
+        .button_square & {
+          @include pngIcon(ig-white);
+        }
+      }
+    }
+  }
+}

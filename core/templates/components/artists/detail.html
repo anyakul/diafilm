@@ -1,0 +1,25 @@
+<div class="artists__item">
+    <article class="artist artist_default">
+        {% if item.sample %}
+        <div class="artist__picture">
+            {% include "common/img.html" with img=item.sample size=size class="artist__img" %}
+        </div>
+        {% endif %}
+
+        {% if item.photo %}
+        <div class="artist__photo">
+            {% include "common/img.html" with img=item.photo size="fill-120x150" class="artist__img" filters="grayscale" %}
+        </div>
+        {% endif %}
+
+        <div class="artist__label" role="heading" aria-level="4">
+            {{ item.person.full_name }}
+        </div>
+        <div class="artist__text">
+            {{ item.annotation }}
+        </div>
+        <a class="artist__link" href="{{ item.url }}">
+            Подробнее
+        </a>
+    </article>
+</div>

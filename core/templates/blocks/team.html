@@ -1,0 +1,35 @@
+{% load core_tags %}
+
+<div class="team team_default">
+    <div class="team__container">
+        <div class="team__row">
+            <div class="team__label" role="heading" aria-level="2">{{ self.title|default:"Команда"|format_title }}</div>
+            <div class="team__text">{{ self.caption|default:"Люди, создающие музей диафильма"|format_title }}</div>
+            <ul class="team__list">
+                {% for item in self.members %}
+                <li class="team__item {% if forloop.first %}team__item_double{% else %}team__item_default{% endif %}">
+                    <article class="card card_person">
+                        {% if item.value.bound_blocks.photo.value %}
+                        <div class="card__picture {% cycle "card__picture_default" "card__picture_special" "card__picture_round" %}">
+                            {% with size="fill-176x232" %}
+                            {% include "common/img.html" with img=item.value.bound_blocks.photo.value class="card__image" %}
+                            {% endwith %}
+                        </div>
+                        {% endif %}
+                        <div class="card__body">
+                            <div class="card__label" role="heading" aria-level="4">
+                                {{ item.value.bound_blocks.name.value|format_title }}
+                            </div>
+                            {% if item.value.bound_blocks.email.value %}
+                            <a class="card__link" href="mailto:{{ item.value.bound_blocks.email.value }}"
+                               target="_blank" rel="noopener noreferrer">{{ item.value.bound_blocks.email.value }}</a>
+                            {% endif %}
+                            <div class="card__text">{{ item.value.bound_blocks.caption.value|format_title }}</div>
+                        </div>
+                    </article>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

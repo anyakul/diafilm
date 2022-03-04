@@ -1,0 +1,33 @@
+{% extends "pages/index.html" %}
+{% load wagtailcore_tags %}
+
+{% load core_tags %}
+{% load content_tags %}
+{% load navigation_tags %}
+
+{% block body_class %}root_archive{% endblock body_class %}
+
+
+{% block header_class %}header_default{% endblock header_class %}
+
+{% block header_intro %}
+<div class="header__intro">
+    <div class="intro intro_default">
+        <span class="intro__number">5</span>
+        <span class="intro__label" role="heading" aria-level="2">Архив</span>
+        <span class="intro__text">история и&nbsp;технологии</span>
+    </div>
+</div>
+{% endblock header_intro %}
+
+
+{% block main_class %}layout_default{% endblock main_class %}
+
+{% block main %}
+
+{% for block in page.content %}
+{% include_block block %}
+{% endfor %}
+
+{% include "components/artical_similar.html" %}
+{% endblock main %}

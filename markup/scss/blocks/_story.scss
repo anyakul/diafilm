@@ -1,0 +1,68 @@
+@charset "UTF-8";
+@use "sass:map";
+
+/* --------------------
+   История
+   -------------------- */
+
+.story {
+  counter-increment: story;
+
+  &__header {
+    @include font(24px, 30px, $base-font, 600);
+
+    @include before(counter(story) ".") {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    @include media(before, tablet) {
+      padding: 20px;
+    }
+  }
+
+  &__label {
+    display: inline-block;
+    vertical-align: middle;
+    color: $black;
+
+    @include before("«");
+    @include after("»");
+  }
+
+  &__link {
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: underline;
+
+    @each $key, $level in $LEVELS {
+      .root_#{map.get($level, slug)} & {
+        color: map.get($level, color);
+      }
+    }
+
+    @include hover() {
+      text-decoration: none;
+    }
+  }
+
+  &__text {
+    margin-top: 24px;
+    @include font(18px, 28px, $base-font, 400);
+    color: $black;
+
+    @include media(before, tablet) {
+      margin-left: 0;
+      padding: 20px;
+      margin-top: 0;
+    }
+  }
+
+  &__figure {
+    margin-top: 50px;
+
+    @include media(before, tablet) {
+      margin-top: 0;
+    }
+  }
+}

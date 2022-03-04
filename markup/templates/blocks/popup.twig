@@ -1,0 +1,16 @@
+<div class="{{ 'popup'|mod(self.mod) }} {{ self.jsClassName|default('js-popup-'~self.id) }}" id="{{ self.id }}"
+     role="dialog" tabindex="-1" hidden {% if self.extra %}{{ self.extra|extra }}{% endif %}>
+    <div class="popup__container">
+        <div class="popup__row">
+            <div class="popup__body js-popup-body">
+                {% include '@blocks/button.twig' with {
+                    self: self.button|extend({
+                        className: 'popup__close js-popup-close'
+                    })
+                } %}
+
+                {% block popup_body %}{% endblock popup_body %}
+            </div>
+        </div>
+    </div>
+</div>

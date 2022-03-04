@@ -1,0 +1,71 @@
+@charset "UTF-8";
+@use "sass:map";
+
+/* --------------------
+   Контакты
+   -------------------- */
+
+.contacts {
+  @extend %section;
+
+  &_default {
+    @extend %row;
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+  }
+
+  &__label {
+    @include highlight();
+    @extend %column;
+    padding-left: 16px;
+    padding-right: 16px;
+    @include font(36px, 40px, $base-font, 700);
+    text-transform: lowercase;
+
+    @each $key, $level in $LEVELS {
+      .root_#{map.get($level, slug)} & {
+        color: map.get($level, color);
+      }
+    }
+
+    @include media(before, tablet) {
+      @include font(24px, 28px, $base-font, 700);
+    }
+  }
+
+  &__text {
+    @include highlight();
+    @extend %column;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    @include font(14px, 18px, $base-font, 400);
+    color: $black;
+  }
+
+  &__contact {
+    @include highlight();
+    @extend %column;
+    padding-left: 16px;
+    padding-right: 16px;
+    @include font(24px, 28px, $title-font, 700);
+    text-transform: uppercase;
+    color: $black;
+
+    & + & {
+      margin-top: 14px;
+    }
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,530 @@
+@charset "UTF-8";
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
+@use "sass:math";
+
+@mixin media($breakpoint, $min: false, $max:false) {
+  @if (map.has-key($GRID, $breakpoint)) {
+    $min-width: grid-get($breakpoint, breakpoint);
+    $MEDIA: $breakpoint !global;
+    @if ($min-width > 0) {
+      @media (min-width: $min-width) {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  } @else if ($breakpoint == before) {
+    $MEDIA: $min !global;
+    $max-width: grid-get($min, breakpoint) - 1px;
+    @if ($max-width > 0) {
+      @media (max-width: $max-width) {
+        @content;
+      }
+    } @else {
+      @content;
+    }
+  } @else if ($breakpoint == between) {
+    $MEDIA: $min !global;
+    @media (min-width: grid-get($min, breakpoint)) and (max-width: grid-get($max, breakpoint) - 1px) {
+      @content;
+    }
+  } @else if ($breakpoint == retina) {
+    @media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+      @content;
+    }
+  } @else if ($breakpoint == motion) {
+    @media (prefers-reduced-motion: no-preference) {
+      @content;
+    }
+  } @else if ($breakpoint == no-motion) {
+    @media (prefers-reduced-motion: reduce) {
+      @content;
+    }
+  } @else if ($breakpoint == dark) {
+    @media (prefers-color-scheme: dark) {
+      @content;
+    }
+  } @else if ($breakpoint == light) {
+    @media (prefers-color-scheme: light) {
+      @content;
+    }
+  } @else {
+    @media #{$breakpoint} {
+      @content;
+    }
+  }
+  $MEDIA: smart !global;
+}
+
+@mixin section() {
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin container() {
+  box-sizing: border-box;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+
+  $current-padding: false;
+  $last-padding: false;
+  $current-width: false;
+  $last-width: false;
+  @for $i from 1 through length(map.keys($GRID)) {
+    $key: list.nth(map.keys($GRID), $i);
+    $current-width: grid-get($key, container);
+    $current-padding: grid-get($key, padding);
+
+    @if ($last-width == false or $current-width != $last-width) {
+      @if ($i == 1) {
+        max-width: $current-width;
+        @if (($last-padding == false or $current-padding != $last-padding) and $current-padding != false) {
+          padding-left: $current-padding;
+          padding-right: $current-padding;
+        }
+      } @else {
+        @include media($key) {
+          max-width: $current-width;
+          @if (($last-padding == false or $current-padding != $last-padding) and $current-padding != false) {
+            padding-left: $current-padding;
+            padding-right: $current-padding;
+          }
+        }
+      }
+
+      $last-padding: $current-padding;
+      $last-width: $current-width;
+    }
+  }
+}
+
+@mixin row() {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  @include reset-font;
+}
+
+@mixin column($size: grid-get($MEDIA, columns), $columns: grid-get($MEDIA, columns), $skipMargin: false, $skipMinWidth: false) {
+  width: math.div($size, $columns) * 100%;
+  @if ($skipMinWidth == false) {
+    min-width: math.div($size, $columns) * 100%;
+  }
+  @if ($skipMargin == false) {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@mixin push($offset: 1, $columns: grid-get($MEDIA, columns)) {
+  margin-left: math.div($offset, $columns) * 100%;
+}
+
+@mixin pull($offset: 1, $columns: grid-get($MEDIA, columns)) {
+  margin-right: math.div($offset, $columns) * 100%;
+}
+
+@mixin gap($media: $MEDIA) {
+  $current-gap: grid-get($media, gap);
+  padding-left: math.div($current-gap, 2);
+  padding-right: math.div($current-gap, 2);
+}
+
+@mixin columnWithPush($size: 1, $offset: 1, $columns: grid-get($MEDIA, columns), $skipMargin: false, $skipMinWidth: false) {
+  width: math.div($size, $columns) * 100%;
+  @if ($skipMinWidth == false) {
+    min-width: math.div($size, $columns) * 100%;
+  }
+  @include push($offset, $columns);
+  @if ($skipMargin == false) {
+    margin-right: 0;
+  }
+}
+
+@mixin columnWithPull($size: 1, $offset: 1, $columns: grid-get($MEDIA, columns), $skipMargin: false, $skipMinWidth: false) {
+  width: math.div($size, $columns) * 100%;
+  @if ($skipMinWidth == false) {
+    min-width: math.div($size, $columns) * 100%;
+  }
+  @if ($skipMargin == false) {
+    margin-left: 0;
+  }
+  @include pull($offset, $columns);
+}
+
+@mixin columnCentred($size: 1, $columns: grid-get($MEDIA, columns), $skipMinWidth: false) {
+  width: math.div($size, $columns) * 100%;
+  @if ($skipMinWidth == false) {
+    min-width: math.div($size, $columns) * 100%;
+  }
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin font-face($file-name, $name: false, $local: false, $weight: normal, $style: normal) {
+  $dir: "../fonts";
+
+  @if ($name == false) {
+    $name: $file-name;
+  }
+  $localFonts: ();
+
+  @if ($local == false) {
+    $localFonts: list.append($localFonts, local("#{$name}"), "comma");
+  } @else {
+    @each $localName in $local {
+      $localFonts: list.append($localFonts, local("#{$localName}"), "comma");
+    }
+  }
+
+  @font-face {
+    font-family: $name;
+    src: #{$localFonts},
+    url("#{$dir}/#{$file-name}.woff2") format("woff2"),
+    url("#{$dir}/#{$file-name}.woff") format("woff");
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
+}
+
+@mixin font($size: false, $line: false, $f: false, $w: false, $s: false, $v: false, $ls: false) {
+  @if ($v and $s and $w and $size and $line and $f) {
+    font: $s $v $w #{$size}/#{$line} $f;
+  } @else if ($s and $w and $size and $line and $f) {
+    font: $s $w #{$size}/#{$line} $f;
+  } @else if ($w and $size and $line and $f) {
+    font: $w #{$size}/#{$line} $f;
+  } @else if ($f == false) {
+    @if ($size) {
+      font-size: $size;
+    }
+    @if ($w) {
+      font-weight: $w;
+    }
+    @if ($s) {
+      font-style: $s;
+    }
+    @if ($v) {
+      font-variant: $v;
+    }
+    @if ($line) {
+      line-height: $line;
+    }
+  }
+  @if ($ls) {
+    letter-spacing: $ls;
+  }
+}
+
+@mixin hover() {
+  &:hover,
+  &:focus {
+    outline: none;
+    @content;
+  }
+}
+
+@mixin fullHover($classname: "is-active") {
+  &:hover,
+  &:focus,
+  &:active,
+  &.#{$classname} {
+    outline: none;
+    @content;
+  }
+}
+
+@mixin focusWithin() {
+  &:focus {
+    outline: none;
+    @content;
+  }
+  &:focus-within {
+    outline: none;
+    @content;
+  }
+}
+
+@mixin hoverWithin() {
+  &:hover,
+  &:focus {
+    outline: none;
+    @content;
+  }
+  &:focus-within {
+    outline: none;
+    @content;
+  }
+}
+
+@mixin visited() {
+  &:visited {
+    @content;
+  }
+}
+
+@mixin active($classname: "is-active") {
+  &:active,
+  &[aria-selected="true"],
+  &.#{$classname} {
+    @content;
+  }
+}
+
+@mixin disabled($classname: "is-disabled") {
+  &:disabled,
+  &[aria-disabled="true"],
+  &.#{$classname} {
+    @content;
+  }
+}
+
+@mixin busy($classname: "is-busy") {
+  [aria-busy="true"] &,
+  &.#{$classname} {
+    @content;
+  }
+}
+
+@mixin has($classname: "js") {
+  .has-#{$classname} & {
+    @content;
+  }
+}
+
+@mixin transition($duration: .25s, $easing: ease-out, $delay: false) {
+  .has-csstransitions & {
+    @include media(motion) {
+      @if ($delay == false) {
+        transition: $duration $easing;
+      } @else {
+        transition: $duration $easing $delay;
+      }
+      @content;
+    }
+  }
+}
+
+@mixin aria($key, $value: true) {
+  &[aria-#{$key}="#{$value}"] {
+    @content;
+  }
+}
+
+@mixin after($content: " ") {
+  &::after {
+    content: $content;
+    @content;
+  }
+}
+
+@mixin before($content: " ") {
+  &::before {
+    content: $content;
+    @content;
+  }
+}
+
+@mixin webp($url) {
+  .has-webp & {
+    $webp: $url;
+    @if (str-index($url, ".jpg")) {
+      $webp: str-replace($url, ".jpg", ".webp");
+    } @else if (str-index($url, ".png")) {
+      $webp: str-replace($url, ".png", ".webp");
+    }
+    background-image: url("#{$webp}");
+  }
+  .has-no-webp & {
+    background-image: url("#{$url}");
+  }
+}
+
+@mixin background-image($image: false, $w: auto, $h: false, $format: png) {
+  @if ($w and $h) {
+    background-size: #{$w} #{$h};
+  } @else {
+    background-size: #{$w};
+  }
+  @include webp("#{$i}/#{$image}.#{$format}");
+
+  @media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+    @include webp("#{$i}/#{$image}@2x.#{$format}");
+  }
+}
+
+@mixin highlight($color: false) {
+  $highlight-colors: (
+    cyan,
+    yellow,
+    magenta,
+    orange,
+    blue
+  );
+  $colors-length: list.length($highlight-colors);
+  $index: $HIGHLIGHT % $colors-length + 1;
+  $HIGHLIGHT: $HIGHLIGHT + 1 !global;
+
+  @if ($color == false) {
+    $color: list.nth($highlight-colors, $index);
+  }
+
+  .has-layout & {
+    background-clip: content-box;
+    background-color: color.adjust($color, $alpha: -.9);
+    outline: 1px solid color.adjust($color, $alpha: -.5);
+  }
+}
+
+@mixin clearfix() {
+  @include after() {
+    display: block;
+    clear: both;
+  }
+}
+
+@mixin no-tap-highlight() {
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@mixin reset-list($margin: true, $padding: true) {
+  @if ($margin) {
+    margin: 0;
+  }
+  @if ($padding) {
+    padding: 0;
+  }
+  list-style-type: none;
+}
+
+@mixin reset-font() {
+  font-size: 0;
+  line-height: 1;
+  letter-spacing: 0;
+  word-spacing: 0;
+}
+
+@mixin loader($color: map.get($LOADER, color), $width: map.get($LOADER, width), $border: map.get($LOADER, border), $top:map.get($LOADER, top), $left: map.get($LOADER, left)) {
+  $encodedcolor: encodecolor($color);
+  $startAngle: -90deg;
+  $endAngle: 60deg;
+  $height: $width;
+  $rad: math.div($width, 2);
+  $start: polarToCartesian(strip-units(math.div($width, 2)), strip-units(math.div($height, 2)), strip-units(math.div($width, 2) - math.div($border, 2)), $startAngle);
+  $end: polarToCartesian(strip-units(math.div($width, 2)), strip-units(math.div($height, 2)), strip-units(math.div($width, 2) - math.div($border, 2)), $endAngle);
+
+  $largeArcFlag: 0;
+  @if ($endAngle - $startAngle > 180) {
+    $largeArcFlag: 1;
+  }
+  $sweepFlag: 0;
+  @if ($endAngle - $startAngle <= 180) {
+    $sweepFlag: 1;
+  }
+
+  @include after() {
+    position: absolute;
+    top: $top;
+    left: $left;
+    display: block;
+    box-sizing: border-box;
+    width: $width;
+    height: $height;
+    margin: $rad * -1;
+    padding: 0;
+    border: $border solid color.adjust($color, $alpha: -.7);
+    border-radius: 50%;
+    background: transparent url("data:image/svg+xml;utf8,%3Csvg%20width%3D'#{strip-units($width)}'%20height%3D'#{strip-units($height)}'%20viewBox%3D'0%200%20#{strip-units($width)}%20#{strip-units($height)}'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'M%20#{map.get($start, x)}%20#{map.get($start, y)}%20A%20#{strip-units($rad) - math.div(strip-units($border), 2)}%20#{strip-units($rad) - math.div(strip-units($border), 2)}%200%20#{$largeArcFlag}%20#{$sweepFlag}%20#{map.get($end, x)}%20#{map.get($end, y)}'%20stroke%3D'#{$encodedcolor}'%20stroke-width%3D'#{strip-units($border)}'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E") 50% 50% no-repeat;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    animation: rotate 1.1s linear infinite;
+    z-index: 5;
+  }
+}
+
+@mixin error($color: map.get($ERROR, color), $width: map.get($ERROR, width), $border: map.get($ERROR, border), $top: map.get($ERROR, top), $left: map.get($ERROR, left)) {
+  $encodedcolor: encodecolor($color);
+  $height: $width;
+  $halfWidth: $width / 2;
+  $halfHeight: $height / 2;
+
+  @include after() {
+    position: absolute;
+    top: $top;
+    left: $left;
+    display: block;
+    box-sizing: border-box;
+    width: $width;
+    height: $height;
+    margin: $halfWidth * -1;
+    padding: 0;
+    background: transparent url("data:image/svg+xml;utf8,%3Csvg%20width%3D'#{strip-units($width)}'%20height%3D'#{strip-units($height)}'%20viewBox%3D'0%200%20#{strip-units($width)}%20#{strip-units($height)}'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'M 0 #{strip-units($halfHeight)}L#{strip-units($width)} #{strip-units($halfHeight)}M#{strip-units($halfWidth)} 0L#{strip-units($halfWidth)} #{strip-units($height)}'%20stroke%3D'#{$encodedcolor}'%20stroke-width%3D'#{strip-units($border)}'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E") 50% 50% no-repeat;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: rotate(45deg);
+    z-index: 5;
+  }
+}
+
+@mixin imagePlaceholder($color: #D1D1D9) {
+  $encodedcolor: encodecolor($color);
+  @include before() {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    border: 1px solid color.adjust($color, $alpha: -.95);
+    background: transparent url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'59'%20height%3D'43'%20viewBox%3D'0%200%2059%2043'%3E%3Cpath%20fill%3D'#{$encodedcolor}'%20d%3D'M37.929%208.6L27.313%2025.8l-10.456-8.428L0%2043h59L37.929%208.6zM6.32%2012.9c3.49%200%206.322-2.885%206.322-6.45C12.643%202.89%209.81%200%206.32%200%202.832%200%200%202.89%200%206.45c0%203.565%202.832%206.45%206.321%206.45z'%2F%3E%3C%2Fsvg%3E") 50% 50% no-repeat;
+    z-index: 0;
+  }
+}
+
+@mixin overlay($color: false, $top: 0, $left: 0, $right: 0, $bottom: 0, $display: block, $opacity: false) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  right: $right;
+  bottom: $bottom;
+  display: $display;
+  border-radius: inherit;
+  @if ($color) {
+    background-color: $color;
+  }
+  @if ($opacity) {
+    opacity: $opacity;
+  }
+}
+
+@mixin object-fit($fit: fill, $position: null) {
+  object-fit: $fit;
+  @if $position {
+    object-position: $position;
+    font-family: "object-fit: #{$fit}; object-position: #{$position}", serif;
+  } @else {
+    font-family: "object-fit: #{$fit};", serif;
+  }
+}
+
+@mixin ieHack() {
+  @media screen and (min-width: 0 \0) {
+    /* стили только для IE9 - IE10 */
+    @content;
+  }
+}
+
+@mixin trapezoid($color: #000) {
+  $encodedcolor: encodecolor($color);
+  background-image: url("data:image/svg+xml;utf8,%3Csvg%20width%3D%22259%22%20height%3D%22259%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M253.8%201.6a4%204%200%200%201%205.2%203.8v248a4%204%200%200%201-5.3%203.8l-251-86.3A4%204%200%200%201%200%20167V81.9a4%204%200%200%201%202.8-3.8l251-76.5Z%22%20fill%3D%22#{$encodedcolor}%22%2F%3E%3C%2Fsvg%3E");
+  background-size: cover;
+}

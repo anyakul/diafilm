@@ -1,0 +1,22 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'similar'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    <div class="similar__container">
+        <div class="similar__row">
+            {% if self.label %}
+                <div class="similar__label" role="heading" aria-level="2">{{ self.label|ft }}</div>
+            {% endif %}
+            {% if self.text %}
+                <div class="similar__text">{{ self.text|ft }}</div>
+            {% endif %}
+            {% include '@blocks/carousel.twig' with {
+                self: self.carousel|extend({
+                    className: 'similar__carousel'
+                })
+            } %}
+            {% if self.more %}
+                <div class="similar__after">
+                    <a class="similar__more" href="{{ menu|url(self.more.url) }}">{{ self.more.label|ft }}</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

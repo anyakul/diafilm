@@ -1,0 +1,79 @@
+{% load static %}
+{% load common_tags %}
+
+
+{% if self.type == "carousel" %}
+
+    {% if self.title %}
+    <div class="text text_small">
+        <div class="text__body is-editable">
+            <h3>{{ self.title|format_title }}</h3>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="carousel carousel_facts js-carousel-horizontal">
+        <div class="carousel__viewport js-carousel-viewport">
+            <ul class="carousel__list js-carousel-overflow">
+                {% for item in self.items %}
+                <li class="carousel__item carousel__item_default js-carousel-item">
+                    <article class="card card_fact">
+                        <div class="card__picture">
+                            {% with size="fill-272x200" class="card__image" %}
+                            {% include "common/img.html" with img=item.value.bound_blocks.image.value %}
+                            {% endwith %}
+                        </div>
+                        <div class="card__body">
+                            <div class="card__text">{{ item.value.bound_blocks.caption.value|format_title }}</div>
+                        </div>
+                    </article>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+{% else %} {# default #}
+
+    {% if self.title %}
+    <div class="text text_default">
+        <div class="text__container">
+            <div class="text__row">
+                <div class="text__body is-editable">
+                    <h2>{{ self.title|format_title }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="gallery gallery_default js-gallery-default"
+         itemprop="hasPart" itemscope itemtype="http://schema.org/ImageGallery" tabindex="0">
+        <div class="gallery__container">
+            <div class="gallery__row">
+                <div class="gallery__viewport js-gallery-viewport">
+                    <ul class="gallery__list js-gallery-list">
+                        {% for item in self.items %}
+                        {% image item.value.bound_blocks.image.value fill-233x136 as thumb %}
+                        <li class="gallery__item js-gallery-item" data-thumb="{{ thumb.url }}">
+                            <figure class="figure figure_image figure_captioned"
+                                    itemprop="image" itemscope itemtype="http://schema.org/ImageObject"
+                                    data-id="image_{{ item.id }}" data-type="image">
+                                <div class="figure__media">
+                                    {% with size="fill-928x540" class="figure__source js-figure-source" %}
+                                    {% include "common/img.html" with img=item.value.bound_blocks.image.value %}
+                                    {% endwith %}
+                                </div>
+                                <figcaption class="figure__caption js-figure-caption">
+                                    {{ item.value.bound_blocks.caption.value|format_title }}
+                                </figcaption>
+                            </figure>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endif %}

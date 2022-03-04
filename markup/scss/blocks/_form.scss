@@ -1,0 +1,199 @@
+@charset "UTF-8";
+@use "sass:map";
+
+/* --------------------
+   Форма
+   -------------------- */
+
+.form {
+  @extend %section;
+  display: none;
+
+  &_feedback {
+    padding-bottom: 80px;
+  }
+
+  &_footer {
+    @extend %row;
+    align-items: center;
+  }
+
+  &_search {
+    position: relative;
+  }
+
+  &_filter {
+    position: relative;
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+  }
+
+  &__header {
+    @include highlight();
+    @extend %column;
+    @extend %row;
+  }
+
+  &__label {
+    @include highlight();
+    @extend %column;
+
+    .form_feedback & {
+      @include column(5, 5);
+      padding-left: 16px;
+      padding-right: 16px;
+      @include font(36px, 40px, $base-font, 700);
+      text-transform: lowercase;
+
+      @each $key, $level in $LEVELS {
+        .root_#{map.get($level, slug)} & {
+          color: map.get($level, color);
+        }
+      }
+    }
+  }
+
+  &__text {
+    .form_footer & {
+      @include highlight();
+      @extend %column;
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-bottom: 10px;
+      @include font(14px, 20px, $base-font, 700);
+      //color: $white;
+
+      @include media(tablet) {
+        @include column(1, 5);
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-bottom: 0;
+      }
+    }
+
+    a {
+      color: inherit;
+
+      @include hover() {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__body {
+    @include highlight();
+    @extend %column;
+    @extend %row;
+    flex-wrap: wrap;
+
+    .form_footer & {
+      padding-left: 8px;
+      padding-right: 8px;
+
+      @include media(tablet) {
+        @include column(4, 5);
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+
+    @include aria(hidden, true) {
+      display: none;
+    }
+  }
+
+  &__fieldset {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  //&__legend {}
+
+  &__field {
+    @include highlight();
+    @extend %column;
+    position: relative;
+
+    @include transition() {
+      transition-property: opacity, visibility;
+    }
+
+    &_default {
+      .form_filter & {
+        width: auto;
+        min-width: auto;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .form_feedback & {
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-top: 20px;
+      }
+    }
+
+    &_full {
+      .form_search & {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .form_filter & {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+
+    //&_third {}
+
+    //&_half {}
+
+    &_login {
+      position: fixed;
+      bottom: 100%;
+      right: 100%;
+      display: block;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+
+    & + & {
+      .form_filter & {
+        margin-top: 16px;
+      }
+    }
+
+    .is-processing & {
+      pointer-events: none;
+    }
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &__message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+
+    @include aria(hidden) {
+      pointer-events: none;
+    }
+  }
+}

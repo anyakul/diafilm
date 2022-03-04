@@ -1,0 +1,10 @@
+{% load common_tags %}
+
+<div class="viewing__header">
+    <div class="viewing__label" role="heading" aria-level="3">{{ title|format_title }}</div>
+    <div class="viewing__text is-editable">
+        {{ text }}
+    </div>
+</div>
+
+{% include "components/viewing-hall/params.html" %}

@@ -1,0 +1,56 @@
+{% extends '../base.twig' %}
+
+{% block vendor_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block layout_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block vendor_scripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block layout_scripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_scripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block header %}
+    {% include '@blocks/header.twig' with {
+        self: {
+            mod: page.layout
+        }
+    } %}
+{% endblock %}
+
+{% block layout %}
+    <main class="{{ 'layout'|mod(page.layout) }} js-layout" id="main">
+        {% block layout_content %}
+        {% endblock layout_content %}
+    </main>
+{% endblock %}
+
+{% block footer %}
+    {% include '@blocks/footer.twig' with {
+        self: {
+            mod: page.layout
+        }
+    } %}
+{% endblock %}
+
+{% block notifications %}
+    {{ parent() }}
+{% endblock %}
+
+{% block popups %}
+    {{ parent() }}
+{% endblock %}

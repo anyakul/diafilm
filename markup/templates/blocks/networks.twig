@@ -1,0 +1,25 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'networks'|mod(self.mod) }}{{ self|jsClass }}">
+    {% if self.wrap %}
+    <div class="networks__container">
+        <div class="networks__row">
+            {% endif %}
+            {% if self.label %}
+                <div class="networks__label" role="heading" aria-level="4">{{ self.label|ft }}</div>
+            {% endif %}
+
+            <ul class="networks__list">
+                {% for item in self.items %}
+                    <li class="networks__item">
+                        {% include '@blocks/button.twig' with {
+                            self: item|extend({
+                                className: 'networks__button'
+                            })
+                        } %}
+                    </li>
+                {% endfor %}
+            </ul>
+            {% if self.wrap %}
+        </div>
+    </div>
+    {% endif %}
+</div>

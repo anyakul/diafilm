@@ -1,0 +1,22 @@
+{
+    "plugins": [
+        "../node_modules/stylelint-scss"
+    ],
+    "extends": [
+        "../node_modules/stylelint-config-recommended-scss"
+    ],
+    "rules": {
+        "string-quotes": "double",
+        "block-no-empty": true,
+        "no-descending-specificity": null,
+        "rule-empty-line-before": [
+            "always",
+            {
+                "ignore": [
+                    "inside-block"
+                ]
+            }
+        ],
+        "selector-list-comma-newline-after": "always"
+    }
+}

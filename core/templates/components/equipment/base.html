@@ -1,0 +1,16 @@
+{% load static %}
+{% load common_tags %}
+
+<div class="model model_default js-model">
+    <div class="model__container">
+        <div class="model__row">
+            <div class="model__header">
+                <div class="model__years">{{ self.year_begin }} – {{ self.year_end }}г.</div>
+                <div class="model__label" role="heading" aria-level="2">{{ self.manufacturer|format_title }}</div>
+                <div class="model__text is-editable">{{ self.description }}</div>
+            </div>
+
+            {% include "components/equipment/scheme.html" with scheme=self.scheme %}
+        </div>
+    </div>
+</div>

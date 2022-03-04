@@ -1,0 +1,47 @@
+{% load content_tags %}
+
+{% if page.is_index %}
+{# no such block #}
+{% elif page.html_class == "viewing-hall" %}
+{# В две колонки для просмотрового зала #}
+<div class="params params_columns">
+    <div class="params__container">
+        <div class="params__row">
+            <dl class="params__list">
+                {% for item in self.items|person_filter %}
+                <div class="params__item">
+                    <dt class="params__term">{{ item.value.bound_blocks.name }}</dt>
+                    <dd class="params__desc">{{ item.value.bound_blocks.value }}</dd>
+                </div>
+                {% endfor %}
+            </dl>
+        </div>
+    </div>
+</div>
+{% elif page.html_class == "gallery" %}
+{# Инлайн для галереи #}
+<dl class="params params_inline">
+    {% for item in self.items %}
+    <div class="params__item">
+        <dt class="params__term">{{ item.value.bound_blocks.name }}</dt>
+        <dd class="params__desc">{{ item.value.bound_blocks.value }}</dd>
+    </div>
+    {% endfor %}
+</dl>
+{% else %}
+{# В столбик с отсутпом в статьях #}
+<div class="params params_default">
+    <div class="params__container">
+        <div class="params__row">
+            <dl class="params__list">
+                {% for item in self.items %}
+                <div class="params__item">
+                    <dt class="params__term">{{ item.value.bound_blocks.name }}</dt>
+                    <dd class="params__desc">{{ item.value.bound_blocks.value }}</dd>
+                </div>
+                {% endfor %}
+            </dl>
+        </div>
+    </div>
+</div>
+{% endif %}

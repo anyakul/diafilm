@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# git hook to run a command after `git pull` if a specified file was changed
+# Run `chmod +x post-merge` to make it executable then link it into `.git/hooks/`:
+# $ ln -s ../../git_hooks/post-merge .git/hooks/post-merge
+
+# printf colors
+RED="\033[0;31m"          # Red
+CYAN="\033[0;36m"         # Cyan
+NORMAL="\033[0m"          # Normal
+
+PROJECT=${PWD##*/}
+
+changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
+
+declare -a MESSAGES
+
+check_run() {
+    echo "$changed_files" | grep --quiet "$1" && MESSAGES+=( "$2" )
+}
+
+check_run "reqs.txt" "you need to install environmental requirements with \`${CYAN}pip install -r reqs.txt${NORMAL}\`"
+check_run "migrations" "you need to apply migrations with \`${CYAN}python manage.py migrate${NORMAL}\`"
+check_run "\.py$\|\.po$\|\.mo$" "you need to restart server with \`${CYAN}supervisorctl restart ${PROJECT}${NORMAL}\`"
+
+if [ ${#MESSAGES[@]} -ne 0 ]; then
+    printf "\n\n${RED}> ATTENTION!${NORMAL}\n"
+    for message in "${MESSAGES[@]}"
+    do
+        printf "${RED}>${NORMAL} ${message}\n"
+    done
+fi

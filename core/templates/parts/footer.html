@@ -1,0 +1,52 @@
+{% load common_tags %}
+{% load i18n %}
+{% load chunk_tags %}
+
+<div class="footer__container">
+    <div class="footer__row">
+        <div class="footer__copy">
+            {% get_chunk "copyright" as copyright %}
+            {% for block in copyright %}
+            {{ block|safe }}
+            {% empty %}
+            © Диафильм онлайн, {% now "Y" %}
+            {% endfor %}
+        </div>
+        <div class="footer__phone">
+            {% get_chunk "phone" as phone %}
+            <a href="tel:{{ phone|phone_raw }}">{{ phone }}</a>
+        </div>
+        <div class="footer__form">
+            <form class="form form_footer js-form-footer" method="post" action="{% url "api:subscribe" %}">
+                <div class="form__text">подпишитесь на новости</div>
+                <div class="form__body">
+                    <div class="form__field form__field_full">
+                        <div class="field field_default js-form-field">
+                            <input type="email" name="email" id="id_footer_email"
+                                   class="field__element field__element_email is-email is-external-email js-form-field-element">
+                            <label for="id_footer_email"
+                                   class="field__placeholder js-form-field-placeholder">e-mail</label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="footer__network">
+            <div class="networks networks_footer">
+                <div class="networks__label" role="heading" aria-level="4">давайте дружить</div>
+                {% get_chunk_list "facebook,instagram,vkontakte" as social_list %}
+                <ul class="networks__list">
+                    {% for key, value in social_list %}
+                    <li class="networks__item">
+                        <a class="networks__button button button_square"
+                           href="{{ value|join:"" }}" target="_blank" rel="noopener noreferrer"
+                           aria-label="{{ key }}" title="{% translate key %}">
+                            <span class="button__icon button__icon_{% cycle "fb" "ig" "vk" %}-white"></span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

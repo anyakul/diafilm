@@ -1,0 +1,11 @@
+{% load content_tags %}
+
+{% get_quotes count=self.count ordering=self.ordering as object_list %}
+
+<div class="cafeteria cafeteria_default">
+    <div class="cafeteria__container">
+        <div class="cafeteria__row">
+            {% include "components/quotes.html" %}
+        </div>
+    </div>
+</div>

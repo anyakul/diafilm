@@ -1,0 +1,159 @@
+@charset "UTF-8";
+@use "sass:map";
+
+/* --------------------
+   Стили текста из WYSIWYG
+   -------------------- */
+
+.editable,
+.is-editable {
+
+  h2 {
+    display: block;
+    box-sizing: border-box;
+    margin: em(50, 36) 0 em(24, 36);
+    padding: 0;
+    @include font(em(36, 18), em(40, 36), $base-font, 600);
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  h3 {
+    display: block;
+    box-sizing: border-box;
+    margin: em(50, 24) 0 em(24, 24);
+    padding: 0;
+    @include font(em(24, 14), em(30, 24), $base-font, 600);
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  h4 {
+    display: block;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  h5 {
+    display: block;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  h6 {
+    display: block;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  p {
+    display: block;
+    box-sizing: border-box;
+    margin: 1em 0;
+    padding: 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+
+    @each $key, $level in $LEVELS {
+      .root_#{map.get($level, slug)} & {
+        color: map.get($level, color);
+      }
+    }
+
+    @include hover() {
+      text-decoration: none;
+    }
+
+    &[href^="tel:"] {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  ul {
+    margin: em(24, 18) 0 em(36, 18);
+    padding: 0;
+    list-style-type: none;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    & > li {
+      position: relative;
+      padding: 0 0 0 em(24, 18);
+
+      @include before() {
+        position: absolute;
+        top: em(14, 18);
+        left: em(12, 18);
+        display: block;
+        width: 10px;
+        height: 10px;
+        margin: -5px;
+        border-radius: 50%;
+
+        @each $key, $level in $LEVELS {
+          .root_#{map.get($level, slug)} & {
+            background-color: map.get($level, color);
+          }
+        }
+      }
+
+      & + li {
+        margin-top: em(14, 18);
+      }
+    }
+  }
+
+  //ol {
+  //  & > li {
+  //  }
+  //}
+
+  table {
+
+    img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+
+    p {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      font: inherit;
+      color: inherit;
+    }
+  }
+}

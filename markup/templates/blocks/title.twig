@@ -1,0 +1,36 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'title'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    <div class="title__container">
+        <div class="title__row">
+            {% if self.back %}
+                <div class="title__back">
+                    <a class="title__link" href="{{ menu|url(self.back.url) }}">{{ self.back.label }}</a>
+                </div>
+            {% endif %}
+            {% if self.image %}
+                <div class="title__picture">
+                    {% include '@blocks/lazy-image.twig' with {
+                        self: self.image|extend({
+                            className: 'title__image'
+                        })
+                    } %}
+                </div>
+            {% endif %}
+            {% if self.levels %}
+                <div class="title__levels">
+                    <div class="title__number">{{ section.number }}</div>
+                    <nav class="title__nav">
+                        {% for level in self.levels %}
+                            <a class="title__button{% if level.id == section.id %} is-active{% endif %}" href="{{ menu|url(level.url) }}">
+                                <span>{{ level.label|ft }}</span>
+                            </a>
+                        {% endfor %}
+                    </nav>
+                </div>
+            {% endif %}
+            <h1 class="title__label">{{ self.label|ft }}</h1>
+            {% if self.date %}
+                <time class="title__date" datetime="{{ self.date.datetime }}">{{ self.date.label|ft }}</time>
+            {% endif %}
+        </div>
+    </div>
+</div>

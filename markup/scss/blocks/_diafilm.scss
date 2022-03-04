@@ -1,0 +1,384 @@
+@charset "UTF-8";
+@use "sass:map";
+
+/* --------------------
+   Диафильм
+   -------------------- */
+
+.diafilm {
+  @extend %section;
+
+  &_default {
+    margin-bottom: 50px;
+  }
+
+  &_inner {
+    padding-top: 40px;
+    margin-bottom: 40px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+  }
+
+  &__back {
+    @include highlight();
+    @extend %column;
+    position: relative;
+    align-self: stretch;
+    @include column(1, 12);
+    min-height: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  &__link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: -16px;
+    @include font(24px, 28px, $title-font, 700);
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    color: $black;
+    transform: rotate(-90deg);
+    margin-right: 16px;
+    transform-origin: 100% 100%;
+    overflow: hidden;
+
+    .layout_gray & {
+      color: $white;
+    }
+
+    @include media(before, tablet){
+      margin-right: 0;
+    }
+
+    @include before() {
+      display: inline-block;
+      vertical-align: bottom;
+      @include svgSprite(icon-arrow-16-black);
+      margin-right: 4px;
+      transform: rotate(-90deg);
+
+      .layout_gray & {
+        @include svgSprite(icon-arrow-16-white);
+      }
+    }
+  }
+
+  &__viewport {
+    @include highlight();
+    @extend %column;
+    @extend %row;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: stretch;
+    position: relative;
+
+    .diafilm_default & {
+      @include columnWithPush(10, 2, 12);
+
+      @include media(before, tablet){
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    .diafilm_inner & {
+      @include column(11, 12);
+
+      @include media(before, tablet){
+        @include column(9, 10);
+        margin-left: auto;
+      }
+    }
+
+    @include before() {
+      position: absolute;
+      top: 0;
+      left: 16px;
+      right: 16px;
+      bottom: 0;
+      border: 2px solid $black;
+      border-radius: 4px;
+      pointer-events: none;
+      z-index: 10;
+
+      .layout_gray & {
+        border-color: $white;
+      }
+    }
+  }
+
+  &__player {
+    @include highlight();
+    @extend %column;
+    position: relative;
+    padding-top: 25px;
+    margin-bottom: -25px;
+    border-radius: 4px;
+    overflow: hidden;
+
+    .diafilm_default & {
+      @include column(8.5, 10);
+      padding-bottom: calc(744 / 987 * 8.5 / 10 * 100%);
+    }
+
+    .diafilm_inner & {
+      @include column(9.5, 11);
+      padding-bottom: calc(744 / 987 * 9.5 / 11 * 100%);
+    }
+
+    .is-processing & {
+      @include loader($color: $pink);
+    }
+  }
+
+  &__iframe {
+    position: absolute;
+    top: -25px;
+    left: 16px;
+    right: 16px;
+    bottom: 0;
+    width: calc(100% - 17px);
+    height: 100%;
+    border: none;
+    opacity: 0;
+
+    @include transition() {
+      transition-property: opacity;
+    }
+
+    .is-ready & {
+      opacity: 1;
+    }
+  }
+
+  &__toolbar {
+    @include highlight();
+    @extend %column;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+    align-self: flex-end;
+    height: 100%;
+    min-height: 100%;
+    padding-right: 16px;
+
+    .diafilm_default & {
+      @include column(1.5, 10);
+    }
+
+    .diafilm_inner & {
+      @include column(1.5, 11);
+    }
+
+    @include before() {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      border-left: 2px solid $black;
+
+      .layout_gray & {
+        border-left-color: $white;
+      }
+    }
+  }
+
+  &__nav {
+    @include highlight();
+    position: relative;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 30px 0;
+    margin-top: auto;
+    text-align: center;
+
+    @include before() {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      border-top: 2px solid $black;
+
+      .layout_gray & {
+        border-top-color: $white;
+      }
+    }
+  }
+
+  &__button {
+    position: relative;
+    display: block;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+
+    &_exit {
+      position: absolute;
+      top: 60px;
+      right: 60px;
+      width: 72px;
+      height: 72px;
+      display: none;
+
+      @include media("all and (display-mode: fullscreen)") {
+        display: block;
+      }
+
+      @include after() {
+        display: block;
+        @include svgSprite(icon-exit-white);
+      }
+    }
+
+    &_full {
+      width: 80px;
+      padding-top: 20px;
+      margin-top: auto;
+      @include font(10px, 14px, $title-font, 700);
+      text-transform: uppercase;
+      color: $black;
+      @include highlight();
+
+      @include media(before, tablet){
+        transform: rotate(90deg);
+        padding-top: 0;
+        width: 200px;
+
+      }
+
+      .layout_gray & {
+        color: $white;
+      }
+
+      @include after() {
+        margin-top: 20px;
+        display: block;
+        @include svgSprite(icon-full-black);
+
+        .layout_gray & {
+          @include svgSprite(icon-full-white);
+        }
+
+        @include media(before, tablet){
+          display: none;
+        }
+      }
+    }
+
+    &_up {
+      width: 40px;
+      height: 40px;
+
+      @include before() {
+        @include svgIcon(icon-arrow-round-black-22);
+        transform: rotate(-90deg);
+
+        .layout_gray & {
+          @include svgIcon(icon-arrow-round-white-22);
+        }
+      }
+    }
+
+    &_down {
+      width: 40px;
+      height: 40px;
+
+      @include before() {
+        @include svgIcon(icon-arrow-round-black-22);
+        transform: rotate(90deg);
+
+        .layout_gray & {
+          @include svgIcon(icon-arrow-round-white-22);
+        }
+      }
+    }
+  }
+
+  &__hint {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    @include font(14px, 20px, $title-font, 700);
+    text-transform: uppercase;
+    color: $black;
+
+    .layout_gray & {
+      color: $white;
+    }
+
+    @include media(before, tablet){
+      display: none;
+    }
+  }
+
+  &__label {
+    @include highlight();
+    @extend %column;
+
+    .diafilm_default & {
+      @include columnWithPush(5, 2, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 12px;
+      margin-bottom: 20px;
+      @include font(36px, 40px, $base-font, 700);
+      text-transform: lowercase;
+
+      @each $key, $level in $LEVELS {
+        .root_#{map.get($level, slug)} & {
+          color: map.get($level, color);
+        }
+      }
+
+      @include media(before, tablet){
+        @include font(24px, 20px, $base-font, 700);
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  &__text {
+    @include highlight();
+    @extend %column;
+
+    .diafilm_default & {
+      @include columnWithPush(5, 2, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-bottom: 20px;
+      @include font(14px, 18px, $base-font, 400);
+      color: $black;
+
+      @include media(before, tablet){
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  }
+}

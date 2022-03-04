@@ -1,0 +1,26 @@
+{% load content_tags %}
+{% load common_tags %}
+
+<div class="elevator__floor js-elevator-floor" data-id="{{ item.slug }}">
+    <div class="section section_gallery">
+        <div class="section__container">
+            <div class="section__row">
+                <div class="section__label" role="heading" aria-level="2">{{ item.title|format_title }}</div>
+                <div class="section__body">
+                    <div class="artists artists_main">
+                        <div class="artists__header">
+                            <div class="artists__label" role="heading" aria-level="3">{{ item.annotation }}</div>
+                        </div>
+                        <div class="artists__list">
+                            {% get_artist_pages count=4 ordering="?" as list_page %}
+                            {% include "components/artists/list.html" with object_list=list_page.object_list %}
+                        </div>
+                        <div class="artists__after">
+                            <a class="artists__more" href="{{ item.get_menu_url }}">Пройти в&nbsp;галерею</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

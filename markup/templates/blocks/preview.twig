@@ -1,0 +1,59 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'preview'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}
+    {% if self.after %}data-clickable{% endif %}>
+    {% if self.wrap %}
+    <div class="preview__container">
+        <div class="preview__row">
+            {% endif %}
+
+            {% if self.picture %}
+                <div class="{{ 'preview__picture'|mod(self.picture.mod) }}">
+                    {% if self.picture.url is iterable %}
+                        {% for url in self.picture.url %}
+                            {% include '@blocks/lazy-image.twig' with {
+                                self: self.picture|extend({
+                                    className: 'preview__image',
+                                    url: url
+                                }, true)
+                            } %}
+                        {% endfor %}
+                    {% else %}
+                        {% include '@blocks/lazy-image.twig' with {
+                            self: self.picture|extend({
+                                className: 'preview__image'
+                            })
+                        } %}
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            <div class="preview__body">
+                {% if self.figure %}
+                    <div class="preview__figure">
+                        {% include '@blocks/lazy-image.twig' with {
+                            self: self.figure|extend({
+                                className: 'preview__image'
+                            })
+                        } %}
+                    </div>
+                {% endif %}
+
+                <div class="preview__label" role="heading" aria-level="3">{{ self.label|ft }}</div>
+
+                {% if self.text %}
+                    <div class="preview__text is-editable">
+                        {{ self.text|ft }}
+                    </div>
+                {% endif %}
+            </div>
+
+            {% if self.after %}
+                <div class="preview__after">
+                    <a class="preview__more" href="{{ menu|url(self.after.url) }}">{{ self.after.label|ft }}</a>
+                </div>
+            {% endif %}
+
+            {% if self.wrap %}
+        </div>
+    </div>
+    {% endif %}
+</div>

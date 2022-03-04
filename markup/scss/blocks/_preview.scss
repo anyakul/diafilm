@@ -1,0 +1,384 @@
+@charset "UTF-8";
+@use "sass:color";
+@use "sass:map";
+
+/* --------------------
+   Анонс
+   -------------------- */
+
+.preview {
+
+  &_default {
+    @include highlight();
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    @include media(before, tablet) {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &[data-clickable] {
+    cursor: pointer;
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+
+    .preview_default & {
+      align-items: stretch;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+      }
+    }
+
+    .preview_normal & {
+      flex-direction: row;
+    }
+
+    .preview_mixed & {
+      flex-direction: row;
+    }
+
+    .preview_inverted & {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__picture {
+    @include highlight();
+    @extend %column;
+
+    &_default {
+      @include after() {
+        position: absolute;
+        top: 0;
+        left: 16px;
+        right: 16px;
+        bottom: 0;
+        border-radius: 4px;
+        opacity: .5;
+        z-index: -1;
+
+        @each $key, $level in $LEVELS {
+          .root_#{map.get($level, slug)} & {
+            background-color: map.get($level, color);
+          }
+        }
+      }
+    }
+
+    &_large {
+      @include after() {
+        position: absolute;
+        top: 50%;
+        left: 16px;
+        right: 16px;
+        bottom: 0;
+        border-radius: 4px;
+        opacity: .5;
+        z-index: -1;
+
+        @each $key, $level in $LEVELS {
+          .root_#{map.get($level, slug)} & {
+            background-color: map.get($level, color);
+          }
+        }
+      }
+    }
+
+    &_beam {
+      @include after() {
+        position: absolute;
+        top: 0;
+        left: calc(-3 / 5 * 100%);
+        right: 0;
+        bottom: 0;
+        border-radius: 4px;
+        opacity: .5;
+        z-index: -1;
+        clip-path: polygon(0 45%, 100% 0, 100% 100%, 0 55%);
+        @supports (right: calc((var(--full-width) - 12 / 5 * 100%) / -2)) {
+          right: calc((var(--full-width) - 12 / 5 * 100%) / -2);
+        }
+        @supports (right: calc((min(var(--full-width), 1920px) - 12 / 5 * 100%) / -2)) {
+          right: calc((min(var(--full-width), 1920px) - 12 / 5 * 100%) / -2);
+        }
+
+        @each $key, $level in $LEVELS {
+          .root_#{map.get($level, slug)} & {
+            background-color: map.get($level, color);
+          }
+        }
+      }
+    }
+
+    .preview_default & {
+      position: relative;
+      padding-left: 16px;
+      padding-right: 16px;
+
+      @include before() {
+        @include highlight();
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 0;
+        padding-top: 100%;
+      }
+    }
+
+    .preview_normal & {
+      @include columnWithPush(5, 2, 12);
+
+      @include media(before, tablet) {
+        display: none;
+      }
+    }
+
+    .preview_inverted & {
+      @include column(5, 12);
+
+      @include media(before, tablet) {
+        display: none;
+      }
+    }
+
+    .preview_mixed & {
+      @include column(5, 12);
+      order: 3;
+
+      @include media(before, tablet) {
+        @include column(6, 10);
+      }
+    }
+  }
+
+  &__image {
+
+    .preview__picture & {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      padding: 40px 56px;
+      border-radius: 4px;
+      @include object-fit(contain, 50% 50%);
+    }
+
+    .preview__picture_default & {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      padding: 40px 56px;
+      border-radius: 4px;
+      @include object-fit(contain, 50% 50%);
+    }
+
+    .preview__picture_double & {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      box-sizing: border-box;
+      width: calc(3 / 5 * 100%);
+      height: 100%;
+      padding: 0 16px;
+      margin-top: -50px;
+      margin-left: -32px;
+      border-radius: 4px;
+      @include object-fit(contain, 50% 50%);
+      filter: drop-shadow(18px 16px 22px color.adjust($black, $alpha: -.25));
+    }
+
+    .preview__figure & {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      padding: 0 16px;
+      margin: -16px 0;
+      border-radius: 4px;
+      @include object-fit(contain, 50% 50%);
+
+      @include media(before, tablet) {
+        @include column(9, 10);
+      }
+    }
+
+    & + & {
+      .preview__picture_double & {
+        left: calc(2 / 5 * 100%);
+        margin-top: 0;
+      }
+    }
+  }
+
+  &__body {
+    @include highlight();
+    @extend %column;
+
+    .preview_default & {
+      @extend %row;
+      flex-direction: column;
+      @include column(4, 12);
+
+      @include media(before, tablet) {
+        @include column(9, 10);
+        margin-bottom: 20px;
+      }
+    }
+
+    .preview_mixed & {
+      @include columnWithPush(4, 2, 12);
+      order: 1;
+    }
+  }
+
+  &__figure {
+    @include highlight();
+    @extend %column;
+
+    .preview_default & {
+      position: relative;
+      @include columnWithPush(3, 1, 4);
+
+      @include before() {
+        @include highlight();
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 0;
+        padding-top: 100%;
+      }
+
+      @include media(before, tablet) {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+    .preview_mixed & {
+      @include columnWithPull(3, 1, 4);
+    }
+  }
+
+  &__label {
+    @include highlight();
+    @extend %column;
+
+    .preview_default & {
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-bottom: 0;
+      @include font(24px, 28px, $base-font, 600);
+      color: $black;
+
+      @include media(before, tablet) {
+        @include font(18px, 24px, $base-font, 600);
+      }
+    }
+
+    .preview_normal & {
+      margin-top: auto;
+
+      @include media(before, tablet) {
+        @include font(18px, 24px, $base-font, 600);
+      }
+    }
+  }
+
+  &__text {
+    @include highlight();
+    @extend %column;
+
+    .preview_default & {
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 14px;
+      @include font(14px, 20px, $base-font, 400);
+      color: $black;
+    }
+  }
+
+  &__after {
+    @include highlight();
+    @extend %column;
+
+    .preview_default & {
+      position: relative;
+      align-self: flex-end;
+      justify-self: flex-end;
+      @include column(1, 12);
+      height: 100%;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .preview_inverted & {
+      order: -1;
+    }
+
+    .preview_mixed & {
+      order: 2;
+    }
+  }
+
+  &__more {
+    .preview_default & {
+      position: absolute;
+      bottom: 0;
+      left: 100%;
+      display: inline-block;
+      vertical-align: bottom;
+      margin-left: -16px;
+      @include font(24px, 28px, $title-font, 700);
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      color: $black;
+      transform: rotate(-90deg);
+      transform-origin: 0 100%;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+      }
+
+      @include before() {
+        display: inline-block;
+        vertical-align: bottom;
+        @include svgSprite(icon-arrow-16-black);
+        margin-right: 4px;
+        transform: rotate(90deg);
+      }
+    }
+
+    .preview_inverted & {
+      bottom: 60px;
+    }
+  }
+}

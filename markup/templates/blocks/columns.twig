@@ -1,0 +1,14 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'columns'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    <div class="columns">
+        <div class="columns__container">
+            <div class="columns__row">
+                <div class="columns__column columns__column_1">
+                    {% block column_1 %}{% endblock %}
+                </div>
+                <div class="columns__column columns__column_2">
+                    {% block column_2 %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

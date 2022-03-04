@@ -1,0 +1,217 @@
+{% extends '@layouts/default.twig' %}
+
+{% block vendor_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_styles %}
+{% endblock %}
+
+{% block vendor_scripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block layout_content %}
+    {% include '@blocks/title.twig' with {
+        self: {
+            mod: 'section',
+            levels: getMenu(menu, root.id),
+            label: pageTitle
+        }
+    } %}
+
+    {% embed '@blocks/tabs.twig' with {
+        self: {
+            mod: 'default',
+            jsClassName: 'js-tabs-default',
+            items: getMenu(menu, page.id)
+        }
+    } %}
+        {% block tabs_panel_1 %}
+            {% include '@blocks/feed.twig' with {
+                self: {
+                    mod: 'catalog',
+                    jsClassName: 'js-feed-lazy',
+                    itemsTemplate: '@blocks/card.twig',
+                    form: {
+                        mod: 'search, page',
+                        jsClassName: 'js-form-search',
+                        prefix: 'search',
+                        extra: {
+                            'method': 'get',
+                            'action': '#'
+                        },
+                        fields: [
+                            {
+                                size: 'full',
+                                mod: '',
+                                type: 'search',
+                                helpers: ['is-string'],
+                                name: 'q',
+                                button: { mod: 'field', icon: 'search-white', title: 'Поиск', type: 'submit' }
+                            }
+                        ]
+                    },
+                    button: {
+                        mod: 'inline',
+                        iconBefore: 'arrow-down',
+                        label: 'Загрузить ещё',
+                        url: '?page=2',
+                        extra: {
+                            'rel': 'next',
+                            'data-base': 'ajax/feed-more-catalog.html'
+                        }
+                    },
+                    items: [
+                        {
+                            size: '',
+                            mod: 'film',
+                            label: 'Две сказки',
+                            image: { url: 'viewing-hall/catalog/card-1.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'diafilm' }
+                        },
+                        {
+                            size: '',
+                            mod: 'film',
+                            label: 'Чаша из красного лака',
+                            image: { url: 'viewing-hall/catalog/card-2.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'diafilm' }
+                        },
+                        {
+                            size: '',
+                            mod: 'film',
+                            label: 'Вредная девчонка',
+                            image: { url: 'viewing-hall/catalog/card-3.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'diafilm' }
+                        },
+                        {
+                            size: '',
+                            mod: 'film',
+                            label: 'Мамита',
+                            image: { url: 'viewing-hall/catalog/card-4.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'diafilm' }
+                        },
+                        {
+                            size: '',
+                            mod: 'film',
+                            label: 'Василиса Премудрая',
+                            image: { url: 'viewing-hall/catalog/card-5.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'diafilm' }
+                        },
+                        {
+                            size: '',
+                            mod: 'film',
+                            label: 'Сказка о попе и работнике его Балде',
+                            image: { url: 'viewing-hall/catalog/card-6.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'diafilm' }
+                        },
+                        {
+                            size: '',
+                            mod: 'film',
+                            label: 'Айболит',
+                            image: { url: 'viewing-hall/catalog/card-7.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'diafilm' }
+                        },
+                        {
+                            size: '',
+                            mod: 'film',
+                            label: 'Медвежкина мама',
+                            image: { url: 'viewing-hall/catalog/card-8.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'diafilm' }
+                        },
+                        {
+                            size: '',
+                            mod: 'film',
+                            label: 'Приключения Буратино',
+                            image: { url: 'viewing-hall/catalog/card-9.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'diafilm' }
+                        },
+                        {
+                            size: '',
+                            mod: 'film',
+                            label: 'Массаро правда',
+                            image: { url: 'viewing-hall/catalog/card-10.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'diafilm' }
+                        },
+                        {
+                            size: '',
+                            mod: 'film',
+                            label: 'Колобок',
+                            image: { url: 'viewing-hall/catalog/card-11.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'diafilm' }
+                        },
+                        {
+                            size: '',
+                            mod: 'film',
+                            label: 'Сказка о еловой шишке и серой мышке',
+                            image: { url: 'viewing-hall/catalog/card-12.jpg', width: 384, height: 288 },
+                            link: { label: '', url: 'diafilm' }
+                        }
+                    ]
+                }
+            } %}
+        {% endblock tabs_panel_1 %}
+
+        {% block tabs_panel_2 %}
+            {% include '@blocks/feed.twig' with {
+                self: {
+                    mod: 'collections',
+                    jsClassName: 'js-feed-lazy',
+                    itemsTemplate: '@blocks/card.twig',
+                    button: {
+                        mod: 'inline',
+                        iconBefore: 'arrow-down',
+                        label: 'Загрузить ещё',
+                        url: '?page=2',
+                        extra: {
+                            'rel': 'next',
+                            'data-base': 'ajax/feed-more-collections.html'
+                        }
+                    },
+                    items: [
+                        {
+                            size: '',
+                            mod: 'collection',
+                            label: 'Пограничник Карацупа и его пёс Ингус. Невыдуманные герои диафильмов. Герои страны!',
+                            text: 'Ежегодно, начиная с 1994 года, 28 мая страна отмечает День пограничника. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм. Жизнь действительно стала иной, но все перечисленное никуда не делось. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм.',
+                            image: { url: 'viewing-hall/collections/card-1.jpg', width: 503, height: 362 },
+                            link: { label: 'Читать статью полностью', url: 'collection' }
+                        },
+                        {
+                            size: '',
+                            mod: 'collection',
+                            label: 'Диафильмы про Бабу-Ягу',
+                            text: 'Ежегодно, начиная с 1994 года, 28 мая страна отмечает День пограничника. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось.',
+                            image: { url: 'viewing-hall/collections/card-2.jpg', width: 503, height: 362 },
+                            link: { label: 'Читать статью полностью', url: 'collection' }
+                        },
+                        {
+                            size: '',
+                            mod: 'collection',
+                            label: 'Диафильмы о Русских писателях 19 века.',
+                            text: 'Ежегодно, начиная с 1994 года, 28 мая страна отмечает День пограничника. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось.',
+                            image: { url: 'viewing-hall/collections/card-3.jpg', width: 503, height: 362 },
+                            link: { label: 'Читать статью полностью', url: 'collection' }
+                        },
+                        {
+                            size: '',
+                            mod: 'collection',
+                            label: 'Диафильмы о СССР',
+                            text: 'Ежегодно, начиная с 1994 года, 28 мая страна отмечает День пограничника. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают. Это та самая профессия, о которой говорит начальник заставы в легендарном фильме героя нашего времени смотрите фильм Жизнь действительно стала иной, но все перечисленное никуда не делось.',
+                            image: { url: 'viewing-hall/collections/card-4.jpg', width: 503, height: 362 },
+                            link: { label: 'Читать статью полностью', url: 'collection' }
+                        }
+                    ]
+                }
+            } %}
+        {% endblock tabs_panel_2 %}
+    {% endembed %}{# tabs #}
+
+{% endblock layout_content %}
+
+{% block popups %}
+    {{ parent() }}
+{% endblock popups %}

@@ -1,0 +1,5 @@
+{% if self.is_published %}
+{% with title=self.title text=self.text count=self.number ordering=self.ordering style=self.style %}
+{% include "components/similar/wrapper.html" with parent=self.page %}
+{% endwith %}
+{% endif %}

@@ -1,0 +1,49 @@
+{% load common_tags %}
+
+{% comment %}
+https://docs.wagtail.io/en/stable/topics/images.html
+
+Size:
+    original
+    [min|max|fill]-WxH[-cC]
+    [width|height|scale]-X
+
+Filters:
+    jpegquality-XX
+    webpquality-XX
+
+    format-[jpeg|png|gif|webp|webp-lossless]
+
+    bgcolor-XXX[XXX]
+
+Examples:
+
+{% with class="card__icon" alt="some alt" filters="bgcolor-000" %}
+{% include "parts/img.html" with img=self.image size="max-200x200" format="jpeg" %}
+{% endwith %}
+
+{% with small="" normal="max-200x200" large="min-400x400" %}
+{% include "parts/img.html" with img=self.image class="card__icon" %}
+{% endwith %}
+
+{% include "parts/img.html" with img=self.image normal="max-200x200" class="card__icon" %}
+{% endcomment %}
+
+{% get_images as img %}
+
+<img
+     class="{% firstof class "text__image" %}"
+     loading="lazy"
+     {% if img.small %}
+     src="{{ img.small.url }}"
+     data-src="{{ img.normal.url }}"
+     data-srcset="{{ img.large.url }} 2x"
+     {% else %}
+     src="{{ img.normal.url }}"
+     srcset="{{ img.large.url }} 2x"
+     {% endif %}
+     width="{{ img.normal.width }}" height="{{ img.normal.height }}"
+     intrinsicsize="{{ img.normal.width }}x{{ img.normal.height }}"
+     alt="{% firstof alt img.alt %}"
+     {% for key, value in img.attrs %}{{ key }}="{{ value }}"
+     {% endfor %}>

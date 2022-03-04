@@ -1,0 +1,25 @@
+{% load common_tags %}
+
+<li class="carousel__item {% if item.annotation_image.is_landscape %}carousel__item_double{% else %}carousel__item_default{% endif %} js-carousel-item">
+    <article class="card card_publication" data-clickable>
+        <div class="card__picture">
+            {% with class="card__image" %}
+            {% if item.annotation_image.is_landscape %}
+            {% include "common/img.html" with img=item.annotation_image size="fill-610x400" %}
+            {% else %}
+            {% include "common/img.html" with img=item.annotation_image size="fill-290x400" %}
+            {% endif %}
+            {% endwith %}
+        </div>
+        <div class="card__body">
+            <div class="card__label" role="heading" aria-level="4">
+                <a class="card__link" href="{{ item.url }}">
+                    {{ item.title|format_title }}
+                </a>
+            </div>
+            <div class="card__text">
+                {{ item.annotation }}
+            </div>
+        </div>
+    </article>
+</li>

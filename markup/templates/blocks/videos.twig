@@ -1,0 +1,29 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'videos'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    <div class="videos">
+        <div class="videos__container">
+            <div class="videos__row">
+                {% if self.label or self.text %}
+                    <div class="videos__header">
+                        {% if self.label %}
+                            <div class="videos__label" role="heading" aria-level="2">{{ self.label|ft }}</div>
+                        {% endif %}
+                        {% if self.text %}
+                            <div class="videos__text">{{ self.text|ft }}</div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                <div class="videos__carousel">
+                    {% include '@blocks/carousel.twig' with {
+                        self: {
+                            mod: 'videos',
+                            wrap: false,
+                            jsClassName: 'js-carousel-horizontal',
+                            itemsTemplate: '@blocks/figure.twig',
+                            items: self.items
+                        }
+                    } %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

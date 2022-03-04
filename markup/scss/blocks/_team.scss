@@ -1,0 +1,210 @@
+@charset "UTF-8";
+@use "sass:color";
+@use "sass:map";
+
+/* --------------------
+   Команда
+   -------------------- */
+
+.team {
+  @extend %section;
+
+  &_default {
+    padding-bottom: 100px;
+
+    @include media(before, tablet) {
+      padding-bottom: 36px;
+    }
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+
+    .team_default & {
+      position: relative;
+
+      @include before() {
+        position: absolute;
+        top: 0;
+        left: calc(2 / 12 * 100%);
+        right: calc(4 / 12 * 100%);
+        margin-top: -140px;
+        margin-left: 16px;
+        margin-right: 16px;
+        height: 450px;
+        border-radius: 50% / 80px;
+        background-color: color.adjust($magenta, $alpha: -.7);
+        z-index: -1;
+
+        @supports (clip-path: ellipse(65% 50% at center)) {
+          border-radius: 0;
+          clip-path: ellipse(65% 50% at center);
+        }
+      }
+
+      @include after() {
+        position: absolute;
+        top: 0;
+        left: calc(10 / 12 * 100%);
+        right: 0;
+        margin-top: 230px;
+        margin-left: -16px;
+        height: 210px;
+        border-radius: 50% / 20px;
+        background-color: color.adjust($magenta, $alpha: -.7);
+        z-index: -1;
+
+        @supports (clip-path: ellipse(70% 50% at center)) {
+          border-radius: 0;
+          clip-path: ellipse(70% 50% at center);
+        }
+      }
+    }
+  }
+
+  &__label {
+    @include highlight();
+    @extend %column;
+    @include columnWithPush(6, 2, 12);
+    padding-left: 16px;
+    padding-right: 16px;
+    @include font(36px, 40px, $base-font, 700);
+    text-transform: lowercase;
+
+    @include media(before, tablet) {
+      @include font(24px, 28px, $base-font, 700);
+      margin-left: 0;
+      width: 100%;
+    }
+
+    @each $key, $level in $LEVELS {
+      .root_#{map.get($level, slug)} & {
+        color: map.get($level, color);
+      }
+    }
+  }
+
+  &__text {
+    @include highlight();
+    @extend %column;
+    @include columnWithPush(6, 2, 12);
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-top: 12px;
+    @include font(24px, 28px, $base-font, 600);
+    color: $black;
+
+    @include media(before, tablet) {
+      margin-left: 0;
+      @include font(18px, 22px, $base-font, 600);
+      width: 100%;
+    }
+  }
+
+  &__list {
+    @include highlight();
+    @extend %column;
+    @extend %row;
+    @include reset-list();
+    @include columnWithPush(10, 2, 12);
+    margin-top: 70px;
+
+    @include media(before, tablet) {
+      display: block;
+      margin-left: 0;
+      margin-top: 36px;
+      width: 100%;
+    }
+  }
+
+  &__item {
+    @include highlight();
+    @extend %column;
+
+    @include media(before, tablet) {
+      margin-bottom: 20px;
+    }
+
+    &_default {
+      @include column(2, 10);
+
+      @include media(before, tablet) {
+        width: 100%;
+      }
+    }
+
+    &_double {
+      @include column(4, 10);
+
+      & + .team__item {
+        margin-left: calc(-3 / 10 * 100%);
+
+        @include media(before, tablet) {
+          margin-left: 0;
+          display: block;
+        }
+      }
+
+      @include media(before, tablet) {
+        width: 100%;
+      }
+    }
+
+    &:nth-child(2) {
+      margin-top: 150px;
+
+      @include media(before, tablet) {
+        margin-top: 0;
+        margin-left: 0;
+      }
+    }
+
+    &:nth-child(3) {
+      margin-top: 75px;
+
+      .card__body {
+        margin-top: -30px;
+
+        @include media(before, tablet) {
+          margin-top: 0;
+        }
+      }
+
+      @include media(before, tablet) {
+        margin-top: 0;
+      }
+    }
+
+    &:nth-child(4) {
+      margin-top: 150px;
+
+      .card__body {
+        margin-top: auto;
+      }
+
+      @include media(before, tablet) {
+        margin-top: 0;
+      }
+    }
+
+    &:nth-child(5) {
+      margin-top: -40px;
+
+      .card__body {
+        margin-top: 40px;
+
+        @include media(before, tablet) {
+          margin-top: 0;
+        }
+      }
+
+      @include media(before, tablet) {
+        margin-top: 0;
+      }
+    }
+  }
+}

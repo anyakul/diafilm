@@ -1,0 +1,299 @@
+{% extends '@layouts/default.twig' %}
+
+{% block vendor_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_styles %}
+{% endblock %}
+
+{% block vendor_scripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block layout_content %}
+    {% include '@blocks/title.twig' with {
+        self: {
+            mod: 'section',
+            levels: getMenu(menu, root.id),
+            label: pageTitle
+        }
+    } %}
+
+    {% include '@blocks/diafilm.twig' with {
+        self: {
+            mod: '',
+            jsClassName: 'js-diafilm',
+            label: 'Диафильм про диафильм',
+            text: 'Эта статья в виде диафильма, Начал участвовать в выставках. В 1959 году по заказу издательства «Детская литература» сделал оформление.',
+            url: 'https://arch.rgdb.ru/xmlui/handle/123456789/47958#page/0/mode/1up'
+        }
+    } %}
+
+    {% include '@blocks/similar.twig' with {
+        self: {
+            mod: 'default, bg-white, cafeteria',
+            label: 'Новости для профессионалов',
+            text: 'Российская Государственная Детская Библиотека участвует в различных городских и Всероссийских мероприятиях.',
+            carousel: {
+                mod: 'news',
+                jsClassName: 'js-carousel-horizontal',
+                itemsTemplate: '@blocks/card.twig',
+                items: [
+                    {
+                        size: '',
+                        mod: 'news',
+                        label: 'Мурзилка. 1947 год. Юбилеи Москвы, Пушкина и революции.',
+                        date: { label: '24 апреля 2021 года.', datetime: '2021-04-24' },
+                        text: 'Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.',
+                        image: { url: 'cafeteria/news/article/card-2.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'news-article' }
+                    },
+                    {
+                        size: '',
+                        mod: 'news',
+                        label: 'Планеты гиганты',
+                        date: { label: '26 мая 2021 года.', datetime: '2021-05-26' },
+                        text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.  Ни в 1959 году, когда Хрущев объявил о "полном',
+                        image: { url: 'cafeteria/news/article/card-3.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'news-article' }
+                    },
+                    {
+                        size: 'large',
+                        mod: 'news, marked',
+                        label: 'Диафильмы Валерия Дмитрюка',
+                        date: { label: '17 июня 2021 года.', datetime: '2021-06-17' },
+                        text: '',
+                        image: { url: 'cafeteria/news/article/card-1.jpg', width: 395, height: 390 },
+                        link: { label: '', url: 'news-article' }
+                    },
+                    {
+                        size: '',
+                        mod: 'news',
+                        label: 'Мурзилка. 1947 год. Юбилеи Москвы, Пушкина и революции.',
+                        date: { label: '24 апреля 2021 года.', datetime: '2021-04-24' },
+                        text: 'Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.',
+                        image: { url: 'cafeteria/news/article/card-2.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'news-article' }
+                    },
+                    {
+                        size: '',
+                        mod: 'news',
+                        label: 'Планеты гиганты',
+                        date: { label: '26 мая 2021 года.', datetime: '2021-05-26' },
+                        text: 'Жизнь действительно стала иной, но все перечисленное никуда не делось. Ни в 1959 году, когда Хрущев объявил о "полном и окончательном построении социализма", ни сейчас, когда о социализме вспоминают редко.  Ни в 1959 году, когда Хрущев объявил о "полном',
+                        image: { url: 'cafeteria/news/article/card-3.jpg', width: 384, height: 288 },
+                        link: { label: '', url: 'news-article' }
+                    }
+                ]
+            }
+        }
+    } %}
+
+    {% include '@blocks/similar.twig' with {
+        self: {
+            mod: 'default, archive',
+            label: 'Технологии производства',
+            text: 'Рассмотрите подробнее необычные проекторы прошлого и узнай много нового для себя.',
+            carousel: {
+                mod: 'films',
+                jsClassName: 'js-carousel-horizontal',
+                itemsTemplate: '@blocks/card.twig',
+                items: [
+                    {
+                        size: '',
+                        mod: 'film',
+                        text: 'Специалист цеха массовой печати студии "Диафильм" во время работы на копировальном аппарате.',
+                        image: { url: 'archive/technologies/card-1.jpg', width: 384, height: 288 },
+                        link: { label: '', url: '#' }
+                    },
+                    {
+                        size: '',
+                        mod: 'film',
+                        text: 'Специалисты художественного цеха студии "Диафильм" во время работы.',
+                        image: { url: 'archive/technologies/card-2.jpg', width: 384, height: 288 },
+                        link: { label: '', url: '#' }
+                    },
+                    {
+                        size: '',
+                        mod: 'film',
+                        text: 'Специалисты химической лаборатории Студии "Диафильм" за работой.',
+                        image: { url: 'archive/technologies/card-3.jpg', width: 384, height: 288 },
+                        link: { label: '', url: '#' }
+                    }
+                ]
+            }
+        }
+    } %}
+
+    {% include '@blocks/feed.twig' with {
+        self: {
+            mod: 'catalog, viewing-hall',
+            jsClassName: 'js-feed-lazy',
+            label: 'Каталог диафильмов',
+            text: 'Ознакомьтесь с коллекцией лучших диафильмов разных эпох и направлений. За время работы с диафильмами накопился значительный объем оригинальных  и оцифрованных более 5000 диафильмов разных жанров  в диапазоне от 1938 до 1993 годов выпуска.',
+            itemsTemplate: '@blocks/card.twig',
+            form: {
+                mod: 'search, page',
+                jsClassName: 'js-form-search',
+                prefix: 'search',
+                extra: {
+                    'method': 'get',
+                    'action': '#'
+                },
+                fields: [
+                    {
+                        size: 'full',
+                        mod: '',
+                        type: 'search',
+                        helpers: ['is-string'],
+                        name: 'q',
+                        button: { mod: 'field', icon: 'search-white', title: 'Поиск', type: 'submit' }
+                    }
+                ]
+            },
+            button: {
+                mod: 'inline',
+                iconBefore: 'arrow-down',
+                label: 'Загрузить ещё',
+                url: '?page=2',
+                extra: {
+                    'rel': 'next',
+                    'data-base': 'ajax/feed-more-catalog.html'
+                }
+            },
+            items: [
+                {
+                    size: '',
+                    mod: 'film',
+                    label: 'Две сказки',
+                    image: { url: 'viewing-hall/catalog/card-1.jpg', width: 384, height: 288 },
+                    link: { label: '', url: 'diafilm' }
+                },
+                {
+                    size: '',
+                    mod: 'film',
+                    label: 'Чаша из красного лака',
+                    image: { url: 'viewing-hall/catalog/card-2.jpg', width: 384, height: 288 },
+                    link: { label: '', url: 'diafilm' }
+                },
+                {
+                    size: '',
+                    mod: 'film',
+                    label: 'Вредная девчонка',
+                    image: { url: 'viewing-hall/catalog/card-3.jpg', width: 384, height: 288 },
+                    link: { label: '', url: 'diafilm' }
+                }
+            ]
+        }
+    } %}
+
+    {% include '@blocks/feed.twig' with {
+        self: {
+            mod: 'artists, bg-white, gallery',
+            itemsTemplate: '@blocks/artists.twig',
+            label: 'Выдающиеся художники',
+            text: 'Здравствуйте дорогие наши друзья, вы имеете уникальную возможность рассмотреть всех уважаемых художников нашей студии и их картины!',
+            items: [
+                {
+                    mod: 'default',
+                    after: { label: 'Пройти в галерею', url: 'gallery' },
+                    items: [
+                    {
+                        label: 'Василий Игнатов',
+                        text: 'На студии В.Г. Игнатов считался признанным мастером-сказочником',
+                        link: { url: 'artist', label: '' },
+                        picture: { url: 'gallery/artists/artist-1/picture-1.jpg', width: 222, height: 192, alt: '' },
+                        photo: { url: 'gallery/artists/artist-1/photo-1.jpg', width: 120, height: 150, alt: '' }
+                    },
+                    {
+                        label: 'Вера Дранишникова',
+                        text: 'Рисовала диафильмы по сказкам и стихотворениям для детей',
+                        link: { url: 'artist', label: '' },
+                        picture: { url: 'gallery/artists/artist-1/picture-2.jpg', width: 237, height: 226, alt: '' },
+                        photo: { url: 'gallery/artists/artist-1/photo-2.jpg', width: 120, height: 150, alt: '' }
+                    },
+                    {
+                        label: 'Макс Жеребчевский',
+                        text: 'Художник-постановщик на киностудии «Союзмультфильм»',
+                        link: { url: 'artist', label: '' },
+                        picture: { url: 'gallery/artists/artist-1/picture-3.jpg', width: 303, height: 208, alt: '' },
+                        photo: { url: 'gallery/artists/artist-1/photo-3.jpg', width: 120, height: 150, alt: '' }
+                    },
+                    {
+                        label: 'Эрнё Зорад',
+                        text: 'Венгерский художник, иллюстратор, графический дизайнер',
+                        link: { url: 'artist', label: '' },
+                        picture: { url: 'gallery/artists/artist-1/picture-4.jpg', width: 163, height: 196, alt: '' },
+                        photo: { url: 'gallery/artists/artist-1/photo-4.jpg', width: 120, height: 150, alt: '' }
+                    }
+                ]
+                }
+            ]
+        }
+    } %}
+
+    {% include '@blocks/similar.twig' with {
+        self: {
+            mod: 'default, showroom',
+            label: 'Исторические публикации',
+            text: 'В этих статьях мы подобрали интересные факты о диафильмах для школьников. Материалы специально готовились с акцентом на людей жаждущих знаний, надеемся вам будет интересно.',
+            carousel: {
+                mod: 'publications',
+                jsClassName: 'js-carousel-horizontal',
+                itemsTemplate: '@blocks/card.twig',
+                items: [
+                    {
+                        size: 'double',
+                        mod: 'publication',
+                        label: 'Советская культура',
+                        text: 'В 1948 поступил в Московское государственное академическое художественное училище памяти 1905 года, которое тогда находилось на улице Сретенка.',
+                        image: { url: 'showroom/publications/publication-1/card-1.jpg', width: 610, height: 400 },
+                        link: { label: '', url: '#' }
+                    },
+                    {
+                        size: '',
+                        mod: 'publication',
+                        label: 'Диафильмы 1964',
+                        text: 'Начал участвовать в выставках.В 1959 году по заказу издательства.',
+                        image: { url: 'showroom/publications/publication-1/card-2.jpg', width: 290, height: 400 },
+                        link: { label: '', url: '#' }
+                    },
+                    {
+                        size: '',
+                        mod: 'publication',
+                        label: 'Годовщина',
+                        text: 'Петр Багин много путешествовал по Русскому Северу, Алтаю и Уралу, был на',
+                        image: { url: 'showroom/publications/publication-1/card-3.jpg', width: 290, height: 400 },
+                        link: { label: '', url: '#' }
+                    }
+                ]
+            }
+        }
+    } %}
+
+    {% include '@blocks/videos.twig' with {
+        self: {
+            mod: 'default, bg-white',
+            label: 'демо видео',
+            text: 'Для удобства ознакомления с сайтом вы можете посмотреть видео, которое подскажет все непонятные вопросы.',
+            items: [
+                {
+                    mod: 'youtube',
+                    type: 'youtube',
+                    jsClassName: 'js-figure',
+                    caption: 'Фестиваль «Галафест» 2018г. ',
+                    media: { url: 'LQodDMYEHM8', width: 588, height: 330 }
+                }
+            ]
+        }
+    } %}
+
+{% endblock layout_content %}
+
+{% block popups %}
+    {{ parent() }}
+{% endblock popups %}

@@ -1,0 +1,23 @@
+{% load common_tags %}
+{% load wagtailcore_tags %}
+{% load content_tags %}
+
+{% get_artists roles=roles as object_list %}
+
+<div class="feed__tags">
+    <!--
+    <a class="feed__button_filter button button_tag is-active" href="#">
+        <span class="button__label">Все&nbsp;
+            <span>1434</span>
+        </span>
+    </a>
+    -->
+    {% for item in object_list %}
+    <a class="feed__button_tag button button_tag" href="{% slugurl "viewing-hall" %}?person={{ item.pk }}">
+        <span class="button__label">
+            {{ item.full_name|format_title }}
+            <span>{{ item.diafilms_count }}</span>
+        </span>
+    </a>
+    {% endfor %}
+</div>

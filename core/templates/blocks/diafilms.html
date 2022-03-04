@@ -1,0 +1,9 @@
+{% if self.is_published %}
+{% with title=self.title text=self.text %}
+{% if self.style == "short" %}
+{% include "components/diafilms/base.html" with count=3 ordering="?" class="viewing-hall" %}
+{% elif self.style == "full" or not self.style %}
+{% include "components/diafilms/base.html" with show_paging=1 %}
+{% endif %}
+{% endwith %}
+{% endif %}

@@ -1,0 +1,211 @@
+@charset "UTF-8";
+@use "sass:color";
+
+/* --------------------
+   Художник
+   -------------------- */
+
+.artist {
+  position: relative;
+  padding-bottom: 20px;
+
+  &__picture {
+    @include highlight();
+    position: relative;
+    box-sizing: border-box;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 4px;
+
+    @include media(tablet) {
+      position: absolute;
+      left: 0;
+      bottom: 100%;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    @include before() {
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      border-radius: 2px;
+      background-color: color.adjust($pink, $alpha: -.7);
+      z-index: -1;
+
+      @include media(tablet) {
+        left: 16px;
+        right: 16px;
+      }
+    }
+
+    .artists__item:nth-child(1) & {
+      width: calc(6 / 7 * 100%);
+      margin-bottom: 20px;
+
+      @include media(tablet) {
+        left: 0;
+        width: calc(2.5 / 2 * 100%);
+      }
+
+      &::before {
+        top: 20%;
+        left: 20%;
+
+        @include media(tablet) {
+          top: -100px;
+          left: 50%;
+        }
+      }
+    }
+
+    .artists__item:nth-child(2) & {
+      width: calc(6 / 7 * 100%);
+      margin-bottom: 20px;
+
+      @include media(tablet) {
+        left: calc(0.5 / 2 * 100%);
+        width: calc(2.5 / 2 * 100%);
+        margin-bottom: 40px;
+      }
+
+      &::before {
+        top: 50%;
+        left: 25%;
+        right: -10%;
+        width: auto;
+      }
+    }
+
+    .artists__item:nth-child(3) & {
+      width: 100%;
+      margin-bottom: 20px;
+
+      @include media(tablet) {
+        left: calc(1 / 2 * 100%);
+        width: calc(3 / 2 * 100%);
+      }
+
+      &::before {
+        top: -50%;
+        right: 30px;
+        width: auto;
+      }
+    }
+
+    .artists__item:nth-child(4) & {
+      width: calc(4 / 7 * 100%);
+      margin-bottom: 20px;
+
+      @include media(tablet) {
+        left: 100%;
+        width: 100%;
+        margin-bottom: 80px;
+      }
+
+      &::before {
+        top: 50%;
+        left: 20%;
+        right: -40%;
+        bottom: -65%;
+        width: auto;
+        height: auto;
+
+        @include media(tablet) {
+          left: -25%;
+          right: 16px;
+        }
+      }
+    }
+  }
+
+  &__photo {
+    box-sizing: border-box;
+    width: calc(3 / 7 * 100%);
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 15px;
+    border-radius: 2px;
+
+    @include media(tablet){
+      width: calc(1.2 / 2 * 100%);
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    [data-clickable] & {
+      cursor: pointer;
+    }
+  }
+
+  &__img {
+    vertical-align: top;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: inherit;
+    @include object-fit(cover, 50% 50%);
+
+    .artist__photo & {
+      .artists_default & {
+        border: 2px solid $pink;
+      }
+    }
+  }
+
+  &__label {
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 8px;
+    @include font(14px, 16px, $base-font, 700);
+    color: $pink;
+
+    @include media(tablet){
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    [data-clickable] & {
+      cursor: pointer;
+    }
+  }
+
+  &__text {
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 8px;
+    @include font(14px, 16px, $base-font, 400);
+    color: $black;
+
+    @include media(tablet){
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+
+  &__link {
+    padding-left: 8px;
+    padding-right: 8px;
+    @include font(14px, 16px, $base-font, 400);
+    text-decoration: none;
+    text-transform: lowercase;
+    color: $pink;
+
+    @include media(tablet){
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    @include after(">") {
+      text-decoration: none;
+    }
+
+    @include hover() {
+      text-decoration: underline;
+    }
+  }
+}

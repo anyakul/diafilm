@@ -1,0 +1,44 @@
+@charset "UTF-8";
+@use "sass:map";
+
+/* --------------------
+   Интро
+   -------------------- */
+
+.intro {
+  @extend %section;
+  display: flex;
+  flex-direction: row;
+
+  .root_main & {
+    color: $white;
+  }
+
+  @each $key, $level in $LEVELS {
+    .root_#{map.get($level, slug)} & {
+      color: map.get($level, color);
+    }
+  }
+
+  &__number {
+    display: block;
+    margin-right: 16px;
+    @include font(64px, 40px, $label-font, 700);
+    white-space: nowrap;
+  }
+
+  &__label {
+    display: block;
+    margin-right: 16px;
+    @include font(36px, 40px, $title-font, 700);
+    white-space: nowrap;
+    text-transform: uppercase;
+    color: $white;
+  }
+
+  &__text {
+    display: block;
+    @include font(18px, 40px, $base-font, 700);
+    white-space: nowrap;
+  }
+}

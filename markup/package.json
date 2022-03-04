@@ -1,0 +1,92 @@
+{
+  "name": "diafilm",
+  "title": "Диафильм онлайн",
+  "description": "Настоящая библиотека позитивов",
+  "author": {
+    "name": "ДизайнДепо",
+    "email": "welcome@designdepot.ru"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.designdepot.ru:freelance/diafilm.git"
+  },
+  "vesion": "1.0.0",
+  "contributors": [
+    {
+      "name": "toptalo",
+      "email": "spam.vitek@gmail.com"
+    }
+  ],
+  "gruntParams": {
+    "env": "prod",
+    "distRoot": "../core/",
+    "sourcePath": "./",
+    "staticPath": "/static/",
+    "corePath": "/static/core/",
+    "mediaPath": "/static/core/markup-media/",
+    "vendorPath": "/static/vendor/",
+    "connectPort": "8210",
+    "liveReloadPort": "1210",
+    "bem": "_"
+  },
+  "dependencies": {
+    "eslint": "^8.4.1",
+    "finalhandler": "^1.1.2",
+    "jest": "^27.4.5",
+    "jest-cli": "^27.4.5",
+    "jest-image-snapshot": "^4.5.1",
+    "postcss": "^8.4.5",
+    "puppeteer": "^13.0.0",
+    "serve-static": "^1.14.2",
+    "stylelint": "^14.0.0",
+    "stylelint-config-recommended": "^6.0.0",
+    "stylelint-config-recommended-scss": "^5.0.2",
+    "stylelint-config-standard": "^24.0.0",
+    "stylelint-scss": "^4.0.1",
+    "yaspeller-ci": "^1.0.2"
+  },
+  "devDependencies": {
+    "@hail2u/css-mqpacker": "github:hail2u/node-css-mqpacker#v9.0.0",
+    "@lodder/grunt-postcss": "^3.1.1",
+    "@toptalo/grunt-webp": "^0.5.0",
+    "@toptalo/twig-helpers": "^2.1.1",
+    "@toptalo/twig-renderer": "^0.5.0",
+    "autoprefixer": "^10.4.0",
+    "css-mqpacker": "^7.0.0",
+    "grunt": "^1.4.1",
+    "grunt-cli": "^1.4.3",
+    "grunt-concurrent": "^3.0.0",
+    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-concat": "^2.0.0",
+    "grunt-contrib-imagemin": "^4.0.0",
+    "grunt-contrib-uglify": "^5.0.1",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-csso": "^2.2.4",
+    "grunt-eslint": "^24.0.0",
+    "grunt-html": "^15.1.0",
+    "grunt-notify": "^0.4.5",
+    "grunt-prettify": "^0.4.0",
+    "grunt-sass": "^3.1.0",
+    "grunt-shell": "^3.0.1",
+    "grunt-spritesmith": "^6.9.0",
+    "grunt-stylelint": "^0.17.0",
+    "grunt-svg-sprite": "^1.5.0",
+    "grunt-svgmin": "^6.0.1",
+    "grunt-twig2html": "^2.2.0",
+    "sass": "^1.45.0",
+    "time-grunt": "^2.0.0"
+  },
+  "scripts": {
+    "update": "./node_modules/.bin/jest -u",
+    "update:desktop": "./node_modules/.bin/jest -u tests/visual.desktop.test.js",
+    "update:tablet": "./node_modules/.bin/jest -u tests/visual.tablet.test.js",
+    "update:smart": "./node_modules/.bin/jest -u tests/visual.smart.test.js",
+    "test:desktop": "./node_modules/.bin/jest tests/visual.desktop.test.js",
+    "test:tablet": "./node_modules/.bin/jest tests/visual.tablet.test.js",
+    "test:smart": "./node_modules/.bin/jest tests/visual.smart.test.js",
+    "lint:js": "./node_modules/.bin/eslint 'js/**/*.js' --config '../.eslintrc'",
+    "lint:css": "./node_modules/.bin/stylelint '../core/static/core/css/*.css' '!../**/*.min.css' --config '../.stylelintrc' --config-basedir '../'",
+    "spellcheck": "./node_modules/.bin/yaspeller-ci ."
+  },
+  "readme": "Смотри в [README.md](../README.md)"
+}

@@ -1,0 +1,125 @@
+{
+  "success": true,
+  "items": [
+    {
+      "image": {
+        "x1": "/static/core/markup-media/foyer/for-children/earth/card-1.jpg",
+        "x2": "/static/core/markup-media/foyer/for-children/earth/card-1@2x.jpg",
+        "width": 384,
+        "height": 288
+      },
+      "label": "Иссумбоси",
+      "year": 1982,
+      "age": "4+",
+      "params": [
+        {
+          "label": "Японская сказка",
+          "value": ""
+        },
+        {
+          "label": "Иллюстратор",
+          "value": "А.Савченко, Б.Степанцев"
+        },
+        {
+          "label": "Худ. редактор",
+          "value": "В.Дугин"
+        },
+        {
+          "label": "Редактор",
+          "value": "Т.Семибратова"
+        }
+      ],
+      "url": "diafilm.html"
+    },
+    {
+      "image": {
+        "x1": "/static/core/markup-media/foyer/for-children/earth/card-1.jpg",
+        "x2": "/static/core/markup-media/foyer/for-children/earth/card-1@2x.jpg",
+        "width": 384,
+        "height": 288
+      },
+      "label": "Иссумбоси",
+      "year": 1982,
+      "age": "4+",
+      "params": [
+        {
+          "label": "Японская сказка",
+          "value": ""
+        },
+        {
+          "label": "Иллюстратор",
+          "value": "А.Савченко, Б.Степанцев"
+        },
+        {
+          "label": "Худ. редактор",
+          "value": "В.Дугин"
+        },
+        {
+          "label": "Редактор",
+          "value": "Т.Семибратова"
+        }
+      ],
+      "url": "diafilm.html"
+    },
+    {
+      "image": {
+        "x1": "/static/core/markup-media/foyer/for-children/earth/card-1.jpg",
+        "x2": "/static/core/markup-media/foyer/for-children/earth/card-1@2x.jpg",
+        "width": 384,
+        "height": 288
+      },
+      "label": "Иссумбоси",
+      "year": 1982,
+      "age": "4+",
+      "params": [
+        {
+          "label": "Японская сказка",
+          "value": ""
+        },
+        {
+          "label": "Иллюстратор",
+          "value": "А.Савченко, Б.Степанцев"
+        },
+        {
+          "label": "Худ. редактор",
+          "value": "В.Дугин"
+        },
+        {
+          "label": "Редактор",
+          "value": "Т.Семибратова"
+        }
+      ],
+      "url": "diafilm.html"
+    },
+    {
+      "image": {
+        "x1": "/static/core/markup-media/foyer/for-children/earth/card-1.jpg",
+        "x2": "/static/core/markup-media/foyer/for-children/earth/card-1@2x.jpg",
+        "width": 384,
+        "height": 288
+      },
+      "label": "Иссумбоси",
+      "year": 1982,
+      "age": "4+",
+      "params": [
+        {
+          "label": "Японская сказка",
+          "value": ""
+        },
+        {
+          "label": "Иллюстратор",
+          "value": "А.Савченко, Б.Степанцев"
+        },
+        {
+          "label": "Худ. редактор",
+          "value": "В.Дугин"
+        },
+        {
+          "label": "Редактор",
+          "value": "Т.Семибратова"
+        }
+      ],
+      "url": "diafilm.html"
+    }
+  ]
+}

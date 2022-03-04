@@ -1,0 +1,21 @@
+{% load wagtailcore_tags %}
+{% load static %}
+
+
+<div class="columns columns_default">
+    <div class="columns">
+        <div class="columns__container">
+            <div class="columns__row">
+                {% for column in self.columns %}
+                <div class="columns__column columns__column_{{ forloop.counter }}">
+                    {% with source="block" %}
+                    {% for block in column.value %}
+                    {% include_block block %}
+                    {% endfor %}
+                    {% endwith %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+@charset "utf-8";
+
+// настройки
+@import "core/config";
+@import "core/mixins";
+@import "core/sprite";
+@import "core/svg-sprite";
+
+/* ====================
+   Подключение шрифтов
+   ==================== */
+@import "core/fonts";
+
+/* ====================
+   Базовые стили
+   ==================== */
+@import "blocks/base";
+
+/* ====================
+   Стили блоков сайта
+   ==================== */
+@import "core/placeholders";
+
+@import "blocks/archive";
+@import "blocks/artist";
+@import "blocks/artists";
+@import "blocks/blockquote";
+@import "blocks/bubble";
+@import "blocks/button";
+@import "blocks/cafeteria";
+@import "blocks/card";
+@import "blocks/carousel";
+@import "blocks/columns";
+@import "blocks/concept";
+@import "blocks/contacts";
+@import "blocks/detail";
+@import "blocks/diafilm";
+@import "blocks/earth";
+@import "blocks/editable";
+@import "blocks/elevator";
+@import "blocks/feed";
+@import "blocks/field";
+@import "blocks/figure";
+@import "blocks/footer";
+@import "blocks/form";
+@import "blocks/foyer";
+@import "blocks/gallery";
+@import "blocks/hall";
+@import "blocks/header";
+@import "blocks/intro";
+@import "blocks/layout";
+@import "blocks/logo";
+@import "blocks/menu";
+@import "blocks/model";
+@import "blocks/networks";
+@import "blocks/notification";
+@import "blocks/offcanvas";
+@import "blocks/params";
+@import "blocks/popup";
+@import "blocks/preview";
+@import "blocks/section";
+@import "blocks/showroom";
+@import "blocks/similar";
+@import "blocks/story";
+@import "blocks/tabs";
+@import "blocks/team";
+@import "blocks/text";
+@import "blocks/thumbs";
+@import "blocks/title";
+@import "blocks/videos";
+@import "blocks/viewing";
+
+/* ====================
+   CSS3 анимации
+   ==================== */
+@import "core/animations";
+
+/* ====================
+   Медиа-запросы
+   ==================== */

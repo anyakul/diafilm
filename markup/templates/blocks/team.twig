@@ -1,0 +1,23 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'team'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    <div class="team__container">
+        <div class="team__row">
+            {% if self.label %}
+                <div class="team__label" role="heading" aria-level="2">{{ self.label|ft }}</div>
+            {% endif %}
+            {% if self.text %}
+                <div class="team__text">{{ self.text|ft }}</div>
+            {% endif %}
+            <ul class="team__list">
+                {% for item in self.items %}
+                    <li class="{{ 'team__item'|mod(item.size) }}">
+                        {% include '@blocks/card.twig' with {
+                            self: item|extend({
+                                mod: 'person'
+                            })
+                        } %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

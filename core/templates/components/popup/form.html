@@ -1,0 +1,15 @@
+{% load wagtailcore_tags %}
+
+<form class="form form_search form_menu js-form-search" action="{% slugurl "viewing-hall" %}" method="get">
+    <div class="form__body">
+        <div class="form__field form__field_full">
+            <div class="field field_default js-form-field has-button">
+                <input class="field__element field__element_search is-string is-external-q js-form-field-element"
+                       type="search" name="query" id="id_menu_q" value="{{ request.GET.query }}">
+                <button class="field__button button button_field" type="submit" aria-label="Поиск" title="Поиск">
+                    <span class="button__icon button__icon_search-white"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

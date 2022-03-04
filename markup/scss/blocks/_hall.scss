@@ -1,0 +1,74 @@
+@charset "UTF-8";
+/* --------------------
+   Зал
+   -------------------- */
+
+.hall {
+  @extend %row;
+
+  &__label {
+    @include highlight();
+    @extend %column;
+    @include column(3, 4);
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: 10px;
+    @include font(24px, 28px, $base-font, 700);
+    text-transform: lowercase;
+    color: $white;
+  }
+
+  &__picture {
+    @include highlight();
+    @extend %column;
+    @include column(3, 4);
+    padding-left: 16px;
+    padding-right: 16px;
+
+    [data-clickable] & {
+      cursor: pointer;
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__more {
+    @include highlight();
+    @extend %column;
+    position: relative;
+    @include column(1, 4);
+    padding-left: 16px;
+    padding-right: 16px;
+    align-self: flex-end;
+    justify-self: flex-end;
+  }
+
+  &__link {
+    position: absolute;
+    bottom: -70px;
+    left: 100%;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: -16px;
+    @include font(24px, 28px, $title-font, 700);
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    color: $white;
+    transform: rotate(-90deg);
+    transform-origin: 0 100%;
+
+    @include before() {
+      display: inline-block;
+      vertical-align: bottom;
+      @include svgSprite(icon-arrow-16-white);
+      margin-right: 4px;
+      transform: rotate(90deg);
+    }
+  }
+}

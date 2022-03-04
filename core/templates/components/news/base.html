@@ -1,0 +1,38 @@
+{% load common_tags %}
+{% load content_tags %}
+
+<section class="feed feed_news js-feed-lazy">
+    <div class="feed__container">
+        <div class="feed__row">
+            {% get_news_categories request.GET.category as categories %}
+            <div class="feed__tags">
+                <a class="feed__button_tag button button_inline button_hover {% if categories.active == "all" %}is-active{% endif %}"
+                   href="?category=all#!tab={{ tab.slug }}">
+                    <span class="button__label">Все</span>
+                </a>
+
+                {% for slug, title in categories.object_list %}
+                <a class="feed__button_tag button button_inline button_hover {% if slug == categories.active %}is-active{% endif %}"
+                   href="?category={{ slug }}#!tab={{ tab.slug }}">
+                    <span class="button__label">{{ title|format_title }}</span>
+                </a>
+                {% endfor %}
+            </div>
+
+            {% get_news_pages as list_page %}
+            <div class="feed__list js-feed-list">
+                {% include "components/news/list.html" with object_list=list_page.object_list %}
+            </div>
+
+            {% if list_page.has_next %}
+            <div class="feed__pagination">
+                <a class="feed__button feed__button_more button button_inline js-feed-button"
+                   href="?category={{ categories.active }}&page={{ list_page.next_page_number }}" data-base="{% url "api:news" %}" rel="next">
+                    <span class="button__icon button__icon_before button__icon_arrow-down"></span>
+                    <span class="button__label">Загрузить ещё</span>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

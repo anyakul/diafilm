@@ -1,0 +1,18 @@
+<blockquote class="{% if self.className %}{{ self.className }} {% endif %}{{ 'blockquote'|mod(self.mod) }}{% if self.jsClassName %} {{ self.jsClassName }}{% endif %}">
+    <div class="blockquote__container">
+        <div class="blockquote__row">
+            <div class="blockquote__body is-editable">
+                {% filter ft %}
+                    {% block blockquote_body %}
+                        {{ self.body }}
+                    {% endblock blockquote_body %}
+                {% endfilter %}
+            </div>
+            {% if block('blockquote_footer') is not empty %}
+                <footer class="blockquote__footer">
+                    {% block blockquote_footer %}{% endblock blockquote_footer %}
+                </footer>
+            {% endif %}
+        </div>
+    </div>
+</blockquote>

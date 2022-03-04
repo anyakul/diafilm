@@ -1,0 +1,41 @@
+{% load wagtailcore_tags %}
+{% load core_tags %}
+{% load content_tags %}
+
+{% if not similar %}
+{% get_publication_similar page parent=parent count=count ordering=ordering as similar %}
+{% endif %}
+
+{% if similar.object_list %}
+{# если страница вставки отличается от родительской страницы вставляемого, добавляем цвета #}
+{# если страница вставки - не индекс, то добавляем класс второго уровня, на идексах дефолт #}
+<div class="similar {% if style %}similar_{{ style }}{% endif %} {% if page.html_class != similar.html_class %}similar_{{ similar.html_class }}{% endif %} similar_{% if not page.is_index %}{{ similar.class }}{% else %}default{% endif %}">
+    <div class="similar__container">
+        <div class="similar__row">
+            {% if title %}
+            <div class="similar__label">{{ title|format_title }}</div>
+            {% endif %}
+
+            {% if text %}
+            <div class="similar__text">{{ text }}</div>
+            {% endif %}
+
+            <div class="similar__carousel carousel carousel_{{ similar.class }} js-carousel-horizontal">
+                <div class="carousel__viewport js-carousel-viewport">
+                    <ul class="carousel__list js-carousel-overflow">
+                        {% for item in similar.object_list %}
+                        {% include similar.template %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+            {% if similar.class == "collections" %}
+            <div class="similar__after">
+                <a class="similar__more" href="{{ menu_root.by_slug.podborki.get_menu_url }}">Ещё&nbsp;подборки</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endif %}

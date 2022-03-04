@@ -1,0 +1,50 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'elevator'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    <div class="elevator__container">
+        <div class="elevator__row">
+            <button class="elevator__toggle{{ self|jsClass('toggle') }}" type="button">
+                <span class="elevator__number elevator__number_small{{ self|jsClass('number') }}"></span>
+                <span class="elevator__name{{ self|jsClass('name') }}"></span>
+            </button>
+
+            <div class="elevator__navigation{{ self|jsClass('navigation') }}">
+                <div class="elevator__panel">
+                    <div class="elevator__label" role="heading" aria-level="2">Выберите этаж</div>
+                    <div class="elevator__number elevator__number_default{{ self|jsClass('number') }}"></div>
+                    <div class="elevator__toolbar">
+                        {% for level in self.levels %}
+                            <a class="elevator__button{{ self|jsClass('level') }}{% if loop.first %} is-active{% endif %}" href="#{{ level.slug }}">
+                                <span>{{ level.label|ft }}</span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                    <div class="elevator__hint">
+                        Поднимайтесь<br>
+                        в Музей, у нас<br>
+                        много интересного
+                    </div>
+                    {% include '@blocks/button.twig' with {
+                        self: {
+                            mod: 'square',
+                            className: 'elevator__close',
+                            jsClassName: 'js-elevator-close',
+                            icon: 'close-32-black',
+                            title: 'Закрыть'
+                        }
+                    } %}
+                </div>
+            </div>
+
+            <div class="elevator__viewport{{ self|jsClass('viewport') }} is-visible">
+                <div class="elevator__caret{{ self|jsClass('caret') }}">
+                    {% for level in self.levels %}
+                        {% if block('elevator_floor_' ~ loop.index) is defined %}
+                            <div class="elevator__floor{{ self|jsClass('floor') }}" data-id="{{ level.slug }}">
+                                {{ block('elevator_floor_' ~ loop.index) }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

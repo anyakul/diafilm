@@ -1,0 +1,91 @@
+@charset "UTF-8";
+/* --------------------
+    Подвал
+   -------------------- */
+
+.footer {
+  background-color: $black;
+
+  &__container {
+    @extend %container;
+
+    @include media(before, tablet) {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+  }
+
+  &__row {
+    @extend %row;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  &__copy {
+    @include highlight();
+    @extend %column;
+    padding-left: 8px;
+    padding-right: 8px;
+    @include font(10px, 16px, $base-font, 400);
+    color: $white;
+    order: 4;
+
+    @include media(tablet) {
+      align-self: flex-end;
+      @include column(2, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      order: 1;
+    }
+  }
+
+  &__phone {
+    @include highlight();
+    @extend %column;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 10px;
+    @include font(20px, 24px, $base-font, 700);
+    color: $white;
+    order: 1;
+
+    @include media(tablet) {
+      @include column(2, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-bottom: 0;
+      order: 2;
+    }
+
+    a {
+      color: inherit;
+    }
+  }
+
+  &__form {
+    @include highlight();
+    @extend %column;
+    margin-bottom: 20px;
+    order: 2;
+
+    @include media(tablet) {
+      @include column(5, 12);
+      margin-bottom: 0;
+      order: 3;
+    }
+  }
+
+  &__network {
+    @include highlight();
+    @extend %column;
+    margin-bottom: 20px;
+    order: 3;
+
+    @include media(tablet) {
+      @include column(3, 12);
+      margin-bottom: 0;
+      order: 4;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{% load common_tags %}
+{% load wagtailcore_tags %}
+
+<div class="elevator__floor js-elevator-floor" data-id="{{ item.slug }}">
+    <div class="section section_foyer">
+        <div class="section__container">
+            <div class="section__row">
+                <div class="section__label" role="heading" aria-level="2">{{ item.title }}</div>
+                <div class="section__body">
+                    <div class="foyer foyer_main">
+                        <div class="foyer__header">
+                            <div class="foyer__label" role="heading" aria-level="3">{{ item.annotation }}</div>
+                            <div class="foyer__lead">
+                                {% for block in item.content|slice:1 %}
+                                {{ block }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="foyer__menu">
+                            {% for subitem in item.menu_children %}
+                            <div class="foyer__item">
+                                <a class="foyer__link" href="{{ subitem.url }}">
+                                    <span>{{ subitem.get_menu_title|format_title }}</span>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

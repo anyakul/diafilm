@@ -1,0 +1,44 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'cafeteria'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    {% if self.wrap %}
+    <div class="cafeteria__container">
+        <div class="cafeteria__row">
+            {% endif %}
+
+            {% if self.label %}
+                <div class="cafeteria__header">
+                    <div class="cafeteria__label" role="heading" aria-level="3">{{ self.label|ft }}</div>
+                </div>
+            {% endif %}
+            {% if self.video %}
+                <div class="cafeteria__video">
+                    {% include '@blocks/button.twig' with {
+                        self: {
+                            mod: 'video',
+                            iconAfter: 'play',
+                            label: 'Демо видео по сайту',
+                            url: '#'
+                        }
+                    } %}
+                </div>
+            {% endif %}
+            <div class="cafeteria__carousel">
+                {% include '@blocks/carousel.twig' with {
+                    self: {
+                        mod: 'cafeteria',
+                        jsClassName: 'js-carousel-horizontal',
+                        itemsTemplate: '@blocks/card.twig',
+                        items: self.items
+                    }
+                } %}
+            </div>
+            {% if self.after %}
+                <div class="cafeteria__after">
+                    <a class="cafeteria__more" href="{{ menu|url('cafeteria') }}">Узнать больше о музее</a>
+                </div>
+            {% endif %}
+
+            {% if self.wrap %}
+        </div>
+    </div>
+    {% endif %}
+</div>

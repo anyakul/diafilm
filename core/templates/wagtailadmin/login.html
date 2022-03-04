@@ -1,0 +1,34 @@
+{% extends "wagtailadmin/login.html" %}
+
+{% load i18n %}
+{% load static %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <style>
+        .dev {
+            position: fixed;
+            left: 46%;
+            bottom: 10px;
+            width: 100px;
+        }
+        .login_logo {
+            display: block;
+            margin: 0 auto;
+            width: 150px;
+        }
+    </style>
+{% endblock extra_css %}
+
+{% block branding_login %}
+    Диафильмы Онлайн
+{% endblock %}
+
+{% block below_login %}
+    <a href="https://designdepot.ru/?utm_source=web&amp;utm_medium=login&amp;utm_campaign=diafilms"
+       target="_blank" rel="noopener noreferrer" aria-label="Разработано в DesignDepot"
+       title="{% translate "Разработано в DesignDepot" %}" itemprop="url">
+        <img class="dev" src="{% static "core/img/dd_white_trans.png" %}"
+             alt="{% translate "Разработано в DesignDepot" %}">
+    </a>
+{% endblock below_login %}

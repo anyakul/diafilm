@@ -1,0 +1,54 @@
+{% load common_tags %}
+
+<div class="earth earth_inner js-earth"
+     data-cards="{% url "api:globe-cards" %}"
+     data-points="{% url "api:globe-points" %}">
+    <div class="earth__container">
+        <div class="earth__row">
+            <div class="earth__header">
+                <div class="earth__label" role="heading" aria-level="3">{{ self.title|format_title }}</div>
+                <div class="earth__text is-editable">
+                    {{ self.text }}
+                </div>
+                <div class="earth__carousel carousel carousel_earth js-carousel-earth">
+                    <form class="carousel__filter form form_filter js-carousel-filter">
+                        <div class="form__body">
+                            <div class="form__field form__field_full">
+                                <div class="field field_select js-form-field js-form-field-select">
+                                    <label class="field__label js-form-field-label" for="id_form_country">Сказки
+                                        континентов мира</label>
+                                    <select
+                                        class="field__element field__element_select is-external-country js-form-field-element"
+                                        name="country" id="id_form_country" tabindex="-1">
+                                        <option value="">Все</option>
+                                    </select>
+                                    <label class="field__value js-form-field-value" for="id_form_country" tabindex="0">Все</label>
+                                </div>
+                            </div>
+                            <div class="form__field form__field_full">
+                                <div class="field field_select js-form-field js-form-field-select">
+                                    <label class="field__label js-form-field-label" for="id_form_district">Сказки
+                                        России</label>
+                                    <select
+                                        class="field__element field__element_select is-external-district js-form-field-element"
+                                        name="district" id="id_form_district" tabindex="-1" disabled>
+                                        <option value="">Все</option>
+                                    </select>
+                                    <label class="field__value js-form-field-value" for="id_form_district" tabindex="0">Все</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="carousel__viewport js-carousel-viewport">
+                        <ul class="carousel__list js-carousel-overflow">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="earth__viewport">
+                <div class="earth__player js-earth-player"></div>
+                <div class="earth__hint js-earth-hint"></div>
+            </div>
+        </div>
+    </div>
+</div>

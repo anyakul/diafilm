@@ -1,0 +1,13 @@
+{% if self.is_published %}
+{% load content_tags %}
+
+{% if not self.collection %}
+{% get_diafilm_related self.main count=10 as object_list %}
+{% else %}
+{% get_diafilms_from_collection self.collection self.main as object_list %}
+{% endif %}
+
+{% with title=self.title text=self.text main=self.main %}
+{% include "components/viewing-hall/wrapper.html" with link_url=self.collection.url %}
+{% endwith %}
+{% endif %}

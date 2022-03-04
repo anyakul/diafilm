@@ -1,0 +1,37 @@
+<article class="{% if self.className %}{{ self.className }} {% endif %}{{ 'artist'|mod(self.mod) }}{{ self|jsClass }}"
+         {% if self.link and self.link.url %}data-clickable{% endif %}
+    {% if self.extra %} {{ self.extra|extra }}{% endif %}>
+
+    {% if self.picture %}
+        <div class="artist__picture">
+            {% include '@blocks/lazy-image.twig' with {
+                self: self.picture|extend({
+                    className: 'artist__img'
+                })
+            } %}
+        </div>
+    {% endif %}
+    {% if self.photo %}
+        <div class="artist__photo">
+            {% include '@blocks/lazy-image.twig' with {
+                self: self.photo|extend({
+                    className: 'artist__img',
+                    alt: self.label
+                })
+            } %}
+        </div>
+    {% endif %}
+    <div class="artist__label" role="heading" aria-level="4">
+        {{ self.label|ft }}
+    </div>
+    {% if self.text %}
+        <div class="artist__text">
+            {{ self.text|ft }}
+        </div>
+    {% endif %}
+    {% if self.link %}
+        <a class="artist__link" href="{{ menu|url(self.link.url) }}">
+            {{ self.link.label|default('Подробнее') }}
+        </a>
+    {% endif %}
+</article>

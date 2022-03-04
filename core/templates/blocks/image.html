@@ -1,0 +1,42 @@
+{% load core_tags %}
+
+{% if size == "small" %}
+{% firstof "width-507" as size %}
+{% elif site == "medium" %}
+{% firstof "width-715" as size %}
+{% else %}
+{% firstof "width-929" as size %}
+{% endif %}
+
+{% if source == "block" %}
+<figure class="figure figure_image figure_{{ self.size }}"
+        itemprop="image" itemscope itemtype="http://schema.org/ImageObject"
+        data-id="{{ self.block.id }}" data-type="image">
+    <div class="figure__media">
+        {% with size=size %}
+        {% include "common/img.html" with img=self.image class="figure__source js-figure-source" alt=self.caption %}
+        {% endwith %}
+    </div>
+</figure>
+{% else %}
+<div class="figure figure_image {% if page.is_index %}figure_default{% else %}figure_{{ self.size }}{% endif %} {% if self.caption %}figure_captioned{% endif %}"
+     itemprop="image" itemscope itemtype="http://schema.org/ImageObject"
+     data-id="{{ self.block.id }}" data-type="image">
+    <div class="figure__container">
+        <div class="figure__row">
+            <figure class="figure__body">
+                <div class="figure__media">
+                    {% with size=size %}
+                    {% include "common/img.html" with img=self.image class="figure__source js-figure-source" %}
+                    {% endwith %}
+                </div>
+                {% if self.caption %}
+                <figcaption class="figure__caption js-figure-caption">
+                    {{ self.caption|format_title }}
+                </figcaption>
+                {% endif %}
+            </figure>
+        </div>
+    </div>
+</div>
+{% endif %}

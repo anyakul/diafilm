@@ -1,0 +1,37 @@
+{% load content_tags %}
+{% load common_tags %}
+{% load chunk_tags %}
+
+<div class="elevator__floor js-elevator-floor" data-id="{{ item.slug }}">
+    <div class="section section_cafeteria">
+        <div class="section__container">
+            <div class="section__row">
+                <div class="section__label" role="heading" aria-level="2">{{ item.title|format_title }}</div>
+                <div class="section__body">
+                    <div class="cafeteria cafeteria_main">
+                        <div class="cafeteria__header">
+                            <div class="cafeteria__label" role="heading" aria-level="3">{{ item.annotation }}</div>
+                        </div>
+
+                        {% get_chunk "tutorial-video" as video_url %}
+                        {% if video_url %}
+                        <div class="cafeteria__video">
+                            <a class="button button_video" href="{{ video_url }}">
+                                <span class="button__label">Демо видео по&nbsp;сайту</span>
+                                <span class="button__icon button__icon_after button__icon_play"></span>
+                            </a>
+                        </div>
+                        {% endif %}
+
+                        {% get_quotes count=3 ordering="?" as object_list %}
+                        {% include "components/quotes.html" %}
+
+                        <div class="cafeteria__after">
+                            <a class="cafeteria__more" href="{{ item.get_menu_url }}">Узнать больше о музее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

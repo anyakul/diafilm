@@ -1,0 +1,8 @@
+<div class="viewing__header">
+    <div class="viewing__label" role="heading" aria-level="3">{% now "j E" %}</div>
+    <div class="viewing__intro">
+        {{ day.description|default:"" }}
+    </div>
+
+    {% include "components/viewing-hall/params.html" %}
+</div>

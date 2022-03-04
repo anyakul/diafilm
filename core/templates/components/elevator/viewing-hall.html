@@ -1,0 +1,20 @@
+{% load common_tags %}
+{% load content_tags %}
+
+{% get_diafilm_of_the_day as day %}
+{% get_diafilm_related day.diafilm_page count=10 as object_list %}
+
+<div class="elevator__floor js-elevator-floor" data-id="{{ item.slug }}">
+    <div class="section section_viewing-hall">
+        <div class="section__container">
+            <div class="section__row">
+                <div class="section__label" role="heading" aria-level="2">{{ item.title|format_title }}</div>
+                <div class="section__body">
+                    {% with link_url=item.get_menu_url main=day.diafilm_page %}
+                    {% include "components/viewing-hall/wrapper.html" with link_url=item.url %}
+                    {% endwith %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

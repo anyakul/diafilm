@@ -1,0 +1,35 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'diafilm'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    <div class="diafilm__container">
+        <div class="diafilm__row">
+            {% if self.label %}
+                <div class="diafilm__label" role="heading" aria-level="2">{{ self.label|ft }}</div>
+            {% endif %}
+            {% if self.text %}
+                <div class="diafilm__text">{{ self.text|ft }}</div>
+            {% endif %}
+            {% if self.back %}
+                <div class="diafilm__back">
+                    <a class="diafilm__link" href="{{ menu|url(self.back.url) }}">{{ self.back.label }}</a>
+                </div>
+            {% endif %}
+            <div class="diafilm__viewport">
+                <div class="diafilm__player{{ self|jsClass('player') }}">
+                    <iframe class="diafilm__iframe{{ self|jsClass('iframe') }}"
+                            src="{{ self.url }}" allowfullscreen></iframe>
+                    <button class="diafilm__button diafilm__button_exit{{ self|jsClass('exit') }}" type="button" aria-label="Назад" title="Назад"></button>
+                </div>
+                <div class="diafilm__toolbar">
+                    <button class="diafilm__button diafilm__button_full{{ self|jsClass('full') }}" type="button">
+                        На весь экран
+                    </button>
+
+                    <div class="diafilm__nav">
+                        <button class="diafilm__button diafilm__button_up{{ self|jsClass('up') }}" type="button" aria-label="Вверх" title="Вверх"></button>
+                        <div class="diafilm__hint">Следующий кадр</div>
+                        <button class="diafilm__button diafilm__button_down{{ self|jsClass('down') }}" type="button" aria-label="Вниз" title="Вниз"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

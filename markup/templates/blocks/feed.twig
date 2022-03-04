@@ -1,0 +1,82 @@
+<section class="{% if self.className %}{{ self.className }} {% endif %}{{ 'feed'|mod(self.mod) }}{{ self|jsClass }}"
+         {% if self.background %}style="background-image:url('{{ media(self.background) }}');"{% endif %}
+    {% if self.extra %}{{ self.extra|extra }}{% endif %}>
+    <div class="feed__container">
+        <div class="feed__row">
+            {% if self.label %}
+                <div class="feed__header">
+                    <div class="feed__label" role="heading" aria-level="2">
+                        {{ self.label|ft }}
+                    </div>
+                    {% if self.text %}
+                        <div class="feed__text">{{ self.text|ft }}</div>
+                    {% endif %}
+                    {% if self.allButton %}
+                        <div class="feed__actions">
+                            {% include '@blocks/button.twig' with {
+                                self: self.allButton|extend({
+                                    className: 'feed__button'|mod('all')
+                                })
+                            } %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% if self.form %}
+                {% include '@blocks/form.twig' with {
+                    self: self.form|extend({
+                        className: 'feed__form'
+                    })
+                } %}
+            {% endif %}
+
+            {% if self.filter %}
+                <div class="feed__filter">
+                    {% for item in self.filter %}
+
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if self.tags %}
+                <div class="feed__tags">
+                    {% for item in self.tags %}
+                        {% include '@blocks/button.twig' with {
+                            self: item|extend({
+                                className: 'feed__button_tag',
+                                isActive: loop.index == 1
+                            })
+                        } %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="feed__list{{ self|jsClass('list') }}">
+                {% for item in self.items %}
+                    <div class="{{ 'feed__item'|mod(item.size) }}{{ self|jsClass('item') }}"{% if item.extra %} {{ item.extra|extra }}{% endif %}>
+                        {% include item.template|default(self.itemsTemplate|default('@blocks/card.twig')) with {
+                            self: item
+                        } %}
+                    </div>
+                {% endfor %}
+                {% if self.empty %}
+                    <div class="feed__empty{{ self|jsClass('empty') }}" hidden>
+                        {{ self.empty|ft }}
+                    </div>
+                {% endif %}
+            </div>
+
+            {% if self.button %}
+                <div class="feed__pagination">
+                    {% include '@blocks/button.twig' with {
+                        self: self.button|extend({
+                            className: 'feed__button'|mod('more'),
+                            jsClassName: 'js-feed-button'
+                        })
+                    } %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>

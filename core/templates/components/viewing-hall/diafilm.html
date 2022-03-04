@@ -1,0 +1,31 @@
+{% if day %}
+{% include "components/viewing-hall/header_day.html" %}
+{% else %}
+{% include "components/viewing-hall/header_default.html" %}
+{% endif %}
+
+<div class="viewing__figure">
+    <div class="viewing__picture">
+        {% if main.annotation_image %}
+        {% with size="fill-384x288" %}
+        {% include "common/img.html" with img=main.annotation_image class="viewing__image" alt=main.title %}
+        {% endwith %}
+        {% endif %}
+        <a class="viewing__button button button_visual button_abs" href="{{ main.url }}">
+            <span class="button__icon button__icon_view"></span>
+        </a>
+    </div>
+    {% if main.title_image %}
+    <div class="viewing__title viewing__title_image">
+        <img src="{{ main.title_image.url }}"
+            width="680" height="216" intrinsicsize="680x216"
+            alt="{{ main.title }}">
+    </div>
+    {% endif %}
+    {% comment %}
+    <!-- возможен вариант вместо картинки название набрано текстом
+    <div class="viewing__title viewing__title_text">
+        Сказка о еловой шишке и серой мышке
+    </div> -->
+    {% endcomment %}
+</div>

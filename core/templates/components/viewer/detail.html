@@ -1,0 +1,18 @@
+{% load common_tags %}
+
+<div class="figure__media">
+    {% with class="figure__source js-figure-source" %}
+    {% include "common/img.html" with img=preview size=size data_url=url %}
+    {% endwith %}
+
+    <button class="figure__play button button_view js-figure-play"
+            type="button" aria-label="Смотреть" title="Смотреть">
+        <span class="button__icon button__icon_view"></span>
+    </button>
+</div>
+
+{% if caption %}
+<figcaption class="figure__caption js-figure-caption">
+    {{ caption|format_title }}
+</figcaption>
+{% endif %}

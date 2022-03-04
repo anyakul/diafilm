@@ -1,0 +1,50 @@
+@charset "UTF-8";
+@use "sass:map";
+@use "sass:math";
+
+$svgSprite: (sprite: (width: 485px, height: 399px, paddingTop: 2px, paddingLeft: 2px, svgPath: "../img/sprite.svg"),icon-arrow-16-black: (width: 28px, height: 28px, backgroundX: -453px, backgroundY: -207px),icon-arrow-16-blue: (width: 28px, height: 28px, backgroundX: -337px, backgroundY: -265px),icon-arrow-16-gray: (width: 28px, height: 28px, backgroundX: -369px, backgroundY: -265px),icon-arrow-16-magenta: (width: 28px, height: 28px, backgroundX: -401px, backgroundY: -265px),icon-arrow-16-pink: (width: 28px, height: 28px, backgroundX: -433px, backgroundY: -265px),icon-arrow-16-white: (width: 28px, height: 28px, backgroundX: 0px, backgroundY: -315px),icon-arrow-16-yellow: (width: 28px, height: 28px, backgroundX: -32px, backgroundY: -315px),icon-arrow-black-23: (width: 24px, height: 33px, backgroundX: -425px, backgroundY: -207px),icon-arrow-black-33: (width: 33px, height: 46px, backgroundX: -448px, backgroundY: -123px),icon-arrow-round-black-22: (width: 22px, height: 22px, backgroundX: -56px, backgroundY: -371px),icon-arrow-round-white-22: (width: 22px, height: 22px, backgroundX: -82px, backgroundY: -371px),icon-arrow-white-33: (width: 33px, height: 46px, backgroundX: 0px, backgroundY: -265px),icon-attachment-gray: (width: 22px, height: 22px, backgroundX: -108px, backgroundY: -371px),icon-close-32-black: (width: 32px, height: 32px, backgroundX: -301px, backgroundY: -265px),icon-close-white: (width: 40px, height: 40px, backgroundX: -37px, backgroundY: -265px),icon-exit-white: (width: 72px, height: 72px, backgroundX: -168px, backgroundY: -123px),icon-full-black: (width: 80px, height: 80px, backgroundX: 0px, backgroundY: -123px),icon-full-white: (width: 80px, height: 80px, backgroundX: -84px, backgroundY: -123px),icon-menu-white: (width: 52px, height: 36px, backgroundX: -271px, backgroundY: -51px),icon-play-22-black: (width: 22px, height: 22px, backgroundX: -134px, backgroundY: -371px),icon-play-40-white: (width: 40px, height: 40px, backgroundX: -81px, backgroundY: -265px),icon-plus-black: (width: 16px, height: 16px, backgroundX: -465px, backgroundY: -265px),icon-quote-26-white: (width: 26px, height: 19px, backgroundX: -64px, backgroundY: -315px),icon-quote-47-blue: (width: 47px, height: 35px, backgroundX: -327px, backgroundY: -51px),icon-quote-47-green: (width: 47px, height: 35px, backgroundX: -378px, backgroundY: -51px),icon-quote-47-magenta: (width: 47px, height: 35px, backgroundX: -429px, backgroundY: -51px),icon-quote-47-orange: (width: 47px, height: 35px, backgroundX: -272px, backgroundY: -207px),icon-quote-47-pink: (width: 47px, height: 35px, backgroundX: -323px, backgroundY: -207px),icon-quote-47-yellow: (width: 47px, height: 35px, backgroundX: -374px, backgroundY: -207px),icon-quote-magenta: (width: 71px, height: 53px, backgroundX: -196px, backgroundY: -51px),icon-search-black: (width: 20px, height: 19px, backgroundX: -94px, backgroundY: -315px),icon-search-white: (width: 20px, height: 19px, backgroundX: -118px, backgroundY: -315px),icon-view-25-black: (width: 25px, height: 20px, backgroundX: 0px, backgroundY: -347px),icon-view-25-white: (width: 25px, height: 20px, backgroundX: -29px, backgroundY: -347px),icon-view-64-blue: (width: 64px, height: 54px, backgroundX: -244px, backgroundY: -123px),icon-view-64-green: (width: 64px, height: 54px, backgroundX: -312px, backgroundY: -123px),icon-view-64-magenta: (width: 64px, height: 54px, backgroundX: -380px, backgroundY: -123px),icon-view-64-orange: (width: 64px, height: 54px, backgroundX: 0px, backgroundY: -207px),icon-view-64-pink: (width: 64px, height: 54px, backgroundX: -68px, backgroundY: -207px),icon-view-64-white: (width: 64px, height: 54px, backgroundX: -136px, backgroundY: -207px),icon-view-64-yellow: (width: 64px, height: 54px, backgroundX: -204px, backgroundY: -207px),logo-full: (width: 481px, height: 47px, backgroundX: 0px, backgroundY: 0px),logo-mobile: (width: 192px, height: 68px, backgroundX: 0px, backgroundY: -51px),network-fb-white: (width: 24px, height: 24px, backgroundX: 0px, backgroundY: -371px),network-vk-white: (width: 24px, height: 24px, backgroundX: -28px, backgroundY: -371px),sharing-cp-white: (width: 40px, height: 40px, backgroundX: -125px, backgroundY: -265px),sharing-fb-white: (width: 40px, height: 40px, backgroundX: -169px, backgroundY: -265px),sharing-ok-white: (width: 40px, height: 40px, backgroundX: -213px, backgroundY: -265px),sharing-vk-white: (width: 40px, height: 40px, backgroundX: -257px, backgroundY: -265px),);
+
+@mixin svgSprite($icon) {
+    $spriteMap: map.get($svgSprite, sprite);
+    $iconMap: map.get($svgSprite, $icon);
+    $background-position-x: map.get($iconMap, backgroundX) - map.get($spriteMap, paddingLeft);
+    $background-position-y: map.get($iconMap, backgroundY) - map.get($spriteMap, paddingTop);
+
+    @if $iconMap {
+        width: map.get($iconMap, width);
+        height: map.get($iconMap, height);
+        background-image: url("#{map.get($spriteMap, svgPath)}");
+        background-position: $background-position-x $background-position-y;
+        background-size: map.get($spriteMap, width) map.get($spriteMap, height);
+    }
+}
+
+@mixin svgIcon($icon, $top: 50%, $left: 50%, $right: false, $bottom: false, $position: absolute) {
+    $spriteMap: map.get($svgSprite, sprite);
+    $iconMap: map.get($svgSprite, $icon);
+    $background-position-x: map.get($iconMap, backgroundX) - map.get($spriteMap, paddingLeft);
+    $background-position-y: map.get($iconMap, backgroundY) - map.get($spriteMap, paddingTop);
+    $margin-x: math.div(map.get($iconMap, width), -2);
+    $margin-y: math.div(map.get($iconMap, height), -2);
+
+    @if $iconMap {
+        position: $position;
+        @if $bottom {
+            bottom: $bottom;
+        } @else {
+            top: $top;
+        }
+        @if $right {
+            right: $right;
+        } @else {
+            left: $left;
+        }
+        display: block;
+        width: map.get($iconMap, width);
+        height: map.get($iconMap, height);
+        margin: $margin-y $margin-x;
+        background-image: url("#{map.get($spriteMap, svgPath)}");
+        background-position: $background-position-x $background-position-y;
+        background-size: map.get($spriteMap, width) map.get($spriteMap, height);
+    }
+}

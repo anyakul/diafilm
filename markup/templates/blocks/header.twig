@@ -1,0 +1,33 @@
+<header class="{{ 'header'|mod(self.mod) }} js-header">
+    <a class="header__skip" href="#main">К содержимому</a>
+    <div class="header__container">
+        <div class="header__row">
+            <div class="header__logo">
+                {% include '@blocks/logo.twig' with {
+                    self: {
+                        mod: '',
+                        url: 'main'
+                    }
+                } %}
+            </div>
+            <div class="header__intro">
+                {% if page.showIntro %}
+                    {% include '@blocks/intro.twig' with {
+                        self: getRoot(page, menu, 2)
+                    } %}
+                {% endif %}
+            </div>
+            <div class="header__buttons">
+                {% include '@blocks/button.twig' with {
+                    self: {
+                        mod: 'visual',
+                        className: 'header__toggle',
+                        title: 'Показать меню',
+                        icon: 'menu-white',
+                        url: '#menu'
+                    }
+                } %}
+            </div>
+        </div>
+    </div>
+</header>

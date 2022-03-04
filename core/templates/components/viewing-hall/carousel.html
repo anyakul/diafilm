@@ -1,0 +1,19 @@
+<div class="viewing__carousel">
+    <div class="carousel carousel_viewing js-carousel-viewing">
+        <div class="carousel__viewport js-carousel-viewport">
+            <ul class="carousel__list js-carousel-overflow">
+                {% for item in object_list %}
+                <li class="carousel__item carousel__item_default js-carousel-item">
+                    <article class="card card_thumb" data-clickable>
+                        <a class="card__picture" href="{{ item.url }}" title="{{ item.title }}">
+                            {% with size="fill-183x137" %}
+                            {% include "common/img.html" with img=item.annotation_image class="card__image" alt=item.title %}
+                            {% endwith %}
+                        </a>
+                    </article>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

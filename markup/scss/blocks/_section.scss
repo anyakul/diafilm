@@ -1,0 +1,176 @@
+@charset "UTF-8";
+@use "sass:color";
+
+/* --------------------
+   Секция
+   -------------------- */
+
+.section {
+  @extend %section;
+  height: inherit;
+  overflow: hidden;
+
+  &_foyer {
+    @include media(before, tablet) {
+      height: 100%;
+
+      @include before() {
+        position: absolute;
+        top: 0;
+        left: calc(3.5 / 8 * 100%);
+        bottom: 0;
+        width: calc(2.5 / 8 * 100%);
+        background-color: $green;
+        pointer-events: none;
+        z-index: -1;
+      }
+      @include after() {
+        position: absolute;
+        top: 0;
+        left: calc(6.5 / 8 * 100%);
+        right: -8px;
+        bottom: 0;
+        background-color: $green;
+        pointer-events: none;
+        z-index: -1;
+      }
+    }
+  }
+
+  &_viewing-hall {
+    background-color: $gray-455;
+  }
+
+  &__container {
+    @extend %container;
+    height: inherit;
+
+    @include media(before, tablet) {
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+  }
+
+  &__row {
+    @extend %row;
+    position: relative;
+    height: inherit;
+
+    .section_foyer & {
+      @include media(before, tablet) {
+        flex-direction: column;
+      }
+    }
+
+    .section_cafeteria & {
+      @include before() {
+        position: absolute;
+        top: 0;
+        left: calc(6 / 12 * 100%);
+        right: 0;
+        margin-top: -290px;
+        margin-left: 16px;
+        margin-right: 16px;
+        height: 450px;
+        border-radius: 50% / 80px;
+        background-color: color.adjust($magenta, $alpha: -.7);
+        z-index: -1;
+
+        @include media(before, tablet){
+          display: none;
+        }
+
+        @supports (clip-path: ellipse(65% 50% at center)) {
+          border-radius: 0;
+          clip-path: ellipse(65% 50% at center);
+        }
+      }
+    }
+  }
+
+  &__label {
+    @include highlight();
+    @extend %column;
+    padding-top: 36px;
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 10px;
+    @include font(36px, 30px, $title-font, 700);
+    text-transform: uppercase;
+    color: $black;
+    z-index: 1;
+
+    @include media(tablet) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      @include columnWithPush(6, 2, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      padding-top: 66px;
+      margin-bottom: 0;
+      @include font(72px, 86px);
+    }
+
+    .section_showroom & {
+      @include media(tablet) {
+        @include columnWithPush(8, 2, 12);
+      }
+    }
+
+    .section_viewing-hall & {
+      color: $white;
+
+      @include media(tablet) {
+        @include columnWithPush(8, 2, 12);
+      }
+    }
+  }
+
+  &__body {
+    @include highlight();
+    @extend %column;
+    @extend %row;
+
+    @include media(tablet) {
+      @include columnWithPush(10, 2, 12);
+      height: inherit;
+    }
+
+    .section_foyer & {
+      @include media(before, laptop) {
+        position: relative;
+        width: 100%;
+        flex: 1;
+
+        @include before() {
+          position: absolute;
+          top: 0;
+          right: -8px;
+          display: block;
+          width: calc(266 / 375 * 100%);
+          height: 0;
+          padding-top: calc(122 / 375 * 100%);
+          @include background-image("main/foyer/image-6", contain);
+          background-repeat: no-repeat;
+          pointer-events: none;
+          z-index: 1;
+        }
+        @include after() {
+          position: absolute;
+          bottom: 0;
+          right: -8px;
+          display: block;
+          width: calc(250 / 375 * 100%);
+          height: 0;
+          padding-top: calc(220 / 375 * 100%);
+          @include background-image("main/foyer/image-7", contain);
+          background-repeat: no-repeat;
+          pointer-events: none;
+          z-index: 1;
+        }
+      }
+    }
+  }
+}

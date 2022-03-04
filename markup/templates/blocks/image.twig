@@ -1,0 +1,15 @@
+<img
+    {% if self.className or self.jsClassName %}class="{{ self.className }} {{ self.jsClassName }}"{% endif %}
+    {% if self.url %}
+        src="{{ media(self.url) }}"
+        {% if self.url|test('\.(jpe?g|png)$','i') and not self.no_retina %}
+            srcset="{{ media(self.url|retina) }} 2x"
+        {% endif %}
+    {% elseif self.src %}
+        src="{{ self.src }}"
+    {% endif %}
+    {% if self.width %}width="{{ self.width }}"{% endif %}
+    {% if self.height %}height="{{ self.height }}"{% endif %}
+    {% if self.width and self.height %}intrinsicsize="{{ self.width }}x{{ self.height }}"{% endif %}
+    alt="{% if self.alt %}{{ self.alt|escape }}{% endif %}"
+    {% if self.extra %}{{ self.extra|extra }}{% endif %}>

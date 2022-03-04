@@ -1,0 +1,38 @@
+{% load common_tags %}
+{% load wagtailcore_tags %}
+
+<div class="showroom showroom_inner showroom_gray">
+    <div class="showroom__container">
+        <div class="showroom__row">
+            <div class="showroom__header">
+                {% if self.title %}
+                <div class="showroom__label" role="heading" aria-level="2">{{ self.title|format_title }}</div>
+                {% endif %}
+
+                {% if self.text %}
+                <div class="showroom__text">{{ self.text }}</div>
+                {% endif %}
+            </div>
+
+            <div class="showroom__model model model_inner js-model">
+                <div class="model__header">
+                    <div class="model__label" role="heading" aria-level="2">{{ self.page.title|format_title }}</div>
+                </div>
+
+                {% for block in self.page.content %}
+                {% if block.block_type == "points" %}
+                {% include "components/equipment/scheme.html" with scheme=block.value.bound_blocks.scheme.value %}
+                {% endif %}
+                {% endfor %}
+
+                <div class="model__after">
+                    <a class="model__more" href="{{ self.page.url }}">Смотреть подробнее</a>
+                </div>
+            </div>
+
+            <div class="showroom__after">
+                <a class="showroom__more" href="{% slugurl "showroom" %}">Ещё&nbsp;экспонаты</a>
+            </div>
+        </div>
+    </div>
+</div>

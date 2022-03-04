@@ -1,0 +1,22 @@
+{% load common_tags %}
+
+<li class="carousel__item carousel__item_default js-carousel-item">
+    <article class="card card_collection" data-clickable>
+        <div class="card__picture">
+            {% with class="card__image" %}
+            {% include "common/img.html" with img=item.annotation_image size="fill-503x362" %}
+            {% endwith %}
+        </div>
+        <div class="card__body">
+            <div class="card__label" role="heading" aria-level="4">
+                {{ item.title|format_title }}
+            </div>
+            <div class="card__text">
+                {{ item.annotation }}
+            </div>
+            <a class="card__link" href="{{ item.url }}">
+                Читать статью полностью
+            </a>
+        </div>
+    </article>
+</li>

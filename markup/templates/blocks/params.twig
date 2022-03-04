@@ -1,0 +1,19 @@
+{% set tag = self.wrap ? 'div' : 'dl' %}
+<{{ tag }} class="{% if self.className %}{{ self.className }} {% endif %}{{ 'params'|mod(self.mod) }}{{ self|jsClass }}">
+{% if self.wrap %}
+<div class="params__container">
+    <div class="params__row">
+        <dl class="params__list">
+            {% endif %}
+            {% for item in self.items %}
+                <div class="params__item">
+                    <dt class="params__term">{{ item.label|ft }}</dt>
+                    <dd class="params__desc">{{ item.value|ft }}</dd>
+                </div>
+            {% endfor %}
+            {% if self.wrap %}
+        </dl>
+    </div>
+</div>
+{% endif %}
+</{{ tag }}>

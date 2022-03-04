@@ -1,0 +1,27 @@
+{% extends "pages/base.html" %}
+{% comment %}Шаблон разводящей{% endcomment %}
+{% load common_tags %}
+
+
+{% block header_intro %}
+{% with page.far_parent as parent %}
+<span class="intro__number">{{ page.html_level }}</span>
+<span class="intro__label" role="heading" aria-level="2">{{ parent.title|format_title }}</span>
+<span class="intro__text">{{ parent.annotation|format_title }}</span>
+{% endwith %}
+{% endblock header_intro %}
+
+
+{% block main_header %}
+<div class="title title_section">
+    <div class="title__container">
+        <div class="title__row">
+            <div class="title__levels">
+                <div class="title__number">{{ page.html_level }}</div>
+                {% include "components/menu_great.html" %}
+            </div>
+            <h1 class="title__label">{{ page.title|format_title }}</h1>
+        </div>
+    </div>
+</div>
+{% endblock main_header %}

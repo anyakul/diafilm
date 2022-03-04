@@ -1,0 +1,77 @@
+{% load common_tags %}
+
+
+{% if "inverted" in self.kind %}
+<div class="preview preview_default preview_inverted" data-clickable>
+    <div class="preview__container">
+        <div class="preview__row">
+            <div class="preview__picture {% if "large" in self.kind %}preview__picture_large{% else %}preview__picture_default{% endif %} {% if self.images|length > 1 %}preview__picture_double{% endif %}">
+                {% for item in self.images|slice:":2" %}
+                {% with size="max-280x200" format="png" %}
+                {% include "common/img.html" with img=item class="preview__image" %}
+                {% endwith %}
+                {% endfor %}
+            </div>
+            <div class="preview__body">
+                <div class="preview__label" role="heading" aria-level="3">{{ self.title|format_title }}</div>
+                <div class="preview__text is-editable">{{ self.text }}</div>
+            </div>
+            <div class="preview__after">
+                <a class="preview__more" href="{{ self.page.url }}">Подробнее</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% elif self.kind == "mixed" %}
+<div class="preview preview_default preview_mixed" data-clickable>
+    <div class="preview__container">
+        <div class="preview__row">
+            <div class="preview__picture preview__picture_beam">
+                {% with size="max-405x405" format="png" %}
+                {% include "common/img.html" with img=self.images.0 class="preview__image" %}
+                {% endwith %}
+            </div>
+            <div class="preview__body">
+                {% if self.images.1 %}
+                <div class="preview__figure">
+                    {% with size="max-280x280" format="png" %}
+                    {% include "common/img.html" with img=self.images.1 class="preview__image" %}
+                    {% endwith %}
+                </div>
+                {% endif %}
+                <div class="preview__label" role="heading" aria-level="3">{{ self.title|format_title }}</div>
+                <div class="preview__text is-editable">{{ self.text }}</div>
+            </div>
+            <div class="preview__after">
+                <a class="preview__more" href="{{ self.page.url }}">Подробнее</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="preview preview_default preview_normal" data-clickable>
+    <div class="preview__container">
+        <div class="preview__row">
+            <div class="preview__picture preview__picture_default">
+                {% with size="max-405x405" format="png" %}
+                {% include "common/img.html" with img=self.images.0 class="preview__image" %}
+                {% endwith %}
+            </div>
+            <div class="preview__body">
+                {% if self.images.1 %}
+                <div class="preview__figure">
+                    {% with size="max-280x280" format="png" %}
+                    {% include "common/img.html" with img=self.images.1 class="preview__image" %}
+                    {% endwith %}
+                </div>
+                {% endif %}
+                <div class="preview__label" role="heading" aria-level="3">{{ self.title|format_title }}</div>
+                <div class="preview__text is-editable">{{ self.text }}</div>
+            </div>
+            <div class="preview__after">
+                <a class="preview__more" href="{{ self.page.url }}">Подробнее</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

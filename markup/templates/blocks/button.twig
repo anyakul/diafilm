@@ -1,0 +1,27 @@
+{% set tag = self.url ? 'a' : 'button' %}
+
+<{{ tag }} class="{% if self.className %}{{ self.className }} {% endif %}{{ 'button'|mod(self.mod) }}{% if self.isActive %} is-active{% endif %}{{ self|jsClass }}"
+{% if self.url %}href="{{ menu|url(self.url) }}" {% else %}type="{{ self.type|default('button') }}"{% endif %}
+    {% if self.external %} target="_blank" rel="{{ noop }}"{% endif %}
+    {% if self.title %}aria-label="{{ self.title }}" title="{{ self.title }}"{% endif %}
+    {% if self.isActive and not self.url %}aria-pressed="true"{% endif %}
+    {% if self.extra %}{{ self.extra|extra }}{% endif %}>
+{% if self.image %}
+    {% include '@blocks/lazy-image.twig' with {
+        self: self.image|extend({
+            className: 'button__image'
+        })
+    } %}
+{% endif %}
+    {% if self.icon %}
+        <span class="{{ 'button__icon'|mod(self.icon) }}"></span>
+    {% elseif self.iconBefore %}
+        <span class="{{ 'button__icon'|mod('before, ' ~ self.iconBefore) }}"></span>
+    {% endif %}
+    {% if self.label %}
+        <span class="button__label">{{ self.label|ft }}</span>
+    {% endif %}
+    {% if self.iconAfter %}
+        <span class="{{ 'button__icon'|mod('after, ' ~ self.iconAfter) }}"></span>
+    {% endif %}
+</{{ tag }}>

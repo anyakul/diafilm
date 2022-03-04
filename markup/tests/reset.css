@@ -1,0 +1,28 @@
+* { /* ignore transitions */
+  transition: none !important;
+  animation: none !important;
+}
+
+iframe { /* ignore external content */
+  display: none !important;
+}
+
+input,
+textarea { /* ignore caret */
+  caret-color: transparent !important;
+}
+
+.g-recaptcha, .recaptcha { /* ignore recaptcha */
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+video {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.map .map__canvas {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}

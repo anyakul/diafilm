@@ -1,0 +1,115 @@
+@charset "UTF-8";
+/* --------------------
+   Видео карусель
+   -------------------- */
+
+.videos {
+  @extend %section;
+
+  &_default {
+    position: relative;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: $white;
+
+    @include media(before, tablet) {
+      padding-top: 20px;
+      padding-bottom: 36px;
+    }
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+
+    .videos_default & {
+      position: relative;
+      align-items: center;
+      z-index: 0;
+
+      @include before() {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: calc(6 / 12 * 100%);
+        bottom: 0;
+        margin-right: -20px;
+        clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 60%);
+        background-color: $gray-fff;
+        z-index: -1;
+
+        @supports (left: calc((var(--full-width) - 100%) / -2)) {
+          left: calc((var(--full-width) - 100%) / -2);
+        }
+        @supports (left: calc((min(var(--full-width), 1920px) - 100%) / -2)) {
+          left: calc((min(var(--full-width), 1920px) - 100%) / -2);
+        }
+      }
+    }
+  }
+
+  &__header {
+    @include highlight();
+    @extend %column;
+
+    .videos_default & {
+      @extend %row;
+      @include columnWithPush(4, 2, 12);
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  &__label {
+    @include highlight();
+    @extend %column;
+
+    .videos_default & {
+      @include column(4, 4);
+      padding-left: 16px;
+      padding-right: 16px;
+      @include font(36px, 40px, $base-font, 700);
+      text-transform: lowercase;
+      color: $green;
+
+      @include media(before, tablet) {
+        @include font(24px, 28px, $base-font, 700);
+      }
+    }
+  }
+
+  &__text {
+    @include highlight();
+    @extend %column;
+
+    .videos_default & {
+      @include column(4, 4);
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 10px;
+      @include font(14px, 18px, $base-font, 400);
+      color: $black;
+    }
+  }
+
+  &__carousel {
+    @include highlight();
+    @extend %column;
+
+    .videos_default & {
+      @include column(6, 12);
+
+      @include media(before, tablet) {
+        width: 100%;
+      }
+    }
+  }
+
+}

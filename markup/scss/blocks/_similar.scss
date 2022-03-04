@@ -1,0 +1,427 @@
+@charset "UTF-8";
+@use "sass:map";
+
+/* --------------------
+   Похожее
+   -------------------- */
+
+.similar {
+  @extend %section;
+
+  &_default {
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    @include media(before, tablet) {
+      margin-top: 36px;
+      margin-bottom: 36px;
+    }
+
+    &.similar_bg-white {
+      padding-top: 50px;
+      padding-bottom: 50px;
+      margin-top: 0;
+      margin-bottom: 0;
+      background-color: $white;
+
+      @include media(before, tablet) {
+        padding-bottom: 36px;
+        padding-top: 36px;
+      }
+    }
+
+    &.similar_bg-gray {
+      padding-top: 50px;
+      padding-bottom: 50px;
+      margin-top: 0;
+      margin-bottom: 0;
+      background-color: $gray-455;
+
+      @include media(before, tablet) {
+        padding-bottom: 20px;
+        padding-top: 30px;
+      }
+    }
+  }
+
+  &_collections {
+    padding-bottom: 100px;
+  }
+
+  &_publications {
+    padding-bottom: 100px;
+  }
+
+  &_news {
+    padding-bottom: 100px;
+  }
+
+  &_models {
+    margin-bottom: 100px;
+
+    @include media(before, tablet) {
+      margin-bottom: 50px;
+    }
+  }
+
+  &__container {
+    @extend %container;
+  }
+
+  &__row {
+    @extend %row;
+    justify-content: stretch;
+  }
+
+  &__label {
+    @include highlight();
+    @extend %column;
+
+    .similar_default & {
+      @include columnWithPush(10, 2, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      @include font(36px, 40px, $base-font, 600);
+      color: $black;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        @include font(24px, 28px, $base-font, 600);
+        width: 100%;
+      }
+    }
+
+    @each $key, $level in $LEVELS {
+      .similar_#{map.get($level, slug)} & {
+        text-transform: lowercase;
+        font-weight: 700;
+        color: map.get($level, color);
+
+        @include media(before, tablet) {
+          @include font(24px, 28px, $base-font, 600);
+          margin-left: 0;
+        }
+      }
+    }
+
+    .similar_collections & {
+      @include columnWithPush(9, 1, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      @include font(36px, 40px, $base-font, 600);
+      color: $black;
+
+      @include media(before, tablet) {
+        @include font(24px, 28px, $base-font, 600);
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+    .similar_publications & {
+      @include columnWithPush(9, 1, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      @include font(36px, 40px, $base-font, 600);
+      color: $black;
+
+      @include media(before, tablet) {
+        @include font(24px, 28px, $base-font, 600);
+        margin-left: 0;
+        width: 100%;
+      }
+
+      .layout_gray & {
+        color: $white;
+      }
+    }
+
+    .similar_news & {
+      @include columnWithPush(9, 1, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      @include font(36px, 40px, $base-font, 600);
+      color: $black;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    .similar_models & {
+      @include columnWithPush(9, 1, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      @include font(36px, 40px, $base-font, 600);
+      color: $black;
+
+      @include media(before, tablet) {
+        @include font(24px, 28px, $base-font, 600);
+        margin-left: 0;
+      }
+    }
+  }
+
+  &__text {
+    @include highlight();
+    @extend %column;
+
+    .similar_default & {
+      @include columnWithPush(4, 2, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 10px;
+      @include font(14px, 18px, $base-font, 400);
+      color: $black;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    .similar_publications & {
+      @include columnWithPush(5, 1, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 10px;
+      @include font(14px, 18px, $base-font, 400);
+      color: $black;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      .layout_gray & {
+        color: $white;
+      }
+    }
+
+    .similar_news & {
+      @include columnWithPush(5, 1, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 10px;
+      @include font(14px, 18px, $base-font, 400);
+      color: $black;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    .similar_models & {
+      @include columnWithPush(5, 1, 12);
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: 10px;
+      @include font(14px, 18px, $base-font, 400);
+      color: $black;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  &__carousel {
+    @include highlight();
+    @extend %column;
+
+    .similar_default & {
+      @extend %row;
+      position: relative;
+      @include columnWithPush(10, 2, 12);
+      margin-top: 24px;
+      z-index: 0;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    .similar_collections & {
+      position: relative;
+      @include columnWithPush(9, 1, 12);
+      margin-top: 24px;
+
+      @include media(before, tablet) {
+        padding: 0;
+        margin-left: 0;
+        width: 100%;
+      }
+
+      @include before() {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: calc(4 / 9 * 100%);
+        bottom: 0;
+        margin-left: 16px;
+        margin-right: 16px;
+        background-color: $gray-fff;
+        border-radius: 4px;
+        z-index: -1;
+      }
+
+      @include after() {
+        position: absolute;
+        top: 0;
+        left: calc(5 / 9 * 100%);
+        right: calc(-2 / 9 * 100%);
+        bottom: 0;
+        margin-left: -20px;
+        clip-path: polygon(0 0, 100% 30%, 100% 60%, 0 100%);
+        background-color: $gray-fff;
+        z-index: -1;
+
+        @supports (right: calc(-2 / 9 * 100% + (var(--full-width) - 12 / 9 * 100%) / -2)) {
+          right: calc(-2 / 9 * 100% + (var(--full-width) - 12 / 9 * 100%) / -2);
+        }
+        @supports (right: calc(-2 / 9 * 100% + (min(var(--full-width), 1920px) - 12 / 9 * 100%) / -2)) {
+          right: calc(-2 / 9 * 100% + (min(var(--full-width), 1920px) - 12 / 9 * 100%) / -2);
+        }
+      }
+    }
+
+    .similar_publications & {
+      position: relative;
+      @include columnWithPush(11, 1, 12);
+      margin-top: 24px;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    .similar_news & {
+      position: relative;
+      @include columnWithPush(11, 1, 12);
+      margin-top: 24px;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+
+    .similar_models & {
+      position: relative;
+      @include columnWithPush(11, 1, 12);
+      margin-top: 24px;
+
+      @include media(before, tablet) {
+        margin-left: 0;
+      }
+    }
+
+    .similar_viewing-hall & {
+      @include columnWithPush(9, 2, 12);
+
+      @include before() {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: calc(4 / 9 * 100%);
+        bottom: 0;
+        margin-left: 16px;
+        margin-right: 16px;
+        background-color: $gray-344;
+        border-radius: 4px;
+        z-index: -1;
+      }
+
+      @include after() {
+        position: absolute;
+        top: 0;
+        left: calc(5 / 9 * 100%);
+        right: calc(-2 / 9 * 100%);
+        bottom: 0;
+        margin-left: -20px;
+        clip-path: polygon(0 0, 100% 30%, 100% 60%, 0 100%);
+        background-color: $gray-344;
+        z-index: -1;
+
+        @supports (right: calc(-2 / 9 * 100% + (var(--full-width) - 12 / 9 * 100%) / -2)) {
+          right: calc(-2 / 9 * 100% + (var(--full-width) - 12 / 9 * 100%) / -2);
+        }
+        @supports (right: calc(-2 / 9 * 100% + (min(var(--full-width), 1920px) - 12 / 9 * 100%) / -2)) {
+          right: calc(-2 / 9 * 100% + (min(var(--full-width), 1920px) - 12 / 9 * 100%) / -2);
+        }
+      }
+    }
+  }
+
+  &__after {
+    @include highlight();
+    @extend %column;
+
+    .similar_viewing-hall & {
+      position: relative;
+      align-self: stretch;
+      min-height: 100%;
+      padding-left: 16px;
+      padding-right: 16px;
+
+      @include media(tablet) {
+        @include column(1, 12);
+      }
+    }
+
+    .similar_collections & {
+      position: relative;
+      align-self: stretch;
+      @include column(1, 12);
+      min-height: 100%;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+
+  &__more {
+    position: absolute;
+    bottom: 0;
+    left: 100%;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: -16px;
+    @include font(24px, 28px, $title-font, 700);
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    color: $black;
+    transform: rotate(-90deg);
+    transform-origin: 0 100%;
+
+    @include media(before, tablet) {
+      left: 0;
+      bottom: auto;
+    }
+
+    .similar_bg-gray & {
+      color: $white;
+    }
+
+    @include before() {
+      display: inline-block;
+      vertical-align: bottom;
+      @include svgSprite(icon-arrow-16-black);
+      margin-right: 4px;
+      transform: rotate(90deg);
+
+      .similar_bg-gray & {
+        @include svgSprite(icon-arrow-16-white);
+      }
+
+      @include media(before, tablet) {
+        width: 100%;
+      }
+    }
+  }
+}

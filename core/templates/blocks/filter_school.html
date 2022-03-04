@@ -1,0 +1,77 @@
+{% load common_tags %}
+{% load content_tags %}
+{% load wagtailcore_tags %}
+
+<div class="similar similar_default similar_foyer">
+    <div class="similar__container">
+        <div class="similar__row">
+            <div class="similar__label" role="heading" aria-level="2">Учебная программа</div>
+            <div class="similar__carousel carousel carousel_films js-carousel-filtered">
+                <form class="carousel__filter form form_filter js-carousel-filter" action="{% slugurl "viewing-hall" %}" method="get">
+                    <div class="form__body">
+                        <div class="form__field form__field_default">
+                            <div class="field field_select js-form-field js-form-field-select">
+                                <label class="field__label js-form-field-label" for="id_form_subject">Предмет</label>
+                                <select class="field__element field__element_select is-external-subject js-form-field-element"
+                                        name="subject" id="id_form_subject" tabindex="-1"
+                                        onchange="location.href='{% slugurl "viewing-hall" %}?subject=' + this.value; return false;">
+                                    <option value="Любой">Все&nbsp;предметы</option>
+                                    {% get_school_subjects as subjects %}
+                                    {% for item in subjects %}
+                                    <option value="{{ item }}">{{ item }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label class="field__value js-form-field-value" for="id_form_subject" tabindex="0">Все&nbsp;предметы</label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="carousel__tags">
+                    {% get_school_level_list as levels %}
+                    {% comment %}
+                    <button class="carousel__button_tag button button_tag is-active" type="button" aria-pressed="true">
+                        <span class="button__label">Все&nbsp;
+                            <span>{{ levels.total }}</span>
+                        </span>
+                    </button>
+                    {% endcomment %}
+                    {% for item, count in levels.object_list %}
+                    <a class="carousel__button_tag button button_tag" href="{% slugurl "viewing-hall" %}?level={{ item }}">
+                        <span class="button__label">{{ item }}
+                            <span>{{ count }}</span>
+                        </span>
+                    </a>
+                    {% endfor %}
+                </div>
+
+                {% get_diafilm_school_pages as diafilm_pages %}
+                <div class="carousel__viewport js-carousel-viewport">
+                    <ul class="carousel__list js-carousel-overflow">
+                        {% for item in diafilm_pages.object_list %}
+                        <li class="carousel__item carousel__item_default js-carousel-item">
+                            <article class="card card_film" data-clickable>
+                                <div class="card__picture">
+                                    {% with class="card__image" size="fill-395x296" %}
+                                    {% include "common/img.html" with img=item.annotation_image %}
+                                    {% endwith %}
+                                </div>
+                                <div class="card__body">
+                                    <div class="card__label" role="heading" aria-level="4">
+                                        <a class="card__link" href="{{ item.url }}">
+                                            {{ item.title|format_title }}
+                                        </a>
+                                    </div>
+                                    {% if item.annotation %}
+                                    <div class="card__text">{{ item.annotation }}</div>
+                                    {% endif %}
+                                </div>
+                            </article>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

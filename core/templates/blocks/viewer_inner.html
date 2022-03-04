@@ -1,0 +1,3 @@
+{% with preview=self.preview size="max-929x542" %}
+{% include "components/viewer/base.html" with id=self.block.id type=self.type url=self.url caption=self.caption %}
+{% endwith %}

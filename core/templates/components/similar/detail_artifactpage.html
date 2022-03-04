@@ -1,0 +1,18 @@
+{% load common_tags %}
+
+<li class="carousel__item carousel__item_default js-carousel-item">
+    <article class="card card_model" data-clickable>
+        <div class="card__picture">
+            {% with class="card__image" format="png" %}
+            {% include "common/img.html" with img=item.photo size="fill-288x288" %}
+            {% endwith %}
+        </div>
+        <div class="card__body">
+            <div class="card__label" role="heading" aria-level="4">
+                <a class="card__link" href="{{ item.url }}">
+                    {{ item.title|format_title }}
+                </a>
+            </div>
+        </div>
+    </article>
+</li>

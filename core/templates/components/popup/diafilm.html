@@ -1,0 +1,18 @@
+{% load content_tags %}
+{% load static %}
+
+{% get_diafilm_of_the_day as day %}
+
+<article class="hall hall_default" data-clickable>
+    <div class="hall__label" role="heading" aria-level="3">
+        Сегодня в зале
+    </div>
+    <div class="hall__picture">
+        {% with size="fill-280x210" class="hall__image" alt=day.diafilm_page.title %}
+        {% include "common/img.html" with img=day.diafilm_page.annotation_image %}
+        {% endwith %}
+    </div>
+    <div class="hall__more">
+        <a class="hall__link" href="{{ day.diafilm_page.url }}">Смотреть</a>
+    </div>
+</article>

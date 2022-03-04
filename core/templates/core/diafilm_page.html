@@ -1,0 +1,36 @@
+{% extends "pages/detail.html" %}
+{% load navigation_tags %}
+{% load wagtailcore_tags %}
+{% load common_tags %}
+{% load content_tags %}
+
+{% block header_class %}header_gray{% endblock header_class %}
+{% block main_class %}layout_gray{% endblock main_class %}
+{% block footer_class %}footer_gray{% endblock footer_class %}
+
+{% block main_header %}
+<div class="diafilm diafilm_inner js-diafilm">
+    <div class="diafilm__container">
+        <div class="diafilm__row">
+            <div class="diafilm__back">
+                {% with page.far_parent as parent %}
+                <a class="diafilm__link" href="{% get_back_url parent.url %}">В {{ parent.title|format_title }}</a>
+                {% endwith %}
+            </div>
+
+            {% for block in page.near_parent.hero %}
+            {% include_block block %}
+            {% empty %}
+            {% include "components/diafilm_viewer.html" %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="title title_text">
+    <div class="title__container">
+        <div class="title__row">
+            <h1 class="title__label">{{ page.title|format_title }}</h1>
+        </div>
+    </div>
+</div>
+{% endblock main_header %}

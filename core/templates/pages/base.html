@@ -1,0 +1,75 @@
+{% load common_tags navigation_tags wagtailuserbar wagtailcore_tags chunk_tags %}<!DOCTYPE html>
+<html lang="ru" class="has-no-js"
+      prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+
+{% get_menus as menu_root %}
+
+<head>
+    {% block viewport %}{# TODO: После расайзов всех страниц удалить блок и его использование #}
+        <meta name="viewport" content="width=1440, viewport-fit=contain, minimal-ui">
+    {% endblock viewport %}
+
+    {% block head %}
+    {% include "parts/head.html" %}
+    {% endblock head %}
+</head>
+
+<body class="root {% block body_class %}root_{{ page.html_class|default:"default" }}{% endblock body_class %}" id="top"
+      itemscope itemtype="http://schema.org/WebPage">
+    <header class="header {% block header_class %}header_default{% endblock header_class %} js-header">
+        {% block header %}
+        <a class="header__skip" href="#main">К содержимому</a>
+        <div class="header__container">
+            <div class="header__row">
+                <div class="header__logo">
+                    <a class="logo logo_default" href="/">
+                    </a>
+                </div>
+                <div class="header__intro">
+                    <div class="intro intro_default">
+                        {% block header_intro %}
+                        <span class="intro__number">{{ page.html_level }}</span>
+                        <span class="intro__label" role="heading" aria-level="2">{{ page.title|format_title }}</span>
+                        <span class="intro__text"></span>
+                        {% endblock header_intro %}
+                    </div>
+                </div>
+                <div class="header__buttons">
+                    <a class="header__toggle button button_visual" href="#menu" aria-label="Показать меню" title="Показать меню">
+                        <span class="button__icon button__icon_menu-white"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endblock header %}
+    </header>
+    <main class="layout {% block main_class %}layout_default{% endblock main_class %} js-layout" id="main">
+        {% block main %}
+            {% block main_header %}
+            {% endblock main_header %}
+
+            {% block main_content %}
+            {% for block in self.content %}
+            {% include_block block %}
+            {% endfor %}
+            {% endblock main_content %}
+
+            {% block main_footer %}
+            {% endblock main_footer %}
+        {% endblock main %}
+    </main>
+    <footer class="footer {% block footer_class %}footer_default{% endblock footer_class %}">
+        {% block footer %}
+        {% include "parts/footer.html" %}
+        {% endblock footer %}
+    </footer>
+    {% include "components/popup/base.html" %}
+    {% include "components/../parts/notifications.html" %}
+    {% wagtailuserbar %}
+</body>
+
+{% get_chunk "extra-html" as extra %}
+{% for block in extra %}
+{{ block|safe }}
+{% endfor %}
+</html>

@@ -1,0 +1,26 @@
+{% load common_tags %}
+
+<div class="concept concept_default">
+    <div class="concept__container">
+        <div class="concept__row">
+            <div class="concept__pictures">
+                {% if self.fig1 %}
+                <div class="concept__picture">
+                    {% include "common/img.html" with img=self.fig1 size="fill-406x416" class="concept__image" %}
+                </div>
+                {% endif %}
+
+                {% if self.fig2 %}
+                <div class="concept__picture">
+                    {% include "common/img.html" with img=self.fig2 size="fill-406x416" class="concept__image" %}
+                </div>
+                {% endif %}
+            </div>
+            <div class="concept__body">
+                <div class="concept__label" role="heading" aria-level="3">{{ self.title|format_title }}</div>
+                <div class="concept__intro is-editable">{{ self.conception }}</div>
+                <div class="concept__text is-editable">{{ self.text }}</div>
+            </div>
+        </div>
+    </div>
+</div>

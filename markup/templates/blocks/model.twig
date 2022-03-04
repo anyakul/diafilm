@@ -1,0 +1,58 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'model'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    {% if self.wrap %}
+    <div class="model__container">
+        <div class="model__row">
+            {% endif %}
+            <div class="model__header">
+                {% if self.years %}
+                    <div class="model__years">{{ self.years }}</div>
+                {% endif %}
+                {% if self.label %}
+                    <div class="model__label" role="heading" aria-level="2">{{ self.label|ft }}</div>
+                {% endif %}
+                {% if self.text %}
+                    <div class="model__text is-editable">{{ self.text|ft }}</div>
+                {% endif %}
+            </div>
+            <div class="model__viewport">
+                <div class="model__layer">
+                    {% include '@blocks/image.twig' with {
+                        self: self.image|extend({
+                            className: 'model__image'
+                        })
+                    } %}
+                    <div class="model__points">
+                        {% for point in self.points %}
+                            <button class="model__point{{ self|jsClass('point') }}" type="button"
+                                    data-id="{{ point|hash }}" style="left:{{ point.left }}%;top:{{ point.top }}%">
+                            </button>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="model__bubbles">
+                {% for point in self.points %}
+                    <div class="model__bubble{{ self|jsClass('bubble') }}" data-id="{{ point|hash }}" hidden>
+                        <div class="bubble">
+                            <div class="bubble__text">{{ point.text|ft }}</div>
+                            <div class="{{ 'bubble__picture'|mod(point.image.mod) }}">
+                                {% include '@blocks/lazy-image.twig' with {
+                                    self: point.image|extend({
+                                        className: 'bubble__image'
+                                    })
+                                } %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if self.more %}
+                <div class="model__after">
+                    <a class="model__more" href="{{ menu|url(self.more.url) }}">{{ self.more.label|ft }}</a>
+                </div>
+            {% endif %}
+            {% if self.wrap %}
+        </div>
+    </div>
+    {% endif %}
+</div>

@@ -1,0 +1,816 @@
+@charset "UTF-8";
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
+
+/* --------------------
+   Карточка
+   -------------------- */
+
+.card {
+  @include highlight();
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+
+  &_thumb {
+    &[data-clickable] {
+      .card__picture {
+        @include before() {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border: 1px solid $white;
+          border-radius: inherit;
+
+          @include transition() {
+            transition-property: border-color;
+          }
+        }
+      }
+    }
+  }
+
+  //&_archive {}
+
+  //&_cafeteria {}
+
+  &_fact {
+    flex-direction: row;
+
+    @include media(before, tablet) {
+      flex-direction: column;
+    }
+  }
+
+  &_publication {
+    &[data-clickable] {
+      .card__label {
+        position: relative;
+
+        @include after() {
+          position: absolute;
+          top: 0;
+          right: 0;
+          @include svgSprite(icon-arrow-16-black);
+        }
+      }
+    }
+  }
+
+  &_model {
+    &[data-clickable] {
+      .card__image {
+        filter: grayscale(100%);
+
+        @include transition() {
+          transition-property: filter;
+        }
+      }
+
+      .card__label {
+        position: relative;
+
+        @include after() {
+          position: absolute;
+          top: 0;
+          right: 0;
+          @include svgSprite(icon-arrow-16-black);
+
+          @include media(before, tablet) {
+            display: none;
+          }
+        }
+
+        @include media(before, tablet) {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  &_person {
+    .team__item_default & {
+      flex-direction: column;
+
+      @include media(before, tablet) {
+        flex-direction: row;
+      }
+    }
+
+    .team__item_double & {
+      flex-direction: row;
+    }
+  }
+
+  &_news {
+    &.card_marked {
+      height: 100%;
+    }
+  }
+
+  &_collection {
+    position: relative;
+    flex-direction: row;
+    overflow: visible;
+    z-index: 0;
+
+    @include media(before, tablet) {
+      flex-wrap: wrap;
+      min-height: 0;
+    }
+
+    .feed & {
+      margin-left: -16px;
+      margin-right: -16px;
+
+      @include before() {
+        position: absolute;
+        top: 0;
+        left: calc(5 / 10 * 100%);
+        right: 0;
+        bottom: 0;
+        margin-left: -20px;
+        clip-path: polygon(0 0, 100% 30%, 100% 60%, 0 100%);
+        background-color: $gray-344;
+        z-index: -1;
+
+        @supports (right: calc((var(--full-width) - 12 / 10 * 100%) / -2)) {
+          right: calc((var(--full-width) - 12 / 10 * 100%) / -2);
+        }
+        @supports (right: calc((min(var(--full-width), 1920px) - 12 / 10 * 100%) / -2)) {
+          right: calc((min(var(--full-width), 1920px) - 12 / 10 * 100%) / -2);
+        }
+      }
+    }
+  }
+
+  &_film {
+    &[data-clickable] {
+      .card__label {
+        position: relative;
+
+        .similar_foyer & {
+          @include after() {
+            position: absolute;
+            top: 0;
+            right: 0;
+            @include svgSprite(icon-arrow-16-black);
+          }
+        }
+      }
+    }
+  }
+
+  &_earth {
+
+    &[data-clickable] {
+      .card__body {
+        position: relative;
+
+        @include after() {
+          position: absolute;
+          bottom: 14px;
+          right: 0;
+          @include svgSprite(icon-view-25-black);
+        }
+      }
+    }
+  }
+
+  &[data-clickable] {
+    @include no-tap-highlight();
+    cursor: pointer;
+
+    @include hoverWithin() {
+      z-index: 1;
+
+      &.card_thumb {
+        .card__picture {
+          &::before {
+            border-color: $orange;
+          }
+        }
+      }
+
+      &.card_model {
+        .card__image {
+          filter: grayscale(0);
+        }
+      }
+    }
+  }
+
+  &__picture {
+    @extend %column;
+
+    //&_double {}
+
+    &_small {
+      @include media(tablet) {
+        @include column(2, 3);
+      }
+    }
+
+    &_default {
+      .card_person & {
+        border-radius: 12px;
+      }
+    }
+
+    &_special {
+      .card_person & {
+        border-radius: 50% / 25px;
+
+        @supports (clip-path: ellipse(65% 50% at center)) {
+          border-radius: 0;
+          clip-path: ellipse(65% 50% at center);
+        }
+      }
+    }
+
+    &_round {
+      .card_person & {
+        border-radius: 50%;
+
+        @supports (clip-path: circle(30% at center)) {
+          border-radius: 0;
+          clip-path: circle(40% at center)
+        }
+      }
+    }
+
+    .card_thumb & {
+      border-radius: 4px;
+    }
+
+    .card_cafeteria & {
+      @include column(4, 7);
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-bottom: 20px;
+      border-radius: 50% / 25px;
+
+      @include media(tablet) {
+        @include column(2, 3);
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      @supports (clip-path: ellipse(55% 50% at center)) {
+        border-radius: 0;
+        clip-path: ellipse(55% 50% at center);
+      }
+    }
+
+    .card_archive & {
+      position: relative;
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-bottom: 20px;
+
+      @include media(tablet) {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+
+    .card_collection & {
+      position: relative;
+      @include column(5, 10);
+      padding-left: 16px;
+      padding-right: 16px;
+      border-radius: 4px;
+
+      @include media(before, tablet) {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      @include before() {
+        position: absolute;
+        top: 0;
+        left: 16px;
+        right: 16px;
+        bottom: 0;
+        border: 1px solid $white;
+        border-radius: inherit;
+      }
+
+      .similar & {
+        @include column(5, 9);
+
+        @include media(tablet) {
+          width: 100%;
+        }
+
+        @include media(before, tablet) {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    .card_news & {
+      border-radius: 4px;
+    }
+
+    .card_film & {
+      position: relative;
+      border-radius: 4px;
+
+      @include before() {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 1px solid $white;
+        border-radius: inherit;
+      }
+    }
+
+    .card_news.card_marked & {
+      position: relative;
+      height: 100%;
+
+      @include before() {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: inherit;
+        background-image: linear-gradient(360deg, color.adjust($black, $alpha: 0) -10%, color.adjust($black, $alpha: -1) 60%);
+      }
+    }
+
+    .card_fact & {
+      @include highlight();
+      @include column(3, 6);
+      padding-left: 16px;
+      padding-right: 16px;
+
+      @include media(before, tablet) {
+        width: 100%;
+      }
+    }
+
+    .card_person & {
+      padding-left: 16px;
+      padding-right: 16px;
+
+      .team__item_default & {
+        @include column(2, 2);
+        margin-bottom: 16px;
+
+        @include media(before, tablet) {
+          @include column(5, 10);
+
+        }
+      }
+
+      .team__item_double & {
+        @include column(2, 4);
+
+        @include media(before, tablet) {
+          width: 100%;
+        }
+      }
+    }
+
+    .card_model & {
+      position: relative;
+
+      @include before() {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        background-color: $yellow;
+        opacity: .5;
+        z-index: -1;
+
+        .carousel__item:nth-child(3n+2) & {
+          background-color: transparent;
+          @include trapezoid($yellow);
+        }
+        .carousel__item:nth-child(3n) & {
+          background-color: transparent;
+          @include trapezoid($yellow);
+          transform: rotate(-90deg);
+        }
+      }
+    }
+
+    .card_earth & {
+      width: 100%;
+      border-radius: 4px;
+    }
+  }
+
+  &__image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: inherit;
+
+    .card__picture_double & {
+      width: 55%;
+    }
+
+    .card_news.card_marked & {
+      height: 100%;
+      @include object-fit(cover, 50% 50%);
+    }
+
+    & + & {
+      .card__picture_double & {
+        margin-left: -10%;
+        margin-top: 10%;
+      }
+    }
+  }
+
+  &__body {
+    @include highlight();
+    @extend %column;
+
+    .card_archive & {
+      padding-left: 8px;
+      padding-right: 8px;
+
+      @include media(tablet) {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+    }
+
+    .card_cafeteria & {
+      width: calc(5 / 7 * 100%);
+      padding-left: 8px;
+      padding-right: 8px;
+      margin-left: calc(2 / 7 * 100%);
+
+      @include media(tablet) {
+        width: calc(2 / 3 * 100%);
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-left: calc(1 / 3 * 100%);
+      }
+
+      @include media(before, tablet) {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+    .card_collection & {
+      @include column(4, 10);
+      padding-left: 16px;
+      padding-right: 16px;
+
+      @include media(before, tablet) {
+        width: 100%;
+      }
+
+      .similar & {
+        @include column(4, 9);
+
+        @include media(before, tablet) {
+          width: 100%;
+        }
+      }
+    }
+
+    .card_publication & {
+      padding-bottom: 30px;
+
+      @include media(before, tablet) {
+        padding-bottom: 0;
+      }
+    }
+
+    .card_news & {
+      display: flex;
+      flex-direction: column;
+      padding: 8px 0;
+    }
+
+    .card_news.card_marked & {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 20px 25px;
+    }
+
+    .card_model & {
+      padding-top: 8px;
+    }
+
+    .card_fact & {
+      @include column(3, 6);
+      padding-left: 16px;
+      padding-right: 16px;
+
+      @include media(before, tablet) {
+        width: 100%;
+      }
+    }
+
+    .card_person & {
+      padding-left: 16px;
+      padding-right: 16px;
+
+      .team__item_default & {
+        @include column(2, 2);
+
+        @include media(before, tablet) {
+          @include column(5, 10);
+        }
+      }
+
+      .team__item_double & {
+        @include column(2, 4);
+
+        @include media(before, tablet) {
+          width: 100%;
+          margin-top: 0;
+        }
+      }
+    }
+
+    .card_earth & {
+      display: flex;
+      flex-direction: column;
+      padding: 40px 0 0;
+    }
+  }
+
+  //&__icon {}
+
+  &__date {
+    .card_news & {
+      order: -1;
+      display: block;
+      @include font(14px, 18px, $base-font, 400);
+      color: $gray-80;
+    }
+
+    .card_news.card_marked & {
+      color: $white;
+    }
+  }
+
+  &__label {
+    .card_archive & {
+      position: relative;
+      margin-bottom: 40px;
+      @include font(16px, 20px, $title-font, 700);
+      text-transform: uppercase;
+      color: $blue;
+
+      @include media(tablet) {
+        @include font(24px, 28px);
+      }
+
+      @include after() {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        height: 16px;
+        margin-top: 12px;
+        background-color: color.adjust($blue, $alpha: -.5);
+      }
+    }
+
+    .card_cafeteria & {
+      @include font(24px, 28px, $title-font, 700);
+      text-transform: uppercase;
+      color: $black;
+    }
+
+    .card_collection & {
+      margin-bottom: 8px;
+      @include font(24px, 30px, $base-font, 600);
+      color: $black;
+
+      .similar_bg-gray &,
+      .layout_gray & {
+        color: $white;
+      }
+
+      @include media(before, tablet) {
+        @include font(20px, 24px, $base-font, 600);
+      }
+    }
+
+    .card_publication & {
+      margin-top: 15px;
+      @include font(18px, 22px, $base-font, 600);
+      color: $black;
+
+      @include media(before, tablet){
+        padding-right: 30px;
+      }
+    }
+
+    .card_film & {
+      margin-top: 13px;
+      padding-right: 40px;
+      @include font(24px, 30px, $base-font, 600);
+      color: $black;
+
+      @include media(before, tablet) {
+        @include font(18px, 22px, $base-font, 600);
+        padding-right: 0;
+      }
+
+      .layout_gray &,
+      .feed_viewing-hall & {
+        color: $white;
+      }
+    }
+
+    .card_news & {
+      display: block;
+      @include font(24px, 30px, $base-font, 600);
+      color: $black;
+
+      @include media(before, tablet) {
+        @include font(18px, 24px, $base-font, 600);
+      }
+    }
+
+    .card_news.card_marked & {
+      color: $white;
+    }
+
+    .card_model & {
+      padding-right: 40px;
+      @include font(24px, 30px, $base-font, 600);
+      color: $black;
+
+      @include media(before, tablet) {
+        padding-right: 0;
+      }
+    }
+
+    .card_person & {
+      @include font(14px, 16px, $base-font, 700);
+
+      @each $key, $level in $LEVELS {
+        .root_#{map.get($level, slug)} & {
+          color: map.get($level, color);
+        }
+      }
+    }
+
+    .card_earth & {
+      @include font(24px, 28px, $base-font, 700);
+      color: $black;
+    }
+  }
+
+  &__text {
+    .card_archive & {
+      position: relative;
+      padding-right: calc(1 / 3 * 100%);
+      @include font(14px, 20px, $base-font, 400);
+      color: $black;
+
+      @include after() {
+        position: absolute;
+        top: 0;
+        right: 0;
+        @include svgSprite(icon-arrow-black-33);
+      }
+    }
+
+    .card_cafeteria & {
+      position: relative;
+      margin-bottom: 16px;
+      @include font(14px, 20px, $base-font, 400);
+      color: $black;
+
+      @include before() {
+        position: absolute;
+        top: 0;
+        right: 100%;
+        @include svgSprite(icon-quote-magenta);
+        margin-right: 16px;
+
+        @include media(tablet) {
+          margin-right: 32px;
+        }
+      }
+    }
+
+    .card_collection & {
+      @include font(14px, 18px, $base-font, 400);
+      color: $black;
+
+      .similar_bg-gray &,
+      .layout_gray & {
+        color: $white;
+      }
+    }
+
+    .card_publication & {
+      margin-top: 10px;
+      @include font(14px, 18px, $base-font, 400);
+      color: $black;
+    }
+
+    .card_news & {
+      display: block;
+      width: 100%;
+      margin-top: 8px;
+      @include font(14px, 18px, $base-font, 400);
+      color: $black;
+    }
+
+    .card_fact & {
+      @include font(14px, 18px, $base-font, 400);
+      color: $white;
+    }
+
+    .card_person & {
+      margin-top: 8px;
+      @include font(14px, 16px, $base-font, 400);
+      color: $black;
+    }
+
+    .card_film & {
+      margin-top: 13px;
+      @include font(14px, 16px, $base-font, 400);
+      color: $black;
+
+      .feed_viewing-hall & {
+        color: $white;
+      }
+    }
+  }
+
+  &__category {
+    .card_cafeteria & {
+      margin-bottom: 16px;
+      @include font(14px, 16px, $base-font, 700);
+      color: $magenta;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+
+    .card_collection & {
+      @include font(14px, 18px, $base-font, 400);
+      color: $orange;
+
+      @include after(">") {
+        display: inline-block;
+        vertical-align: baseline;
+      }
+
+      @include hover() {
+        text-decoration: underline;
+      }
+    }
+
+    .card_person & {
+      display: inline-block;
+      margin-top: 8px;
+      @include font(14px, 16px, $base-font, 400);
+      text-decoration: underline;
+
+      @each $key, $level in $LEVELS {
+        .root_#{map.get($level, slug)} & {
+          color: map.get($level, color);
+        }
+      }
+
+      @include hover() {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__params {
+    position: relative;
+    margin-top: 14px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    border-top: 2px solid $gray-80;
+    border-bottom: 2px solid $gray-80;
+  }
+}

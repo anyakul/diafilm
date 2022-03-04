@@ -1,0 +1,27 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'contacts'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    <div class="contacts">
+        <div class="contacts__container">
+            <div class="contacts__row">
+                <div class="contacts__label" role="heading" aria-level="3">
+                    {{ self.label|ft }}
+                </div>
+
+                <div class="contacts__text is-editable">
+                    {{ self.text|ft }}
+                </div>
+
+                {% for contact in self.contacts %}
+                    <div class="contacts__contact">
+                        {% if contact.type == 'email' %}
+                            {{ helpers.emailLink(contact.value, 'contacts__link') }}
+                        {% elseif contact.type == 'phone' %}
+                            {{ helpers.phoneLink(contact.value, 'contacts__link') }}
+                        {% else %}
+                            <a class="contacts__link" href="{{ contact.value }}">{{ contact.value }}</a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

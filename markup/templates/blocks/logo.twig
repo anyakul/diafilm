@@ -1,0 +1,11 @@
+{% set tag = self.url ? 'a' : 'div' %}
+
+<{{ tag }} class="{% if self.className %}{{ self.className }} {% endif %}{{ 'logo'|mod(self.mod) }}{{ self|jsClass }}"
+{% if self.url %}href="{{ menu|url(self.url) }}"{% endif %}
+    {% if self.external %} target="_blank" rel="{{ noop }}"{% endif %}
+    {% if self.title %}aria-label="{{ self.title }}" title="{{ self.title }}"{% endif %}
+    {% if self.extra %}{{ self.extra|extra }}{% endif %}>
+{% if self.label %}
+    {{ self.label|ft }}
+{% endif %}
+</{{ tag }}>

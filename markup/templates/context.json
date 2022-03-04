@@ -1,0 +1,258 @@
+{
+  "noop": "noopener noreferrer",
+  "themeColor": "#000000",
+  "backgroundColor": "#000000",
+  "recaptchaKey": "6LeM570ZAAAAALxDffiYpEVEBZ-SjsCgecKPLOhm",
+  "menu": [
+    {
+      "label": "Диафильм онлайн",
+      "url": "index.html",
+      "slug": "main",
+      "id": "dd2021",
+      "path": "dd2021",
+      "title": "Диафильм онлайн",
+      "text": "Добро пожаловать в музей",
+      "description": "Настоящая библиотека позитивов",
+      "keywords": "",
+      "children": [
+        {
+          "label": "Фойе",
+          "url": "#foyer",
+          "slug": "foyer",
+          "id": "1c1589",
+          "path": "dd2021/1c1589",
+          "number": 1,
+          "text": "экскурсии",
+          "children": [
+            {
+              "label": "Детям",
+              "url": "for-children.html",
+              "slug": "for-children",
+              "id": "c79a78",
+              "path": "dd2021/1c1589/c79a78",
+              "children": false
+            },
+            {
+              "label": "Школьникам",
+              "url": "for-school.html",
+              "slug": "for-school",
+              "id": "b74bb1",
+              "path": "dd2021/1c1589/b74bb1",
+              "children": false
+            },
+            {
+              "label": "Для всей семьи",
+              "url": "for-family.html",
+              "slug": "for-family",
+              "id": "80e1b8",
+              "path": "dd2021/1c1589/80e1b8",
+              "children": false
+            },
+            {
+              "label": "Для профи",
+              "url": "for-pros.html",
+              "slug": "for-pros",
+              "id": "73744c",
+              "path": "dd2021/1c1589/73744c",
+              "children": false
+            }
+          ]
+        },
+        {
+          "label": "Выставочный зал",
+          "url": "showroom.html",
+          "slug": "showroom",
+          "id": "b2df08",
+          "path": "dd2021/b2df08",
+          "number": 2,
+          "text": "экспонаты и пресса",
+          "children": [
+            {
+              "label": "Экспонаты",
+              "url": "showroom.html#!tab=models",
+              "slug": "models",
+              "id": "78461c",
+              "path": "dd2021/b2df08/78461c",
+              "children": [
+                {
+                  "label": "Диапроектор <br>«экран»",
+                  "url": "model.html",
+                  "slug": "model",
+                  "id": "53dab1",
+                  "path": "dd2021/b2df08/78461c/53dab1",
+                  "children": false
+                }
+              ]
+            },
+            {
+              "label": "Пресса",
+              "url": "showroom.html#!tab=publications",
+              "slug": "publications",
+              "id": "abed98",
+              "path": "dd2021/b2df08/abed98",
+              "children": [
+                {
+                  "label": "Советская культура выпуск №53",
+                  "url": "publication-1.html",
+                  "slug": "publication-1",
+                  "id": "16a5e8",
+                  "path": "dd2021/b2df08/abed98/16a5e8",
+                  "children": false
+                },
+                {
+                  "label": "Диафильмы <br>1964",
+                  "url": "publication-2.html",
+                  "slug": "publication-2",
+                  "id": "c51a48",
+                  "path": "dd2021/b2df08/abed98/c51a48",
+                  "children": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Просмотровый зал",
+          "url": "viewing-hall.html",
+          "slug": "viewing-hall",
+          "id": "c7cf74",
+          "path": "dd2021/c7cf74",
+          "number": 3,
+          "text": "каталог диафильмов",
+          "skipChildren": true,
+          "children": [
+            {
+              "label": "Каталог",
+              "url": "viewing-hall.html#!tab=catalog",
+              "slug": "catalog",
+              "id": "31b692",
+              "path": "dd2021/c7cf74/31b692",
+              "skip": true,
+              "children": [
+                {
+                  "label": "В Артеке",
+                  "url": "diafilm.html",
+                  "slug": "diafilm",
+                  "id": "872bf8",
+                  "path": "dd2021/c7cf74/31b692/872bf8",
+                  "children": false
+                }
+              ]
+            },
+            {
+              "label": "Подборки",
+              "url": "viewing-hall.html#!tab=collections",
+              "slug": "collections",
+              "id": "6d4588",
+              "path": "dd2021/c7cf74/6d4588",
+              "skip": true,
+              "children": [
+                {
+                  "label": "Подборка",
+                  "url": "collection.html",
+                  "slug": "collection",
+                  "id": "fe7d7e",
+                  "path": "dd2021/c7cf74/6d4588/fe7d7e",
+                  "children": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Галерея",
+          "url": "gallery.html",
+          "slug": "gallery",
+          "id": "540f28",
+          "path": "dd2021/540f28",
+          "number": 4,
+          "text": "выдающиеся художники",
+          "skipChildren": true,
+          "children": [
+            {
+              "label": "Евгений Григорьевич Монин",
+              "url": "artist.html",
+              "slug": "artist",
+              "id": "dca178",
+              "path": "dd2021/540f28/dca178",
+              "children": false
+            }
+          ]
+        },
+        {
+          "label": "Архив",
+          "url": "archive.html",
+          "slug": "archive",
+          "id": "8101a2",
+          "path": "dd2021/8101a2",
+          "number": 5,
+          "text": "история и технологии",
+          "children": [
+            {
+              "label": "История",
+              "url": "archive.html#!tab=history",
+              "slug": "history",
+              "id": "b43b7c",
+              "path": "dd2021/8101a2/b43b7c",
+              "children": false
+            },
+            {
+              "label": "Технологии",
+              "url": "archive.html#!tab=technologies",
+              "slug": "technologies",
+              "id": "62a924",
+              "path": "dd2021/8101a2/62a924",
+              "children": [
+                {
+                  "label": "Подробнее о технологии производства",
+                  "url": "technology.html",
+                  "slug": "technology",
+                  "id": "9d4c43",
+                  "path": "dd2021/8101a2/62a924/9d4c43",
+                  "children": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "Кафетерий",
+          "url": "cafeteria.html",
+          "slug": "cafeteria",
+          "id": "09e188",
+          "path": "dd2021/09e188",
+          "number": 6,
+          "text": "о музее новости и статьи",
+          "skipChildren": true,
+          "children": [
+            {
+              "label": "О музее",
+              "url": "cafeteria.html#!tab=about",
+              "slug": "about",
+              "id": "967a94",
+              "path": "dd2021/09e188/967a94",
+              "children": false
+            },
+            {
+              "label": "Новости и статьи",
+              "url": "cafeteria.html#!tab=articles",
+              "slug": "articles",
+              "id": "9ecf34",
+              "path": "dd2021/09e188/9ecf34",
+              "children": [
+                {
+                  "label": "Мероприятия первой недели сентября",
+                  "url": "news-article.html",
+                  "slug": "news-article",
+                  "id": "ae5d09",
+                  "path": "dd2021/09e188/9ecf34/ae5d09",
+                  "children": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

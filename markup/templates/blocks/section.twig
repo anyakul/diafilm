@@ -1,0 +1,12 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'section'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    <div class="section__container">
+        <div class="section__row">
+            {% if self.label %}
+                <div class="section__label" role="heading" aria-level="2">{{ self.label|ft }}</div>
+            {% endif %}
+            <div class="section__body">
+                {% block section_body %}{% endblock section_body %}
+            </div>
+        </div>
+    </div>
+</div>

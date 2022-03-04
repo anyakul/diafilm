@@ -1,0 +1,29 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'text'|mod(self.mod) }}{{ self|jsClass }}">
+    {% if self.wrap %}
+    <div class="text__container">
+        <div class="text__row">
+            {% endif %}
+            {% if self.label %}
+                <div class="text__label" role="heading" aria-level="3">
+                    {{ self.label|ft }}
+                </div>
+            {% endif %}
+            <div class="text__body is-editable">
+                {% filter ft %}
+                    {% block text_body %}
+                        {{ self.body }}
+                    {% endblock text_body %}
+                {% endfilter %}
+            </div>
+            {% if block('text_aside') is not empty %}
+                <div class="text__aside{% if self.asideEditable %} is-editable{% endif %}">
+                    {% filter ft %}
+                        {% block text_aside %}{% endblock text_aside %}
+                    {% endfilter %}
+                </div>
+            {% endif %}
+            {% if self.wrap %}
+        </div>
+    </div>
+    {% endif %}
+</div>

@@ -1,0 +1,130 @@
+@charset "UTF-8";
+/* --------------------
+   Архив
+   -------------------- */
+
+.archive {
+  @extend %row;
+  width: 100%;
+  height: 100%;
+  @include highlight();
+
+  &__header {
+    @include highlight();
+    @extend %column;
+    position: relative;
+    @include column(4, 8);
+    padding-left: 8px;
+    padding-right: 8px;
+
+    @include media(tablet) {
+      @include column(3, 10);
+      padding-top: 170px;
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-bottom: 10px;
+      pointer-events: none;
+      z-index: 1;
+    }
+  }
+
+  &__label {
+    @include font(20px, 20px, $base-font, 700);
+    text-transform: lowercase;
+    color: $blue;
+
+    @include media(before, tablet) {
+      margin-bottom: 10px;
+    }
+    @include media(tablet) {
+      @include font(36px, 40px);
+      pointer-events: all;
+    }
+  }
+
+  &__list {
+    @include highlight();
+    @extend %column;
+    @extend %row;
+
+    @include media(tablet) {
+      @include column(9, 10);
+      align-self: flex-start;
+    }
+  }
+
+  &__item {
+    @include highlight();
+    @extend %column;
+    @include column(7, 8);
+
+    @include media(before, tablet) {
+      margin-bottom: 30px;
+    }
+    @include media(tablet) {
+      @include column(3, 9);
+    }
+
+    & + & {
+      @include media(tablet) {
+        margin-top: -50px;
+      }
+    }
+  }
+
+  &__after {
+    @include highlight();
+    @extend %column;
+
+    @include media(before, tablet) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      @include column(1, 8);
+      height: 50%;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+
+    @include media(tablet) {
+      position: relative;
+      align-self: flex-end;
+      justify-self: flex-end;
+      @include column(1, 10);
+      height: calc(100% - 170px);
+      padding-top: 40px;
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-top: -90px;
+    }
+  }
+
+  &__more {
+    position: absolute;
+    top: 300px;
+    left: 100%;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: -8px;
+    @include font(24px, 28px, $title-font, 700);
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+    color: $blue;
+    transform: rotate(-90deg);
+    transform-origin: 0 100%;
+
+    @include media(tablet) {
+      top: 80%;
+      margin-left: -16px;
+    }
+
+    @include before() {
+      display: inline-block;
+      vertical-align: bottom;
+      @include svgSprite(icon-arrow-16-blue);
+      margin-right: 4px;
+      transform: rotate(90deg);
+    }
+  }
+}

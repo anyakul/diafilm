@@ -1,0 +1,17 @@
+{% if not source %}
+<div class="text text_default">
+    <div class="text__container">
+        <div class="text__row">
+            <div class="text__body is-editable">
+                {{ self }}
+            </div>
+        </div>
+    </div>
+</div>
+{% elif source == "story" %}
+<div class="story__text is-editable">
+    <p>{{ self }}</p>
+</div>
+{% elif source == "raw" %}
+<p>{{ self }}</p>
+{% endif %}

@@ -1,0 +1,53 @@
+<form class="{% if self.className %}{{ self.className }} {% endif %}{{ 'form'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    {% if self.wrap %}
+    <div class="form__container">
+        <div class="form__row">
+            {% endif %}
+            {% if self.label or self.text %}
+                <div class="form__header">
+                    {% if self.label %}
+                        <div class="form__label" role="heading" aria-level="2">
+                            {{ self.label|ft }}
+                        </div>
+                    {% endif %}
+                    {% if self.text %}
+                        <div class="form__text">
+                            {{ self.text|ft }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+            <div class="form__body">
+                {% for field in self.fields %}
+                    <div class="{{ 'form__field'|mod(field.size) }}">
+                        {% include field.template|default('@blocks/field.twig') with {
+                            self: field|extend({
+                                prefix: self.prefix,
+                                validation: self.validation
+                            })
+                        } %}
+                    </div>
+                {% endfor %}
+                {% if self.button %}
+                    <div class="form__actions">
+                        {% include '@blocks/button.twig' with {
+                            self: self.button|extend({
+                                className: 'form__submit'
+                            })
+                        } %}
+                    </div>
+                {% endif %}
+                {% if self.message %}
+                <div class="form__message message message_form js-form-message" role="region" aria-hidden="true">
+                    <div class="message__body js-form-message-body" data-autohide="true">
+                        <div class="message__label js-form-message-label" role="heading" aria-level="3"></div>
+                        <div class="message__text is-editable js-form-message-text"></div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% if self.wrap %}
+        </div>
+    </div>
+    {% endif %}
+</form>

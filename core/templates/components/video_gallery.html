@@ -1,0 +1,50 @@
+{% load common_tags %}
+
+<div class="videos videos_default videos_bg-white">
+    <div class="videos">
+        <div class="videos__container">
+            <div class="videos__row">
+                <div class="videos__header">
+                    {% if title %}
+                    <div class="videos__label" role="heading" aria-level="2">{{ title|format_title }}</div>
+                    {% endif %}
+
+                    {% if text %}
+                    <div class="videos__text">{{ text }}</div>
+                    {% endif %}
+                </div>
+                <div class="videos__carousel">
+                    <div class="carousel carousel_videos js-carousel-horizontal">
+                        <div class="carousel__viewport js-carousel-viewport">
+                            <ul class="carousel__list js-carousel-overflow">
+                                {% for item in object_list %}
+                                <li class="carousel__item carousel__item_default js-carousel-item">
+                                    <figure class="figure figure_youtube figure_captioned js-figure" itemprop="image"
+                                            itemscope itemtype="http://schema.org/ImageObject" data-id="{{ id }}"
+                                            data-type="youtube">
+                                        <div class="figure__media">
+                                            <img class="figure__source js-figure-source"
+                                                 src="https://img.youtube.com/vi/{{ item.value.bound_blocks.code.value }}/maxresdefault.jpg"
+                                                 width="588" height="330" intrinsicsize="588x330" alt=""
+                                                 data-url="{{ item.value.bound_blocks.code.value }}" loading="lazy">
+                                            <button class="figure__play button button_play js-figure-play" type="button"
+                                                    aria-label="Смотреть видео" title="Смотреть видео">
+                                                <span class="button__icon button__icon_play-white"></span>
+                                            </button>
+                                        </div>
+                                        {% if item.value.bound_blocks.caption.value %}
+                                        <figcaption class="figure__caption js-figure-caption">
+                                            {{ item.value.bound_blocks.caption.value }}
+                                        </figcaption>
+                                        {% endif %}
+                                    </figure>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+{% set level = self.level|default(1) %}
+{% set classLevel = self.classLevel|default(level) %}
+{% set highlight = self.highlight|default(true) %}
+{% set firstItem = self.menu|first %}
+{% set parentItem = getParentFor(menu, firstItem.id) %}
+
+{% if self|hasMenu %}
+    {% if self.isSubMenu and self.toggle %}
+        <button class="menu__toggle js-level-toggle" type="button" id="toggle_{% if self.prefix %}{{ self.prefix }}_{% endif %}{{ menuItem.slug }}"
+                aria-label="{{ self.toggle }}" title="{{ self.toggle }}"
+                aria-haspopup="true" aria-expanded="false"></button>
+        <div class="menu__dropdown js-level-deep" aria-labelledby="toggle_{% if self.prefix %}{{ self.prefix }}_{% endif %}{{ menuItem.slug }}" hidden>
+    {% endif %}
+
+    <ul class="{{ 'menu__level'|mod(classLevel) }}{% if self.toggle %} js-level{% endif %}">
+        {% for menuItem in self.menu %}
+            {% set menuItemActive = isActive(menuItem, page) %}
+            {% if not menuItem.skip and menuItem|inGroup(self.group) %}
+                {% set addChildren = menuItem.children and self.maxDepth > level and not menuItem.skipChildren or menuItem.forceChildren and self.forceChildren %}
+                {% set notSkipInactive = not self.skipInactive or menuItemActive %}
+                <li class="menu__item{% if self.highlight and self.highlight == 'li' and menuItemActive %} is-active{% endif %}{% if self.toggle %} js-level-item{% endif %}">
+                    {{ helpers.menuLink(menuItem|extend({
+                        mod: addChildren ? 'children' : '',
+                        className: 'menu__link',
+                    }), page, self.highlight and self.highlight == 'a') }}
+
+                    {% if menuItem.text %}
+                        <div class="menu__text">{{ menuItem.text }}</div>
+                    {% endif %}
+
+                    {% if addChildren and notSkipInactive %}
+                        {% include '@blocks/menu-list.twig' with {
+                            self: {
+                                menu: menuItem.children,
+                                isSubMenu: true,
+                                level: level + 1,
+                                classLevel: classLevel + 1,
+                                maxDepth: self.maxDepth,
+                                group: self.group,
+                                skipInactive: self.skipInactive,
+                                toggle: self.toggle,
+                                prefix: self.prefix,
+                                highlight: highlight,
+                                forceChildren: self.forceChildren
+                            }
+                        } %}
+                    {% endif %}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    {% if self.isSubMenu and self.toggle %}
+        </div>
+    {% endif %}
+{% endif %}

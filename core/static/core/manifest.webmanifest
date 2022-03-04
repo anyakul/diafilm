@@ -1,0 +1,43 @@
+{
+  "dir": "ltr",
+  "lang": "ru",
+  "name": "Диафильм онлайн",
+  "description": "Настоящая библиотека позитивов",
+  "short_name": "diafilm",
+  "start_url": "/?utm_source=web_app",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "serviceworker": {
+    "src": "service-worker.min.js",
+    "scope": "/",
+    "use_cache": false
+  },
+  "icons": [
+    {
+      "src": "/static/core/icons/icon-maskable-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/static/core/icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any"
+    },
+    {
+      "src": "/static/core/icons/icon-maskable-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/static/core/icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ]
+}

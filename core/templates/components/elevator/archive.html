@@ -1,0 +1,54 @@
+{% load common_tags %}
+
+<div class="elevator__floor js-elevator-floor" data-id="{{ item.slug }}">
+    <div class="section section_archive">
+        <div class="section__container">
+            <div class="section__row">
+                <div class="section__label" role="heading" aria-level="2">{{ item.title|format_title }}</div>
+                <div class="section__body">
+                    <div class="archive archive_main">
+                        <div class="archive__header">
+                            <div class="archive__label" role="heading" aria-level="3">{{ item.annotation }}</div>
+                        </div>
+                        <div class="archive__list">
+                            {% for block in item.menu_children.0.content %}
+                            {% if block.block_type == "announcement" %}
+                            <div class="archive__item">
+                                <article class="card card_archive" data-clickable>
+                                    {% if block.value.kind == "inverted" and block.value.images|length > 1 %}
+                                    <div class="card__picture card__picture_double">
+                                        {% for img in block.value.images|slice:2 %}
+                                        {% include "common/img.html" with img=img size="fill-157x120" class="card__image" format="png" %}
+                                        {% endfor %}
+                                    </div>
+                                    {% elif not "large" in block.value.kind %}
+                                    <div class="card__picture card_picture__small">
+                                        {% include "common/img.html" with img=block.value.images.0 size="min-177x120" class="card__image" %}
+                                    </div>
+                                    {% else %}
+                                    <div class="card__picture">
+                                        {% include "common/img.html" with img=block.value.images.0 size="fill-280x190" class="card__image" %}
+                                    </div>
+                                    {% endif %}
+                                    <div class="card__body">
+                                        <div class="card__label" role="heading" aria-level="4">
+                                            <a class="card__link" href="{{ block.value.page.url }}">
+                                                {{ block.value.page.title|format_title }}
+                                            </a>
+                                        </div>
+                                        <div class="card__text">{{ block.value.page.annotation }}</div>
+                                    </div>
+                                </article>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="archive__after">
+                            <a class="archive__more" href="{{ item.get_menu_url }}">Поработать с архивом</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

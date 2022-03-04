@@ -1,0 +1,90 @@
+<article class="{% if self.className %}{{ self.className }} {% endif %}{{ 'card'|mod(self.mod) }}{{ self|jsClass }}"
+         {% if self.link and self.link.url %}data-clickable{% endif %}
+    {% if self.extra %}{{ self.extra|extra }}{% endif %}>
+
+    {% if self.image %}
+    {% if self.date or self.icon or self.label or self.text or self.params %}
+        {% set tag = 'div' %}
+        <{{ tag }} class="{{ 'card__picture'|mod(self.image.mod, bem, true) }}">
+    {% elseif self.link and self.link.url %}
+        {% set tag = 'a' %}
+        <{{ tag }} class="{{ 'card__picture'|mod(self.image.mod, bem, true) }}"  href="{{ menu|url(self.link.url) }}"{% if self.link.external %} target="_blank" rel="{{ noop }}"{% endif %}>
+    {% endif %}
+    {% if self.image.url is iterable %}
+        {% for url in self.image.url %}
+            {% include '@blocks/lazy-image.twig' with {
+                self: self.image|extend({
+                    className: 'card__image',
+                    url: url
+                }, true)
+            } %}
+        {% endfor %}
+    {% else %}
+        {% include '@blocks/lazy-image.twig' with {
+            self: self.image|extend({
+                className: 'card__image'
+            })
+        } %}
+    {% endif %}
+</{{ tag }}>
+{% endif %}
+
+    {% if self.date or self.icon or self.label or self.text or self.params %}
+        <div class="card__body">
+            {% if self.icon %}
+                {% if self.link and self.link.url and not self.link.label and not self.label %}
+                    <a class="card__link" href="{{ menu|url(self.link.url) }}"{% if self.link.external %} target="_blank" rel="{{ noop }}"{% endif %}>
+                {% endif %}
+                {% include '@blocks/image.twig' with {
+                    self: self.icon|extend({
+                        className: 'card__icon'
+                    })
+                } %}
+                {% if self.link and self.link.url and not self.link.label and not self.label %}
+                    </a>
+                {% endif %}
+            {% endif %}
+
+            {% if self.label %}
+                <div class="card__label" role="heading" aria-level="4">
+                    {% if self.link and self.link.url and not self.link.label %}
+                        <a class="card__link" href="{{ menu|url(self.link.url) }}"{% if self.link.external %} target="_blank" rel="{{ noop }}"{% endif %}>
+                            {{ self.label|ft }}
+                        </a>
+                    {% else %}
+                        {{ self.label|ft }}
+                    {% endif %}
+                </div>
+            {% endif %}
+
+            {% if self.date %}
+                <time class="card__date" datetime="{{ self.date.datetime }}">{{ self.date.label|ft }}</time>
+            {% endif %}
+
+            {% if self.category %}
+                <div class="card__category">{{ self.category|ft }}</div>
+            {% endif %}
+
+            {% if self.email and self.email.url %}
+                {{ helpers.emailLink(self.email.url, 'card__link') }}
+            {% endif %}
+
+            {% if self.text %}
+                <div class="card__text">{{ self.text|ft }}</div>
+            {% endif %}
+
+            {% if self.link and self.link.url and self.link.label %}
+                <a class="card__link" href="{{ menu|url(self.link.url) }}"{% if self.link.external %} target="_blank" rel="{{ noop }}"{% endif %}>
+                    {{ self.link.label|ft }}
+                </a>
+            {% endif %}
+        </div>
+    {% endif %}
+    {% if self.button %}
+        {% include '@blocks/button.twig' with {
+            self: self.button|extend({
+                className: 'card__button'
+            })
+        } %}
+    {% endif %}
+</article>

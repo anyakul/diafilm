@@ -1,0 +1,19 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'gallery'|mod(self.mod) }}{% if self.jsClassName %} {{ self.jsClassName }}{% endif %}"{% if self.extra %} {{ self.extra|extra }}{% endif %} itemprop="hasPart" itemscope itemtype="http://schema.org/ImageGallery" tabindex="0">
+    <div class="gallery__container">
+        <div class="gallery__row">
+            <div class="gallery__viewport js-gallery-viewport">
+                <ul class="gallery__list js-gallery-list">
+                    {% for item in self.items %}
+                        <li class="gallery__item js-gallery-item"{% if self.thumbs %} data-thumb="{{ media(item.media.url|retina('-thumb')) }}"{% endif %}>
+                            {% include item.template|default(self.itemsTemplate|default('@blocks/figure.twig')) with {
+                                self: item|extend({
+                                    mod: 'gallery, '~item.type|default('image')
+                                })
+                            } %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

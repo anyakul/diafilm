@@ -1,0 +1,79 @@
+@charset "UTF-8";
+@use "sass:map";
+@use "sass:math";
+@use "sass:string";
+@use "sass:color";
+
+@function em($pxval, $base: 16) {
+  @if unit($pxval) {
+    $pxval: strip-units($pxval);
+  }
+  @if not unitless($base) {
+    $base: strip-units($base);
+  }
+  @return math.div($pxval, $base) * 1em;
+}
+
+@function vw($pxval, $base: 1440) {
+  @if unit($pxval) {
+    $pxval: strip-units($pxval);
+  }
+  @if unit($base) {
+    $base: strip-units($base);
+  }
+  @return math.div($pxval, $base) * 100vw;
+}
+
+@function vh($pxval, $base: 1024) {
+  @if unit($pxval) {
+    $pxval: strip-units($pxval);
+  }
+  @if unit($base) {
+    $base: strip-units($base);
+  }
+  @return math.div($pxval, $base) * 100vh;
+}
+
+@function grid-get($breakpoint, $key, $grid: $GRID) {
+  @return map.get(map.get($grid, $breakpoint), $key);
+}
+
+@function str-replace($string, $search, $replace: "") {
+  $index: string.index($string, $search);
+
+  @if $index {
+    @return string.slice($string, 1, $index - 1) + $replace + str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+@function strip-units($val) {
+  @return math.div($val, ($val * 0 + 1));
+}
+
+@function encodecolor($color) {
+  @if type-of($color) == "color" {
+    $hex: string.slice(color.ie-hex-str($color), 4);
+    $color: string.unquote("#{$hex}");
+  }
+  $string: "%23" + $color;
+  @return $string;
+}
+
+@function rad($angle) {
+  $unitless: strip-units($angle);
+  @if math.unit($angle) == deg {
+    $unitless: $unitless * math.div(math.$pi, 180);
+  }
+  @return $unitless;
+}
+
+@function polarToCartesian ($centerX, $centerY, $radius, $angle) {
+  $angleInRadians: rad($angle);
+
+  $x: $centerX + ($radius * math.cos($angleInRadians));
+  $y: $centerY + ($radius * math.sin($angleInRadians));
+
+  @return (x: $x, y: $y,);
+}

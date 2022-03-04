@@ -1,0 +1,166 @@
+@charset "UTF-8";
+@use "sass:color";
+
+/* --------------------
+   Предупреждение для старых браузеров
+   -------------------- */
+$text-color: #ffffff;
+$log-color: #2875d5;
+$info-color: #1e9d59;
+$warning-color: #f35959;
+
+.notifications {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 320px;
+  padding: 0 5px;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.notification {
+  @extend %section;
+  position: relative;
+  margin-bottom: 4px;
+  border-radius: 3px;
+  box-shadow: 0 5px 10px 0 color.adjust($black, $alpha: -.7);
+  overflow: hidden;
+  z-index: 0;
+
+  &_default {
+    opacity: 0;
+    visibility: hidden;
+    transform: translate3d(0, 100%, 0);
+
+    @include transition() {
+      transition-property: opacity, visibility, transform;
+    }
+
+    @include before() {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background-color: color.adjust($black, $alpha: -.7);
+      transition: transform 0s linear .25s;
+      transform-origin: 100% 0;
+      will-change: transform;
+      z-index: 1;
+    }
+
+    @include aria(hidden, false) {
+      opacity: 1;
+      visibility: inherit;
+      transform: translate3d(0, 0, 0);
+      pointer-events: all;
+
+      &::before {
+        transform: scale(0, 1);
+        transition-delay: 0s;
+        transition-duration: var(--timeout, 0s);
+      }
+    }
+  }
+
+  &_log {
+    color: $text-color;
+    background-color: color.adjust($log-color, $alpha: -.1);
+  }
+
+  &_warning {
+    color: $text-color;
+    background-color: color.adjust($warning-color, $alpha: -.1);
+  }
+
+  &_info {
+    color: $text-color;
+    background-color: color.adjust($info-color, $alpha: -.1);
+  }
+
+  &__container {
+    @extend %container;
+    position: relative;
+    pointer-events: all;
+  }
+
+  &__row {
+    @extend %row;
+  }
+
+  &__text {
+    @extend %column;
+  }
+
+  &__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: -20px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    opacity: .8;
+
+    @include transition() {
+      transition-property: opacity;
+    }
+
+    @include before() {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      width: 16px;
+      height: 2px;
+      margin: -1px -8px;
+      background-color: $text-color;
+      border-radius: 1px;
+      transform: rotate(-45deg);
+    }
+    @include after() {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      width: 16px;
+      height: 2px;
+      margin: -1px -8px;
+      background-color: $text-color;
+      border-radius: 1px;
+      transform: rotate(45deg);
+    }
+
+    @include hover() {
+      opacity: .9;
+    }
+
+    @include active() {
+      opacity: 1;
+    }
+  }
+
+  p {
+    margin: 0;
+    padding: 10px 30px;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+
+    @include hover() {
+      text-decoration: none;
+    }
+  }
+}

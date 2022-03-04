@@ -1,0 +1,24 @@
+{% if not source %}
+<div class="text text_default">
+    <div class="text__container">
+        <div class="text__row">
+            <div class="text__body is-editable">
+                <div class="story story_default story__header">
+                    <div class="story__label" role="heading" aria-level="2">{{ self.page.title }}</div>
+                    <a class="story__link" href="{{ self.page.url }}">{% firstof self.caption "Смотреть диафильм" %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% elif source == "story" %}
+<div class="text text_{% firstof size "default" %}">
+    <div class="text__body is-editable">
+        <p>
+            <a href="{{ self.page.url }}">
+                {% firstof self.caption self.page.diafilm.short_description %}
+            </a>
+        </p>
+    </div>
+</div>
+{% endif %}

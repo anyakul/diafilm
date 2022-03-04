@@ -1,0 +1,223 @@
+{% extends '@layouts/default.twig' %}
+
+{% block vendor_styles %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_styles %}
+{% endblock %}
+
+{% block vendor_scripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_scripts %}
+{% endblock %}
+
+{% block layout_content %}
+    {% include '@blocks/title.twig' with {
+        self: {
+            mod: 'image',
+            back: { url: parent.id, label: 'В зал экспонатов' },
+            image: { url: 'showroom/models/model/image-1.jpg', width: 1112, height: 450, alt: '' },
+            label: pageTitle
+        }
+    } %}
+
+    {% include '@blocks/model.twig' with {
+        self: {
+            mod: 'default',
+            wrap: true,
+            jsClassName: 'js-model',
+            years: '1979 – 1983г.',
+            label: 'НПК «Луч»',
+            text: '<p>Диапроектор "Экран" производился в двух вариантах корпуса. Эта модификация, со складным корпусом прямоугольной формы - второй выпуск, с 1979 по 1983 годы. Проектор выпускался в двух вариантах отделки, один из них – с символикой XXII Олимпиады 1980 года в Москве.</p>',
+            image: { url: 'showroom/models/model/model.svg', width: 768, height: 620 },
+            points: [
+                { top: 7.258064, left: 35.416666, image: { mod: 'vertical', url: 'showroom/models/model/point-1.jpg', width: 150, height: 240 }, text: 'Оптические элементы: конденсор (А-большая линза без рамки выпуклостью назад, Б-тепловой фильтр,<br> В-большая линза выпуклостью вперед,<br> Г-маленькая линза выпуклостью вперед),<br> Д-патрон проекционной лампы, Е- рефлектор. фото с обозначениями' },
+                { top: 7.258064, left: 42.317708, image: { mod: 'vertical', url: 'showroom/models/model/point-2.jpg', width: 150, height: 240 }, text: 'Проекционная лампа К220-100' },
+                { top: 32.258064, left: 53.906250, image: { mod: 'horizontal', url: 'showroom/models/model/point-3.jpg', width: 240, height: 150 }, text: 'Фильмовый канал с прижимной рамкой' }
+            ]
+        }
+    } %}
+
+    {% embed '@blocks/columns.twig' with {
+        self: {
+            mod: ''
+        }
+    } %}
+        {% block column_1 %}
+            {% include '@blocks/figure.twig' with {
+                self: {
+                    mod: 'image, external',
+                    jsClassName: 'js-figure',
+                    type: 'iframe',
+                    wrap: false,
+                    media: {
+                        url: 'showroom/models/model/image-2.jpg',
+                        width: 501,
+                        height: 330,
+                        extra: {
+                            'data-url': 'https://diafilms.designdepot.ru/media/models/magic_lantern'
+                        }
+                    }
+                }
+            } %}
+
+            {% embed '@blocks/text.twig' with {
+                self: {
+                    mod: 'large',
+                    wrap: false
+                }
+            } %}
+                {% block text_body %}
+                    <p>Проектор предназначался для просмотра как диафильмов и фотопленок, так и диапозитивов (слайдов) в
+                        рамках. В комплекте к аппарату прилагались соответствующие сменные рамки.</p>
+                {% endblock text_body %}
+            {% endembed %}
+
+            {% include '@blocks/detail.twig' with {
+                self: {
+                    mod: '',
+                    params: [
+                        { label: 'мощность лампы', value: '220В 100Вт' },
+                        { label: 'размер кадра', value: '18×24 мм' }
+                    ],
+                    image: {
+                        url: 'showroom/models/model/image-3.jpg',
+                        width: 175,
+                        height: 410
+                    }
+                }
+            } %}
+
+        {% endblock column_1 %}
+        {% block column_2 %}
+            {% embed '@blocks/text.twig' with {
+                self: {
+                    mod: 'narrow, small',
+                    wrap: false
+                }
+            } %}
+                {% block text_body %}
+                    <p>Элементы оптики в этой модификации такие же, как в предыдущей версии «Экрана» - конденсор с
+                        теплофильтром, защищающим пленку от высокой температуры плюс трехлинзовый объектив «Триплет»
+                        2,8/78. В сочетании с относительно мощной (100 ватт) лампой К220-100 они дают яркое и четкое
+                        изображение по всей площади кадра.</p>
+                {% endblock text_body %}
+            {% endembed %}
+
+            {% include '@blocks/figure.twig' with {
+                self: {
+                    mod: 'image',
+                    type: 'image',
+                    wrap: false,
+                    media: {
+                        url: 'showroom/models/model/image-4.jpg',
+                        width: 501,
+                        height: 330
+                    }
+                }
+            } %}
+
+            {% embed '@blocks/text.twig' with {
+                self: {
+                    mod: 'small',
+                    wrap: false
+                }
+            } %}
+                {% block text_body %}
+                    <p>Максимальный размер изображения мог достигать 1,9 метра по диагонали, в корпусе проектора имелась
+                        резьба для установки его на штатив. Использовать проектор было довольно просто.</p>
+                    <p>Для регулировки по высоте у него имеются передние винтовые ножки. Для доступа к лампе и элементам
+                        конденсора достаточно просто снять крышку над отсеком с ними. Снимать и устанавливать лампу и
+                        элементы оптики нужно в хлопчатобумажных перчатках, чтобы не загрязнить их. Лампу регулировать
+                        практически никогда не приходилось – она сразу устанавливалась в патрон в то положение, в
+                        котором и должна была находиться при работе. Элементы конденсора можно было извлечь для очистки,
+                        просто потянув их вверх. Порядок установки их обратно следующий (считая от лампы): маленькая
+                        линза выпуклой стороной от лампы, большая линза выпуклой стороной от лампы, тепловой фильтр
+                        (плоское стекло). Так как лампа в проекторе достаточно мощная, а охлаждение ее происходит только
+                        за счет конвекции, корпус во время работы довольно сильно нагревается. В целях пожарной
+                        безопасности нельзя накрывать чем-либо проектор во включенном состоянии.</p>
+                    <p>По этой же причине не рекомендуется использование проектора детьми без присмотра взрослых.</p>
+                    <p>В конце 1970-х такой проектор можно было купить за 25 рублей.</p>
+                    <p>При средней заработной плате в 140-150 рублей это был достаточно дорогой аппарат.</p>
+                {% endblock text_body %}
+            {% endembed %}
+        {% endblock column_2 %}
+    {% endembed %}
+
+    {% embed '@blocks/text.twig' with {
+        self: {
+            mod: 'default',
+            wrap: true
+        }
+    } %}
+        {% block text_body %}
+            <h2>Фотогалерея</h2>
+        {% endblock text_body %}
+    {% endembed %}
+
+    {% include '@blocks/gallery.twig' with {
+        self: {
+            mod: 'default',
+            jsClassName: 'js-gallery-default',
+            thumbs: true,
+            items: [
+                { mod: 'image', media: { url: 'showroom/models/model/gallery/image-1.jpg', width: 288, height: 267 }, caption: 'Алоскоп 1934 г.' },
+                { mod: 'image', media: { url: 'showroom/models/model/gallery/image-2.jpg', width: 288, height: 267 }, caption: 'Экран вид сбоку' },
+                { mod: 'image', media: { url: 'showroom/models/model/gallery/image-3.jpg', width: 288, height: 267 }, caption: 'Каретка с диафильмом' },
+                { mod: 'image', media: { url: 'showroom/models/model/gallery/image-4.jpg', width: 288, height: 267 }, caption: 'Лампа 220В 100Вт' },
+                { mod: 'image', media: { url: 'showroom/models/model/gallery/image-5.jpg', width: 288, height: 267 }, caption: 'Каретка для фотопленки' },
+            ]
+        }
+    } %}
+
+    {% include '@blocks/similar.twig' with {
+        self: {
+            mod: 'models',
+            label: 'Необычайные проекторы',
+            text: 'Рассмотрите подробнее необычные проекторы прошлого и узнайте много нового для себя.',
+            carousel: {
+                mod: 'models',
+                jsClassName: 'js-carousel-horizontal',
+                itemsTemplate: '@blocks/card.twig',
+                items: [
+                    {
+                        size: '',
+                        mod: 'model',
+                        label: 'Волшебный фонарь',
+                        image: { url: 'showroom/models/model/card-1.png', width: 288, height: 288 },
+                        link: { label: '', url: 'model' }
+                    },
+                    {
+                        size: '',
+                        mod: 'model',
+                        label: 'Алоскоп',
+                        image: { url: 'showroom/models/model/card-2.png', width: 288, height: 288 },
+                        link: { label: '', url: 'model' }
+                    },
+                    {
+                        size: '',
+                        mod: 'model',
+                        label: 'Зарница',
+                        image: { url: 'showroom/models/model/card-3.png', width: 288, height: 288 },
+                        link: { label: '', url: 'model' }
+                    },
+                    {
+                        size: '',
+                        mod: 'model',
+                        label: 'Пеленг 500АФ',
+                        image: { url: 'showroom/models/model/card-4.png', width: 288, height: 288 },
+                        link: { label: '', url: 'model' }
+                    }
+                ]
+            }
+        }
+    } %}
+
+{% endblock layout_content %}
+
+{% block popups %}
+    {{ parent() }}
+{% endblock popups %}

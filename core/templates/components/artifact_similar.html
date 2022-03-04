@@ -1,0 +1,45 @@
+{% load core_tags %}
+{% load content_tags %}
+
+{% get_equipment_similar page ordering="?" as object_list %}
+
+{% if object_list %}
+<div class="similar similar_{% if not page.is_index %}{{ page.html_class }}{% else %}default{% endif %}">
+    <div class="similar__container">
+        <div class="similar__row">
+            {% if title %}
+            <div class="similar__label">{{ title|format_title }}</div>
+            {% endif %}
+
+            {% if text %}
+            <div class="similar__text">{{ text }}</div>
+            {% endif %}
+
+            <div class="similar__carousel carousel carousel_models js-carousel-horizontal">
+                <div class="carousel__viewport js-carousel-viewport">
+                    <ul class="carousel__list js-carousel-overflow">
+                        {% for item in object_list %}
+                        <li class="carousel__item carousel__item_default js-carousel-item">
+                            <article class="card card_model" data-clickable>
+                                <div class="card__picture">
+                                    {% with class="card__image" format="png" %}
+                                    {% include "common/img.html" with img=item.photo size="fill-288x288" %}
+                                    {% endwith %}
+                                </div>
+                                <div class="card__body">
+                                    <div class="card__label" role="heading" aria-level="4">
+                                        <a class="card__link" href="{{ item.url }}">
+                                            {{ item.title|format_title }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

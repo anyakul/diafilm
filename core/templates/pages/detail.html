@@ -1,0 +1,43 @@
+{% extends "pages/base.html" %}
+{% load wagtailcore_tags %}
+{% comment %}Шаблон конечной{% endcomment %}
+{% load navigation_tags %}
+{% load common_tags %}
+
+
+{% block header_intro %}
+{# root -> frontpage -> index -> ... #}
+{% with page.far_parent as parent %}
+<span class="intro__number">{{ page.html_level }}</span>
+<span class="intro__label" role="heading" aria-level="2">{{ parent.title|format_title }}</span>
+<span class="intro__text">{{ parent.annotation|format_title }}</span>
+{% endwith %}
+{% endblock header_intro %}
+
+
+{% block main_header %}
+<div class="title title_image">
+    <div class="title__container">
+        <div class="title__row">
+            <div class="title__back">
+                {% with page.far_parent as parent %}
+                {% get_back_url parent.url tab=page.near_parent.slug as back_url %}
+                <a class="title__link" href="{{ back_url }}">В {{ parent.title }}</a>
+                {% endwith %}
+            </div>
+            <div class="title__picture">
+                {% with class="title__image" %}
+                {% include "common/img.html" with img=self.banner size="fill-1112x450" %}
+                {% endwith %}
+            </div>
+            <h1 class="title__label">{{ page.title|format_title }}</h1>
+        </div>
+    </div>
+</div>
+{% endblock main_header %}
+
+{% block main_footer %}
+{% for block in page.near_parent.villain %}
+{% include_block block %}
+{% endfor %}
+{% endblock main_footer %}

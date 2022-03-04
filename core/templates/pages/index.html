@@ -1,0 +1,72 @@
+{% extends "pages/base.html" %}
+{% comment %}Шаблон главной{% endcomment %}
+
+{% load chunk_tags %}
+{% load wagtailcore_tags %}
+{% load common_tags %}
+
+{% block body_class %}root_main{% endblock %}
+{% block header_class %}header_main{% endblock %}
+{% block main_class %}layout_main{% endblock %}
+{% block footer_class %}footer_main{% endblock %}
+
+{% block viewport %}{# TODO: После расайзов всех страниц удалить блок #}
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, minimal-ui">
+{% endblock viewport %}
+
+
+{% block header_intro %}
+    <span class="intro__text">{{ page.annotation|format_title }}</span>
+{% endblock header_intro %}
+
+
+{% block main_header %}
+{% endblock main_header %}
+
+
+{% block main_content %}
+    <div class="elevator elevator_default js-elevator">
+        <div class="elevator__container">
+            <div class="elevator__row">
+                <button class="elevator__toggle js-elevator-toggle" type="button">
+                    <span class="elevator__number elevator__number_small js-elevator-number"></span>
+                    <span class="elevator__name js-elevator-name"></span>
+                </button>
+                <div class="elevator__navigation js-elevator-navigation">
+                    <div class="elevator__panel">
+                        <div class="elevator__label" role="heading" aria-level="2">Выберите этаж</div>
+                        <div class="elevator__number elevator__number_default js-elevator-number"></div>
+                        <div class="elevator__toolbar">
+                            {% for item in menu_root.menu_children %}
+                                <a class="elevator__button js-elevator-level{% if forloop.first %} is-active{% endif %}" href="#{{ item.slug }}">
+                                    <span>{{ item.get_title }}</span>
+                                </a>
+                            {% endfor %}
+                        </div>
+                        <div class="elevator__hint">
+                            {% get_chunk "elevator-invitation" as invitation %}
+                            {% for block in invitation %}
+                                {{ block|safe }}
+                            {% empty %}
+                                Поднимайтесь
+                                <br> в Музей, у нас
+                                <br> много интересного
+                            {% endfor %}
+                        </div>
+                        <button class="elevator__close button button_square js-elevator-close" type="button" aria-label="Закрыть" title="Закрыть">
+                            <span class="button__icon button__icon_close-32-black"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="elevator__viewport js-elevator-viewport is-visible">
+                    <div class="elevator__caret js-elevator-caret">
+                        {% for item in menu_root.menu_children %}
+                            {# components/elevator/<slug>.html|default.html #}
+                            {% include item.elevator_template %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock main_content %}

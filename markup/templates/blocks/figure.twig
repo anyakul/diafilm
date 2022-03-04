@@ -1,0 +1,106 @@
+{% set tag = self.wrap ? 'div' : 'figure' %}
+{% set type = self.type|default('image') %}
+<{{ tag }} class="{% if self.className %}{{ self.className }} {% endif %}{{ 'figure'|mod(self.mod) }}{% if self.caption %} figure_captioned{% endif %}{{ self|jsClass }}"
+        itemprop="{{ type == 'video' ? 'video' : 'image' }}"
+        itemscope
+        itemtype="http://schema.org/{{ type == 'video' ? 'VideoObject' : 'ImageObject' }}"
+        {% if self.collection %}data-collection="{{ self.collection }}"{% endif %}
+        data-id="{{ self.id|default(self.media|hash) }}"
+        data-type="{{ type }}">
+    {% if self.wrap %}
+    <div class="figure__container">
+        <div class="figure__row">
+            <figure class="figure__body">
+                {% endif %}
+                <div class="figure__media">
+                    {% if type == 'video' %}
+                        {% include '@blocks/video.twig' with {
+                            self: self.media|extend({
+                                className: 'figure__source',
+                                jsClassName: 'js-figure-source',
+                                autoplay: false,
+                                loop: false,
+                                muted: false,
+                                playsinline: false
+                            })
+                        } %}
+                        {% include '@blocks/button.twig' with {
+                            self: {
+                                mod: 'video',
+                                className: 'figure__play',
+                                jsClassName: 'js-figure-play',
+                                icon: 'play',
+                                label: 'Смотреть видео'
+                            }
+                        } %}
+                    {% elseif type == 'youtube' %}
+                        {% include '@blocks/image.twig' with {
+                            self: {
+                                className: 'figure__source',
+                                jsClassName: 'js-figure-source',
+                                src: 'https://img.youtube.com/vi/'~self.media.url~'/maxresdefault.jpg',
+                                width: self.media.width,
+                                height: self.media.height,
+                                extra: {
+                                    'loading': 'lazy',
+                                    'data-url': self.media.url
+                                }
+                            }
+                        } %}
+                        {% include '@blocks/button.twig' with {
+                            self: {
+                                mod: 'play',
+                                className: 'figure__play',
+                                jsClassName: 'js-figure-play',
+                                icon: 'play-white',
+                                title: 'Смотреть видео'
+                            }
+                        } %}
+                    {% elseif type == 'iframe' or type == 'pdf' %}
+                        {% include '@blocks/lazy-image.twig' with {
+                            self: self.media|extend({
+                                className: 'figure__source',
+                                jsClassName: 'js-figure-source'
+                            })
+                        } %}
+                        {% include '@blocks/button.twig' with {
+                            self: {
+                                mod: 'view',
+                                className: 'figure__play',
+                                jsClassName: 'js-figure-play',
+                                icon: 'view',
+                                title: 'Смотреть'
+                            }
+                        } %}
+                    {% else %}
+                        {% include '@blocks/lazy-image.twig' with {
+                            self: self.media|extend({
+                                className: 'figure__source',
+                                jsClassName: 'js-figure-source'
+                            })
+                        } %}
+                    {% endif %}
+
+                    {% if self.media.original %}
+                        {% include '@blocks/button.twig' with {
+                            self: {
+                                mod: 'visual',
+                                className: 'figure__zoom',
+                                jsClassName: 'js-figure-zoom',
+                                icon: 'enter',
+                                title: 'Увеличить'
+                            }
+                        } %}
+                    {% endif %}
+                </div>
+                {% if self.caption %}
+                    <figcaption class="figure__caption js-figure-caption">
+                        {{ self.caption|ft }}
+                    </figcaption>
+                {% endif %}
+                {% if self.wrap %}
+            </figure>
+        </div>
+    </div>
+    {% endif %}
+</{{ tag }}>

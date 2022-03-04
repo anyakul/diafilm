@@ -1,0 +1,12 @@
+<div class="{% if self.className %}{{ self.className }} {% endif %}{{ 'intro'|mod(self.mod) }}{{ self|jsClass }}"{% if self.extra %} {{ self.extra|extra }}{% endif %}>
+    {% if self.number %}
+        <span class="intro__number">{{ self.number }}</span>
+        {% if self.label %}
+            <span class="intro__label" role="heading" aria-level="2">{{ self.label|ft }}</span>
+        {% endif %}
+    {% endif %}
+
+    {% if self.text %}
+        <span class="intro__text">{{ self.text|ft }}</span>
+    {% endif %}
+</div>
